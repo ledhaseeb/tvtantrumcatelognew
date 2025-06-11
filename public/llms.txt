@@ -1,0 +1,71 @@
+# TV Tantrum - Children's Content Discovery Platform
+
+## About
+TV Tantrum is a gamified web platform revolutionizing children's media discovery through an intelligent, sensory-aware content recommendation system. We help parents find appropriate TV shows and content for their children based on detailed sensory analysis and stimulation levels.
+
+## Key Features
+- 302 authentic TV shows with comprehensive metadata
+- Stimulation level rating system (1-5 scale with color-coded indicators)
+- Sensory-aware filtering (sound effects, dialogue intensity, scene frequency)
+- Age-appropriate content discovery
+- Admin-controlled homepage categories with custom collections
+- Share functionality for social media promotion
+- Mobile-first responsive design
+
+## Technology Stack
+- Frontend: React with TypeScript, Tailwind CSS
+- Backend: Node.js/Express with PostgreSQL
+- Deployment: Replit with planned migration to tvtantrum.com
+- Analytics: Google Analytics 4 integration
+- Monetization: Google AdSense with GDPR compliance
+
+## Content Structure
+### TV Shows Database
+Each show includes:
+- Basic metadata (name, creator, release year, age range)
+- Stimulation scoring (1-5 scale)
+- Sensory details (dialogue intensity, sound effects, scene frequency)
+- Thematic categorization
+- Platform availability
+- Custom optimized imagery
+
+### Homepage Categories
+Admin-curated collections with:
+- Custom names and descriptions
+- AND/OR filter logic for dynamic content
+- Theme-based grouping (Nature, STEM, Social-Emotional, etc.)
+- Stimulation level filtering
+
+## API Endpoints
+- `/api/tv-shows` - Browse and filter shows
+- `/api/tv-shows/:id` - Individual show details
+- `/api/homepage-categories` - Featured collections
+- `/api/themes` - Available content themes
+- `/api/research` - Child development research summaries
+
+## Unique Value Proposition
+Unlike generic streaming platforms, TV Tantrum focuses specifically on:
+1. Sensory sensitivity awareness for children
+2. Evidence-based stimulation level ratings
+3. Detailed content analysis beyond basic age ratings
+4. Parent-focused discovery tools
+5. Child development research integration
+
+## Target Audience
+- Parents seeking appropriate content for sensitive children
+- Educators looking for classroom-appropriate media
+- Child development professionals
+- Families managing sensory processing differences
+
+## Contact
+Email: hello@tvtantrum.com
+Admin Portal: /tvtantrum-admin-secure-access-2024
+
+## Privacy & Compliance
+- GDPR-compliant cookie consent
+- No user authentication required for browsing
+- Minimal data collection focused on content discovery
+- Child-safe environment prioritized
+
+---
+This platform represents a specialized approach to children's media curation, emphasizing sensory awareness and evidence-based content recommendations.

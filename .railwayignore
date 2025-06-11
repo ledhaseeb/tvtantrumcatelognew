@@ -1,0 +1,49 @@
+# Development files
+.env.local
+.env.development
+*.log
+logs/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Build artifacts (will be generated during build)
+dist/
+build/
+
+# Dependencies (will be installed)
+node_modules/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+README.md
+docs/
+
+# Development tools
+.eslintrc*
+.prettierrc*
+tsconfig.json
+
+# Downloads and temp files
+downloads/
+attached_assets/
+migrations/meta/
+
+# Cache directories
+.cache/
+.npm/
+.yarn/

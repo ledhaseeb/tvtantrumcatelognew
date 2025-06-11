@@ -1,0 +1,413 @@
+{
+  "id": "fec13a2d-9e22-40ec-a927-b7a9e8121255",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.favorites": {
+      "name": "favorites",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tv_show_id": {
+          "name": "tv_show_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'2025-05-13T11:29:00.429Z'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.tv_show_reviews": {
+      "name": "tv_show_reviews",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tv_show_id": {
+          "name": "tv_show_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_name": {
+          "name": "user_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rating": {
+          "name": "rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "review": {
+          "name": "review",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'2025-05-13T11:29:00.431Z'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.tv_show_searches": {
+      "name": "tv_show_searches",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tv_show_id": {
+          "name": "tv_show_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "search_count": {
+          "name": "search_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 1
+        },
+        "view_count": {
+          "name": "view_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "last_searched": {
+          "name": "last_searched",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'2025-05-13T11:29:00.431Z'"
+        },
+        "last_viewed": {
+          "name": "last_viewed",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.tv_shows": {
+      "name": "tv_shows",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "age_range": {
+          "name": "age_range",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "episode_length": {
+          "name": "episode_length",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "creator": {
+          "name": "creator",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "release_year": {
+          "name": "release_year",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "end_year": {
+          "name": "end_year",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_ongoing": {
+          "name": "is_ongoing",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
+        },
+        "seasons": {
+          "name": "seasons",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "stimulation_score": {
+          "name": "stimulation_score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "interactivity_level": {
+          "name": "interactivity_level",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dialogue_intensity": {
+          "name": "dialogue_intensity",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sound_effects_level": {
+          "name": "sound_effects_level",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "music_tempo": {
+          "name": "music_tempo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total_music_level": {
+          "name": "total_music_level",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total_sound_effect_time_level": {
+          "name": "total_sound_effect_time_level",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "scene_frequency": {
+          "name": "scene_frequency",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "friendship_rating": {
+          "name": "friendship_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "problem_solving_rating": {
+          "name": "problem_solving_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "relatable_situations_rating": {
+          "name": "relatable_situations_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "emotional_intelligence_rating": {
+          "name": "emotional_intelligence_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "creativity_rating": {
+          "name": "creativity_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "educational_value_rating": {
+          "name": "educational_value_rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "available_on": {
+          "name": "available_on",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "themes": {
+          "name": "themes",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "animation_style": {
+          "name": "animation_style",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_admin": {
+          "name": "is_admin",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "username": {
+          "name": "username",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "country": {
+          "name": "country",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'2025-05-13T11:29:00.425Z'"
+        },
+        "is_approved": {
+          "name": "is_approved",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "users_email_unique": {
+          "name": "users_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

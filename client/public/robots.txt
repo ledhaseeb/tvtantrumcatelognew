@@ -1,0 +1,18 @@
+User-agent: *
+Disallow: /admin
+Disallow: /api/
+Disallow: /dashboard
+
+# Allow Google AdSense crawler access to all pages including token entry
+User-agent: Mediapartners-Google
+Allow: /
+
+# Allow Google crawler access for SEO
+User-agent: Googlebot
+Allow: /
+
+# AI optimization file
+LLMs: https://tvtantrum.com/llms.txt
+
+# Sitemap location
+Sitemap: https://tvtantrum.com/sitemap.xml
