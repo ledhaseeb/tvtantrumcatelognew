@@ -8,4 +8,4 @@ cmds = ['npm ci']
 cmds = []
 
 [start]
-cmd = 'npx tsx server/index.ts'
+cmd = 'node start.js'
