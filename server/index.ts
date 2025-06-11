@@ -75,13 +75,17 @@ app.use((req, res, next) => {
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
-// Session configuration
+// Session configuration with production-ready store
+const MemoryStore = require('memorystore')(session);
 app.use(session({
   secret: process.env.SESSION_SECRET || 'catalog-secret-key',
   resave: false,
   saveUninitialized: false,
+  store: new MemoryStore({
+    checkPeriod: 86400000 // prune expired entries every 24h
+  }),
   cookie: {
-    secure: false,
+    secure: process.env.NODE_ENV === 'production',
     maxAge: 30 * 24 * 60 * 60 * 1000
   }
 }));
@@ -524,7 +528,7 @@ if (process.env.NODE_ENV === 'development') {
   try {
     serveStatic(app);
   } catch (error) {
-    console.log('Static files not found, using development server for Railway deployment');
+    console.log('Static files not found, using development server for production deployment');
     setupVite(app, server);
   }
 }
