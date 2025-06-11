@@ -1,6 +1,17 @@
 import { Pool } from 'pg';
 import { TvShow, Theme, Platform, ResearchSummary, User, HomepageCategory, InsertHomepageCategory } from '@shared/catalog-schema';
 import { cache, CACHE_KEYS, CACHE_TTL, getCacheKey, invalidatePattern } from "./cache";
+import { 
+  getCachedTvShows, 
+  setCachedTvShows, 
+  getCachedSearchResults, 
+  setCachedSearchResults,
+  getCachedHomepageCategories,
+  setCachedHomepageCategories,
+  getCache,
+  setCache,
+  CACHE_CONFIG
+} from "./redis-cache";
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -278,9 +289,15 @@ export class CatalogStorage {
   }
   
   /**
-   * Search shows by name
+   * Search shows by name with Redis caching for viral traffic
    */
   async searchShows(searchTerm: string, limit: number = 20): Promise<TvShow[]> {
+    // Check Redis cache first for viral traffic handling
+    const cachedResults = await getCachedSearchResults(searchTerm);
+    if (cachedResults) {
+      return cachedResults.slice(0, limit);
+    }
+
     const client = await pool.connect();
     try {
       const search = `%${searchTerm.toLowerCase()}%`;
@@ -300,7 +317,13 @@ export class CatalogStorage {
         ORDER BY search_rank, name ASC
         LIMIT $3
       `, [search, searchTerm, limit]);
-      return result.rows;
+      
+      const searchResults = result.rows;
+      
+      // Cache search results for viral traffic handling
+      await setCachedSearchResults(searchTerm, searchResults);
+      
+      return searchResults;
     } finally {
       client.release();
     }
