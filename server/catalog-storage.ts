@@ -2,16 +2,13 @@ import { Pool } from 'pg';
 import { TvShow, Theme, Platform, ResearchSummary, User, HomepageCategory, InsertHomepageCategory } from '@shared/catalog-schema';
 import { cache, CACHE_KEYS, CACHE_TTL, getCacheKey, invalidatePattern } from "./cache";
 import { 
-  getCachedTvShows, 
-  setCachedTvShows, 
-  getCachedSearchResults, 
-  setCachedSearchResults,
+  getCachedSearch, 
+  setCachedSearch, 
   getCachedHomepageCategories,
   setCachedHomepageCategories,
-  getCache,
-  setCache,
-  CACHE_CONFIG
-} from "./redis-cache";
+  getCachedTvShowsWithFilters,
+  setCachedTvShowsWithFilters
+} from "./enhanced-cache";
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -289,11 +286,11 @@ export class CatalogStorage {
   }
   
   /**
-   * Search shows by name with Redis caching for viral traffic
+   * Search shows by name with enhanced caching for viral traffic
    */
   async searchShows(searchTerm: string, limit: number = 20): Promise<TvShow[]> {
-    // Check Redis cache first for viral traffic handling
-    const cachedResults = await getCachedSearchResults(searchTerm);
+    // Check enhanced cache first for viral traffic handling
+    const cachedResults = getCachedSearch(searchTerm);
     if (cachedResults) {
       return cachedResults.slice(0, limit);
     }
@@ -321,7 +318,7 @@ export class CatalogStorage {
       const searchResults = result.rows;
       
       // Cache search results for viral traffic handling
-      await setCachedSearchResults(searchTerm, searchResults);
+      setCachedSearch(searchTerm, searchResults);
       
       return searchResults;
     } finally {

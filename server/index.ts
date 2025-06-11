@@ -10,7 +10,7 @@ import { Pool } from 'pg';
 import { setupSimpleAdminAuth } from './simple-admin';
 import adminRoutes from './admin-routes';
 import { cache, getCacheStats } from './cache';
-import { initializeRedis, getCacheInfo } from './redis-cache';
+import { getEnhancedCacheStats } from './enhanced-cache';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -473,9 +473,9 @@ app.get('/api/health', (req, res) => {
 
 // Mount API routes BEFORE Vite middleware to prevent conflicts
 // Performance monitoring endpoint for high-traffic scaling
-app.get('/api/performance-stats', async (req, res) => {
+app.get('/api/performance-stats', (req, res) => {
   const stats = getCacheStats();
-  const redisInfo = await getCacheInfo();
+  const enhancedStats = getEnhancedCacheStats();
   const uptime = process.uptime();
   const memoryUsage = process.memoryUsage();
   
@@ -496,7 +496,7 @@ app.get('/api/performance-stats', async (req, res) => {
         ksize: stats.stats.ksize,
         vsize: stats.stats.vsize
       },
-      redis: redisInfo
+      viral: enhancedStats
     },
     timestamp: new Date().toISOString()
   });
@@ -534,16 +534,9 @@ if (process.env.NODE_ENV === 'development') {
   }
 }
 
-// Initialize Redis for viral traffic handling
-async function startServer() {
-  await initializeRedis();
-  
-  server.listen(port, '0.0.0.0', () => {
-    console.log(`TV Tantrum Catalog server running on port ${port}`);
-    console.log(`Using catalog database with 302 authentic TV shows`);
-    console.log(`Simplified content discovery without social features`);
-    console.log(`Redis caching enabled for viral traffic handling`);
-  });
-}
-
-startServer().catch(console.error);
+server.listen(port, '0.0.0.0', () => {
+  console.log(`TV Tantrum Catalog server running on port ${port}`);
+  console.log(`Using catalog database with 302 authentic TV shows`);
+  console.log(`Simplified content discovery without social features`);
+  console.log(`Enhanced caching enabled for viral traffic handling`);
+});
