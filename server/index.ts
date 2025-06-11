@@ -461,8 +461,8 @@ app.get('/media/tv-shows/:filename', async (req, res) => {
   }
 });
 
-// Setup admin authentication routes (temporarily disabled for development)
-// setupSimpleAdminAuth(app);
+// Setup admin authentication routes
+setupSimpleAdminAuth(app);
 
 // Add health check endpoint at root level for Railway
 app.get('/api/health', (req, res) => {
