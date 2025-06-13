@@ -19,8 +19,8 @@ const pool = new Pool({
 });
 
 // Handle pool errors to prevent app crashes
-pool.on('error', (err, client) => {
-  console.error('Database pool error:', err.code, err.message);
+pool.on('error', (err: any, client) => {
+  console.error('Database pool error - continuing with cache:', err.code, err.message);
   // Don't crash the app - pool will recover automatically
 });
 
@@ -53,12 +53,12 @@ export class CatalogStorage {
     }
 
     const client = await pool.connect();
-      try {
-        // Optimized query without DISTINCT for better performance
-        let query = `
-          SELECT ts.* 
-          FROM catalog_tv_shows ts
-        `;
+    try {
+      // Optimized query without DISTINCT for better performance
+      let query = `
+        SELECT ts.* 
+        FROM catalog_tv_shows ts
+      `;
       
       let whereConditions: string[] = [];
       let queryParams: any[] = [];

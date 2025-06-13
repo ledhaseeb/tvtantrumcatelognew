@@ -535,9 +535,29 @@ if (process.env.NODE_ENV === 'development') {
   }
 }
 
+// Global error handlers to prevent database crashes
+process.on('uncaughtException', (error: any) => {
+  console.error('Uncaught Exception:', error.message);
+  if (error.code === '57P01' || error.message?.includes('terminating connection')) {
+    console.log('Database connection terminated - continuing operation with cache');
+    return; // Don't crash the app
+  }
+  console.error('Non-database error - exiting:', error);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason: any, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  if (reason?.code === '57P01' || reason?.message?.includes('terminating connection')) {
+    console.log('Database rejection handled - continuing with cache');
+    return; // Don't crash the app
+  }
+});
+
 server.listen(port, '0.0.0.0', () => {
   console.log(`TV Tantrum Catalog server running on port ${port}`);
   console.log(`Using catalog database with 302 authentic TV shows`);
   console.log(`Simplified content discovery without social features`);
   console.log(`Enhanced caching enabled for viral traffic handling`);
+  console.log(`Database crash protection active`);
 });
