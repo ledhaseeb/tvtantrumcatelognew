@@ -11,6 +11,7 @@ import { setupSimpleAdminAuth } from './simple-admin';
 import adminRoutes from './admin-routes';
 import { cache, getCacheStats } from './cache';
 import { getEnhancedCacheStats } from './enhanced-cache';
+import { setupDatabaseRecovery } from './database-recovery';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
