@@ -85,6 +85,14 @@ export default function Browse() {
             case 'ageGroup':
               initialFilters.ageGroup = rule.value;
               break;
+            case 'stimulationScore':
+              if (rule.operator === 'range' && typeof rule.value === 'string') {
+                const [min, max] = rule.value.split('-').map(Number);
+                if (!isNaN(min) && !isNaN(max)) {
+                  initialFilters.stimulationScoreRange = { min, max };
+                }
+              }
+              break;
           }
         });
         
