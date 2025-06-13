@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocation, useSearch } from "wouter";
 import ShowFilters from "@/components/ShowFilters";
 import ShowCard from "@/components/ShowCard";
-import SimpleShowCard from "@/components/SimpleShowCard";
 import AdContainer from "@/components/AdContainer";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -40,10 +39,69 @@ export default function Browse() {
   const [currentPage, setCurrentPage] = useState(1);
   const showsPerPage = 12;
 
+  // Fetch category data when category ID is provided
+  const categoryId = new URLSearchParams(search).get('category');
+  const { data: categoryData } = useQuery({
+    queryKey: ['/api/homepage-categories', categoryId],
+    queryFn: async () => {
+      if (!categoryId) return null;
+      const response = await fetch('/api/homepage-categories');
+      if (!response.ok) throw new Error('Failed to fetch categories');
+      const categories = await response.json();
+      return categories.find((cat: any) => cat.id === parseInt(categoryId));
+    },
+    enabled: !!categoryId,
+  });
+
   // Parse URL search params to set initial filters
   useEffect(() => {
     const searchParams = new URLSearchParams(search);
     const initialFilters: typeof activeFilters = {};
+    
+    // Handle category filter configuration
+    if (categoryData?.filterConfig) {
+      const config = categoryData.filterConfig;
+      
+      // Convert category filter config to activeFilters format
+      if (config.rules) {
+        config.rules.forEach((rule: any) => {
+          switch (rule.field) {
+            case 'themes':
+              if (!initialFilters.themes) initialFilters.themes = [];
+              if (Array.isArray(rule.value)) {
+                initialFilters.themes = [...initialFilters.themes, ...rule.value];
+              } else {
+                initialFilters.themes.push(rule.value);
+              }
+              break;
+            case 'ageRange':
+              if (rule.operator === 'range' && typeof rule.value === 'string') {
+                const [min, max] = rule.value.split('-').map(Number);
+                if (!isNaN(min) && !isNaN(max)) {
+                  initialFilters.ageRange = { min, max };
+                }
+              }
+              break;
+            case 'ageGroup':
+              initialFilters.ageGroup = rule.value;
+              break;
+            case 'stimulationScore':
+              if (rule.operator === 'range' && typeof rule.value === 'string') {
+                const [min, max] = rule.value.split('-').map(Number);
+                if (!isNaN(min) && !isNaN(max)) {
+                  initialFilters.stimulationScoreRange = { min, max };
+                }
+              }
+              break;
+          }
+        });
+        
+        // Set theme match mode from category logic
+        if (config.logic && initialFilters.themes?.length) {
+          initialFilters.themeMatchMode = config.logic;
+        }
+      }
+    }
     
     // Get search query from URL
     const searchQuery = searchParams.get('search');
@@ -156,7 +214,7 @@ export default function Browse() {
     }
     // Mark filters as initialized so fetch can proceed
     setFiltersInitialized(true);
-  }, [search]);
+  }, [search, categoryData]);
 
   // Use direct fetch instead of React Query to avoid timestamp issues
   const [shows, setShows] = useState<TvShow[]>([]);

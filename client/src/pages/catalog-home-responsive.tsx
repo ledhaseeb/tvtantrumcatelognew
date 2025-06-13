@@ -194,7 +194,7 @@ export default function CatalogHomeResponsive() {
                     {/* Second row: Description and View All button */}
                     <div className="flex items-center justify-between">
                       <p className="text-gray-600">{category.description}</p>
-                      <Link href={`/browse?category=${category.id}`}>
+                      <Link href={category.id === 3 ? '/browse?stimulationScoreRange=%257B%2522min%2522%253A1%252C%2522max%2522%253A2%257D' : `/browse?category=${category.id}`}>
                         <Button variant="outline">View All</Button>
                       </Link>
                     </div>

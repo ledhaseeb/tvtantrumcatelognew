@@ -10,6 +10,8 @@ import { Pool } from 'pg';
 import { setupSimpleAdminAuth } from './simple-admin';
 import adminRoutes from './admin-routes';
 import { cache, getCacheStats } from './cache';
+import { getEnhancedCacheStats } from './enhanced-cache';
+import { setupDatabaseRecovery } from './database-recovery';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -75,13 +77,13 @@ app.use((req, res, next) => {
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
-// Session configuration
+// Session configuration 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'catalog-secret-key',
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: false,
+    secure: process.env.NODE_ENV === 'production',
     maxAge: 30 * 24 * 60 * 60 * 1000
   }
 }));
@@ -457,8 +459,8 @@ app.get('/media/tv-shows/:filename', async (req, res) => {
   }
 });
 
-// Setup admin authentication routes (temporarily disabled for development)
-// setupSimpleAdminAuth(app);
+// Setup admin authentication routes
+setupSimpleAdminAuth(app);
 
 // Add health check endpoint at root level for Railway
 app.get('/api/health', (req, res) => {
@@ -474,6 +476,7 @@ app.get('/api/health', (req, res) => {
 // Performance monitoring endpoint for high-traffic scaling
 app.get('/api/performance-stats', (req, res) => {
   const stats = getCacheStats();
+  const enhancedStats = getEnhancedCacheStats();
   const uptime = process.uptime();
   const memoryUsage = process.memoryUsage();
   
@@ -486,12 +489,15 @@ app.get('/api/performance-stats', (req, res) => {
       external: Math.round(memoryUsage.external / 1024 / 1024) + ' MB',
     },
     cache: {
-      keysCount: stats.keys,
-      hits: stats.stats.hits,
-      misses: stats.stats.misses,
-      hitRate: stats.stats.hits > 0 ? ((stats.stats.hits / (stats.stats.hits + stats.stats.misses)) * 100).toFixed(2) + '%' : '0%',
-      ksize: stats.stats.ksize,
-      vsize: stats.stats.vsize
+      memory: {
+        keysCount: stats.keys,
+        hits: stats.stats.hits,
+        misses: stats.stats.misses,
+        hitRate: stats.stats.hits > 0 ? ((stats.stats.hits / (stats.stats.hits + stats.stats.misses)) * 100).toFixed(2) + '%' : '0%',
+        ksize: stats.stats.ksize,
+        vsize: stats.stats.vsize
+      },
+      viral: enhancedStats
     },
     timestamp: new Date().toISOString()
   });
@@ -524,13 +530,34 @@ if (process.env.NODE_ENV === 'development') {
   try {
     serveStatic(app);
   } catch (error) {
-    console.log('Static files not found, using development server for Railway deployment');
+    console.log('Static files not found, using development server for production deployment');
     setupVite(app, server);
   }
 }
+
+// Global error handlers to prevent database crashes
+process.on('uncaughtException', (error: any) => {
+  console.error('Uncaught Exception:', error.message);
+  if (error.code === '57P01' || error.message?.includes('terminating connection')) {
+    console.log('Database connection terminated - continuing operation with cache');
+    return; // Don't crash the app
+  }
+  console.error('Non-database error - exiting:', error);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason: any, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  if (reason?.code === '57P01' || reason?.message?.includes('terminating connection')) {
+    console.log('Database rejection handled - continuing with cache');
+    return; // Don't crash the app
+  }
+});
 
 server.listen(port, '0.0.0.0', () => {
   console.log(`TV Tantrum Catalog server running on port ${port}`);
   console.log(`Using catalog database with 302 authentic TV shows`);
   console.log(`Simplified content discovery without social features`);
+  console.log(`Enhanced caching enabled for viral traffic handling`);
+  console.log(`Database crash protection active`);
 });

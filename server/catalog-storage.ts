@@ -1,9 +1,27 @@
 import { Pool } from 'pg';
 import { TvShow, Theme, Platform, ResearchSummary, User, HomepageCategory, InsertHomepageCategory } from '@shared/catalog-schema';
 import { cache, CACHE_KEYS, CACHE_TTL, getCacheKey, invalidatePattern } from "./cache";
+import { 
+  getCachedSearch, 
+  setCachedSearch, 
+  getCachedHomepageCategories,
+  setCachedHomepageCategories,
+  getCachedTvShowsWithFilters,
+  setCachedTvShowsWithFilters
+} from "./enhanced-cache";
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 10000,
+  allowExitOnIdle: false
+});
+
+// Handle pool errors to prevent app crashes
+pool.on('error', (err: any, client) => {
+  console.error('Database pool error - continuing with cache:', err.code, err.message);
+  // Don't crash the app - pool will recover automatically
 });
 
 export class CatalogStorage {
@@ -278,9 +296,15 @@ export class CatalogStorage {
   }
   
   /**
-   * Search shows by name
+   * Search shows by name with enhanced caching for viral traffic
    */
   async searchShows(searchTerm: string, limit: number = 20): Promise<TvShow[]> {
+    // Check enhanced cache first for viral traffic handling
+    const cachedResults = getCachedSearch(searchTerm);
+    if (cachedResults) {
+      return cachedResults.slice(0, limit);
+    }
+
     const client = await pool.connect();
     try {
       const search = `%${searchTerm.toLowerCase()}%`;
@@ -300,7 +324,13 @@ export class CatalogStorage {
         ORDER BY search_rank, name ASC
         LIMIT $3
       `, [search, searchTerm, limit]);
-      return result.rows;
+      
+      const searchResults = result.rows;
+      
+      // Cache search results for viral traffic handling
+      setCachedSearch(searchTerm, searchResults);
+      
+      return searchResults;
     } finally {
       client.release();
     }
