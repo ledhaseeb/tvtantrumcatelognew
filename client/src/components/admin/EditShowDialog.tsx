@@ -66,7 +66,6 @@ const STIMULATION_OPTIONS = [
 const LEVEL_OPTIONS = [
   { value: "Low", label: "Low" },
   { value: "Low-Moderate", label: "Low-Moderate" },
-  { value: "Medium", label: "Medium" },
   { value: "Moderate", label: "Moderate" },
   { value: "Moderate-High", label: "Moderate-High" },
   { value: "High", label: "High" }
