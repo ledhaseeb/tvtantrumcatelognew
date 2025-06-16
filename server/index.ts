@@ -92,23 +92,41 @@ const sessionConfig: any = {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax'
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax' // Changed from 'strict' to 'none' for HTTPS
   }
 };
 
+console.log('[SESSION CONFIG]', {
+  environment: process.env.NODE_ENV,
+  cookieSecure: sessionConfig.cookie.secure,
+  cookieSameSite: sessionConfig.cookie.sameSite,
+  hasSecret: !!process.env.SESSION_SECRET
+});
+
 // Use PostgreSQL store in production for session persistence
 if (process.env.NODE_ENV === 'production' && process.env.DATABASE_URL) {
-  sessionConfig.store = new PgStore({
-    conString: process.env.DATABASE_URL,
-    tableName: 'session',
-    createTableIfMissing: true
-  });
+  try {
+    sessionConfig.store = new PgStore({
+      conString: process.env.DATABASE_URL,
+      tableName: 'session',
+      createTableIfMissing: true,
+      pruneSessionInterval: 60 * 15 // Cleanup every 15 minutes
+    });
+    console.log('[SESSION] Using PostgreSQL session store for production');
+  } catch (error) {
+    console.error('[SESSION] PostgreSQL store failed, falling back to memory store:', error);
+    const memoryStore = MemoryStore(session);
+    sessionConfig.store = new memoryStore({
+      checkPeriod: 86400000
+    });
+  }
 } else {
   // Use MemoryStore for development
   const memoryStore = MemoryStore(session);
   sessionConfig.store = new memoryStore({
     checkPeriod: 86400000
   });
+  console.log('[SESSION] Using memory store for development');
 }
 
 app.use(session(sessionConfig));

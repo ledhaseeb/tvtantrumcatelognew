@@ -37,6 +37,21 @@ export function requireAdmin(req: Request, res: Response, next: NextFunction) {
 }
 
 export function setupSimpleAdminAuth(app: Express) {
+  // Session debugging endpoint
+  app.get('/api/admin/session-debug', (req: Request, res: Response) => {
+    const session = req.session as any;
+    res.json({
+      sessionExists: !!session,
+      sessionId: session?.id || 'none',
+      adminUser: !!session?.adminUser,
+      adminEmail: session?.adminUser?.email || 'none',
+      environment: process.env.NODE_ENV,
+      storeType: session?.store?.constructor?.name || 'unknown',
+      cookieSecure: session?.cookie?.secure,
+      cookieHttpOnly: session?.cookie?.httpOnly
+    });
+  });
+
   // Admin login
   app.post('/api/admin/login', async (req: Request, res: Response) => {
     try {
@@ -64,7 +79,7 @@ export function setupSimpleAdminAuth(app: Express) {
         return res.status(401).json({ message: 'Invalid credentials' });
       }
 
-      // Set session
+      // Set session with explicit save
       const session = req.session as any;
       session.adminUser = {
         id: user.id,
@@ -73,17 +88,81 @@ export function setupSimpleAdminAuth(app: Express) {
         isAdmin: user.is_admin
       };
 
-      res.json({
-        message: 'Login successful',
-        user: {
-          id: user.id,
-          email: user.email,
-          firstName: user.first_name
+      // Force session save and add debugging
+      session.save((err: any) => {
+        if (err) {
+          console.error('[ADMIN LOGIN ERROR] Session save failed:', err);
+          return res.status(500).json({ message: 'Session save failed' });
         }
+        
+        console.log('[ADMIN LOGIN SUCCESS]', {
+          userId: user.id,
+          email: user.email,
+          sessionId: session.id,
+          sessionExists: !!session.adminUser,
+          environment: process.env.NODE_ENV
+        });
+
+        res.json({
+          message: 'Login successful',
+          user: {
+            id: user.id,
+            email: user.email,
+            firstName: user.first_name
+          }
+        });
       });
     } catch (error) {
       console.error('Admin login error:', error);
       res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
+  // Test login endpoint without password check for debugging
+  app.post('/api/admin/test-login', async (req: Request, res: Response) => {
+    try {
+      const { email } = req.body;
+      
+      // Query user directly with SQL
+      const result = await pool.query(
+        'SELECT id, email, first_name, is_admin FROM users WHERE email = $1 AND is_admin = true',
+        [email]
+      );
+
+      if (result.rows.length === 0) {
+        return res.status(404).json({ message: 'Admin user not found' });
+      }
+
+      const user = result.rows[0];
+      
+      // Set session without password check for testing
+      const session = req.session as any;
+      session.adminUser = {
+        id: user.id,
+        email: user.email,
+        firstName: user.first_name,
+        isAdmin: user.is_admin
+      };
+
+      session.save((err: any) => {
+        if (err) {
+          console.error('[TEST LOGIN ERROR] Session save failed:', err);
+          return res.status(500).json({ message: 'Session save failed', error: err.message });
+        }
+        
+        res.json({
+          message: 'Test login successful',
+          sessionId: session.id,
+          user: {
+            id: user.id,
+            email: user.email,
+            firstName: user.first_name
+          }
+        });
+      });
+    } catch (error) {
+      console.error('Test login error:', error);
+      res.status(500).json({ message: 'Internal server error', error: error.message });
     }
   });
 
