@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import session from 'express-session';
 import MemoryStore from 'memorystore';
-import pgSession from 'connect-pg-simple';
+import ConnectPgSimple from 'connect-pg-simple';
 import compression from 'compression';
 import { setupVite, serveStatic } from './vite';
 import { catalogStorage } from './catalog-storage';
@@ -80,7 +80,7 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // PostgreSQL session store for production persistence
-const pgStore = pgSession(session);
+const PgStore = ConnectPgSimple(session);
 
 // Session configuration with persistent PostgreSQL storage
 const sessionConfig: any = {
@@ -98,7 +98,7 @@ const sessionConfig: any = {
 
 // Use PostgreSQL store in production for session persistence
 if (process.env.NODE_ENV === 'production' && process.env.DATABASE_URL) {
-  sessionConfig.store = new pgStore({
+  sessionConfig.store = new PgStore({
     conString: process.env.DATABASE_URL,
     tableName: 'session',
     createTableIfMissing: true

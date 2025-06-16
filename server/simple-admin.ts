@@ -11,8 +11,27 @@ const pool = new Pool({
 // Simple middleware to check admin authentication
 export function requireAdmin(req: Request, res: Response, next: NextFunction) {
   const session = req.session as any;
+  
+  // Debug logging for production troubleshooting
+  if (process.env.NODE_ENV === 'production') {
+    console.log('[ADMIN AUTH DEBUG]', {
+      sessionExists: !!session,
+      sessionId: session?.id || 'none',
+      adminUser: !!session?.adminUser,
+      userEmail: session?.adminUser?.email || 'none',
+      path: req.path,
+      method: req.method
+    });
+  }
+  
   if (!session.adminUser) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    return res.status(401).json({ 
+      message: 'Unauthorized',
+      debug: process.env.NODE_ENV === 'development' ? {
+        sessionExists: !!session,
+        sessionId: session?.id || 'none'
+      } : undefined
+    });
   }
   next();
 }
