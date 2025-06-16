@@ -96,11 +96,6 @@ export function EditShowDialog({ show, isOpen, onClose, isAddingNew = false }: E
 
   useEffect(() => {
     if (show) {
-      console.log('[FRONTEND DEBUG] Setting form data with show:', {
-        totalSoundEffectTimeLevel: show.totalSoundEffectTimeLevel,
-        showData: show
-      });
-      
       setFormData({
         name: show.name || "",
         description: show.description || "",

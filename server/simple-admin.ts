@@ -280,12 +280,6 @@ export function setupSimpleAdminAuth(app: Express) {
       
       const show = result.rows[0];
       
-      // Debug specific field
-      console.log('[DEBUG] Checking total_sound_effect_time_level mapping:', {
-        dbValue: show.total_sound_effect_time_level,
-        dbType: typeof show.total_sound_effect_time_level
-      });
-
       // Map database snake_case to frontend camelCase
       const mappedShow = {
         ...show,
@@ -312,7 +306,7 @@ export function setupSimpleAdminAuth(app: Express) {
         endYear: show.end_year
       };
       
-      console.log('[DEBUG] Final mapped show totalSoundEffectTimeLevel:', mappedShow.totalSoundEffectTimeLevel);
+
       
       res.json(mappedShow);
     } catch (error) {
