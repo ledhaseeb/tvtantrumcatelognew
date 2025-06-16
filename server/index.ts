@@ -3,6 +3,8 @@ import { createServer } from 'http';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import session from 'express-session';
+import MemoryStore from 'memorystore';
+import ConnectPgSimple from 'connect-pg-simple';
 import compression from 'compression';
 import { setupVite, serveStatic } from './vite';
 import { catalogStorage } from './catalog-storage';
@@ -77,16 +79,39 @@ app.use((req, res, next) => {
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
-// Session configuration 
-app.use(session({
-  secret: process.env.SESSION_SECRET || 'catalog-secret-key',
+// PostgreSQL session store for production persistence
+const PgStore = ConnectPgSimple(session);
+
+// Session configuration with persistent PostgreSQL storage
+const sessionConfig: any = {
+  secret: process.env.SESSION_SECRET || 'catalog-secret-key-production-2024',
   resave: false,
   saveUninitialized: false,
+  name: 'tvtantrum.sid',
   cookie: {
     secure: process.env.NODE_ENV === 'production',
-    maxAge: 30 * 24 * 60 * 60 * 1000
+    httpOnly: true,
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax'
   }
-}));
+};
+
+// Use PostgreSQL store in production for session persistence
+if (process.env.NODE_ENV === 'production' && process.env.DATABASE_URL) {
+  sessionConfig.store = new PgStore({
+    conString: process.env.DATABASE_URL,
+    tableName: 'session',
+    createTableIfMissing: true
+  });
+} else {
+  // Use MemoryStore for development
+  const memoryStore = MemoryStore(session);
+  sessionConfig.store = new memoryStore({
+    checkPeriod: 86400000
+  });
+}
+
+app.use(session(sessionConfig));
 
 // Serve ads.txt file for Google AdSense verification
 app.get('/ads.txt', (req, res) => {
