@@ -36,6 +36,7 @@ interface TvShow {
   dialogueIntensity?: string;
   soundEffectsLevel?: string;
   totalMusicLevel?: string;
+  totalSoundEffectTimeLevel?: string;
   sceneFrequency?: string;
   musicTempo?: string;
   themes?: string[];
@@ -385,10 +386,29 @@ export function EditShowDialog({ show, isOpen, onClose, isAddingNew = false }: E
             </div>
 
             <div className="space-y-2">
-              <Label>Total Sound Effect Time</Label>
+              <Label>Total Music Level</Label>
               <Select 
                 value={formData.totalMusicLevel || ""} 
                 onValueChange={(value) => setFormData(prev => ({ ...prev, totalMusicLevel: value }))}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select level" />
+                </SelectTrigger>
+                <SelectContent>
+                  {LEVEL_OPTIONS.map(option => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Total Sound Effect Time</Label>
+              <Select 
+                value={formData.totalSoundEffectTimeLevel || ""} 
+                onValueChange={(value) => setFormData(prev => ({ ...prev, totalSoundEffectTimeLevel: value }))}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select level" />
