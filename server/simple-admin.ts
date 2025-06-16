@@ -280,6 +280,13 @@ export function setupSimpleAdminAuth(app: Express) {
       
       const show = result.rows[0];
       
+      // Debug logging to check what's being returned from database
+      console.log('[DEBUG] Raw database show data for sound effects:', {
+        sound_effects_level: show.sound_effects_level,
+        total_sound_effect_time_level: show.total_sound_effect_time_level,
+        total_music_level: show.total_music_level
+      });
+      
       // Map database snake_case to frontend camelCase
       const mappedShow = {
         ...show,
