@@ -278,7 +278,35 @@ export function setupSimpleAdminAuth(app: Express) {
         return res.status(404).json({ message: 'Show not found' });
       }
       
-      res.json(result.rows[0]);
+      const show = result.rows[0];
+      
+      // Map database snake_case to frontend camelCase
+      const mappedShow = {
+        ...show,
+        ageRange: show.age_range,
+        stimulationScore: show.stimulation_score,
+        interactivityLevel: show.interactivity_level,
+        dialogueIntensity: show.dialogue_intensity,
+        soundEffectsLevel: show.sound_effects_level,
+        totalMusicLevel: show.total_music_level,
+        totalSoundEffectTimeLevel: show.total_sound_effect_time_level,
+        sceneFrequency: show.scene_frequency,
+        musicTempo: show.music_tempo,
+        animationStyle: show.animation_style,
+        imageUrl: show.image_url,
+        releaseYear: show.release_year,
+        episodeLength: show.episode_length,
+        creativityRating: show.creativity_rating,
+        subscriberCount: show.subscriber_count,
+        avgViewCount: show.avg_view_count,
+        hasOmdbData: show.has_omdb_data,
+        hasYoutubeData: show.has_youtube_data,
+        isFeatured: show.is_featured,
+        isOngoing: show.is_ongoing,
+        endYear: show.end_year
+      };
+      
+      res.json(mappedShow);
     } catch (error) {
       console.error('Get TV show error:', error);
       res.status(500).json({ message: 'Internal server error' });
@@ -307,19 +335,31 @@ export function setupSimpleAdminAuth(app: Express) {
   app.put('/api/admin/tv-shows/:id', requireAdmin, async (req: Request, res: Response) => {
     try {
       const id = parseInt(req.params.id);
+      
+      // Map camelCase frontend fields to snake_case database columns
       const {
-        name, description, age_range, episode_length, creator, release_year,
-        themes, stimulation_score, is_featured, image_url
+        name, description, ageRange, episodeLength, creator, releaseYear,
+        themes, stimulationScore, isFeatured, imageUrl, seasons,
+        interactivityLevel, dialogueIntensity, soundEffectsLevel,
+        totalMusicLevel, totalSoundEffectTimeLevel, sceneFrequency,
+        musicTempo, animationStyle, creativityRating
       } = req.body;
       
       await pool.query(`
         UPDATE catalog_tv_shows SET 
           name = $1, description = $2, age_range = $3, episode_length = $4,
           creator = $5, release_year = $6, themes = $7, stimulation_score = $8,
-          is_featured = $9, image_url = $10, updated_at = NOW()
-        WHERE id = $11
-      `, [name, description, age_range, episode_length, creator, release_year, 
-          JSON.stringify(themes), stimulation_score, is_featured, image_url, id]);
+          is_featured = $9, image_url = $10, seasons = $11,
+          interactivity_level = $12, dialogue_intensity = $13, sound_effects_level = $14,
+          total_music_level = $15, total_sound_effect_time_level = $16, scene_frequency = $17,
+          music_tempo = $18, animation_style = $19, creativity_rating = $20,
+          updated_at = NOW()
+        WHERE id = $21
+      `, [name, description, ageRange, episodeLength, creator, releaseYear, 
+          JSON.stringify(themes), stimulationScore, isFeatured, imageUrl, seasons,
+          interactivityLevel, dialogueIntensity, soundEffectsLevel,
+          totalMusicLevel, totalSoundEffectTimeLevel, sceneFrequency,
+          musicTempo, animationStyle, creativityRating, id]);
       
       res.json({ message: 'Show updated successfully' });
     } catch (error) {
