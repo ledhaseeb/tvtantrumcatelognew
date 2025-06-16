@@ -1,6 +1,8 @@
 import bcrypt from 'bcrypt';
 import type { Express, Request, Response, NextFunction } from 'express';
 import { Pool } from 'pg';
+import { clearAllEnhancedCaches } from './enhanced-cache';
+import { cache, invalidatePattern } from './cache';
 
 // Direct database connection for admin authentication
 const pool = new Pool({
@@ -261,6 +263,11 @@ export function setupSimpleAdminAuth(app: Express) {
         [isFeatured, id]
       );
       
+      // Clear caches when featured status changes
+      clearAllEnhancedCaches();
+      invalidatePattern('tv-shows');
+      invalidatePattern('homepage');
+      
       res.json({ message: 'Featured status updated' });
     } catch (error) {
       console.error('Update featured status error:', error);
@@ -363,6 +370,12 @@ export function setupSimpleAdminAuth(app: Express) {
           totalMusicLevel, totalSoundEffectTimeLevel, sceneFrequency,
           musicTempo, animationStyle, creativityRating, id]);
       
+      // Clear all caches when admin updates shows
+      clearAllEnhancedCaches();
+      invalidatePattern('tv-shows');
+      invalidatePattern('search');
+      invalidatePattern('homepage');
+      
       res.json({ message: 'Show updated successfully' });
     } catch (error) {
       console.error('Update TV show error:', error);
@@ -387,6 +400,12 @@ export function setupSimpleAdminAuth(app: Express) {
       `, [name, description, age_range, episode_length, creator, release_year, 
           JSON.stringify(themes), stimulation_score, is_featured, image_url]);
       
+      // Clear caches when new show is created
+      clearAllEnhancedCaches();
+      invalidatePattern('tv-shows');
+      invalidatePattern('search');
+      invalidatePattern('homepage');
+      
       res.json({ 
         message: 'Show created successfully',
         id: result.rows[0].id 
@@ -402,6 +421,13 @@ export function setupSimpleAdminAuth(app: Express) {
     try {
       const id = parseInt(req.params.id);
       await pool.query('DELETE FROM catalog_tv_shows WHERE id = $1', [id]);
+      
+      // Clear caches when show is deleted
+      clearAllEnhancedCaches();
+      invalidatePattern('tv-shows');
+      invalidatePattern('search');
+      invalidatePattern('homepage');
+      
       res.json({ message: 'Show deleted successfully' });
     } catch (error) {
       console.error('Delete TV show error:', error);
