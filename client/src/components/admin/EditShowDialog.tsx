@@ -65,6 +65,7 @@ const STIMULATION_OPTIONS = [
 
 const LEVEL_OPTIONS = [
   { value: "Low", label: "Low" },
+  { value: "Low-Moderate", label: "Low-Moderate" },
   { value: "Moderate", label: "Moderate" },
   { value: "Moderate-High", label: "Moderate-High" },
   { value: "High", label: "High" }
@@ -104,6 +105,7 @@ export function EditShowDialog({ show, isOpen, onClose, isAddingNew = false }: E
         dialogueIntensity: show.dialogueIntensity || "",
         soundEffectsLevel: show.soundEffectsLevel || "",
         totalMusicLevel: show.totalMusicLevel || "",
+        totalSoundEffectTimeLevel: show.totalSoundEffectTimeLevel || "",
         sceneFrequency: show.sceneFrequency || "",
         musicTempo: show.musicTempo || "",
         themes: show.themes || [],
@@ -125,6 +127,7 @@ export function EditShowDialog({ show, isOpen, onClose, isAddingNew = false }: E
         dialogueIntensity: "",
         soundEffectsLevel: "",
         totalMusicLevel: "",
+        totalSoundEffectTimeLevel: "",
         sceneFrequency: "",
         musicTempo: "",
         themes: [],
