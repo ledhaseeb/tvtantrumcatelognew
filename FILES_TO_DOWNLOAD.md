@@ -1,61 +1,23 @@
-# Complete File List for Railway Deployment
+# Files to Download for Session Persistence Fix
 
-## Essential Application Files:
-- package.json
-- package-lock.json
-- tsconfig.json
-- vite.config.ts
-- tailwind.config.ts
-- postcss.config.js
-- components.json
-- drizzle.config.ts
+## Critical Files (Required)
+1. `server/index.ts` - PostgreSQL session storage implementation
+2. `server/simple-admin.ts` - Enhanced admin authentication with debugging
+3. `package.json` - Updated dependencies including connect-pg-simple
+4. `package-lock.json` - Synchronized lockfile for deployment
 
-## Server Files:
-- server/ (entire directory)
-  - index.ts
-  - vite.ts
-  - db.ts
-  - cache.ts
-  - admin-auth.ts
-  - admin-functions.ts
-  - admin-routes.ts
-  - catalog-routes.ts
-  - catalog-storage.ts
-  - simple-admin.ts
-  - simple-upload.ts
-  - replitAuth.ts
+## Instructions
+1. Download these 4 files from Replit
+2. Replace the corresponding files in your GitHub repository
+3. Commit and push to trigger Render deployment
+4. Verify admin login works on deployed site
 
-## Client Files:
-- client/ (entire directory)
-  - index.html
-  - env.d.ts
-  - src/ (all React components and pages)
-  - public/ (if exists)
+## What This Fixes
+- 401 authentication errors on deployed site
+- Session persistence across server restarts
+- Enhanced debugging for production troubleshooting
 
-## Database Schema:
-- shared/ (entire directory)
-  - catalog-schema.ts
-
-## Static Assets:
-- public/ (entire directory including custom-images)
-
-## Railway Deployment Files:
-- railway.json
-- .railwayignore
-- Dockerfile
-- .env.example
-- RAILWAY_DEPLOYMENT.md
-
-## Optional Development Files:
-- migrations/ (database migrations)
-- build.js
-- generate-hash.ts
-- optimize-all-images.ts
-
-## DO NOT INCLUDE:
-- node_modules/
-- .env (contains secrets)
-- dist/
-- downloads/
-- .git/
-- attached_assets/
+## Environment Variables Required
+- `DATABASE_URL` (already set)
+- `SESSION_SECRET` (set to any secure random string)
+- `NODE_ENV=production` (enables PostgreSQL sessions)
