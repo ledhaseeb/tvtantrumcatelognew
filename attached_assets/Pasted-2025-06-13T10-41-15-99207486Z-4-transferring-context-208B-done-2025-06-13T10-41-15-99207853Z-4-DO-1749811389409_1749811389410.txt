@@ -1,0 +1,100 @@
+2025-06-13T10:41:15.99207486Z #4 transferring context: 208B done
+2025-06-13T10:41:15.99207853Z #4 DONE 0.0s
+2025-06-13T10:41:15.99208178Z 
+2025-06-13T10:41:15.99208595Z #5 [1/9] FROM docker.io/library/node:20-alpine@sha256:d3507a213936fe4ef54760a186e113db5188472d9efdf491686bd94580a1c1e8
+2025-06-13T10:41:15.99208944Z #5 resolve docker.io/library/node:20-alpine@sha256:d3507a213936fe4ef54760a186e113db5188472d9efdf491686bd94580a1c1e8 done
+2025-06-13T10:41:15.99209272Z #5 DONE 0.0s
+2025-06-13T10:41:15.99209555Z 
+2025-06-13T10:41:15.9920992Z #6 importing cache manifest from local:17876988630981855083
+2025-06-13T10:41:15.99210275Z #6 inferred cache manifest type: application/vnd.oci.image.index.v1+json done
+2025-06-13T10:41:15.99210573Z #6 DONE 0.0s
+2025-06-13T10:41:15.99210856Z 
+2025-06-13T10:41:15.99211154Z #7 [internal] load build context
+2025-06-13T10:41:20.898811895Z #7 transferring context: 145.36MB 5.0s
+2025-06-13T10:41:25.984188864Z #7 transferring context: 304.53MB 10.1s
+2025-06-13T10:41:29.390421413Z #7 transferring context: 410.94MB 13.4s done
+2025-06-13T10:41:29.390453573Z #7 DONE 13.4s
+2025-06-13T10:41:29.390459683Z 
+2025-06-13T10:41:29.390465313Z #8 [2/9] WORKDIR /app
+2025-06-13T10:41:29.541429452Z #8 sha256:fe07684b16b82247c3539ed86a65ff37a76138ec25d380bd80c869a1a4c73236 3.80MB / 3.80MB 0.1s done
+2025-06-13T10:41:29.541453492Z #8 extracting sha256:fe07684b16b82247c3539ed86a65ff37a76138ec25d380bd80c869a1a4c73236
+2025-06-13T10:41:29.691584711Z #8 extracting sha256:fe07684b16b82247c3539ed86a65ff37a76138ec25d380bd80c869a1a4c73236 0.1s done
+2025-06-13T10:41:29.841993002Z #8 sha256:50e3d90b63789c43aa015219149b428346dc8958a44c58c5da65f0b8f0af0e28 8.39MB / 42.95MB 0.2s
+2025-06-13T10:41:29.992173581Z #8 sha256:50e3d90b63789c43aa015219149b428346dc8958a44c58c5da65f0b8f0af0e28 16.78MB / 42.95MB 0.3s
+2025-06-13T10:41:30.142207934Z #8 sha256:50e3d90b63789c43aa015219149b428346dc8958a44c58c5da65f0b8f0af0e28 25.17MB / 42.95MB 0.5s
+2025-06-13T10:41:30.292656461Z #8 sha256:50e3d90b63789c43aa015219149b428346dc8958a44c58c5da65f0b8f0af0e28 33.55MB / 42.95MB 0.6s
+2025-06-13T10:41:30.443240931Z #8 sha256:50e3d90b63789c43aa015219149b428346dc8958a44c58c5da65f0b8f0af0e28 42.95MB / 42.95MB 0.8s done
+2025-06-13T10:41:30.443269131Z #8 extracting sha256:50e3d90b63789c43aa015219149b428346dc8958a44c58c5da65f0b8f0af0e28
+2025-06-13T10:41:32.80772867Z #8 extracting sha256:50e3d90b63789c43aa015219149b428346dc8958a44c58c5da65f0b8f0af0e28 2.4s done
+2025-06-13T10:41:32.80776285Z #8 sha256:de1f569a869623328ab2534cb764ccb6d2142d6e1b557b1580357d5176b863a5 1.26MB / 1.26MB 0.0s done
+2025-06-13T10:41:32.80776876Z #8 extracting sha256:de1f569a869623328ab2534cb764ccb6d2142d6e1b557b1580357d5176b863a5 0.1s done
+2025-06-13T10:41:32.958757105Z #8 sha256:a35ae40f249e2d6c90ea87a5676595b3b022a62efa9c2cc60c803de19e468134 445B / 445B done
+2025-06-13T10:41:32.958801926Z #8 extracting sha256:a35ae40f249e2d6c90ea87a5676595b3b022a62efa9c2cc60c803de19e468134 done
+2025-06-13T10:41:32.958805886Z #8 sha256:f426ddd8221f12e17a9a5df3396893802f54cd2dfdcaea9262db332cc3248862 92B / 92B done
+2025-06-13T10:41:32.958809166Z #8 extracting sha256:f426ddd8221f12e17a9a5df3396893802f54cd2dfdcaea9262db332cc3248862 done
+2025-06-13T10:41:32.958812896Z #8 CACHED
+2025-06-13T10:41:32.958816176Z 
+2025-06-13T10:41:32.958819736Z #9 [3/9] COPY package*.json ./
+2025-06-13T10:41:32.958823156Z #9 DONE 0.0s
+2025-06-13T10:41:32.958825956Z 
+2025-06-13T10:41:32.958829696Z #10 [4/9] RUN npm ci
+2025-06-13T10:41:34.971202986Z #10 2.035 npm error code EUSAGE
+2025-06-13T10:41:34.971235707Z #10 2.035 npm error
+2025-06-13T10:41:34.971245467Z #10 2.035 npm error `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.
+2025-06-13T10:41:34.971250817Z #10 2.035 npm error
+2025-06-13T10:41:34.971256907Z #10 2.035 npm error Missing: @types/redis@4.0.10 from lock file
+2025-06-13T10:41:34.971261857Z #10 2.035 npm error Missing: redis@5.5.6 from lock file
+2025-06-13T10:41:34.971267017Z #10 2.035 npm error Missing: @redis/bloom@5.5.6 from lock file
+2025-06-13T10:41:34.971272107Z #10 2.035 npm error Missing: @redis/client@5.5.6 from lock file
+2025-06-13T10:41:34.971276917Z #10 2.035 npm error Missing: @redis/json@5.5.6 from lock file
+2025-06-13T10:41:34.971281717Z #10 2.035 npm error Missing: @redis/search@5.5.6 from lock file
+2025-06-13T10:41:34.971286977Z #10 2.035 npm error Missing: @redis/time-series@5.5.6 from lock file
+2025-06-13T10:41:34.971292247Z #10 2.035 npm error Missing: cluster-key-slot@1.1.2 from lock file
+2025-06-13T10:41:34.971297147Z #10 2.035 npm error
+2025-06-13T10:41:34.971303537Z #10 2.035 npm error Clean install a project
+2025-06-13T10:41:34.971308397Z #10 2.035 npm error
+2025-06-13T10:41:34.971316058Z #10 2.035 npm error Usage:
+2025-06-13T10:41:34.971321108Z #10 2.035 npm error npm ci
+2025-06-13T10:41:34.971326078Z #10 2.035 npm error
+2025-06-13T10:41:34.971330878Z #10 2.035 npm error Options:
+2025-06-13T10:41:34.971336308Z #10 2.035 npm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]
+2025-06-13T10:41:34.971341678Z #10 2.035 npm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]
+2025-06-13T10:41:34.971346688Z #10 2.035 npm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+2025-06-13T10:41:34.971352348Z #10 2.035 npm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]
+2025-06-13T10:41:34.971357848Z #10 2.035 npm error [--no-bin-links] [--no-fund] [--dry-run]
+2025-06-13T10:41:34.971362658Z #10 2.035 npm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]
+2025-06-13T10:41:34.971367478Z #10 2.035 npm error [-ws|--workspaces] [--include-workspace-root] [--install-links]
+2025-06-13T10:41:34.971372318Z #10 2.035 npm error
+2025-06-13T10:41:34.971377218Z #10 2.035 npm error aliases: clean-install, ic, install-clean, isntall-clean
+2025-06-13T10:41:34.971382178Z #10 2.035 npm error
+2025-06-13T10:41:34.971386968Z #10 2.035 npm error Run "npm help ci" for more info
+2025-06-13T10:41:34.971392168Z #10 2.039 npm notice
+2025-06-13T10:41:34.971397029Z #10 2.039 npm notice New major version of npm available! 10.8.2 -> 11.4.2
+2025-06-13T10:41:34.971401829Z #10 2.039 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.4.2
+2025-06-13T10:41:34.971406579Z #10 2.039 npm notice To update run: npm install -g npm@11.4.2
+2025-06-13T10:41:34.971411549Z #10 2.039 npm notice
+2025-06-13T10:41:34.971430169Z #10 2.039 npm error A complete log of this run can be found in: /root/.npm/_logs/2025-06-13T10_41_33_078Z-debug-0.log
+2025-06-13T10:41:34.971433489Z #10 ERROR: process "/bin/sh -c npm ci" did not complete successfully: exit code: 1
+2025-06-13T10:41:34.971436589Z ------
+2025-06-13T10:41:34.971439719Z  > [4/9] RUN npm ci:
+2025-06-13T10:41:34.971442979Z 2.035 npm error
+2025-06-13T10:41:34.97147724Z 2.035 npm error aliases: clean-install, ic, install-clean, isntall-clean
+2025-06-13T10:41:34.97148089Z 2.035 npm error
+2025-06-13T10:41:34.97148421Z 2.035 npm error Run "npm help ci" for more info
+2025-06-13T10:41:34.97148768Z 2.039 npm notice
+2025-06-13T10:41:34.97149076Z 2.039 npm notice New major version of npm available! 10.8.2 -> 11.4.2
+2025-06-13T10:41:34.97149387Z 2.039 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.4.2
+2025-06-13T10:41:34.97149691Z 2.039 npm notice To update run: npm install -g npm@11.4.2
+2025-06-13T10:41:34.97149992Z 2.039 npm notice
+2025-06-13T10:41:34.97150296Z 2.039 npm error A complete log of this run can be found in: /root/.npm/_logs/2025-06-13T10_41_33_078Z-debug-0.log
+2025-06-13T10:41:34.97150594Z ------
+2025-06-13T10:41:34.973692737Z Dockerfile:10
+2025-06-13T10:41:34.973708087Z --------------------
+2025-06-13T10:41:34.973712607Z    8 |     
+2025-06-13T10:41:34.973716957Z    9 |     # Install all dependencies
+2025-06-13T10:41:34.973720527Z   10 | >>> RUN npm ci
+2025-06-13T10:41:34.973723987Z   11 |     
+2025-06-13T10:41:34.973728387Z   12 |     # Copy source code
+2025-06-13T10:41:34.973731817Z --------------------
+2025-06-13T10:41:34.973735327Z error: failed to solve: process "/bin/sh -c npm ci" did not complete successfully: exit code: 1
+2025-06-13T10:41:35.003978627Z error: exit status 1
