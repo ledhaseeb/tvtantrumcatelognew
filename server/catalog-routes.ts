@@ -60,16 +60,18 @@ export function registerCatalogRoutes(app: Express) {
           } else if (Array.isArray(rawThemes)) {
             // Handle array format from Express
             if (rawThemes.length === 1) {
-              const single = rawThemes[0];
+              const single = String(rawThemes[0]);
+              // Check if it's a JSON string like '["Humor"]' or '["Community Service","Friendship"]'
               if (single.startsWith('["') && single.endsWith('"]')) {
-                // Array containing JSON string like ['["Humor","Adventure"]']
+                parsedThemes = JSON.parse(single);
+              } else if (single.startsWith('[') && single.endsWith(']')) {
+                // Handle cases like '["Humor"]' without quotes check
                 parsedThemes = JSON.parse(single);
               } else if (single.includes('[') && single.includes(']')) {
-                // Try to extract JSON from string
+                // Extract JSON from string that might have extra characters
                 const match = single.match(/\[.*\]/);
                 if (match) {
-                  const decoded = decodeURIComponent(match[0]);
-                  parsedThemes = JSON.parse(decoded);
+                  parsedThemes = JSON.parse(match[0]);
                 } else {
                   parsedThemes = [single.trim()];
                 }
@@ -78,7 +80,7 @@ export function registerCatalogRoutes(app: Express) {
               }
             } else {
               // Multiple elements, treat as regular array
-              parsedThemes = rawThemes.map(t => t.trim());
+              parsedThemes = rawThemes.map(t => String(t).trim());
             }
           }
           
