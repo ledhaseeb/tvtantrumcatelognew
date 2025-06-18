@@ -190,15 +190,6 @@ export default function CatalogHomeResponsive() {
         </div>
       </div>
 
-      {/* Ad Container */}
-      <div className="bg-gray-50 py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-center">
-            <AdContainer size="leaderboard" className="w-full max-w-4xl" />
-          </div>
-        </div>
-      </div>
-
       {/* Search Results */}
       {searchTerm && (
         <div className="container mx-auto px-4 py-8">
