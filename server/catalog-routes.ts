@@ -31,57 +31,70 @@ export function registerCatalogRoutes(app: Express) {
       if (req.query.sortBy) filters.sortBy = req.query.sortBy;
       if (req.query.themeMatchMode) filters.themeMatchMode = req.query.themeMatchMode;
       
-      // Handle themes - support both JSON arrays and comma-separated strings
+      // Handle themes - comprehensive parsing for all formats
       if (req.query.themes) {
+        const rawThemes = req.query.themes;
+        console.log('Raw themes received:', rawThemes, 'Type:', typeof rawThemes);
+        
         try {
-          if (typeof req.query.themes === 'string') {
-            // Try parsing as JSON array first (URL-encoded)
-            if (req.query.themes.startsWith('[') && req.query.themes.endsWith(']')) {
-              const decodedThemes = decodeURIComponent(req.query.themes);
-              filters.themes = JSON.parse(decodedThemes);
-              console.log('Parsed themes from URL-encoded JSON:', filters.themes);
-            } else if (req.query.themes.startsWith('%5B') && req.query.themes.endsWith('%5D')) {
-              // Handle double-encoded JSON
-              const decodedThemes = decodeURIComponent(req.query.themes);
-              filters.themes = JSON.parse(decodedThemes);
-              console.log('Parsed themes from double-encoded JSON:', filters.themes);
-            } else {
-              // Fallback to comma-separated
-              filters.themes = req.query.themes.split(',').map((theme: string) => theme.trim());
-              console.log('Parsed themes from comma-separated:', filters.themes);
-            }
-          } else {
-            // Handle array of strings - Express might parse query params as arrays
-            const themeArray = req.query.themes as string[];
-            console.log('Raw theme array from Express:', themeArray);
+          let parsedThemes: string[] = [];
+          
+          if (typeof rawThemes === 'string') {
+            // Handle string format - could be JSON or comma-separated
+            const trimmed = rawThemes.trim();
             
-            // Check if first element contains JSON
-            if (themeArray.length === 1 && themeArray[0].includes('[') && themeArray[0].includes(']')) {
-              try {
-                // Try to extract and parse JSON from the string
-                const jsonMatch = themeArray[0].match(/\[.*\]/);
-                if (jsonMatch) {
-                  const decodedThemes = decodeURIComponent(jsonMatch[0]);
-                  filters.themes = JSON.parse(decodedThemes);
-                  console.log('Parsed themes from embedded JSON:', filters.themes);
+            if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+              // Direct JSON array like ["Humor", "Adventure"]
+              parsedThemes = JSON.parse(trimmed);
+            } else if (trimmed.startsWith('%5B') && trimmed.endsWith('%5D')) {
+              // URL-encoded JSON like %5B%22Humor%22%5D
+              const decoded = decodeURIComponent(trimmed);
+              parsedThemes = JSON.parse(decoded);
+            } else if (trimmed.includes(',')) {
+              // Comma-separated like "Humor,Adventure"
+              parsedThemes = trimmed.split(',').map(t => t.trim());
+            } else {
+              // Single theme
+              parsedThemes = [trimmed];
+            }
+          } else if (Array.isArray(rawThemes)) {
+            // Handle array format from Express
+            if (rawThemes.length === 1) {
+              const single = rawThemes[0];
+              if (single.startsWith('["') && single.endsWith('"]')) {
+                // Array containing JSON string like ['["Humor","Adventure"]']
+                parsedThemes = JSON.parse(single);
+              } else if (single.includes('[') && single.includes(']')) {
+                // Try to extract JSON from string
+                const match = single.match(/\[.*\]/);
+                if (match) {
+                  const decoded = decodeURIComponent(match[0]);
+                  parsedThemes = JSON.parse(decoded);
                 } else {
-                  filters.themes = themeArray.map((theme: string) => theme.trim());
+                  parsedThemes = [single.trim()];
                 }
-              } catch (e) {
-                filters.themes = themeArray.map((theme: string) => theme.trim());
+              } else {
+                parsedThemes = [single.trim()];
               }
             } else {
-              // Regular array
-              filters.themes = themeArray.map((theme: string) => theme.trim());
-              console.log('Using themes as regular array:', filters.themes);
+              // Multiple elements, treat as regular array
+              parsedThemes = rawThemes.map(t => t.trim());
             }
           }
+          
+          filters.themes = parsedThemes;
+          console.log('Successfully parsed themes:', parsedThemes);
+          
         } catch (error) {
-          console.error('Error parsing themes:', error, 'Raw value:', req.query.themes);
-          // Fallback to simple split
-          filters.themes = typeof req.query.themes === 'string'
-            ? req.query.themes.split(',').map((theme: string) => theme.trim())
-            : (req.query.themes as string[]).map((theme: string) => theme.trim());
+          console.error('Theme parsing failed:', error);
+          // Ultimate fallback
+          const fallback = typeof rawThemes === 'string' 
+            ? rawThemes.split(',').map(t => t.trim())
+            : Array.isArray(rawThemes) 
+              ? rawThemes.map(t => t.trim())
+              : [String(rawThemes)];
+          filters.themes = fallback;
+          console.log('Using fallback themes:', fallback);
         }
       }
       
