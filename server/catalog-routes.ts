@@ -31,11 +31,28 @@ export function registerCatalogRoutes(app: Express) {
       if (req.query.sortBy) filters.sortBy = req.query.sortBy;
       if (req.query.themeMatchMode) filters.themeMatchMode = req.query.themeMatchMode;
       
-      // Handle themes
+      // Handle themes - support both JSON arrays and comma-separated strings
       if (req.query.themes) {
-        filters.themes = typeof req.query.themes === 'string'
-          ? req.query.themes.split(',').map((theme: string) => theme.trim())
-          : (req.query.themes as string[]).map((theme: string) => theme.trim());
+        try {
+          if (typeof req.query.themes === 'string') {
+            // Try parsing as JSON array first
+            if (req.query.themes.startsWith('[') && req.query.themes.endsWith(']')) {
+              filters.themes = JSON.parse(decodeURIComponent(req.query.themes));
+            } else {
+              // Fallback to comma-separated
+              filters.themes = req.query.themes.split(',').map((theme: string) => theme.trim());
+            }
+          } else {
+            // Already an array
+            filters.themes = (req.query.themes as string[]).map((theme: string) => theme.trim());
+          }
+        } catch (error) {
+          console.error('Error parsing themes:', error);
+          // Fallback to simple split
+          filters.themes = typeof req.query.themes === 'string'
+            ? req.query.themes.split(',').map((theme: string) => theme.trim())
+            : (req.query.themes as string[]).map((theme: string) => theme.trim());
+        }
       }
       
       // Handle stimulation score range

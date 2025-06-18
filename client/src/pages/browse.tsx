@@ -142,10 +142,24 @@ export default function Browse() {
       console.error('Error parsing age range:', e);
     }
     
-    // Get themes from URL
+    // Get themes from URL - handle both JSON arrays and comma-separated strings
     const themes = searchParams.get('themes');
     if (themes) {
-      initialFilters.themes = themes.split(',');
+      try {
+        // Try parsing as JSON array first
+        const parsedThemes = JSON.parse(decodeURIComponent(themes));
+        if (Array.isArray(parsedThemes)) {
+          initialFilters.themes = parsedThemes;
+          console.log('Parsed themes from JSON:', parsedThemes);
+        } else {
+          // Fallback to comma-separated
+          initialFilters.themes = themes.split(',');
+        }
+      } catch (e) {
+        // Fallback to comma-separated if JSON parsing fails
+        initialFilters.themes = themes.split(',');
+        console.log('Parsed themes from comma-separated:', themes.split(','));
+      }
     }
     
     // Get theme match mode from URL (AND or OR)
