@@ -35,19 +35,49 @@ export function registerCatalogRoutes(app: Express) {
       if (req.query.themes) {
         try {
           if (typeof req.query.themes === 'string') {
-            // Try parsing as JSON array first
+            // Try parsing as JSON array first (URL-encoded)
             if (req.query.themes.startsWith('[') && req.query.themes.endsWith(']')) {
-              filters.themes = JSON.parse(decodeURIComponent(req.query.themes));
+              const decodedThemes = decodeURIComponent(req.query.themes);
+              filters.themes = JSON.parse(decodedThemes);
+              console.log('Parsed themes from URL-encoded JSON:', filters.themes);
+            } else if (req.query.themes.startsWith('%5B') && req.query.themes.endsWith('%5D')) {
+              // Handle double-encoded JSON
+              const decodedThemes = decodeURIComponent(req.query.themes);
+              filters.themes = JSON.parse(decodedThemes);
+              console.log('Parsed themes from double-encoded JSON:', filters.themes);
             } else {
               // Fallback to comma-separated
               filters.themes = req.query.themes.split(',').map((theme: string) => theme.trim());
+              console.log('Parsed themes from comma-separated:', filters.themes);
             }
           } else {
-            // Already an array
-            filters.themes = (req.query.themes as string[]).map((theme: string) => theme.trim());
+            // Handle array of strings - Express might parse query params as arrays
+            const themeArray = req.query.themes as string[];
+            console.log('Raw theme array from Express:', themeArray);
+            
+            // Check if first element contains JSON
+            if (themeArray.length === 1 && themeArray[0].includes('[') && themeArray[0].includes(']')) {
+              try {
+                // Try to extract and parse JSON from the string
+                const jsonMatch = themeArray[0].match(/\[.*\]/);
+                if (jsonMatch) {
+                  const decodedThemes = decodeURIComponent(jsonMatch[0]);
+                  filters.themes = JSON.parse(decodedThemes);
+                  console.log('Parsed themes from embedded JSON:', filters.themes);
+                } else {
+                  filters.themes = themeArray.map((theme: string) => theme.trim());
+                }
+              } catch (e) {
+                filters.themes = themeArray.map((theme: string) => theme.trim());
+              }
+            } else {
+              // Regular array
+              filters.themes = themeArray.map((theme: string) => theme.trim());
+              console.log('Using themes as regular array:', filters.themes);
+            }
           }
         } catch (error) {
-          console.error('Error parsing themes:', error);
+          console.error('Error parsing themes:', error, 'Raw value:', req.query.themes);
           // Fallback to simple split
           filters.themes = typeof req.query.themes === 'string'
             ? req.query.themes.split(',').map((theme: string) => theme.trim())
