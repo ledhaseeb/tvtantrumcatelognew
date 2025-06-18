@@ -10,6 +10,64 @@ import { Search, Filter, BarChart2, ChevronLeft, ChevronRight } from "lucide-rea
 import AdContainer from "@/components/AdContainer";
 import type { TvShow, HomepageCategory } from "../../../shared/catalog-schema";
 
+// Function to generate proper browse URL from category filter config
+function generateBrowseUrl(category: HomepageCategory): string {
+  if (!category.filterConfig) {
+    return `/browse?category=${category.id}`;
+  }
+
+  try {
+    const config = typeof category.filterConfig === 'string' 
+      ? JSON.parse(category.filterConfig) 
+      : category.filterConfig;
+
+    const urlParams = new URLSearchParams();
+    
+    // Handle different filter types
+    const themes: string[] = [];
+    let themeMatchMode: 'AND' | 'OR' = 'OR';
+    let ageRange: {min: number, max: number} | null = null;
+    let stimulationScoreRange: {min: number, max: number} | null = null;
+
+    if (config.logic) {
+      themeMatchMode = config.logic === 'AND' ? 'AND' : 'OR';
+    }
+
+    if (config.rules && Array.isArray(config.rules)) {
+      for (const rule of config.rules) {
+        if (rule.field === 'themes' && rule.operator === 'contains') {
+          themes.push(rule.value);
+        } else if (rule.field === 'ageRange' && rule.operator === 'range') {
+          const [min, max] = rule.value.split('-').map(Number);
+          ageRange = { min, max };
+        } else if (rule.field === 'stimulationScore' && rule.operator === 'range') {
+          const [min, max] = rule.value.split('-').map(Number);
+          stimulationScoreRange = { min, max };
+        }
+      }
+    }
+
+    // Add parameters to URL
+    if (themes.length > 0) {
+      urlParams.set('themes', JSON.stringify(themes));
+      urlParams.set('themeMatchMode', themeMatchMode);
+    }
+
+    if (ageRange) {
+      urlParams.set('ageRange', JSON.stringify(ageRange));
+    }
+
+    if (stimulationScoreRange) {
+      urlParams.set('stimulationScoreRange', JSON.stringify(stimulationScoreRange));
+    }
+
+    return `/browse?${urlParams.toString()}`;
+  } catch (error) {
+    console.error('Error parsing filter config for category', category.id, error);
+    return `/browse?category=${category.id}`;
+  }
+}
+
 export default function CatalogHomeResponsive() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isMobile, setIsMobile] = useState(false);
@@ -100,7 +158,7 @@ export default function CatalogHomeResponsive() {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <div className="relative bg-white border-b">
-        <div className="container mx-auto px-4 py-12 lg:py-16">
+        <div className="container mx-auto px-4 py-8 lg:py-12">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 tracking-tight">
               Screen Time Stimulation Scores
@@ -128,15 +186,6 @@ export default function CatalogHomeResponsive() {
                 </button>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Ad Container */}
-      <div className="bg-gray-50 py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-center">
-            <AdContainer size="leaderboard" className="w-full max-w-4xl" />
           </div>
         </div>
       </div>
@@ -194,7 +243,7 @@ export default function CatalogHomeResponsive() {
                     {/* Second row: Description and View All button */}
                     <div className="flex items-center justify-between">
                       <p className="text-gray-600">{category.description}</p>
-                      <Link href={category.id === 3 ? '/browse?stimulationScoreRange=%257B%2522min%2522%253A1%252C%2522max%2522%253A2%257D' : `/browse?category=${category.id}`}>
+                      <Link href={generateBrowseUrl(category)}>
                         <Button variant="outline">View All</Button>
                       </Link>
                     </div>

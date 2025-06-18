@@ -31,11 +31,73 @@ export function registerCatalogRoutes(app: Express) {
       if (req.query.sortBy) filters.sortBy = req.query.sortBy;
       if (req.query.themeMatchMode) filters.themeMatchMode = req.query.themeMatchMode;
       
-      // Handle themes
+      // Handle themes - comprehensive parsing for all formats
       if (req.query.themes) {
-        filters.themes = typeof req.query.themes === 'string'
-          ? req.query.themes.split(',').map((theme: string) => theme.trim())
-          : (req.query.themes as string[]).map((theme: string) => theme.trim());
+        const rawThemes = req.query.themes;
+        console.log('Raw themes received:', rawThemes, 'Type:', typeof rawThemes);
+        
+        try {
+          let parsedThemes: string[] = [];
+          
+          if (typeof rawThemes === 'string') {
+            // Handle string format - could be JSON or comma-separated
+            const trimmed = rawThemes.trim();
+            
+            if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+              // Direct JSON array like ["Humor", "Adventure"]
+              parsedThemes = JSON.parse(trimmed);
+            } else if (trimmed.startsWith('%5B') && trimmed.endsWith('%5D')) {
+              // URL-encoded JSON like %5B%22Humor%22%5D
+              const decoded = decodeURIComponent(trimmed);
+              parsedThemes = JSON.parse(decoded);
+            } else if (trimmed.includes(',')) {
+              // Comma-separated like "Humor,Adventure"
+              parsedThemes = trimmed.split(',').map(t => t.trim());
+            } else {
+              // Single theme
+              parsedThemes = [trimmed];
+            }
+          } else if (Array.isArray(rawThemes)) {
+            // Handle array format from Express
+            if (rawThemes.length === 1) {
+              const single = String(rawThemes[0]);
+              // Check if it's a JSON string like '["Humor"]' or '["Community Service","Friendship"]'
+              if (single.startsWith('["') && single.endsWith('"]')) {
+                parsedThemes = JSON.parse(single);
+              } else if (single.startsWith('[') && single.endsWith(']')) {
+                // Handle cases like '["Humor"]' without quotes check
+                parsedThemes = JSON.parse(single);
+              } else if (single.includes('[') && single.includes(']')) {
+                // Extract JSON from string that might have extra characters
+                const match = single.match(/\[.*\]/);
+                if (match) {
+                  parsedThemes = JSON.parse(match[0]);
+                } else {
+                  parsedThemes = [single.trim()];
+                }
+              } else {
+                parsedThemes = [single.trim()];
+              }
+            } else {
+              // Multiple elements, treat as regular array
+              parsedThemes = rawThemes.map(t => String(t).trim());
+            }
+          }
+          
+          filters.themes = parsedThemes;
+          console.log('Successfully parsed themes:', parsedThemes);
+          
+        } catch (error) {
+          console.error('Theme parsing failed:', error);
+          // Ultimate fallback
+          const fallback = typeof rawThemes === 'string' 
+            ? rawThemes.split(',').map(t => t.trim())
+            : Array.isArray(rawThemes) 
+              ? rawThemes.map(t => t.trim())
+              : [String(rawThemes)];
+          filters.themes = fallback;
+          console.log('Using fallback themes:', fallback);
+        }
       }
       
       // Handle stimulation score range
