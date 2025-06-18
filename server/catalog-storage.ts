@@ -217,6 +217,155 @@ export class CatalogStorage {
       client.release();
     }
   }
+
+  /**
+   * Get TV shows with minimal fields for homepage display - optimized for bandwidth
+   */
+  async getTvShowsMinimal(filters: {
+    themes?: string[];
+    themeMatchMode?: 'AND' | 'OR';
+    ageGroup?: string;
+    ageRange?: { min: number; max: number };
+    stimulationScoreRange?: { min: number; max: number };
+    searchTerm?: string;
+    sortBy?: 'stimulation-score' | 'name' | 'popular' | 'release-year';
+    limit?: number;
+    offset?: number;
+  } = {}): Promise<TvShow[]> {
+    const cacheKey = getCacheKey('tv-shows-minimal', JSON.stringify(filters));
+    const cached = cache.get<TvShow[]>(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
+    const client = await pool.connect();
+    try {
+      // Select only essential fields for homepage display
+      let query = `
+        SELECT 
+          ts.id,
+          ts.name,
+          ts.image_url,
+          ts.age_range,
+          ts.stimulation_score,
+          ts.is_featured
+        FROM catalog_tv_shows ts
+      `;
+      
+      let whereConditions: string[] = [];
+      let queryParams: any[] = [];
+      let paramIndex = 1;
+      
+      // Theme filtering using array column
+      if (filters.themes && filters.themes.length > 0) {
+        const matchMode = filters.themeMatchMode || 'AND';
+        
+        if (matchMode === 'AND') {
+          whereConditions.push(`ts.themes @> $${paramIndex}`);
+          queryParams.push(filters.themes);
+          paramIndex++;
+        } else {
+          whereConditions.push(`ts.themes && $${paramIndex}`);
+          queryParams.push(filters.themes);
+          paramIndex++;
+        }
+      }
+      
+      // Age group filtering
+      if (filters.ageGroup) {
+        whereConditions.push(`ts.age_range = $${paramIndex}`);
+        queryParams.push(filters.ageGroup);
+        paramIndex++;
+      }
+      
+      // Age range filtering
+      if (filters.ageRange) {
+        const agePatterns = [];
+        for (let min = filters.ageRange.min; min <= filters.ageRange.max; min++) {
+          for (let max = min; max <= Math.min(filters.ageRange.max + 5, 12); max++) {
+            agePatterns.push(`${min}-${max}`);
+          }
+        }
+        
+        if (agePatterns.length > 0) {
+          whereConditions.push(`ts.age_range = ANY($${paramIndex})`);
+          queryParams.push(agePatterns);
+          paramIndex++;
+        }
+      }
+      
+      // Stimulation score filtering
+      if (filters.stimulationScoreRange) {
+        whereConditions.push(`ts.stimulation_score >= $${paramIndex} AND ts.stimulation_score <= $${paramIndex + 1}`);
+        queryParams.push(filters.stimulationScoreRange.min, filters.stimulationScoreRange.max);
+        paramIndex += 2;
+      }
+      
+      // Search term filtering
+      if (filters.searchTerm && filters.searchTerm.trim()) {
+        whereConditions.push(`ts.name ILIKE $${paramIndex}`);
+        queryParams.push(`%${filters.searchTerm.trim()}%`);
+        paramIndex++;
+      }
+      
+      // Apply WHERE conditions
+      if (whereConditions.length > 0) {
+        const whereClause = whereConditions.join(' AND ');
+        query += ` WHERE ${whereClause}`;
+      }
+      
+      // Sorting
+      let orderBy = 'ts.name ASC';
+      switch (filters.sortBy) {
+        case 'stimulation-score':
+          orderBy = 'ts.stimulation_score ASC, ts.name ASC';
+          break;
+        case 'name':
+          orderBy = 'ts.name ASC';
+          break;
+        case 'popular':
+          orderBy = 'ts.is_featured DESC, ts.name ASC';
+          break;
+        case 'release-year':
+          orderBy = 'ts.name ASC'; // No release_year in minimal select
+          break;
+        default:
+          orderBy = 'ts.name ASC';
+      }
+      
+      query += ` ORDER BY ${orderBy}`;
+      
+      // Pagination
+      if (filters.limit) {
+        query += ` LIMIT $${paramIndex}`;
+        queryParams.push(filters.limit);
+        paramIndex++;
+        
+        if (filters.offset) {
+          query += ` OFFSET $${paramIndex}`;
+          queryParams.push(filters.offset);
+          paramIndex++;
+        }
+      }
+      
+      const result = await client.query(query, queryParams);
+      const shows = result.rows.map(row => ({
+        id: row.id,
+        name: row.name,
+        imageUrl: row.image_url,
+        ageRange: row.age_range,
+        stimulationScore: row.stimulation_score,
+        isFeatured: row.is_featured
+      }));
+      
+      // Cache the results for 5 minutes
+      cache.set(cacheKey, shows, CACHE_TTL.SHORT);
+      
+      return shows;
+    } finally {
+      client.release();
+    }
+  }
   
 
   
@@ -951,8 +1100,8 @@ export class CatalogStorage {
       const filters = this.convertFilterConfigToFilters(filterConfig);
       console.log(`[DEBUG] Category ${categoryId} converted filters:`, JSON.stringify(filters, null, 2));
       
-      // Apply the filters to get shows
-      const shows = await this.getTvShows(filters);
+      // Apply the filters to get shows with minimal fields for homepage
+      const shows = await this.getTvShowsMinimal(filters);
       console.log(`[DEBUG] Category ${categoryId} getTvShows returned ${shows.length} shows`);
       return shows;
     } finally {
