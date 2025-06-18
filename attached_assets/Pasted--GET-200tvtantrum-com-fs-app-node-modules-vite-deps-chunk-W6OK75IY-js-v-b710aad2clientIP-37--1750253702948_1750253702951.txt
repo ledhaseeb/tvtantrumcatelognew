@@ -1,0 +1,200 @@
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/chunk-W6OK75IY.js?v=b710aad2clientIP="37.75.37.248" requestID="606546e4-20f9-4c31" responseTimeMS=7 responseBytes=12627 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+[DEBUG] Category 10 filter config: {
+  "logic": "OR",
+  "rules": [
+    {
+      "field": "themes",
+      "value": "Community Service",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Complex & Emotional Themes",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Complex Emotional Themes",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Confidence Building",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Conflict Resolution",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Early Childhood experiences",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Every Day Concepts",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Exploring Emotions",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Friendship",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Social Development",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Social-Emotional",
+      "operator": "contains"
+    }
+  ]
+}
+[DEBUG] Category 10 converted filters: {
+  "themes": [
+    "Community Service",
+    "Complex & Emotional Themes",
+    "Complex Emotional Themes",
+    "Confidence Building",
+    "Conflict Resolution",
+    "Early Childhood experiences",
+    "Every Day Concepts",
+    "Exploring Emotions",
+    "Friendship",
+    "Social Development",
+    "Social-Emotional"
+  ],
+  "themeMatchMode": "OR"
+}
+[DEBUG] Category 7 filter config: {
+  "logic": "OR",
+  "rules": [
+    {
+      "field": "themes",
+      "value": "Engineering Concepts",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Machinery",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "STEM",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Technology",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Vehicle Themes",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Vehicle Recognition",
+      "operator": "contains"
+    }
+  ]
+}
+[DEBUG] Category 7 converted filters: {
+  "themes": [
+    "Engineering Concepts",
+    "Machinery",
+    "STEM",
+    "Technology",
+     [GET]200tvtantrum.com/api/userclientIP="37.75.37.248" requestID="ed94f5a5-062a-4c5c" responseTimeMS=4 responseBytes=1201 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+    "Vehicle Themes",
+    "Vehicle Recognition"
+  ],
+  "themeMatchMode": "OR"
+}
+[DEBUG] Category 6 filter config: {
+  "logic": "AND",
+  "rules": [
+    {
+      "field": "themes",
+      "value": "Learning through Songs",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Sing Along",
+      "operator": "contains"
+    }
+  ]
+}
+[DEBUG] Category 6 converted filters: {
+  "themes": [
+    "Learning through Songs",
+    "Sing Along"
+  ],
+  "themeMatchMode": "AND"
+}
+     [GET]200tvtantrum.com/favicon.icoclientIP="37.75.37.248" requestID="62baf4c7-206f-4917" responseTimeMS=4 responseBytes=1203 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]200tvtantrum.com/api/homepage-categories/10/showsclientIP="37.75.37.248" requestID="3f70ea05-c652-42a4" responseTimeMS=1758 responseBytes=41316 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+[DEBUG] Category 10 getTvShows returned 183 shows
+Slow request: GET /homepage-categories/10/shows - 1756ms
+     [GET]200tvtantrum.com/api/userclientIP="37.75.37.248" requestID="7e066b90-9385-4a56" responseTimeMS=5 responseBytes=1201 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/api/homepage-categories/13/showsclientIP="37.75.37.248" requestID="c4e74e08-e7a0-418c" responseTimeMS=4086 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/api/homepage-categories/6/showsclientIP="37.75.37.248" requestID="cef79240-0db1-4453" responseTimeMS=4101 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/api/homepage-categories/3/showsclientIP="37.75.37.248" requestID="b08e6470-fe94-44e1" responseTimeMS=4126 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/api/homepage-categories/5/showsclientIP="37.75.37.248" requestID="9d6fc474-482e-46bb" responseTimeMS=4106 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+Database pool error - continuing with cache: 57P01 terminating connection due to administrator command
+Database pool error - continuing with cache: 57P01 terminating connection due to administrator command
+Database connection terminated - continuing operation with cache
+Uncaught Exception: terminating connection due to administrator command
+Uncaught Exception: Connection terminated unexpectedly
+Non-database error - exiting: Error: Connection terminated unexpectedly
+    at Connection.<anonymous> (/app/node_modules/pg/lib/client.js:136:73)
+    at Object.onceWrapper (node:events:638:28)
+    at Connection.emit (node:events:524:28)
+    at Socket.<anonymous> (/app/node_modules/pg/lib/connection.js:62:12)
+    at Socket.emit (node:events:536:35)
+    at TCP.<anonymous> (node:net:343:12)
+     [GET]502tvtantrum.com/images/tv-shows/show-1-A_for_Adley.jpgclientIP="37.75.37.248" requestID="d30b3409-f142-4568" responseTimeMS=4 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/api/homepage-categories/7/showsclientIP="37.75.37.248" requestID="a7fc483b-ead7-45e4" responseTimeMS=4101 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/api/homepage-categories/9/showsclientIP="37.75.37.248" requestID="37944723-c90c-4f47" responseTimeMS=4122 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/api/homepage-categories/11/showsclientIP="37.75.37.248" requestID="e612952c-b1d0-408b" responseTimeMS=4118 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-3-Adventure_Agents.jpgclientIP="37.75.37.248" requestID="df782e96-fa64-42f2" responseTimeMS=5 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-15-Babar.jpgclientIP="37.75.37.248" requestID="f140eb97-7e6e-4754" responseTimeMS=4 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-10-Angelina_Ballerina.jpgclientIP="37.75.37.248" requestID="c0ddf9eb-50e1-4883" responseTimeMS=3 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-5-Akili_and_Me.jpgclientIP="37.75.37.248" requestID="c5e062e3-5119-411a" responseTimeMS=5 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-14-Baba_blast.jpgclientIP="37.75.37.248" requestID="13be01b0-8c94-4949" responseTimeMS=25 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-12-Arthur.jpgclientIP="37.75.37.248" requestID="b562bba3-77de-43a9" responseTimeMS=24 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-16-Babblarna.jpgclientIP="37.75.37.248" requestID="0281c2e4-8c29-4768" responseTimeMS=4 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-4-Adventure_Time.jpgclientIP="37.75.37.248" requestID="01f0e492-0205-4866" responseTimeMS=5 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-4-Adventure_Time.jpgclientIP="37.75.37.248" requestID="114010e8-6ba7-4e75" responseTimeMS=24 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-3-Adventure_Agents.jpgclientIP="37.75.37.248" requestID="e5037e6f-9dc7-4e37" responseTimeMS=4 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-18-Bananas_in_Pyjamas.jpgclientIP="37.75.37.248" requestID="8777f648-7fec-479e" responseTimeMS=3 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-13-Avatar__The_Last_Airbender.jpgclientIP="37.75.37.248" requestID="244131ad-8a29-4e49" responseTimeMS=4 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-6-Alma_s_Way.jpgclientIP="37.75.37.248" requestID="1032111f-3ac9-4b84" responseTimeMS=24 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-5-Akili_and_Me.jpgclientIP="37.75.37.248" requestID="f115afe6-4b9b-4c68" responseTimeMS=24 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+     [GET]502tvtantrum.com/images/tv-shows/show-1-A_for_Adley.jpgclientIP="37.75.37.248" requestID="0ba68603-d9b1-4d43" responseTimeMS=4 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1"
+[SESSION CONFIG] {
+  environment: 'production',
+  cookieSecure: true,
+  cookieSameSite: 'none',
+  hasSecret: true
+}
+[SESSION] Using PostgreSQL session store for production
+Static files not found, using development server for production deployment
+TV Tantrum Catalog server running on port 10000
+Using catalog database with 302 authentic TV shows
+Simplified content discovery without social features
+Enhanced caching enabled for viral traffic handling
+Database crash protection active
+     [GET]tvtantrum.com/?token=5Cdexcib2yhHclientIP="90.192.227.160" requestID="" responseTimeMS=27862501 responseBytes=0 userAgent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0"
