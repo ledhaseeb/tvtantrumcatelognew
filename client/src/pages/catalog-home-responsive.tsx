@@ -158,7 +158,7 @@ export default function CatalogHomeResponsive() {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <div className="relative bg-white border-b">
-        <div className="container mx-auto px-4 py-12 lg:py-16">
+        <div className="container mx-auto px-4 py-8 lg:py-12">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 tracking-tight">
               Screen Time Stimulation Scores
