@@ -4,6 +4,8 @@ import multer from 'multer';
 import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs/promises';
+import { clearAllEnhancedCaches } from './enhanced-cache';
+import { invalidatePattern } from './cache';
 
 const router = Router();
 const upload = multer({ storage: multer.memoryStorage() });
@@ -79,6 +81,12 @@ router.put('/shows/:id/featured', async (req, res) => {
     
     // Set the new featured show
     await catalogStorage.updateTvShow(showId, { isFeatured: true });
+    
+    // Clear all caches after featured status change
+    clearAllEnhancedCaches();
+    invalidatePattern('tv_show');
+    invalidatePattern('homepage');
+    console.log('Cache cleared after featured update:', showId);
     
     res.json({ success: true });
   } catch (error) {
@@ -203,6 +211,14 @@ router.put('/shows/:id', upload.single('image'), async (req, res) => {
     }
     
     const updatedShow = await catalogStorage.updateTvShow(showId, showData);
+    
+    // Clear all caches immediately after update
+    clearAllEnhancedCaches();
+    invalidatePattern('tv_show');
+    invalidatePattern('search');
+    invalidatePattern('homepage');
+    console.log('Cache cleared after show update:', showId);
+    
     res.json(updatedShow);
   } catch (error) {
     console.error('Error updating show:', error);

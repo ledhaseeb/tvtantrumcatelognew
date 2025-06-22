@@ -371,6 +371,13 @@ export function registerCatalogRoutes(app: Express) {
         return res.status(404).json({ message: "Show not found" });
       }
       
+      // Clear all caches immediately after update
+      clearAllEnhancedCaches();
+      invalidatePattern('tv_show');
+      invalidatePattern('search');
+      invalidatePattern('homepage');
+      console.log('Cache cleared after catalog show update:', id);
+      
       res.json(updatedShow);
     } catch (error) {
       console.error("Error updating TV show:", error);
@@ -387,6 +394,13 @@ export function registerCatalogRoutes(app: Express) {
       if (!deleted) {
         return res.status(404).json({ message: "Show not found" });
       }
+      
+      // Clear all caches after deletion
+      clearAllEnhancedCaches();
+      invalidatePattern('tv_show');
+      invalidatePattern('search');
+      invalidatePattern('homepage');
+      console.log('Cache cleared after show deletion:', id);
       
       res.json({ success: true });
     } catch (error) {
