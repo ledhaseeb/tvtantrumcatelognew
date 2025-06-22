@@ -2,26 +2,34 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { TvShow } from "@shared/schema";
 import { TvShowCardImage } from "@/components/ui/tv-show-image";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { memo } from "react";
 import { scrollToTop } from "../lib/scroll-utils";
+import { saveNavigationState } from "../lib/navigation-history";
 
 interface ShowCardProps {
   show: TvShow;
   viewMode: "grid" | "list";
   onClick: () => void;
   isMobile?: boolean;
+  currentFilters?: any;
+  navigationSource?: 'home' | 'browse' | 'search' | 'category';
 }
 
 // Memoized component for better performance under high traffic
-function ShowCard({ show, viewMode, onClick, isMobile = false }: ShowCardProps) {
+function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, navigationSource }: ShowCardProps) {
+  const [location] = useLocation();
+  
   // Ensure we have valid show data
   if (!show || !show.id) {
     return null;
   }
 
-  // Handle click with scroll to top
+  // Handle click with navigation tracking and scroll to top
   const handleShowClick = () => {
+    // Save current navigation state before navigating to show details
+    saveNavigationState(location, currentFilters, navigationSource);
+    
     scrollToTop('smooth');
     if (onClick) onClick();
   };

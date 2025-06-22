@@ -83,6 +83,7 @@ export default function CategoryRow({ title, description, shows, viewAllLink }: 
               viewMode="grid"
               onClick={() => {}}
               isMobile={true}
+              navigationSource="home"
             />
           ))}
         </div>

@@ -12,10 +12,11 @@
  * - Show information and themes
  */
 
-import { useParams, Link } from "wouter";
+import { useParams, Link, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { performSmartBack, clearNavigationHistory } from "@/lib/navigation-history";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -72,6 +73,7 @@ export default function CatalogShowDetailPage() {
   console.log('🔥 CATALOG SHOW DETAIL PAGE COMPONENT LOADED 🔥');
   
   const { id } = useParams<{ id: string }>();
+  const [_, setLocation] = useLocation();
   const { toast } = useToast();
   console.log('CatalogShowDetailPage mounted with params:', { id }, 'parsed ID:', parseInt(id || '0'));
   console.log('Current URL pathname:', window.location.pathname);
@@ -89,6 +91,19 @@ export default function CatalogShowDetailPage() {
     window.addEventListener('resize', checkIsMobile);
     
     return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  // Smart back navigation handler
+  const handleBackNavigation = (e: React.MouseEvent) => {
+    e.preventDefault();
+    performSmartBack(setLocation);
+  };
+
+  // Clear navigation history when component unmounts
+  useEffect(() => {
+    return () => {
+      clearNavigationHistory();
+    };
   }, []);
 
   // Share functionality
@@ -368,12 +383,10 @@ export default function CatalogShowDetailPage() {
   const ErrorState = () => (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
-        <Link href="/">
-          <Button variant="outline" className="mb-4">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Shows
-          </Button>
-        </Link>
+        <Button variant="outline" className="mb-4" onClick={handleBackNavigation}>
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Shows
+        </Button>
         
         <Card>
           <CardHeader>
@@ -388,11 +401,9 @@ export default function CatalogShowDetailPage() {
                 Error: {error.message}
               </p>
             )}
-            <Link href="/">
-              <Button variant="outline" className="w-full">
-                Return to Browse
-              </Button>
-            </Link>
+            <Button variant="outline" className="w-full" onClick={handleBackNavigation}>
+              Return to Browse
+            </Button>
           </CardContent>
         </Card>
       </div>
@@ -417,12 +428,10 @@ export default function CatalogShowDetailPage() {
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header with Back Button and Share */}
         <div className="flex justify-between items-center mb-6">
-          <Link href="/">
-            <Button variant="outline">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Shows
-            </Button>
-          </Link>
+          <Button variant="outline" onClick={handleBackNavigation}>
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Shows
+          </Button>
           
           {/* Share Button */}
           <Button variant="outline" size="sm" onClick={handleShareModal}>

@@ -547,6 +547,8 @@ export default function Browse() {
                         viewMode="grid"
                         isMobile={true}
                         onClick={() => handleShowClick(show.id)}
+                        currentFilters={activeFilters}
+                        navigationSource="browse"
                       />
                     ))}
                   </div>
@@ -558,6 +560,8 @@ export default function Browse() {
                         show={show} 
                         viewMode="grid"
                         onClick={() => handleShowClick(show.id)}
+                        currentFilters={activeFilters}
+                        navigationSource="browse"
                       />
                     ))}
                   </div>
