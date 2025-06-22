@@ -72,25 +72,30 @@ export function getSmartBackUrl(): string | null {
 }
 
 /**
- * Perform smart back navigation
- * Uses browser history when possible, falls back to constructed URLs
+ * Perform smart back navigation with proper routing
+ * Uses wouter navigation to avoid 404 errors
  */
-export function performSmartBack(): boolean {
-  // Try browser's native back first (most efficient)
-  if (canUseBrowserBack()) {
-    window.history.back();
+export function performSmartBack(setLocation?: (path: string) => void): boolean {
+  // Get the smart back URL first
+  const backUrl = getSmartBackUrl();
+  if (backUrl && setLocation) {
+    // Use wouter navigation to avoid 404s
+    setLocation(backUrl);
     return true;
   }
   
-  // Fallback to constructed URL
-  const backUrl = getSmartBackUrl();
+  // Fallback to window navigation
   if (backUrl) {
     window.location.href = backUrl;
     return true;
   }
   
   // Default fallback
-  window.location.href = '/';
+  if (setLocation) {
+    setLocation('/');
+  } else {
+    window.location.href = '/';
+  }
   return false;
 }
 
@@ -105,7 +110,10 @@ function canUseBrowserBack(): boolean {
   const referrer = document.referrer;
   const currentHost = window.location.host;
   
-  return referrer.includes(currentHost);
+  // Also check if we have saved navigation state
+  const hasNavigationState = sessionStorage.getItem(STORAGE_KEY) !== null;
+  
+  return referrer.includes(currentHost) && hasNavigationState;
 }
 
 /**
