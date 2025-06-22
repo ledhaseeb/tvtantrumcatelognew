@@ -499,7 +499,7 @@ router.get('/image-proxy', async (req, res) => {
   }
 });
 
-// Robust image serving with caching and fallbacks
+// Robust image serving with proper mapping between database paths and actual files
 app.get('/images/tv-shows/:filename', async (req, res) => {
   try {
     const filename = req.params.filename;
@@ -511,28 +511,110 @@ app.get('/images/tv-shows/:filename', async (req, res) => {
       'Vary': 'Accept-Encoding'
     });
     
-    // Try custom images first
-    const customImagePath = join(__dirname, '../public/custom-images', filename);
+    // Extract show name from filename: show-6-Alma_s_Way.jpg -> Alma's Way
+    const showNameFromFile = filename
+      .replace(/^show-\d+-/, '')  // Remove show-ID- prefix
+      .replace(/\.[^.]+$/, '')    // Remove file extension
+      .replace(/_/g, ' ')         // Replace underscores with spaces
+      .replace(/\s+/g, ' ')       // Normalize spaces
+      .trim();
     
+    console.log(`Looking for image: ${filename} -> "${showNameFromFile}"`);
+    
+    // Try various filename patterns in custom-images directory
+    const customImagesDir = join(__dirname, '../public/custom-images');
+    const possibleFilenames = [
+      // Exact match with original filename
+      filename,
+      // Try the extracted show name with various extensions
+      `${showNameFromFile}.jpg`,
+      `${showNameFromFile}.jpeg`, 
+      `${showNameFromFile}.png`,
+      `${showNameFromFile}.webp`,
+      // Try lowercase versions
+      `${showNameFromFile.toLowerCase()}.jpg`,
+      `${showNameFromFile.toLowerCase()}.jpeg`,
+      `${showNameFromFile.toLowerCase()}.png`,
+      `${showNameFromFile.toLowerCase()}.webp`,
+      // Try with different punctuation
+      `${showNameFromFile.replace(/'/g, '')}.jpg`,
+      `${showNameFromFile.replace(/'/g, '').toLowerCase()}.jpg`,
+      // Try kebab-case versions
+      `${showNameFromFile.toLowerCase().replace(/\s+/g, '-')}.jpg`,
+      `${showNameFromFile.toLowerCase().replace(/\s+/g, '-')}.png`,
+      `${showNameFromFile.toLowerCase().replace(/\s+/g, '-')}.webp`
+    ];
+    
+    // Try each possible filename
+    for (const possibleFile of possibleFilenames) {
+      const imagePath = join(customImagesDir, possibleFile);
+      try {
+        await fs.promises.access(imagePath);
+        console.log(`Found image: ${possibleFile}`);
+        return res.sendFile(imagePath);
+      } catch {}
+    }
+    
+    // Try uploads directory with various patterns
+    const uploadsDir = join(__dirname, '../public/uploads');
+    const uploadPatterns = [
+      `show-${filename.match(/show-(\d+)-/)?.[1]}-*.jpg`,
+      filename
+    ];
+    
+    // Check uploads directory
     try {
-      await fs.promises.access(customImagePath);
-      return res.sendFile(customImagePath);
+      const uploadFiles = await fs.promises.readdir(uploadsDir);
+      const showIdMatch = filename.match(/show-(\d+)-/);
+      if (showIdMatch) {
+        const showId = showIdMatch[1];
+        const matchingUpload = uploadFiles.find(file => 
+          file.startsWith(`show-${showId}-`) && 
+          (file.endsWith('.jpg') || file.endsWith('.jpeg') || file.endsWith('.png') || file.endsWith('.webp'))
+        );
+        
+        if (matchingUpload) {
+          const uploadPath = join(uploadsDir, matchingUpload);
+          console.log(`Found upload image: ${matchingUpload}`);
+          return res.sendFile(uploadPath);
+        }
+      }
+    } catch {}
+    
+    // Try optimized uploads
+    try {
+      const optimizedDir = join(uploadsDir, 'optimized');
+      const optimizedFiles = await fs.promises.readdir(optimizedDir);
+      const showIdMatch = filename.match(/show-(\d+)-/);
+      if (showIdMatch) {
+        const showId = showIdMatch[1];
+        const matchingOptimized = optimizedFiles.find(file => 
+          file.includes(`show-${showId}-`) && 
+          (file.endsWith('.jpg') || file.endsWith('.jpeg') || file.endsWith('.png') || file.endsWith('.webp'))
+        );
+        
+        if (matchingOptimized) {
+          const optimizedPath = join(optimizedDir, matchingOptimized);
+          console.log(`Found optimized image: ${matchingOptimized}`);
+          return res.sendFile(optimizedPath);
+        }
+      }
     } catch {}
     
     // Fallback to generic image
     const genericImagePath = join(__dirname, '../public/images/generic-tv-show.jpg');
-    
     try {
       await fs.promises.access(genericImagePath);
+      console.log(`Using generic image for: ${filename}`);
       return res.sendFile(genericImagePath);
     } catch {
-      // SVG placeholder as final fallback
+      console.log(`No image found for: ${filename}, using SVG placeholder`);
+      // Only use SVG as absolute last resort
       res.setHeader('Content-Type', 'image/svg+xml');
-      const showName = filename.replace(/show-\d+-/, '').replace(/\.[^.]+$/, '').replace(/_/g, ' ');
       return res.send(`<svg width="400" height="600" xmlns="http://www.w3.org/2000/svg">
         <rect width="400" height="600" fill="#285161"/>
         <text x="200" y="280" text-anchor="middle" fill="white" font-size="20">📺</text>
-        <text x="200" y="320" text-anchor="middle" fill="white" font-size="16">${showName}</text>
+        <text x="200" y="320" text-anchor="middle" fill="white" font-size="16">${showNameFromFile}</text>
       </svg>`);
     }
   } catch (error) {
