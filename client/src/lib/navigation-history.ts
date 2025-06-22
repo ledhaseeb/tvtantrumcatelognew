@@ -165,6 +165,46 @@ export function clearNavigationHistory() {
 }
 
 /**
+ * Setup browser back button handler to prevent 404s
+ */
+export function setupBrowserBackHandler(setLocation: (path: string) => void) {
+  const handlePopState = (event: PopStateEvent) => {
+    const currentPath = window.location.pathname;
+    
+    // If we're navigating away from a show detail page, handle it with smart navigation
+    if (currentPath.startsWith('/show/')) {
+      // Get where we should go based on saved navigation state
+      const backUrl = getSmartBackUrl();
+      if (backUrl) {
+        // Prevent the default browser navigation
+        event.preventDefault();
+        window.history.pushState(null, '', backUrl);
+        setLocation(backUrl);
+        return;
+      }
+    }
+    
+    // For non-show pages or when no saved state, let browser handle normally
+  };
+
+  // Also handle beforeunload to save current state
+  const handleBeforeUnload = () => {
+    // Clear old navigation state when leaving the site
+    if (!window.location.pathname.startsWith('/show/')) {
+      clearNavigationHistory();
+    }
+  };
+
+  window.addEventListener('popstate', handlePopState);
+  window.addEventListener('beforeunload', handleBeforeUnload);
+  
+  return () => {
+    window.removeEventListener('popstate', handlePopState);
+    window.removeEventListener('beforeunload', handleBeforeUnload);
+  };
+}
+
+/**
  * Hook to track navigation for components
  */
 export function useNavigationTracking() {
@@ -172,6 +212,7 @@ export function useNavigationTracking() {
     saveState: saveNavigationState,
     getBackUrl: getSmartBackUrl,
     performBack: performSmartBack,
-    clearHistory: clearNavigationHistory
+    clearHistory: clearNavigationHistory,
+    setupBrowserHandler: setupBrowserBackHandler
   };
 }

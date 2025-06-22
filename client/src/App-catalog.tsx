@@ -1,8 +1,9 @@
-import { Router as WouterRouter, Route, Switch } from "wouter";
+import { Router as WouterRouter, Route, Switch, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "@/hooks/use-auth";
 import CatalogNavbar from "@/components/CatalogNavbar";
 import Footer from "@/components/Footer";
+import { setupGlobalBrowserBackHandler, cleanupGlobalBrowserBackHandler } from "@/lib/browser-navigation-fix";
 import CatalogHomeResponsive from "@/pages/catalog-home-responsive";
 import Browse from "@/pages/browse";
 import Compare from "@/pages/compare";
@@ -32,6 +33,46 @@ const queryClient = new QueryClient({
   },
 });
 
+function AppContent() {
+  const [_, setLocation] = useLocation();
+  
+  useEffect(() => {
+    // Setup global browser back handler
+    setupGlobalBrowserBackHandler(setLocation);
+    
+    return () => {
+      cleanupGlobalBrowserBackHandler();
+    };
+  }, [setLocation]);
+  
+  return (
+    <div className="min-h-screen flex flex-col">
+      <CatalogNavbar />
+      <main className="flex-1">
+        <Switch>
+          <Route path="/" component={CatalogHomeResponsive} />
+          <Route path="/browse" component={Browse} />
+          <Route path="/compare" component={Compare} />
+          <Route path="/about" component={About} />
+          <Route path="/research" component={Research} />
+          <Route path="/research/:id" component={ResearchDetail} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/terms-of-service" component={TermsOfService} />
+          <Route path="/show/:id" component={CatalogShowDetailPage} />
+          {/* Secure admin access with unique URL */}
+          <Route path="/tvtantrum-admin-secure-access-2024" component={AdminLogin} />
+          <Route path="/admin/dashboard" component={AdminDashboard} />
+          <Route path="/admin/login" component={AdminLogin} />
+          <Route path="/admin" component={AdminPage} />
+          <Route component={NotFound} />
+        </Switch>
+      </main>
+      <Footer />
+      <CookieConsent />
+    </div>
+  );
+}
+
 export default function CatalogApp() {
   useEffect(() => {
     // Initialize Google Analytics
@@ -45,30 +86,7 @@ export default function CatalogApp() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <WouterRouter>
-          <div className="min-h-screen flex flex-col">
-            <CatalogNavbar />
-            <main className="flex-1">
-              <Switch>
-                <Route path="/" component={CatalogHomeResponsive} />
-                <Route path="/browse" component={Browse} />
-                <Route path="/compare" component={Compare} />
-                <Route path="/about" component={About} />
-                <Route path="/research" component={Research} />
-                <Route path="/research/:id" component={ResearchDetail} />
-                <Route path="/privacy-policy" component={PrivacyPolicy} />
-                <Route path="/terms-of-service" component={TermsOfService} />
-                <Route path="/show/:id" component={CatalogShowDetailPage} />
-                {/* Secure admin access with unique URL */}
-                <Route path="/tvtantrum-admin-secure-access-2024" component={AdminLogin} />
-                <Route path="/admin/dashboard" component={AdminDashboard} />
-                <Route path="/admin/login" component={AdminLogin} />
-                <Route path="/admin" component={AdminPage} />
-                <Route component={NotFound} />
-              </Switch>
-            </main>
-            <Footer />
-            <CookieConsent />
-          </div>
+          <AppContent />
         </WouterRouter>
       </AuthProvider>
     </QueryClientProvider>
