@@ -53,8 +53,11 @@ export function getOptimizedImageUrl(showId: number, showName: string, originalU
     return originalUrl;
   }
   
-  // Construct the expected path for images/tv-shows/
-  const sanitizedName = showName.replace(/[^a-zA-Z0-9]/g, '_');
+  // Construct the expected path for images/tv-shows/ using kebab-case
+  const sanitizedName = showName.toLowerCase()
+    .replace(/[^a-z0-9]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
   return `${IMAGE_CONFIG.BASE_PATH}show-${showId}-${sanitizedName}.jpg`;
 }
 
