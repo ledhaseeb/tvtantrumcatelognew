@@ -43,41 +43,9 @@ app.use(compression({
 
 // Request queuing middleware for viral traffic management
 let activeRequests = 0;
-const MAX_CONCURRENT_REQUESTS = 2000; // Increased capacity
-const imageRequestCounts = new Map(); // Track image requests per IP
+const MAX_CONCURRENT_REQUESTS = 1000; // Increased for viral capacity
 
 app.use((req, res, next) => {
-  const isImageRequest = req.path.includes('/images/tv-shows/') || req.path.includes('/custom-images/');
-  const clientIP = req.ip || req.connection.remoteAddress;
-  
-  // Special handling for image requests to prevent cascading failures
-  if (isImageRequest) {
-    const key = `${clientIP}:${req.path}`;
-    const count = imageRequestCounts.get(key) || 0;
-    
-    // Limit image requests per IP per path to prevent infinite retry loops
-    if (count > 5) {
-      res.setHeader('Content-Type', 'image/svg+xml');
-      return res.status(200).send(`<svg width="400" height="600" xmlns="http://www.w3.org/2000/svg">
-        <rect width="400" height="600" fill="#285161"/>
-        <text x="200" y="300" text-anchor="middle" fill="white" font-size="20">Rate Limited</text>
-      </svg>`);
-    }
-    
-    imageRequestCounts.set(key, count + 1);
-    
-    // Clean up old image request counts every 1000 requests
-    if (imageRequestCounts.size > 1000) {
-      const cutoff = Date.now() - 60000; // 1 minute ago
-      for (const [k, v] of imageRequestCounts.entries()) {
-        if (typeof v === 'object' && v.timestamp < cutoff) {
-          imageRequestCounts.delete(k);
-        }
-      }
-    }
-  }
-  
-  // General request limiting
   if (activeRequests >= MAX_CONCURRENT_REQUESTS) {
     return res.status(503).json({ 
       message: "Server at capacity, please try again shortly",
@@ -499,137 +467,39 @@ router.get('/image-proxy', async (req, res) => {
   }
 });
 
-// Robust image serving with proper mapping between database paths and actual files
-app.get('/images/tv-shows/:filename', async (req, res) => {
+// Image proxy route for serving images from original database
+app.get('/media/tv-shows/:filename', async (req, res) => {
   try {
     const filename = req.params.filename;
     
-    // Set aggressive caching headers to prevent repeated requests
-    res.set({
-      'Cache-Control': 'public, max-age=86400, immutable',
-      'ETag': `"img-${filename}"`,
-      'Vary': 'Accept-Encoding'
-    });
+    // Check if the image exists in the original database
+    const result = await originalDb.query(
+      'SELECT image_url FROM tv_shows WHERE image_url = $1',
+      [`/media/tv-shows/${filename}`]
+    );
     
-    // Extract show name from filename: show-6-Alma_s_Way.jpg -> Alma's Way
-    const showNameFromFile = filename
-      .replace(/^show-\d+-/, '')  // Remove show-ID- prefix
-      .replace(/\.[^.]+$/, '')    // Remove file extension
-      .replace(/_/g, ' ')         // Replace underscores with spaces
-      .replace(/\s+/g, ' ')       // Normalize spaces
-      .trim();
-    
-    console.log(`Looking for image: ${filename} -> "${showNameFromFile}"`);
-    
-    // Try various filename patterns in custom-images directory
-    const customImagesDir = join(__dirname, '../public/custom-images');
-    const possibleFilenames = [
-      // Exact match with original filename
-      filename,
-      // Try the extracted show name with various extensions
-      `${showNameFromFile}.jpg`,
-      `${showNameFromFile}.jpeg`, 
-      `${showNameFromFile}.png`,
-      `${showNameFromFile}.webp`,
-      // Try lowercase versions
-      `${showNameFromFile.toLowerCase()}.jpg`,
-      `${showNameFromFile.toLowerCase()}.jpeg`,
-      `${showNameFromFile.toLowerCase()}.png`,
-      `${showNameFromFile.toLowerCase()}.webp`,
-      // Try with different punctuation
-      `${showNameFromFile.replace(/'/g, '')}.jpg`,
-      `${showNameFromFile.replace(/'/g, '').toLowerCase()}.jpg`,
-      // Try kebab-case versions
-      `${showNameFromFile.toLowerCase().replace(/\s+/g, '-')}.jpg`,
-      `${showNameFromFile.toLowerCase().replace(/\s+/g, '-')}.png`,
-      `${showNameFromFile.toLowerCase().replace(/\s+/g, '-')}.webp`
-    ];
-    
-    // Try each possible filename
-    for (const possibleFile of possibleFilenames) {
-      const imagePath = join(customImagesDir, possibleFile);
-      try {
-        await fs.promises.access(imagePath);
-        console.log(`Found image: ${possibleFile}`);
-        return res.sendFile(imagePath);
-      } catch {}
+    if (result.rows.length === 0) {
+      return res.status(404).send('Image not found');
     }
     
-    // Try uploads directory with various patterns
-    const uploadsDir = join(__dirname, '../public/uploads');
-    const uploadPatterns = [
-      `show-${filename.match(/show-(\d+)-/)?.[1]}-*.jpg`,
-      filename
-    ];
-    
-    // Check uploads directory
-    try {
-      const uploadFiles = await fs.promises.readdir(uploadsDir);
-      const showIdMatch = filename.match(/show-(\d+)-/);
-      if (showIdMatch) {
-        const showId = showIdMatch[1];
-        const matchingUpload = uploadFiles.find(file => 
-          file.startsWith(`show-${showId}-`) && 
-          (file.endsWith('.jpg') || file.endsWith('.jpeg') || file.endsWith('.png') || file.endsWith('.webp'))
-        );
-        
-        if (matchingUpload) {
-          const uploadPath = join(uploadsDir, matchingUpload);
-          console.log(`Found upload image: ${matchingUpload}`);
-          return res.sendFile(uploadPath);
-        }
-      }
-    } catch {}
-    
-    // Try optimized uploads
-    try {
-      const optimizedDir = join(uploadsDir, 'optimized');
-      const optimizedFiles = await fs.promises.readdir(optimizedDir);
-      const showIdMatch = filename.match(/show-(\d+)-/);
-      if (showIdMatch) {
-        const showId = showIdMatch[1];
-        const matchingOptimized = optimizedFiles.find(file => 
-          file.includes(`show-${showId}-`) && 
-          (file.endsWith('.jpg') || file.endsWith('.jpeg') || file.endsWith('.png') || file.endsWith('.webp'))
-        );
-        
-        if (matchingOptimized) {
-          const optimizedPath = join(optimizedDir, matchingOptimized);
-          console.log(`Found optimized image: ${matchingOptimized}`);
-          return res.sendFile(optimizedPath);
-        }
-      }
-    } catch {}
-    
-    // Fallback to generic image
+    // Serve the generic TV show image for authentic media paths
     const genericImagePath = join(__dirname, '../public/images/generic-tv-show.jpg');
+    
     try {
-      await fs.promises.access(genericImagePath);
-      console.log(`Using generic image for: ${filename}`);
-      return res.sendFile(genericImagePath);
-    } catch {
-      console.log(`No image found for: ${filename}, using SVG placeholder`);
-      // Only use SVG as absolute last resort
+      res.sendFile(genericImagePath);
+    } catch (fileError) {
+      // If generic image doesn't exist, serve a simple SVG placeholder
       res.setHeader('Content-Type', 'image/svg+xml');
-      return res.send(`<svg width="400" height="600" xmlns="http://www.w3.org/2000/svg">
+      res.send(`<svg width="400" height="600" xmlns="http://www.w3.org/2000/svg">
         <rect width="400" height="600" fill="#285161"/>
-        <text x="200" y="280" text-anchor="middle" fill="white" font-size="20">📺</text>
-        <text x="200" y="320" text-anchor="middle" fill="white" font-size="16">${showNameFromFile}</text>
+        <text x="200" y="300" text-anchor="middle" fill="#F6CB59" font-family="Arial" font-size="24">TV Show</text>
       </svg>`);
     }
+    
   } catch (error) {
-    console.error('Image serving error:', error);
-    res.setHeader('Content-Type', 'image/svg+xml');
-    res.status(200).send(`<svg width="400" height="600" xmlns="http://www.w3.org/2000/svg">
-      <rect width="400" height="600" fill="#285161"/>
-      <text x="200" y="300" text-anchor="middle" fill="white" font-size="24">Image Error</text>
-    </svg>`);
+    console.error('Image proxy error:', error);
+    res.status(500).send('Internal server error');
   }
-});
-
-// Legacy media route redirect  
-app.get('/media/tv-shows/:filename', (req, res) => {
-  res.redirect(301, `/images/tv-shows/${req.params.filename}`);
 });
 
 // Setup admin authentication routes
