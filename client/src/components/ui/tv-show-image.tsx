@@ -42,7 +42,7 @@ export function TvShowImage({
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
-    console.log('Image error for:', showName, 'src:', img.src);
+    // console.log('Image error for:', showName, 'src:', img.src);
     setHasError(true);
   };
 

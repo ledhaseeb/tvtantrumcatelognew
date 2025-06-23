@@ -130,7 +130,7 @@ export default function CatalogHomeResponsive() {
     },
   });
 
-  const isLoading = categoriesLoading || categoryShowsLoading;
+  const isLoading = popularShowsLoading || allShowsLoading;
   
   // Filter shows based on search
   const filteredShows = searchTerm 
@@ -151,8 +151,8 @@ export default function CatalogHomeResponsive() {
     );
   }
 
-  // Sort categories by display order
-  const sortedCategories = [...homepageCategories].sort((a, b) => a.displayOrder - b.displayOrder);
+  // Use actual categories with real data
+  const sortedCategories = actualCategories.filter(cat => cat.shows.length > 0);
 
   return (
     <div className="min-h-screen bg-background">
@@ -230,7 +230,7 @@ export default function CatalogHomeResponsive() {
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-6xl mx-auto space-y-12">
             {sortedCategories.map((category) => {
-              const shows = categoryShows[category.id] || [];
+              const shows = category.shows || [];
               
               if (shows.length === 0) return null;
 
@@ -240,16 +240,16 @@ export default function CatalogHomeResponsive() {
                     {/* First row: Headline and show count badge */}
                     <div className="flex items-center justify-between">
                       <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-                        {category.name}
+                        {category.title}
                         <span className="text-sm font-normal bg-gray-100 text-gray-600 px-3 py-1 rounded-full">
-                          {category.showCount || shows.length} shows
+                          {category.shows.length} shows
                         </span>
                       </h2>
                     </div>
                     {/* Second row: Description and View All button */}
                     <div className="flex items-center justify-between">
                       <p className="text-gray-600">{category.description}</p>
-                      <Link href={generateBrowseUrl(category)}>
+                      <Link href="/browse">
                         <Button variant="outline">View All</Button>
                       </Link>
                     </div>

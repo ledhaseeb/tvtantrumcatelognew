@@ -125,7 +125,7 @@ export function getImageProps(showId: number, showName: string, originalUrl?: st
   // Primary source: try the originalUrl first if it exists
   let primarySrc = originalUrl || getOptimizedImageUrl(showId, showName, originalUrl);
   
-  console.log('Getting image props for:', showName, 'originalUrl:', originalUrl, 'finalSrc:', primarySrc);
+  // console.log('Getting image props for:', showName, 'originalUrl:', originalUrl, 'finalSrc:', primarySrc);
   
   return {
     src: primarySrc,
