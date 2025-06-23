@@ -108,40 +108,13 @@ export async function createImageMetadata(
  * Image component props generator
  */
 export function getImageProps(showId: number, showName: string, originalUrl?: string) {
-  // Use the database URL first if available, then fallback to generated URL
-  const primarySrc = originalUrl || getOptimizedImageUrl(showId, showName);
-  
   return {
-    src: primarySrc,
+    src: originalUrl || getOptimizedImageUrl(showId, showName),
     alt: generateAltText(showName),
     width: IMAGE_CONFIG.OPTIMAL_WIDTH,
     height: IMAGE_CONFIG.OPTIMAL_HEIGHT,
     loading: 'lazy' as const,
-    decoding: 'async' as const,
-    onError: (e: React.SyntheticEvent<HTMLImageElement>) => {
-      const img = e.currentTarget;
-      
-      // If using database URL and it fails, try the generated URL
-      if (originalUrl && img.src === originalUrl) {
-        const generatedUrl = getOptimizedImageUrl(showId, showName);
-        if (generatedUrl !== originalUrl) {
-          img.src = generatedUrl;
-          return;
-        }
-      }
-      
-      // If generated URL fails, try the database URL
-      if (!originalUrl && img.src === getOptimizedImageUrl(showId, showName)) {
-        // No database URL to try, go to fallback
-        img.src = getFallbackImageUrl(showId, showName);
-        return;
-      }
-      
-      // Final fallback
-      if (!img.src.includes('_fallback')) {
-        img.src = getFallbackImageUrl(showId, showName);
-      }
-    }
+    decoding: 'async' as const
   };
 }
 

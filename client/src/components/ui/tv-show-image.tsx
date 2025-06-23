@@ -35,38 +35,8 @@ export function TvShowImage({
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
-    
-    console.log(`Image load error for ${showName} (ID: ${showId}):`, {
-      currentSrc: img.src,
-      originalUrl,
-      hasError
-    });
-    
-    // If we have database URL and current src is not database URL, try database URL
-    if (originalUrl && img.src !== originalUrl && !hasError) {
-      console.log(`Trying database URL for ${showName}: ${originalUrl}`);
-      img.src = originalUrl;
-      return;
-    }
-    
-    // If database URL failed and we haven't tried generated URL, try that
-    if (originalUrl && img.src === originalUrl && !hasError) {
-      const generatedUrl = getOptimizedImageUrl(showId, showName);
-      if (generatedUrl !== originalUrl) {
-        console.log(`Trying generated URL for ${showName}: ${generatedUrl}`);
-        img.src = generatedUrl;
-        setHasError(true);
-        return;
-      }
-    }
-
-    // Final fallback image
-    if (!img.src.includes('_fallback')) {
-      const fallbackUrl = getFallbackImageUrl(showId, showName);
-      console.log(`Using fallback for ${showName}: ${fallbackUrl}`);
-      img.src = fallbackUrl;
-      setHasError(true);
-    }
+    setHasError(true);
+    setIsLoaded(true); // Stop loading state even on error
   };
 
   const handleLoad = () => {
@@ -93,10 +63,20 @@ export function TvShowImage({
         onLoad={handleLoad}
         className={cn(
           'h-full w-full object-cover transition-opacity duration-200',
-          !isLoaded && 'opacity-0',
-          isLoaded && 'opacity-100'
+          !isLoaded && !hasError && 'opacity-0',
+          (isLoaded || hasError) && 'opacity-100'
         )}
       />
+      
+      {/* Show placeholder for broken images */}
+      {hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-muted text-muted-foreground">
+          <div className="text-center p-4">
+            <div className="text-sm font-medium">{showName}</div>
+            <div className="text-xs mt-1">Image unavailable</div>
+          </div>
+        </div>
+      )}
       
       {/* Loading skeleton */}
       {!isLoaded && (
