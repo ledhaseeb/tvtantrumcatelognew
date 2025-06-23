@@ -36,15 +36,35 @@ export function TvShowImage({
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     
-    // Try original URL if available and not already tried
+    console.log(`Image load error for ${showName} (ID: ${showId}):`, {
+      currentSrc: img.src,
+      originalUrl,
+      hasError
+    });
+    
+    // If we have database URL and current src is not database URL, try database URL
     if (originalUrl && img.src !== originalUrl && !hasError) {
+      console.log(`Trying database URL for ${showName}: ${originalUrl}`);
       img.src = originalUrl;
       return;
     }
+    
+    // If database URL failed and we haven't tried generated URL, try that
+    if (originalUrl && img.src === originalUrl && !hasError) {
+      const generatedUrl = getOptimizedImageUrl(showId, showName);
+      if (generatedUrl !== originalUrl) {
+        console.log(`Trying generated URL for ${showName}: ${generatedUrl}`);
+        img.src = generatedUrl;
+        setHasError(true);
+        return;
+      }
+    }
 
-    // Use fallback image
+    // Final fallback image
     if (!img.src.includes('_fallback')) {
-      img.src = getFallbackImageUrl(showId, showName);
+      const fallbackUrl = getFallbackImageUrl(showId, showName);
+      console.log(`Using fallback for ${showName}: ${fallbackUrl}`);
+      img.src = fallbackUrl;
       setHasError(true);
     }
   };
