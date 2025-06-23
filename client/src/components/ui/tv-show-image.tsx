@@ -42,19 +42,8 @@ export function TvShowImage({
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
-    // console.log('Image error for:', showName, 'src:', img.src);
-    
-    // Try original URL if available and not already tried
-    if (originalUrl && img.src !== originalUrl && !hasError) {
-      img.src = originalUrl;
-      return;
-    }
-
-    // Use fallback image as last resort
-    if (!img.src.includes('generic-tv-show')) {
-      img.src = getFallbackImageUrl(showId, showName);
-      setHasError(true);
-    }
+    console.log('Image error for:', showName, 'src:', img.src);
+    setHasError(true);
   };
 
   const handleLoad = () => {
@@ -69,7 +58,7 @@ export function TvShowImage({
   };
 
   return (
-    <div className={cn('relative overflow-hidden bg-muted', aspectClasses[aspectRatio], className)}>
+    <div className={cn('relative overflow-hidden bg-gray-200', aspectClasses[aspectRatio], className)}>
       <img
         src={imageProps.src}
         alt={imageProps.alt}
@@ -83,12 +72,13 @@ export function TvShowImage({
         className={cn(
           'h-full w-full object-cover'
         )}
+        style={{ display: hasError ? 'none' : 'block' }}
       />
       
-      {/* Only show loading skeleton if image failed to load */}
+      {/* Show fallback when image fails to load */}
       {hasError && (
-        <div className="absolute inset-0 bg-muted flex items-center justify-center">
-          <div className="text-sm text-muted-foreground font-medium text-center p-2">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center">
+          <div className="text-white text-sm font-medium text-center p-2 bg-black bg-opacity-50 rounded">
             {showName}
           </div>
         </div>
