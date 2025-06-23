@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { TvShow } from "@shared/schema";
-import { TvShowCardImage } from "@/components/ui/tv-show-image";
+// Removed TvShowCardImage import - using direct img tags
 import { Link, useLocation } from "wouter";
 import { memo } from "react";
 import { scrollToTop } from "../lib/scroll-utils";
@@ -140,12 +140,11 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
         <Card className="bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer flex flex-col hover:shadow-md transition-shadow h-72">
           {/* Image with reduced height to better fit poster aspect ratio */}
           <div className="relative h-40 overflow-hidden">
-            <TvShowCardImage
-              showId={show.id}
-              showName={show.name}
-              originalUrl={normalizedShow.imageUrl}
+            <img
+              src={normalizedShow.imageUrl}
+              alt={`${show.name} poster`}
               className="w-full h-full object-cover"
-              isInteractive={false}
+              loading="lazy"
             />
           </div>
           
@@ -177,13 +176,14 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
             <div className="flex flex-col sm:flex-row gap-4">
               {/* Show image */}
               <div className="flex-shrink-0">
-                <TvShowCardImage
-                  showId={show.id}
-                  showName={show.name}
-                  originalUrl={normalizedShow.imageUrl}
-                  className="w-full sm:w-24 h-32 sm:h-36"
-                  isInteractive={false}
-                />
+                <div className="relative w-full sm:w-24 h-32 sm:h-36 overflow-hidden rounded-lg">
+                  <img
+                    src={normalizedShow.imageUrl}
+                    alt={`${show.name} poster`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
               </div>
               
               {/* Show details */}
@@ -240,13 +240,12 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
     <Link href={`/show/${show.id}`} onClick={handleShowClick}>
       <Card className="bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer h-full flex flex-col hover:shadow-md transition-shadow">
         {/* Image */}
-        <div className="relative">
-          <TvShowCardImage
-            showId={show.id}
-            showName={show.name}
-            originalUrl={normalizedShow.imageUrl}
-            className="w-full aspect-[2/3]"
-            isInteractive={false}
+        <div className="relative w-full aspect-[2/3] overflow-hidden">
+          <img
+            src={normalizedShow.imageUrl}
+            alt={`${show.name} poster`}
+            className="w-full h-full object-cover"
+            loading="lazy"
           />
         </div>
         
