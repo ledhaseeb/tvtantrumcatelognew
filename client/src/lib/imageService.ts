@@ -40,7 +40,7 @@ export function generateAltText(showName: string, additionalContext?: string): s
 }
 
 /**
- * Get optimized image URL for a TV show by trying multiple naming patterns
+ * Get optimized image URL for a TV show
  */
 export function getOptimizedImageUrl(showId: number, showName: string, originalUrl?: string): string {
   // If we have an originalUrl that starts with /custom-images/, use it directly
@@ -48,23 +48,13 @@ export function getOptimizedImageUrl(showId: number, showName: string, originalU
     return originalUrl;
   }
   
-  // Try multiple naming patterns that exist in the custom-images folder
-  const baseName = showName.toLowerCase();
+  // If originalUrl exists and is valid, use it
+  if (originalUrl) {
+    return originalUrl;
+  }
   
-  // Pattern 1: Direct name with spaces replaced by spaces (exact match)
-  const exactName = `${IMAGE_CONFIG.BASE_PATH}${showName}.jpg`;
-  
-  // Pattern 2: Lowercase with hyphens
-  const hyphenName = `${IMAGE_CONFIG.BASE_PATH}${baseName.replace(/[^a-z0-9]/g, '-')}.jpg`;
-  
-  // Pattern 3: Lowercase with spaces
-  const spaceName = `${IMAGE_CONFIG.BASE_PATH}${baseName}.jpg`;
-  
-  // Pattern 4: Original case preserved
-  const originalName = `${IMAGE_CONFIG.BASE_PATH}${showName}.jpg`;
-  
-  // Return the first pattern - we'll handle fallbacks in the image component
-  return spaceName;
+  // Fallback to generic image
+  return IMAGE_CONFIG.FALLBACK_IMAGE;
 }
 
 /**
