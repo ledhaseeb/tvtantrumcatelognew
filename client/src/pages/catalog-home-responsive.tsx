@@ -120,6 +120,16 @@ export default function CatalogHomeResponsive() {
     enabled: !!homepageCategories?.length,
   });
 
+  // Fetch popular shows
+  const { data: popularShows = [], isLoading: popularShowsLoading } = useQuery({
+    queryKey: ['/api/shows/popular'],
+    queryFn: async () => {
+      const response = await fetch('/api/shows/popular');
+      if (!response.ok) throw new Error('Failed to fetch popular shows');
+      return response.json() as Promise<TvShow[]>;
+    },
+  });
+
   // Fetch all shows for search functionality
   const { data: allShows = [], isLoading: showsLoading } = useQuery({
     queryKey: ['/api/tv-shows'],
@@ -130,7 +140,7 @@ export default function CatalogHomeResponsive() {
     },
   });
 
-  const isLoading = popularShowsLoading || allShowsLoading;
+  const isLoading = popularShowsLoading || showsLoading;
   
   // Filter shows based on search
   const filteredShows = searchTerm 
@@ -150,6 +160,18 @@ export default function CatalogHomeResponsive() {
       </div>
     );
   }
+
+  // Create categories from actual data
+  const actualCategories = [
+    { id: 1, title: 'Popular Shows', description: 'Most loved by families', shows: popularShows.slice(0, 12) },
+    { id: 2, title: 'All Shows', description: 'Browse our complete catalog', shows: allShows.slice(0, 12) },
+    { id: 3, title: 'Educational', description: 'Learning through fun', shows: allShows.filter(show => 
+      show.themes?.some(theme => theme.toLowerCase().includes('education') || theme.toLowerCase().includes('learning'))
+    ).slice(0, 12) },
+    { id: 4, title: 'Adventure', description: 'Exciting journeys', shows: allShows.filter(show =>
+      show.themes?.some(theme => theme.toLowerCase().includes('adventure'))
+    ).slice(0, 12) }
+  ];
 
   // Use actual categories with real data
   const sortedCategories = actualCategories.filter(cat => cat.shows.length > 0);
