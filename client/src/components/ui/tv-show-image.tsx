@@ -35,6 +35,7 @@ export function TvShowImage({
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
+    console.log('Image error for:', showName, 'src:', img.src);
     
     // Try original URL if available and not already tried
     if (originalUrl && img.src !== originalUrl && !hasError) {
@@ -50,6 +51,7 @@ export function TvShowImage({
   };
 
   const handleLoad = () => {
+    console.log('Image loaded for:', showName);
     setIsLoaded(true);
   };
 
@@ -80,7 +82,11 @@ export function TvShowImage({
       
       {/* Loading skeleton */}
       {!isLoaded && (
-        <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted via-muted/50 to-muted" />
+        <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted via-muted/50 to-muted flex items-center justify-center">
+          <div className="text-sm text-muted-foreground font-medium">
+            {showName}
+          </div>
+        </div>
       )}
       
       {/* SEO structured data */}

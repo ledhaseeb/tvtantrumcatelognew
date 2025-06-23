@@ -125,20 +125,15 @@ export function getImageProps(showId: number, showName: string, originalUrl?: st
   // Primary source: try the originalUrl first if it exists
   let primarySrc = originalUrl || getOptimizedImageUrl(showId, showName, originalUrl);
   
+  console.log('Getting image props for:', showName, 'src:', primarySrc);
+  
   return {
     src: primarySrc,
     alt: generateAltText(showName),
     width: IMAGE_CONFIG.OPTIMAL_WIDTH,
     height: IMAGE_CONFIG.OPTIMAL_HEIGHT,
     loading: 'lazy' as const,
-    decoding: 'async' as const,
-    onError: (e: React.SyntheticEvent<HTMLImageElement>) => {
-      const img = e.currentTarget;
-      // If primary image fails, try fallback
-      if (!img.src.includes('generic-tv-show')) {
-        img.src = IMAGE_CONFIG.FALLBACK_IMAGE;
-      }
-    }
+    decoding: 'async' as const
   };
 }
 
