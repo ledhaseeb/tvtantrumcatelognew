@@ -3,7 +3,7 @@
  * Provides optimized images with SEO metadata and fallback support
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { getImageProps, generateAltText, getFallbackImageUrl } from '@/lib/imageService';
 import { cn } from '@/lib/utils';
 
@@ -32,22 +32,24 @@ export function TvShowImage({
   const [isLoaded, setIsLoaded] = useState(false);
 
   const imageProps = getImageProps(showId, showName, originalUrl);
-  
-  // Set loaded to true immediately if we have a valid image URL to prevent loading skeleton
-  useEffect(() => {
-    if (originalUrl && originalUrl.startsWith('/images/tv-shows/')) {
-      setIsLoaded(true);
-    }
-  }, [originalUrl]);
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
-    // console.log('Image error for:', showName, 'src:', img.src);
-    setHasError(true);
+    
+    // Try original URL if available and not already tried
+    if (originalUrl && img.src !== originalUrl && !hasError) {
+      img.src = originalUrl;
+      return;
+    }
+
+    // Use fallback image
+    if (!img.src.includes('_fallback')) {
+      img.src = getFallbackImageUrl(showId, showName);
+      setHasError(true);
+    }
   };
 
   const handleLoad = () => {
-    // console.log('Image loaded for:', showName);
     setIsLoaded(true);
   };
 
@@ -58,7 +60,7 @@ export function TvShowImage({
   };
 
   return (
-    <div className={cn('relative overflow-hidden bg-gray-200', aspectClasses[aspectRatio], className)}>
+    <div className={cn('relative overflow-hidden bg-muted', aspectClasses[aspectRatio], className)}>
       <img
         src={imageProps.src}
         alt={imageProps.alt}
@@ -70,18 +72,15 @@ export function TvShowImage({
         onError={handleError}
         onLoad={handleLoad}
         className={cn(
-          'h-full w-full object-cover'
+          'h-full w-full object-cover transition-opacity duration-200',
+          !isLoaded && 'opacity-0',
+          isLoaded && 'opacity-100'
         )}
-        style={{ display: hasError ? 'none' : 'block' }}
       />
       
-      {/* Show fallback when image fails to load */}
-      {hasError && (
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center">
-          <div className="text-white text-sm font-medium text-center p-2 bg-black bg-opacity-50 rounded">
-            {showName}
-          </div>
-        </div>
+      {/* Loading skeleton */}
+      {!isLoaded && (
+        <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted via-muted/50 to-muted" />
       )}
       
       {/* SEO structured data */}

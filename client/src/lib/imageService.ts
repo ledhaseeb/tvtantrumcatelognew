@@ -26,8 +26,7 @@ export const IMAGE_CONFIG = {
   OPTIMAL_WIDTH: 400,
   OPTIMAL_HEIGHT: 600,
   FORMATS: ['jpg', 'jpeg', 'png', 'webp'],
-  BASE_PATH: '/images/tv-shows/',
-  FALLBACK_IMAGE: '/images/generic-tv-show.jpg'
+  BASE_PATH: '/images/tv-shows/'
 } as const;
 
 /**
@@ -42,22 +41,8 @@ export function generateAltText(showName: string, additionalContext?: string): s
 /**
  * Get optimized image URL for a TV show
  */
-export function getOptimizedImageUrl(showId: number, showName: string, originalUrl?: string): string {
-  // If we have an originalUrl that starts with /images/tv-shows/, use it directly
-  if (originalUrl && originalUrl.startsWith('/images/tv-shows/')) {
-    return originalUrl;
-  }
-  
-  // If originalUrl exists and is valid, use it
-  if (originalUrl) {
-    return originalUrl;
-  }
-  
-  // Construct the expected path for images/tv-shows/ using underscore format (matching database)
-  const sanitizedName = showName
-    .replace(/[^a-zA-Z0-9]/g, '_')
-    .replace(/_+/g, '_')
-    .replace(/^_|_$/g, '');
+export function getOptimizedImageUrl(showId: number, showName: string): string {
+  const sanitizedName = showName.replace(/[^a-zA-Z0-9]/g, '_');
   return `${IMAGE_CONFIG.BASE_PATH}show-${showId}-${sanitizedName}.jpg`;
 }
 
@@ -65,7 +50,8 @@ export function getOptimizedImageUrl(showId: number, showName: string, originalU
  * Get fallback image URL
  */
 export function getFallbackImageUrl(showId: number, showName: string): string {
-  return IMAGE_CONFIG.FALLBACK_IMAGE;
+  const sanitizedName = showName.replace(/[^a-zA-Z0-9]/g, '_');
+  return `${IMAGE_CONFIG.BASE_PATH}show-${showId}-${sanitizedName}_fallback.jpg`;
 }
 
 /**
@@ -122,18 +108,21 @@ export async function createImageMetadata(
  * Image component props generator
  */
 export function getImageProps(showId: number, showName: string, originalUrl?: string) {
-  // Primary source: try the originalUrl first if it exists
-  let primarySrc = originalUrl || getOptimizedImageUrl(showId, showName, originalUrl);
-  
-  // console.log('Getting image props for:', showName, 'originalUrl:', originalUrl, 'finalSrc:', primarySrc);
-  
   return {
-    src: primarySrc,
+    src: getOptimizedImageUrl(showId, showName),
     alt: generateAltText(showName),
     width: IMAGE_CONFIG.OPTIMAL_WIDTH,
     height: IMAGE_CONFIG.OPTIMAL_HEIGHT,
     loading: 'lazy' as const,
-    decoding: 'async' as const
+    decoding: 'async' as const,
+    onError: (e: React.SyntheticEvent<HTMLImageElement>) => {
+      const img = e.currentTarget;
+      if (originalUrl && img.src !== originalUrl) {
+        img.src = originalUrl;
+      } else {
+        img.src = getFallbackImageUrl(showId, showName);
+      }
+    }
   };
 }
 

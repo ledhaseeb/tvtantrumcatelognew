@@ -120,16 +120,6 @@ export default function CatalogHomeResponsive() {
     enabled: !!homepageCategories?.length,
   });
 
-  // Fetch popular shows
-  const { data: popularShows = [], isLoading: popularShowsLoading } = useQuery({
-    queryKey: ['/api/shows/popular'],
-    queryFn: async () => {
-      const response = await fetch('/api/shows/popular');
-      if (!response.ok) throw new Error('Failed to fetch popular shows');
-      return response.json() as Promise<TvShow[]>;
-    },
-  });
-
   // Fetch all shows for search functionality
   const { data: allShows = [], isLoading: showsLoading } = useQuery({
     queryKey: ['/api/tv-shows'],
@@ -140,7 +130,7 @@ export default function CatalogHomeResponsive() {
     },
   });
 
-  const isLoading = popularShowsLoading || showsLoading;
+  const isLoading = categoriesLoading || categoryShowsLoading;
   
   // Filter shows based on search
   const filteredShows = searchTerm 
@@ -161,20 +151,8 @@ export default function CatalogHomeResponsive() {
     );
   }
 
-  // Create categories from actual data
-  const actualCategories = [
-    { id: 1, title: 'Popular Shows', description: 'Most loved by families', shows: popularShows.slice(0, 12) },
-    { id: 2, title: 'All Shows', description: 'Browse our complete catalog', shows: allShows.slice(0, 12) },
-    { id: 3, title: 'Educational', description: 'Learning through fun', shows: allShows.filter(show => 
-      show.themes?.some(theme => theme.toLowerCase().includes('education') || theme.toLowerCase().includes('learning'))
-    ).slice(0, 12) },
-    { id: 4, title: 'Adventure', description: 'Exciting journeys', shows: allShows.filter(show =>
-      show.themes?.some(theme => theme.toLowerCase().includes('adventure'))
-    ).slice(0, 12) }
-  ];
-
-  // Use actual categories with real data
-  const sortedCategories = actualCategories.filter(cat => cat.shows.length > 0);
+  // Sort categories by display order
+  const sortedCategories = [...homepageCategories].sort((a, b) => a.displayOrder - b.displayOrder);
 
   return (
     <div className="min-h-screen bg-background">
@@ -252,7 +230,7 @@ export default function CatalogHomeResponsive() {
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-6xl mx-auto space-y-12">
             {sortedCategories.map((category) => {
-              const shows = category.shows || [];
+              const shows = categoryShows[category.id] || [];
               
               if (shows.length === 0) return null;
 
@@ -262,16 +240,16 @@ export default function CatalogHomeResponsive() {
                     {/* First row: Headline and show count badge */}
                     <div className="flex items-center justify-between">
                       <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-                        {category.title}
+                        {category.name}
                         <span className="text-sm font-normal bg-gray-100 text-gray-600 px-3 py-1 rounded-full">
-                          {category.shows.length} shows
+                          {category.showCount || shows.length} shows
                         </span>
                       </h2>
                     </div>
                     {/* Second row: Description and View All button */}
                     <div className="flex items-center justify-between">
                       <p className="text-gray-600">{category.description}</p>
-                      <Link href="/browse">
+                      <Link href={generateBrowseUrl(category)}>
                         <Button variant="outline">View All</Button>
                       </Link>
                     </div>
