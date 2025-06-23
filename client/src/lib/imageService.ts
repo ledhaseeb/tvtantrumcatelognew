@@ -53,11 +53,11 @@ export function getOptimizedImageUrl(showId: number, showName: string, originalU
     return originalUrl;
   }
   
-  // Construct the expected path for images/tv-shows/ using kebab-case
-  const sanitizedName = showName.toLowerCase()
-    .replace(/[^a-z0-9]/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
+  // Construct the expected path for images/tv-shows/ using underscore format (matching database)
+  const sanitizedName = showName
+    .replace(/[^a-zA-Z0-9]/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_|_$/g, '');
   return `${IMAGE_CONFIG.BASE_PATH}show-${showId}-${sanitizedName}.jpg`;
 }
 
@@ -125,7 +125,7 @@ export function getImageProps(showId: number, showName: string, originalUrl?: st
   // Primary source: try the originalUrl first if it exists
   let primarySrc = originalUrl || getOptimizedImageUrl(showId, showName, originalUrl);
   
-  console.log('Getting image props for:', showName, 'src:', primarySrc);
+  // console.log('Getting image props for:', showName, 'src:', primarySrc);
   
   return {
     src: primarySrc,

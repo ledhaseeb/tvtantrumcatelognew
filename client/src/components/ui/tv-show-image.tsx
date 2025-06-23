@@ -3,7 +3,7 @@
  * Provides optimized images with SEO metadata and fallback support
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getImageProps, generateAltText, getFallbackImageUrl } from '@/lib/imageService';
 import { cn } from '@/lib/utils';
 
@@ -32,10 +32,17 @@ export function TvShowImage({
   const [isLoaded, setIsLoaded] = useState(false);
 
   const imageProps = getImageProps(showId, showName, originalUrl);
+  
+  // Set loaded to true immediately if we have a valid image URL to prevent loading skeleton
+  useEffect(() => {
+    if (originalUrl && originalUrl.startsWith('/images/tv-shows/')) {
+      setIsLoaded(true);
+    }
+  }, [originalUrl]);
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
-    console.log('Image error for:', showName, 'src:', img.src);
+    // console.log('Image error for:', showName, 'src:', img.src);
     
     // Try original URL if available and not already tried
     if (originalUrl && img.src !== originalUrl && !hasError) {
@@ -51,7 +58,7 @@ export function TvShowImage({
   };
 
   const handleLoad = () => {
-    console.log('Image loaded for:', showName);
+    // console.log('Image loaded for:', showName);
     setIsLoaded(true);
   };
 
@@ -74,16 +81,14 @@ export function TvShowImage({
         onError={handleError}
         onLoad={handleLoad}
         className={cn(
-          'h-full w-full object-cover transition-opacity duration-200',
-          !isLoaded && 'opacity-0',
-          isLoaded && 'opacity-100'
+          'h-full w-full object-cover'
         )}
       />
       
-      {/* Loading skeleton */}
-      {!isLoaded && (
-        <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted via-muted/50 to-muted flex items-center justify-center">
-          <div className="text-sm text-muted-foreground font-medium">
+      {/* Only show loading skeleton if image failed to load */}
+      {hasError && (
+        <div className="absolute inset-0 bg-muted flex items-center justify-center">
+          <div className="text-sm text-muted-foreground font-medium text-center p-2">
             {showName}
           </div>
         </div>
