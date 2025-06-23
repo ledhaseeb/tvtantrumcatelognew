@@ -26,7 +26,8 @@ export const IMAGE_CONFIG = {
   OPTIMAL_WIDTH: 400,
   OPTIMAL_HEIGHT: 600,
   FORMATS: ['jpg', 'jpeg', 'png', 'webp'],
-  BASE_PATH: '/images/tv-shows/'
+  BASE_PATH: '/custom-images/',
+  FALLBACK_IMAGE: '/images/generic-tv-show.jpg'
 } as const;
 
 /**
@@ -39,19 +40,38 @@ export function generateAltText(showName: string, additionalContext?: string): s
 }
 
 /**
- * Get optimized image URL for a TV show
+ * Get optimized image URL for a TV show by trying multiple naming patterns
  */
-export function getOptimizedImageUrl(showId: number, showName: string): string {
-  const sanitizedName = showName.replace(/[^a-zA-Z0-9]/g, '_');
-  return `${IMAGE_CONFIG.BASE_PATH}show-${showId}-${sanitizedName}.jpg`;
+export function getOptimizedImageUrl(showId: number, showName: string, originalUrl?: string): string {
+  // If we have an originalUrl that starts with /custom-images/, use it directly
+  if (originalUrl && originalUrl.startsWith('/custom-images/')) {
+    return originalUrl;
+  }
+  
+  // Try multiple naming patterns that exist in the custom-images folder
+  const baseName = showName.toLowerCase();
+  
+  // Pattern 1: Direct name with spaces replaced by spaces (exact match)
+  const exactName = `${IMAGE_CONFIG.BASE_PATH}${showName}.jpg`;
+  
+  // Pattern 2: Lowercase with hyphens
+  const hyphenName = `${IMAGE_CONFIG.BASE_PATH}${baseName.replace(/[^a-z0-9]/g, '-')}.jpg`;
+  
+  // Pattern 3: Lowercase with spaces
+  const spaceName = `${IMAGE_CONFIG.BASE_PATH}${baseName}.jpg`;
+  
+  // Pattern 4: Original case preserved
+  const originalName = `${IMAGE_CONFIG.BASE_PATH}${showName}.jpg`;
+  
+  // Return the first pattern - we'll handle fallbacks in the image component
+  return spaceName;
 }
 
 /**
  * Get fallback image URL
  */
 export function getFallbackImageUrl(showId: number, showName: string): string {
-  const sanitizedName = showName.replace(/[^a-zA-Z0-9]/g, '_');
-  return `${IMAGE_CONFIG.BASE_PATH}show-${showId}-${sanitizedName}_fallback.jpg`;
+  return IMAGE_CONFIG.FALLBACK_IMAGE;
 }
 
 /**
@@ -108,21 +128,16 @@ export async function createImageMetadata(
  * Image component props generator
  */
 export function getImageProps(showId: number, showName: string, originalUrl?: string) {
+  // Primary source: try the originalUrl first if it exists
+  let primarySrc = originalUrl || getOptimizedImageUrl(showId, showName, originalUrl);
+  
   return {
-    src: getOptimizedImageUrl(showId, showName),
+    src: primarySrc,
     alt: generateAltText(showName),
     width: IMAGE_CONFIG.OPTIMAL_WIDTH,
     height: IMAGE_CONFIG.OPTIMAL_HEIGHT,
     loading: 'lazy' as const,
-    decoding: 'async' as const,
-    onError: (e: React.SyntheticEvent<HTMLImageElement>) => {
-      const img = e.currentTarget;
-      if (originalUrl && img.src !== originalUrl) {
-        img.src = originalUrl;
-      } else {
-        img.src = getFallbackImageUrl(showId, showName);
-      }
-    }
+    decoding: 'async' as const
   };
 }
 

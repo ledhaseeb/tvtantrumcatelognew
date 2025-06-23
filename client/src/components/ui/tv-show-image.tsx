@@ -35,6 +35,27 @@ export function TvShowImage({
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
+    const currentSrc = img.src;
+    
+    // Try different naming patterns for custom images
+    if (!hasError && currentSrc.includes('/custom-images/')) {
+      const baseName = showName.toLowerCase();
+      const patterns = [
+        `/custom-images/${showName}.jpg`,
+        `/custom-images/${baseName}.jpg`, 
+        `/custom-images/${baseName.replace(/[^a-z0-9]/g, '-')}.jpg`,
+        `/custom-images/${baseName.replace(/[^a-z0-9]/g, '')}.jpg`,
+        `/custom-images/${showName.replace(/[^a-zA-Z0-9]/g, '-')}.jpg`,
+        `/custom-images/${showName.replace(/[^a-zA-Z0-9]/g, '')}.jpg`
+      ];
+      
+      // Find the next pattern to try
+      const currentIndex = patterns.findIndex(pattern => currentSrc.endsWith(pattern.split('/').pop() || ''));
+      if (currentIndex >= 0 && currentIndex < patterns.length - 1) {
+        img.src = patterns[currentIndex + 1];
+        return;
+      }
+    }
     
     // Try original URL if available and not already tried
     if (originalUrl && img.src !== originalUrl && !hasError) {
@@ -42,8 +63,8 @@ export function TvShowImage({
       return;
     }
 
-    // Use fallback image
-    if (!img.src.includes('_fallback')) {
+    // Use fallback image as last resort
+    if (!img.src.includes('generic-tv-show')) {
       img.src = getFallbackImageUrl(showId, showName);
       setHasError(true);
     }
