@@ -34,9 +34,7 @@ export function TvShowImage({
   const imageProps = getImageProps(showId, showName, originalUrl);
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
     setHasError(true);
-    setIsLoaded(true); // Stop loading state even on error
   };
 
   const handleLoad = () => {
@@ -63,23 +61,13 @@ export function TvShowImage({
         onLoad={handleLoad}
         className={cn(
           'h-full w-full object-cover transition-opacity duration-200',
-          !isLoaded && !hasError && 'opacity-0',
-          (isLoaded || hasError) && 'opacity-100'
+          !isLoaded && 'opacity-0',
+          isLoaded && 'opacity-100'
         )}
       />
       
-      {/* Show placeholder for broken images */}
-      {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-muted text-muted-foreground">
-          <div className="text-center p-4">
-            <div className="text-sm font-medium">{showName}</div>
-            <div className="text-xs mt-1">Image unavailable</div>
-          </div>
-        </div>
-      )}
-      
       {/* Loading skeleton */}
-      {!isLoaded && (
+      {!isLoaded && !hasError && (
         <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted via-muted/50 to-muted" />
       )}
       
@@ -116,15 +104,18 @@ export function TvShowCardImage({
   isInteractive = true,
   ...imageProps
 }: TvShowCardImageProps) {
+  // Use database URL directly if available, no complex fallback logic
+  const imageSrc = imageProps.originalUrl || `/images/tv-shows/show-${imageProps.showId}-${imageProps.showName.replace(/[^a-zA-Z0-9]/g, '_')}.jpg`;
+  
   const ImageComponent = (
-    <TvShowImage
-      {...imageProps}
-      className={cn(
-        'rounded-lg',
-        isInteractive && 'transition-transform duration-200 hover:scale-105',
-        imageProps.className
-      )}
-    />
+    <div className={cn('relative overflow-hidden bg-muted', imageProps.className)}>
+      <img
+        src={imageSrc}
+        alt={`${imageProps.showName} TV show poster`}
+        className="h-full w-full object-cover"
+        loading="lazy"
+      />
+    </div>
   );
 
   if (showUrl && isInteractive) {
