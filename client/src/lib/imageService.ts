@@ -26,7 +26,7 @@ export const IMAGE_CONFIG = {
   OPTIMAL_WIDTH: 400,
   OPTIMAL_HEIGHT: 600,
   FORMATS: ['jpg', 'jpeg', 'png', 'webp'],
-  BASE_PATH: '/custom-images/',
+  BASE_PATH: '/images/tv-shows/',
   FALLBACK_IMAGE: '/images/generic-tv-show.jpg'
 } as const;
 
@@ -43,8 +43,8 @@ export function generateAltText(showName: string, additionalContext?: string): s
  * Get optimized image URL for a TV show
  */
 export function getOptimizedImageUrl(showId: number, showName: string, originalUrl?: string): string {
-  // If we have an originalUrl that starts with /custom-images/, use it directly
-  if (originalUrl && originalUrl.startsWith('/custom-images/')) {
+  // If we have an originalUrl that starts with /images/tv-shows/, use it directly
+  if (originalUrl && originalUrl.startsWith('/images/tv-shows/')) {
     return originalUrl;
   }
   
@@ -53,8 +53,9 @@ export function getOptimizedImageUrl(showId: number, showName: string, originalU
     return originalUrl;
   }
   
-  // Fallback to generic image
-  return IMAGE_CONFIG.FALLBACK_IMAGE;
+  // Construct the expected path for images/tv-shows/
+  const sanitizedName = showName.replace(/[^a-zA-Z0-9]/g, '_');
+  return `${IMAGE_CONFIG.BASE_PATH}show-${showId}-${sanitizedName}.jpg`;
 }
 
 /**
@@ -127,7 +128,14 @@ export function getImageProps(showId: number, showName: string, originalUrl?: st
     width: IMAGE_CONFIG.OPTIMAL_WIDTH,
     height: IMAGE_CONFIG.OPTIMAL_HEIGHT,
     loading: 'lazy' as const,
-    decoding: 'async' as const
+    decoding: 'async' as const,
+    onError: (e: React.SyntheticEvent<HTMLImageElement>) => {
+      const img = e.currentTarget;
+      // If primary image fails, try fallback
+      if (!img.src.includes('generic-tv-show')) {
+        img.src = IMAGE_CONFIG.FALLBACK_IMAGE;
+      }
+    }
   };
 }
 
