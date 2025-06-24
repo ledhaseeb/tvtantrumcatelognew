@@ -6,6 +6,7 @@ import { Link, useLocation } from "wouter";
 import { memo } from "react";
 import { scrollToTop } from "../lib/scroll-utils";
 import { saveNavigationState } from "../lib/navigation-history";
+import { getOptimizedImageUrl, getFallbackImageUrl, getCorrectFilename } from "../lib/image-url-utils";
 
 interface ShowCardProps {
   show: TvShow;
@@ -141,9 +142,9 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
           {/* Image with reduced height to better fit poster aspect ratio */}
           <div className="relative h-40 overflow-hidden">
             <picture>
-              <source srcSet={`/images/optimized/show-${show.id}-${show.name.replace(/[^a-zA-Z0-9]/g, '_')}-thumbnail.webp`} type="image/webp" />
+              <source srcSet={getOptimizedImageUrl(show.id, show.name, 'thumbnail')} type="image/webp" />
               <img
-                src={normalizedShow.imageUrl}
+                src={normalizedShow.imageUrl || getFallbackImageUrl(show.id, show.name)}
                 alt={`${show.name} poster`}
                 className="w-full h-full object-cover"
                 loading="lazy"
