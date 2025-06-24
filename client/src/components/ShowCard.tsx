@@ -60,6 +60,19 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
     // Default pattern for all other shows
     return showName.replace(/[^a-zA-Z0-9]/g, '_');
   };
+
+  // Check if image URL is external (Amazon, etc.)
+  const isExternalImage = (imageUrl: string) => {
+    return imageUrl && (imageUrl.startsWith('http://') || imageUrl.startsWith('https://'));
+  };
+
+  // Generate WebP source set only for local images
+  const getWebPSource = (showId: number, showName: string, size: string) => {
+    if (isExternalImage(normalizedShow.imageUrl)) {
+      return null; // No WebP for external images
+    }
+    return `/images/optimized/show-${showId}-${getCorrectImageName(showId, showName)}-${size}.webp`;
+  };
   
   // Format release year range
   const releaseYears = show.releaseYear ? (
@@ -159,7 +172,9 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
           {/* Image with reduced height to better fit poster aspect ratio */}
           <div className="relative h-40 overflow-hidden">
             <picture>
-              <source srcSet={`/images/optimized/show-${show.id}-${getCorrectImageName(show.id, show.name)}-thumbnail.webp`} type="image/webp" />
+              {getWebPSource(show.id, show.name, 'thumbnail') && (
+                <source srcSet={getWebPSource(show.id, show.name, 'thumbnail')} type="image/webp" />
+              )}
               <img
                 src={normalizedShow.imageUrl}
                 alt={`${show.name} poster`}
@@ -199,7 +214,9 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
               <div className="flex-shrink-0">
                 <div className="relative w-full sm:w-24 h-32 sm:h-36 overflow-hidden rounded-lg">
                   <picture>
-                    <source srcSet={`/images/optimized/show-${show.id}-${getCorrectImageName(show.id, show.name)}-thumbnail.webp`} type="image/webp" />
+                    {getWebPSource(show.id, show.name, 'thumbnail') && (
+                      <source srcSet={getWebPSource(show.id, show.name, 'thumbnail')} type="image/webp" />
+                    )}
                     <img
                       src={normalizedShow.imageUrl}
                       alt={`${show.name} poster`}
@@ -266,7 +283,9 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
         {/* Image */}
         <div className="relative w-full aspect-[2/3] overflow-hidden">
           <picture>
-            <source srcSet={`/images/optimized/show-${show.id}-${getCorrectImageName(show.id, show.name)}-medium.webp`} type="image/webp" />
+            {getWebPSource(show.id, show.name, 'medium') && (
+              <source srcSet={getWebPSource(show.id, show.name, 'medium')} type="image/webp" />
+            )}
             <img
               src={normalizedShow.imageUrl}
               alt={`${show.name} poster`}
