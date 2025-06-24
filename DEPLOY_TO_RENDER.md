@@ -30,6 +30,7 @@ vite.config.ts
 ```
 client/public/images/tv-shows/
 client/public/images/optimized/
+client/index.html
 ```
 
 ## Git Commands for Deployment
