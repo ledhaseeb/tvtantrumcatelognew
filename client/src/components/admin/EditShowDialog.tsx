@@ -36,6 +36,7 @@ interface TvShow {
   dialogueIntensity?: string;
   soundEffectsLevel?: string;
   totalMusicLevel?: string;
+  totalSoundEffectTimeLevel?: string;
   sceneFrequency?: string;
   musicTempo?: string;
   themes?: string[];
@@ -64,6 +65,7 @@ const STIMULATION_OPTIONS = [
 
 const LEVEL_OPTIONS = [
   { value: "Low", label: "Low" },
+  { value: "Low-Moderate", label: "Low-Moderate" },
   { value: "Moderate", label: "Moderate" },
   { value: "Moderate-High", label: "Moderate-High" },
   { value: "High", label: "High" }
@@ -103,6 +105,7 @@ export function EditShowDialog({ show, isOpen, onClose, isAddingNew = false }: E
         dialogueIntensity: show.dialogueIntensity || "",
         soundEffectsLevel: show.soundEffectsLevel || "",
         totalMusicLevel: show.totalMusicLevel || "",
+        totalSoundEffectTimeLevel: show.totalSoundEffectTimeLevel || "",
         sceneFrequency: show.sceneFrequency || "",
         musicTempo: show.musicTempo || "",
         themes: show.themes || [],
@@ -124,6 +127,7 @@ export function EditShowDialog({ show, isOpen, onClose, isAddingNew = false }: E
         dialogueIntensity: "",
         soundEffectsLevel: "",
         totalMusicLevel: "",
+        totalSoundEffectTimeLevel: "",
         sceneFrequency: "",
         musicTempo: "",
         themes: [],
@@ -385,10 +389,29 @@ export function EditShowDialog({ show, isOpen, onClose, isAddingNew = false }: E
             </div>
 
             <div className="space-y-2">
-              <Label>Total Sound Effect Time</Label>
+              <Label>Total Music Level</Label>
               <Select 
                 value={formData.totalMusicLevel || ""} 
                 onValueChange={(value) => setFormData(prev => ({ ...prev, totalMusicLevel: value }))}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select level" />
+                </SelectTrigger>
+                <SelectContent>
+                  {LEVEL_OPTIONS.map(option => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Total Sound Effect Time</Label>
+              <Select 
+                value={formData.totalSoundEffectTimeLevel || ""} 
+                onValueChange={(value) => setFormData(prev => ({ ...prev, totalSoundEffectTimeLevel: value }))}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select level" />

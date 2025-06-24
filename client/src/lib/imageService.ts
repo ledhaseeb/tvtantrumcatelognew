@@ -109,20 +109,12 @@ export async function createImageMetadata(
  */
 export function getImageProps(showId: number, showName: string, originalUrl?: string) {
   return {
-    src: getOptimizedImageUrl(showId, showName),
+    src: originalUrl || getOptimizedImageUrl(showId, showName),
     alt: generateAltText(showName),
     width: IMAGE_CONFIG.OPTIMAL_WIDTH,
     height: IMAGE_CONFIG.OPTIMAL_HEIGHT,
     loading: 'lazy' as const,
-    decoding: 'async' as const,
-    onError: (e: React.SyntheticEvent<HTMLImageElement>) => {
-      const img = e.currentTarget;
-      if (originalUrl && img.src !== originalUrl) {
-        img.src = originalUrl;
-      } else {
-        img.src = getFallbackImageUrl(showId, showName);
-      }
-    }
+    decoding: 'async' as const
   };
 }
 

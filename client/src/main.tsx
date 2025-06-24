@@ -2,6 +2,11 @@ import { createRoot } from "react-dom/client";
 import CatalogApp from "./App-catalog";
 import "./index.css";
 
+// Polyfill for browsers that don't support autofill handlers
+if (typeof window !== 'undefined' && !window._AutofillCallbackHandler) {
+  window._AutofillCallbackHandler = undefined;
+}
+
 // Load Google Fonts for matching design reference
 const googleFontsLink = document.createElement('link');
 googleFontsLink.href = 'https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap';

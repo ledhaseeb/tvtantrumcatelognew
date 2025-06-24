@@ -34,19 +34,7 @@ export function TvShowImage({
   const imageProps = getImageProps(showId, showName, originalUrl);
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
-    
-    // Try original URL if available and not already tried
-    if (originalUrl && img.src !== originalUrl && !hasError) {
-      img.src = originalUrl;
-      return;
-    }
-
-    // Use fallback image
-    if (!img.src.includes('_fallback')) {
-      img.src = getFallbackImageUrl(showId, showName);
-      setHasError(true);
-    }
+    setHasError(true);
   };
 
   const handleLoad = () => {
@@ -79,7 +67,7 @@ export function TvShowImage({
       />
       
       {/* Loading skeleton */}
-      {!isLoaded && (
+      {!isLoaded && !hasError && (
         <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted via-muted/50 to-muted" />
       )}
       
@@ -116,15 +104,18 @@ export function TvShowCardImage({
   isInteractive = true,
   ...imageProps
 }: TvShowCardImageProps) {
+  // Use database URL directly if available, no complex fallback logic
+  const imageSrc = imageProps.originalUrl || `/images/tv-shows/show-${imageProps.showId}-${imageProps.showName.replace(/[^a-zA-Z0-9]/g, '_')}.jpg`;
+  
   const ImageComponent = (
-    <TvShowImage
-      {...imageProps}
-      className={cn(
-        'rounded-lg',
-        isInteractive && 'transition-transform duration-200 hover:scale-105',
-        imageProps.className
-      )}
-    />
+    <div className={cn('relative overflow-hidden bg-muted', imageProps.className)}>
+      <img
+        src={imageSrc}
+        alt={`${imageProps.showName} TV show poster`}
+        className="h-full w-full object-cover"
+        loading="lazy"
+      />
+    </div>
   );
 
   if (showUrl && isInteractive) {

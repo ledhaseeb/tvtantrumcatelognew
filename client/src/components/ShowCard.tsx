@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { TvShow } from "@shared/schema";
-import { TvShowCardImage } from "@/components/ui/tv-show-image";
+// Removed TvShowCardImage import - using direct img tags
 import { Link, useLocation } from "wouter";
 import { memo } from "react";
 import { scrollToTop } from "../lib/scroll-utils";
@@ -41,6 +41,37 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
     imageUrl: show.imageUrl || (show as any).image_url,
     ageRange: show.ageRange || (show as any).age_range || 'Unknown',
     stimulationScore: show.stimulationScore || (show as any).stimulation_score || 0
+  };
+
+  // Generate correct image URLs with special character handling
+  const getCorrectImageName = (showId: number, showName: string) => {
+    // Special cases for problematic shows based on actual filenames
+    const specialCases: Record<number, string> = {
+      58: 'Cowboy_Jack',
+      99: 'Gullah__Gullah_Island',  // Double underscore for spaces in "Gullah Gullah"
+      154: 'Moon_and_Me', 
+      199: 'Reading_rainbow'  // Lowercase 'r' in rainbow
+    };
+    
+    if (specialCases[showId]) {
+      return specialCases[showId];
+    }
+    
+    // Default pattern for all other shows
+    return showName.replace(/[^a-zA-Z0-9]/g, '_');
+  };
+
+  // Check if image URL is external (Amazon, etc.)
+  const isExternalImage = (imageUrl: string) => {
+    return imageUrl && (imageUrl.startsWith('http://') || imageUrl.startsWith('https://'));
+  };
+
+  // Generate WebP source set only for local images
+  const getWebPSource = (showId: number, showName: string, size: string) => {
+    if (isExternalImage(normalizedShow.imageUrl)) {
+      return null; // No WebP for external images
+    }
+    return `/images/optimized/show-${showId}-${getCorrectImageName(showId, showName)}-${size}.webp`;
   };
   
   // Format release year range
@@ -140,13 +171,17 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
         <Card className="bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer flex flex-col hover:shadow-md transition-shadow h-72">
           {/* Image with reduced height to better fit poster aspect ratio */}
           <div className="relative h-40 overflow-hidden">
-            <TvShowCardImage
-              showId={show.id}
-              showName={show.name}
-              originalUrl={normalizedShow.imageUrl}
-              className="w-full h-full object-cover"
-              isInteractive={false}
-            />
+            <picture>
+              {getWebPSource(show.id, show.name, 'thumbnail') && (
+                <source srcSet={getWebPSource(show.id, show.name, 'thumbnail')} type="image/webp" />
+              )}
+              <img
+                src={normalizedShow.imageUrl}
+                alt={`${show.name} poster`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </picture>
           </div>
           
           <CardContent className="p-3 flex flex-col flex-grow h-28">
@@ -177,13 +212,19 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
             <div className="flex flex-col sm:flex-row gap-4">
               {/* Show image */}
               <div className="flex-shrink-0">
-                <TvShowCardImage
-                  showId={show.id}
-                  showName={show.name}
-                  originalUrl={normalizedShow.imageUrl}
-                  className="w-full sm:w-24 h-32 sm:h-36"
-                  isInteractive={false}
-                />
+                <div className="relative w-full sm:w-24 h-32 sm:h-36 overflow-hidden rounded-lg">
+                  <picture>
+                    {getWebPSource(show.id, show.name, 'thumbnail') && (
+                      <source srcSet={getWebPSource(show.id, show.name, 'thumbnail')} type="image/webp" />
+                    )}
+                    <img
+                      src={normalizedShow.imageUrl}
+                      alt={`${show.name} poster`}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
               </div>
               
               {/* Show details */}
@@ -240,14 +281,18 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
     <Link href={`/show/${show.id}`} onClick={handleShowClick}>
       <Card className="bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer h-full flex flex-col hover:shadow-md transition-shadow">
         {/* Image */}
-        <div className="relative">
-          <TvShowCardImage
-            showId={show.id}
-            showName={show.name}
-            originalUrl={normalizedShow.imageUrl}
-            className="w-full aspect-[2/3]"
-            isInteractive={false}
-          />
+        <div className="relative w-full aspect-[2/3] overflow-hidden">
+          <picture>
+            {getWebPSource(show.id, show.name, 'medium') && (
+              <source srcSet={getWebPSource(show.id, show.name, 'medium')} type="image/webp" />
+            )}
+            <img
+              src={normalizedShow.imageUrl}
+              alt={`${show.name} poster`}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </picture>
         </div>
         
         <CardContent className="p-4 flex flex-col flex-grow">

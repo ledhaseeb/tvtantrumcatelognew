@@ -45,6 +45,7 @@ interface FullTvShow {
   dialogueIntensity?: string;
   soundEffectsLevel?: string;
   totalMusicLevel?: string;
+  totalSoundEffectTimeLevel?: string;
   sceneFrequency?: string;
   musicTempo?: string;
   themes?: string[];
@@ -125,6 +126,7 @@ export function TvShowsTable({ onEdit }: TvShowsTableProps) {
         dialogueIntensity: rawShow.dialogue_intensity || rawShow.dialogueIntensity,
         soundEffectsLevel: rawShow.sound_effects_level || rawShow.soundEffectsLevel,
         totalMusicLevel: rawShow.total_music_level || rawShow.totalMusicLevel,
+        totalSoundEffectTimeLevel: rawShow.total_sound_effect_time_level || rawShow.totalSoundEffectTimeLevel,
         sceneFrequency: rawShow.scene_frequency || rawShow.sceneFrequency,
         musicTempo: rawShow.music_tempo || rawShow.musicTempo,
         themes: rawShow.themes || [],
