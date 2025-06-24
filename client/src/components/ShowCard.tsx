@@ -48,9 +48,9 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
     // Special cases for problematic shows based on actual filenames
     const specialCases: Record<number, string> = {
       58: 'Cowboy_Jack',
-      99: 'Gullah__Gullah_Island',
+      99: 'Gullah__Gullah_Island',  // Double underscore for spaces in "Gullah Gullah"
       154: 'Moon_and_Me', 
-      199: 'Reading_rainbow'
+      199: 'Reading_rainbow'  // Lowercase 'r' in rainbow
     };
     
     if (specialCases[showId]) {
