@@ -118,7 +118,12 @@ TV Tantrum is a gamified web platform that revolutionizes children's media disco
 ## Changelog
 
 Changelog:
-- June 24, 2025. Initial setup
+- June 24, 2025: Initial setup
+- June 24, 2025: Completed image optimization with WebP conversion (99.7% success rate)
+- June 24, 2025: Fixed special character handling in image URLs for showcards
+- June 24, 2025: Resolved empty WebP file issues causing image display problems
+- June 24, 2025: Added external image URL support for Amazon-hosted show images
+- June 24, 2025: Ready for Render deployment
 
 ## User Preferences
 
