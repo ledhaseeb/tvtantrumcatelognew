@@ -6,7 +6,6 @@ import { Link, useLocation } from "wouter";
 import { memo } from "react";
 import { scrollToTop } from "../lib/scroll-utils";
 import { saveNavigationState } from "../lib/navigation-history";
-import { getOptimizedImageUrl, getFallbackImageUrl, getCorrectFilename } from "../lib/image-url-utils";
 
 interface ShowCardProps {
   show: TvShow;
@@ -42,6 +41,24 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
     imageUrl: show.imageUrl || (show as any).image_url,
     ageRange: show.ageRange || (show as any).age_range || 'Unknown',
     stimulationScore: show.stimulationScore || (show as any).stimulation_score || 0
+  };
+
+  // Generate correct image URLs with special character handling
+  const getCorrectImageName = (showId: number, showName: string) => {
+    // Special cases for problematic shows based on actual filenames
+    const specialCases: Record<number, string> = {
+      58: 'Cowboy_Jack',
+      99: 'Gullah__Gullah_Island',
+      154: 'Moon_and_Me', 
+      199: 'Reading_rainbow'
+    };
+    
+    if (specialCases[showId]) {
+      return specialCases[showId];
+    }
+    
+    // Default pattern for all other shows
+    return showName.replace(/[^a-zA-Z0-9]/g, '_');
   };
   
   // Format release year range
@@ -142,9 +159,9 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
           {/* Image with reduced height to better fit poster aspect ratio */}
           <div className="relative h-40 overflow-hidden">
             <picture>
-              <source srcSet={getOptimizedImageUrl(show.id, show.name, 'thumbnail')} type="image/webp" />
+              <source srcSet={`/images/optimized/show-${show.id}-${getCorrectImageName(show.id, show.name)}-thumbnail.webp`} type="image/webp" />
               <img
-                src={normalizedShow.imageUrl || getFallbackImageUrl(show.id, show.name)}
+                src={normalizedShow.imageUrl || `/images/tv-shows/show-${show.id}-${getCorrectImageName(show.id, show.name)}.jpg`}
                 alt={`${show.name} poster`}
                 className="w-full h-full object-cover"
                 loading="lazy"
@@ -182,9 +199,9 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
               <div className="flex-shrink-0">
                 <div className="relative w-full sm:w-24 h-32 sm:h-36 overflow-hidden rounded-lg">
                   <picture>
-                    <source srcSet={getOptimizedImageUrl(show.id, show.name, 'thumbnail')} type="image/webp" />
+                    <source srcSet={`/images/optimized/show-${show.id}-${getCorrectImageName(show.id, show.name)}-thumbnail.webp`} type="image/webp" />
                     <img
-                      src={normalizedShow.imageUrl || getFallbackImageUrl(show.id, show.name)}
+                      src={normalizedShow.imageUrl || `/images/tv-shows/show-${show.id}-${getCorrectImageName(show.id, show.name)}.jpg`}
                       alt={`${show.name} poster`}
                       className="w-full h-full object-cover"
                       loading="lazy"
@@ -249,9 +266,9 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
         {/* Image */}
         <div className="relative w-full aspect-[2/3] overflow-hidden">
           <picture>
-            <source srcSet={getOptimizedImageUrl(show.id, show.name, 'medium')} type="image/webp" />
+            <source srcSet={`/images/optimized/show-${show.id}-${getCorrectImageName(show.id, show.name)}-medium.webp`} type="image/webp" />
             <img
-              src={normalizedShow.imageUrl || getFallbackImageUrl(show.id, show.name)}
+              src={normalizedShow.imageUrl || `/images/tv-shows/show-${show.id}-${getCorrectImageName(show.id, show.name)}.jpg`}
               alt={`${show.name} poster`}
               className="w-full h-full object-cover"
               loading="lazy"
