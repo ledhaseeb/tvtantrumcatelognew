@@ -26,15 +26,12 @@ export function getFallbackImageUrl(showId: number, showName: string): string {
   return `/images/tv-shows/show-${showId}-${normalizedName}.jpg`;
 }
 
-// Special handling for known problematic shows
+// Special handling for known problematic shows - based on actual filenames
 const SPECIAL_FILENAME_MAP: Record<number, string> = {
   58: 'Cowboy_Jack',
-  82: 'Ernst__Bobbie_en_de_rest',
   99: 'Gullah__Gullah_Island', 
   154: 'Moon_and_Me',
-  199: 'Reading_rainbow',
-  279: 'Tinga_Tales',
-  295: 'Wishenpoof'
+  199: 'Reading_rainbow'
 };
 
 // Get the correct filename for special cases

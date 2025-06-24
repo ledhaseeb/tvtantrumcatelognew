@@ -182,9 +182,9 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
               <div className="flex-shrink-0">
                 <div className="relative w-full sm:w-24 h-32 sm:h-36 overflow-hidden rounded-lg">
                   <picture>
-                    <source srcSet={`/images/optimized/show-${show.id}-${show.name.replace(/[^a-zA-Z0-9]/g, '_')}-thumbnail.webp`} type="image/webp" />
+                    <source srcSet={getOptimizedImageUrl(show.id, show.name, 'thumbnail')} type="image/webp" />
                     <img
-                      src={normalizedShow.imageUrl}
+                      src={normalizedShow.imageUrl || getFallbackImageUrl(show.id, show.name)}
                       alt={`${show.name} poster`}
                       className="w-full h-full object-cover"
                       loading="lazy"
@@ -249,9 +249,9 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
         {/* Image */}
         <div className="relative w-full aspect-[2/3] overflow-hidden">
           <picture>
-            <source srcSet={`/images/optimized/show-${show.id}-${show.name.replace(/[^a-zA-Z0-9]/g, '_')}-medium.webp`} type="image/webp" />
+            <source srcSet={getOptimizedImageUrl(show.id, show.name, 'medium')} type="image/webp" />
             <img
-              src={normalizedShow.imageUrl}
+              src={normalizedShow.imageUrl || getFallbackImageUrl(show.id, show.name)}
               alt={`${show.name} poster`}
               className="w-full h-full object-cover"
               loading="lazy"
