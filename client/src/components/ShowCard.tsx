@@ -140,10 +140,13 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
         <Card className="bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer flex flex-col hover:shadow-md transition-shadow h-72">
           {/* Image with reduced height to better fit poster aspect ratio */}
           <div className="relative h-40 overflow-hidden">
-            <img
-              src={normalizedShow.imageUrl}
+            <OptimizedImage
+              showId={show.id}
+              showName={show.name}
+              size="thumbnail"
+              fallbackUrl={normalizedShow.imageUrl}
               alt={`${show.name} poster`}
-              className="w-full h-full object-cover"
+              className="w-full h-full"
               loading="lazy"
             />
           </div>
@@ -177,10 +180,13 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
               {/* Show image */}
               <div className="flex-shrink-0">
                 <div className="relative w-full sm:w-24 h-32 sm:h-36 overflow-hidden rounded-lg">
-                  <img
-                    src={normalizedShow.imageUrl}
+                  <OptimizedImage
+                    showId={show.id}
+                    showName={show.name}
+                    size="thumbnail"
+                    fallbackUrl={normalizedShow.imageUrl}
                     alt={`${show.name} poster`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full"
                     loading="lazy"
                   />
                 </div>
@@ -241,10 +247,13 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
       <Card className="bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer h-full flex flex-col hover:shadow-md transition-shadow">
         {/* Image */}
         <div className="relative w-full aspect-[2/3] overflow-hidden">
-          <img
-            src={normalizedShow.imageUrl}
+          <OptimizedImage
+            showId={show.id}
+            showName={show.name}
+            size={getContextualSize('browse')}
+            fallbackUrl={normalizedShow.imageUrl}
             alt={`${show.name} poster`}
-            className="w-full h-full object-cover"
+            className="w-full h-full"
             loading="lazy"
           />
         </div>
