@@ -161,7 +161,7 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
             <picture>
               <source srcSet={`/images/optimized/show-${show.id}-${getCorrectImageName(show.id, show.name)}-thumbnail.webp`} type="image/webp" />
               <img
-                src={normalizedShow.imageUrl || `/images/tv-shows/show-${show.id}-${getCorrectImageName(show.id, show.name)}.jpg`}
+                src={normalizedShow.imageUrl}
                 alt={`${show.name} poster`}
                 className="w-full h-full object-cover"
                 loading="lazy"
@@ -201,7 +201,7 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
                   <picture>
                     <source srcSet={`/images/optimized/show-${show.id}-${getCorrectImageName(show.id, show.name)}-thumbnail.webp`} type="image/webp" />
                     <img
-                      src={normalizedShow.imageUrl || `/images/tv-shows/show-${show.id}-${getCorrectImageName(show.id, show.name)}.jpg`}
+                      src={normalizedShow.imageUrl}
                       alt={`${show.name} poster`}
                       className="w-full h-full object-cover"
                       loading="lazy"
@@ -268,7 +268,7 @@ function ShowCard({ show, viewMode, onClick, isMobile = false, currentFilters, n
           <picture>
             <source srcSet={`/images/optimized/show-${show.id}-${getCorrectImageName(show.id, show.name)}-medium.webp`} type="image/webp" />
             <img
-              src={normalizedShow.imageUrl || `/images/tv-shows/show-${show.id}-${getCorrectImageName(show.id, show.name)}.jpg`}
+              src={normalizedShow.imageUrl}
               alt={`${show.name} poster`}
               className="w-full h-full object-cover"
               loading="lazy"
