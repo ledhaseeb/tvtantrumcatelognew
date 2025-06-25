@@ -1,0 +1,248 @@
+     [GET]200tvtantrum.com/clientIP="104.28.35.17" requestID="e64c7f33-5787-4448" responseTimeMS=6 responseBytes=1344 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
+     [GET]301tvtantrum.com/?fbclid=PAZXh0bgNhZW0CMTEAAadO4HU5_FR-3GG9uIPJ05JQiEASBMYJiSHXf98lK4uygB0RWkIjWytWPSiDpQ_aem_WXUysU7Cj6bV9PJL1RPtIQclientIP="96.35.46.124" requestID="" responseTimeMS=0 responseBytes=361 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/react-dom_client.js?v=63c3edb9clientIP="96.35.46.124" requestID="a6dc10af-21e3-41e2" responseTimeMS=2 responseBytes=748 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/vite/dist/client/env.mjsclientIP="96.35.46.124" requestID="876dcc6e-98f9-4368" responseTimeMS=5 responseBytes=1636 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/?fbclid=PAZXh0bgNhZW0CMTEAAadO4HU5_FR-3GG9uIPJ05JQiEASBMYJiSHXf98lK4uygB0RWkIjWytWPSiDpQ_aem_WXUysU7Cj6bV9PJL1RPtIQclientIP="96.35.46.124" requestID="048e904d-bd27-46c9" responseTimeMS=62 responseBytes=1345 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/main.tsx?v=1pWbGzw6QhFPPMs3xHs9OclientIP="96.35.46.124" requestID="bc01d3f2-07a7-41a5" responseTimeMS=6 responseBytes=2390 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@vite/clientclientIP="96.35.46.124" requestID="2aee01a5-5b0d-4b46" responseTimeMS=12 responseBytes=29762 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/react_jsx-runtime.js?v=c00c68cfclientIP="96.35.46.124" requestID="8bc8fe0e-c8dc-48dc" responseTimeMS=1 responseBytes=505 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/chunk-HRLHKBSW.js?v=c4972171clientIP="96.35.46.124" requestID="584313fb-805f-4265" responseTimeMS=16 responseBytes=1135 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/App-catalog.tsx?v=1pWbGzw6QhFPPMs3xHs9OclientIP="96.35.46.124" requestID="4a9e4306-c9f0-4d6e" responseTimeMS=3 responseBytes=4349 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/pages/terms-of-service.tsxclientIP="96.35.46.124" requestID="88f3b60c-a4d6-462a" responseTimeMS=5 responseBytes=6348 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/pages/research-detail.tsxclientIP="96.35.46.124" requestID="8b26bbf1-cd18-4e0c" responseTimeMS=8 responseBytes=14513 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/pages/catalog-home-responsive.tsxclientIP="96.35.46.124" requestID="270db2e5-3496-4586" responseTimeMS=15 responseBytes=11325 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/pages/catalog-show-detail-page-fixed.tsxclientIP="96.35.46.124" requestID="70c6e6fa-6689-4f4d" responseTimeMS=12 responseBytes=20948 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/pages/admin-dashboard.tsxclientIP="96.35.46.124" requestID="4b48c904-037f-4c4d" responseTimeMS=11 responseBytes=13125 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/CookieConsent.tsxclientIP="96.35.46.124" requestID="6fc1ab0e-6ea5-44c6" responseTimeMS=7 responseBytes=4010 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/chunk-4MBMRILA.js?v=c4972171clientIP="96.35.46.124" requestID="98c62a8c-4f54-4cb0" responseTimeMS=38 responseBytes=1362 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/chunk-XJOC3FGK.js?v=c4972171clientIP="96.35.46.124" requestID="0f0ba94c-36ca-41f0" responseTimeMS=41 responseBytes=54370 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/wouter.js?v=16c1f77fclientIP="96.35.46.124" requestID="6f1d638d-221b-4642" responseTimeMS=14 responseBytes=4713 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/index.css?v=1pWbGzw6QhFPPMs3xHs9OclientIP="96.35.46.124" requestID="443cfec1-e1a4-4b2f" responseTimeMS=4 responseBytes=18775 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/hooks/use-auth.tsxclientIP="96.35.46.124" requestID="a1e709b3-462d-4d57" responseTimeMS=13 responseBytes=8640 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/pages/research.tsxclientIP="96.35.46.124" requestID="83f5d906-3766-46be" responseTimeMS=13 responseBytes=13094 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/lib/queryClient.tsclientIP="96.35.46.124" requestID="60876191-13b6-4ad4" responseTimeMS=28 responseBytes=5279 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/chunk-FOU6ZK5M.js?v=c4972171clientIP="96.35.46.124" requestID="41e1abfc-0ae6-4b01" responseTimeMS=15 responseBytes=3617 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/pages/not-found.tsxclientIP="96.35.46.124" requestID="65ca4500-41ba-4d4f" responseTimeMS=10 responseBytes=2114 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/pages/compare.tsxclientIP="96.35.46.124" requestID="87a547d9-122d-4c24" responseTimeMS=16 responseBytes=14424 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/pages/about.tsxclientIP="96.35.46.124" requestID="c245af3b-4d91-4ad0" responseTimeMS=3 responseBytes=11675 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/pages/browse.tsxclientIP="96.35.46.124" requestID="83b3dda2-774a-443e" responseTimeMS=18 responseBytes=19020 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/lib/utils.tsclientIP="96.35.46.124" requestID="4fe74fa3-7f0a-4bbe" responseTimeMS=7 responseBytes=845 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/lib/navigation-history.tsclientIP="96.35.46.124" requestID="f1aea616-e0c9-445b" responseTimeMS=36 responseBytes=6604 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ShareModal.tsxclientIP="96.35.46.124" requestID="b3218749-b6c9-434d" responseTimeMS=13 responseBytes=13392 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/select.tsxclientIP="96.35.46.124" requestID="3f857d84-e796-4e85" responseTimeMS=27 responseBytes=5610 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/separator.tsxclientIP="96.35.46.124" requestID="731e6ad5-1a17-41e7" responseTimeMS=26 responseBytes=1797 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/input.tsxclientIP="96.35.46.124" requestID="042bdb38-b88d-4e51" responseTimeMS=27 responseBytes=1842 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/switch.tsxclientIP="96.35.46.124" requestID="32ad0987-1d25-4f85" responseTimeMS=52 responseBytes=2265 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/@radix-ui_react-slot.js?v=e3a0d99fclientIP="96.35.46.124" requestID="8500b9d1-da3e-473f" responseTimeMS=4 responseBytes=535 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/badge.tsxclientIP="96.35.46.124" requestID="5eb8609c-bb9d-45f0" responseTimeMS=38 responseBytes=2142 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/admin/ResearchTable.tsxclientIP="96.35.46.124" requestID="009ef904-c0f6-47d5" responseTimeMS=26 responseBytes=6919 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/AdContainer.tsxclientIP="96.35.46.124" requestID="15210e28-7e8f-44a2" responseTimeMS=33 responseBytes=3782 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/react.js?v=c00c68cfclientIP="96.35.46.124" requestID="21a253d3-f117-47cc" responseTimeMS=14 responseBytes=483 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/@tanstack_react-query.js?v=426c2697clientIP="96.35.46.124" requestID="cdba3db9-c152-41db" responseTimeMS=5 responseBytes=23888 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/admin/CategoryEditor.tsxclientIP="96.35.46.124" requestID="ed804574-8010-4331" responseTimeMS=52 responseBytes=10634 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/@radix-ui_react-separator.js?v=e52ad125clientIP="96.35.46.124" requestID="63068667-3845-42d4" responseTimeMS=50 responseBytes=950 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/textarea.tsxclientIP="96.35.46.124" requestID="e02fa1de-38a8-4ca3" responseTimeMS=1 responseBytes=1746 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/dialog.tsxclientIP="96.35.46.124" requestID="d0c1dc01-decd-40cc" responseTimeMS=3 responseBytes=4505 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/table.tsxclientIP="96.35.46.124" requestID="239f17bb-406e-493a" responseTimeMS=2 responseBytes=3136 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/@radix-ui_react-label.js?v=4663de08clientIP="96.35.46.124" requestID="8aa9d7a5-1385-4e7e" responseTimeMS=2 responseBytes=891 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/admin/EditResearchDialog.tsxclientIP="96.35.46.124" requestID="c4347bb3-8df4-4383" responseTimeMS=39 responseBytes=11553 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/card.tsxclientIP="96.35.46.124" requestID="0102dedf-936c-4178" responseTimeMS=26 responseBytes=2510 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/label.tsxclientIP="96.35.46.124" requestID="bd95aa8f-0e44-4a86" responseTimeMS=26 responseBytes=1773 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/button.tsxclientIP="96.35.46.124" requestID="a53344ec-904d-4878" responseTimeMS=26 responseBytes=3085 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/lib/scroll-utils.tsclientIP="96.35.46.124" requestID="4176a417-0c44-4acd" responseTimeMS=41 responseBytes=1737 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ShowFilters.tsxclientIP="96.35.46.124" requestID="7bc8d7ad-babb-4b70" responseTimeMS=12 responseBytes=25007 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/pages/admin-page.tsxclientIP="96.35.46.124" requestID="8f947a7b-ead5-41af" responseTimeMS=22 responseBytes=65652 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/CatalogNavbar.tsxclientIP="96.35.46.124" requestID="40572b79-acad-4da5" responseTimeMS=3 responseBytes=5727 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/lib/browser-navigation-fix.tsclientIP="96.35.46.124" requestID="b70054e1-d0c4-4d96" responseTimeMS=2 responseBytes=2542 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/hooks/use-toast.tsclientIP="96.35.46.124" requestID="d3fd2620-c40a-4e47" responseTimeMS=29 responseBytes=4950 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/Footer.tsxclientIP="96.35.46.124" requestID="04fea499-2e66-482e" responseTimeMS=4 responseBytes=4437 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/lib/analytics.tsclientIP="96.35.46.124" requestID="6dfc6e0d-ba6a-4817" responseTimeMS=9 responseBytes=2718 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/pages/privacy-policy.tsxclientIP="96.35.46.124" requestID="0d148368-e2b2-457e" responseTimeMS=8 responseBytes=6091 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/html2canvas.js?v=68781341clientIP="96.35.46.124" requestID="668a776a-a221-468c" responseTimeMS=50 responseBytes=64197 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/checkbox.tsxclientIP="96.35.46.124" requestID="762656b1-44ad-431e" responseTimeMS=43 responseBytes=2172 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/@radix-ui_react-select.js?v=22f021f4clientIP="96.35.46.124" requestID="e9852567-0470-4d96" responseTimeMS=57 responseBytes=27773 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/lucide-react.js?v=be0664eeclientIP="96.35.46.124" requestID="3e024f5e-e52f-47a0" responseTimeMS=260 responseBytes=155468 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/tailwind-merge.js?v=0cb0dfdbclientIP="96.35.46.124" requestID="cea7c4cc-e13a-4d86" responseTimeMS=4 responseBytes=12938 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/SensoryBar.tsxclientIP="96.35.46.124" requestID="c2451f3c-41d3-4106" responseTimeMS=36 responseBytes=2990 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/admin/HomepageCategories.tsxclientIP="96.35.46.124" requestID="cf2cf855-f2fc-4c82" responseTimeMS=39 responseBytes=22136 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/skeleton.tsxclientIP="96.35.46.124" requestID="66a96242-5928-4540" responseTimeMS=36 responseBytes=1105 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/admin/EditShowDialog.tsxclientIP="96.35.46.124" requestID="1eb8c4dd-a45d-414d" responseTimeMS=42 responseBytes=18469 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/alert.tsxclientIP="96.35.46.124" requestID="5145abf5-52e1-408c" responseTimeMS=22 responseBytes=2636 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/lib/adsense.tsclientIP="96.35.46.124" requestID="3dc84b75-2142-4c13" responseTimeMS=8 responseBytes=2279 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/pages/admin-login.tsxclientIP="96.35.46.124" requestID="4e856cb3-fd1c-4ee7" responseTimeMS=14 responseBytes=6190 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/chunk-YNTT6C6T.js?v=c4972171clientIP="96.35.46.124" requestID="ad8042c2-1474-402c" responseTimeMS=9 responseBytes=1003 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/@radix-ui_react-dialog.js?v=bacf17c5clientIP="96.35.46.124" requestID="2e3783ed-d320-4547" responseTimeMS=7 responseBytes=3580 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/chunk-N26YSN5N.js?v=c4972171clientIP="96.35.46.124" requestID="97be7e07-0077-490f" responseTimeMS=49 responseBytes=719 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/chunk-W6OK75IY.js?v=c4972171clientIP="96.35.46.124" requestID="6c97d412-37d1-4a6c" responseTimeMS=3 responseBytes=12629 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/chunk-QW6DKX6J.js?v=c4972171clientIP="96.35.46.124" requestID="93390014-8266-457b" responseTimeMS=24 responseBytes=1018 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/chunk-ZFVIBRGF.js?v=c4972171clientIP="96.35.46.124" requestID="1bb2c947-3bcd-40da" responseTimeMS=52 responseBytes=1847 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/CategoryRow.tsxclientIP="96.35.46.124" requestID="e9cba0b2-3c40-43ff" responseTimeMS=36 responseBytes=3891 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/chunk-VW775T77.js?v=c4972171clientIP="96.35.46.124" requestID="ec9311a9-75d0-4732" responseTimeMS=2 responseBytes=1892 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/@radix-ui_react-tabs.js?v=de75b7c4clientIP="96.35.46.124" requestID="4bdcef2e-2154-4779" responseTimeMS=47 responseBytes=4100 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ShowCard.tsxclientIP="96.35.46.124" requestID="6d154081-8388-4979" responseTimeMS=35 responseBytes=11226 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/admin/TvShowsTable.tsxclientIP="96.35.46.124" requestID="3341b49b-ee3c-4c2e" responseTimeMS=33 responseBytes=8527 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/tabs.tsxclientIP="96.35.46.124" requestID="f98b57b1-906e-4020" responseTimeMS=35 responseBytes=2381 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/src/components/ui/pagination.tsxclientIP="96.35.46.124" requestID="ed20192f-b2ad-4da9" responseTimeMS=23 responseBytes=3812 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/class-variance-authority.js?v=991ee8d1clientIP="96.35.46.124" requestID="c1baa528-fc24-44d3" responseTimeMS=7 responseBytes=1089 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/clsx.js?v=113cf786clientIP="96.35.46.124" requestID="e6afdec3-93c9-4744" responseTimeMS=1 responseBytes=484 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/chunk-OOR5FY56.js?v=c4972171clientIP="96.35.46.124" requestID="5052521d-c8b8-4e20" responseTimeMS=51 responseBytes=2035 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/api/userclientIP="96.35.46.124" requestID="132281a8-aa06-4bb1" responseTimeMS=5 responseBytes=1346 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/@radix-ui_react-switch.js?v=f7cba419clientIP="96.35.46.124" requestID="eb0277c5-1a43-4051" responseTimeMS=52 responseBytes=1927 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/api/tv-showsclientIP="96.35.46.124" requestID="561959db-1afa-4c15" responseTimeMS=13 responseBytes=68403 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/chunk-U7P2NEEE.js?v=c4972171clientIP="96.35.46.124" requestID="7ecbfc3c-d6c8-402c" responseTimeMS=9 responseBytes=650 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/chunk-OURBH4NH.js?v=c4972171clientIP="96.35.46.124" requestID="7f42f639-7ee7-4d64" responseTimeMS=53 responseBytes=1526 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/api/homepage-categoriesclientIP="96.35.46.124" requestID="e3a229b0-6952-4dda" responseTimeMS=2 responseBytes=1470 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]200tvtantrum.com/@fs/app/node_modules/.vite/deps/@radix-ui_react-checkbox.js?v=c4ad336fclientIP="96.35.46.124" requestID="cb86595e-1542-4bd9" responseTimeMS=56 responseBytes=2280 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+[DEBUG] Category 13 filter config: {
+  "logic": "OR",
+  "rules": [
+    {
+      "field": "themes",
+      "value": "Super Hero Themes",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Fantasy Elements",
+      "operator": "contains"
+    }
+  ]
+}
+[DEBUG] Category 13 converted filters: {
+  "themes": [
+    "Super Hero Themes",
+    "Fantasy Elements"
+  ],
+  "themeMatchMode": "OR"
+}
+[DEBUG] Category 10 filter config: {
+  "logic": "OR",
+  "rules": [
+    {
+      "field": "themes",
+      "value": "Community Service",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Complex & Emotional Themes",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Complex Emotional Themes",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Confidence Building",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Conflict Resolution",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Early Childhood experiences",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Every Day Concepts",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Exploring Emotions",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Friendship",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Social Development",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Social-Emotional",
+      "operator": "contains"
+    }
+  ]
+}
+[DEBUG] Category 10 converted filters: {
+     [GET]200tvtantrum.com/api/userclientIP="96.35.46.124" requestID="e0f59670-9524-40b3" responseTimeMS=28 responseBytes=1343 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+  "themes": [
+    "Community Service",
+    "Complex & Emotional Themes",
+    "Complex Emotional Themes",
+    "Confidence Building",
+    "Conflict Resolution",
+    "Early Childhood experiences",
+    "Every Day Concepts",
+    "Exploring Emotions",
+    "Friendship",
+    "Social Development",
+    "Social-Emotional"
+  ],
+  "themeMatchMode": "OR"
+}
+[DEBUG] Category 3 filter config: {
+  "logic": "AND",
+  "rules": [
+    {
+      "field": "stimulationScore",
+      "operator": "range",
+      "value": "1-2"
+    }
+  ]
+}
+[DEBUG] Category 3 converted filters: {
+  "stimulationScoreRange": {
+    "min": 1,
+    "max": 2
+  }
+}
+     [GET]502tvtantrum.com/api/homepage-categories/7/showsclientIP="96.35.46.124" requestID="51f3bccd-8bc5-496c" responseTimeMS=2372 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]502tvtantrum.com/api/homepage-categories/10/showsclientIP="96.35.46.124" requestID="e3b169b3-4a95-4f1d" responseTimeMS=2373 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]502tvtantrum.com/api/homepage-categories/13/showsclientIP="96.35.46.124" requestID="a00993d7-7e27-48cf" responseTimeMS=2360 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]502tvtantrum.com/api/homepage-categories/9/showsclientIP="96.35.46.124" requestID="73b9669f-3747-4f24" responseTimeMS=2369 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]502tvtantrum.com/api/homepage-categories/3/showsclientIP="96.35.46.124" requestID="05df1573-829b-4d8f" responseTimeMS=2363 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]502tvtantrum.com/api/homepage-categories/6/showsclientIP="96.35.46.124" requestID="60f5d7fa-cced-47f9" responseTimeMS=2366 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+Database connection terminated - continuing operation with cache
+Uncaught Exception: terminating connection due to administrator command
+Uncaught Exception: Connection terminated unexpectedly
+Non-database error - exiting: Error: Connection terminated unexpectedly
+    at Connection.<anonymous> (/app/node_modules/pg/lib/client.js:136:73)
+    at Object.onceWrapper (node:events:638:28)
+    at Connection.emit (node:events:524:28)
+    at Socket.<anonymous> (/app/node_modules/pg/lib/connection.js:62:12)
+    at Socket.emit (node:events:536:35)
+    at TCP.<anonymous> (node:net:343:12)
+     [GET]502tvtantrum.com/api/homepage-categories/5/showsclientIP="96.35.46.124" requestID="ef8c226a-74fb-4ba3" responseTimeMS=2375 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]502tvtantrum.com/api/homepage-categories/11/showsclientIP="96.35.46.124" requestID="d8326aa5-fd5f-45fb" responseTimeMS=2369 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]502tvtantrum.com/api/userclientIP="96.35.46.124" requestID="1b1020dc-83f0-4774" responseTimeMS=213 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+[SESSION CONFIG] {
+  environment: 'production',
+  cookieSecure: true,
+  cookieSameSite: 'none',
+  hasSecret: true
+}
+[SESSION] Using PostgreSQL session store for production
+Static files not found, using development server for production deployment
+TV Tantrum Catalog server running on port 10000
+Using catalog database with 302 authentic TV shows
+Simplified content discovery without social features
+Enhanced caching enabled for viral traffic handling
+Database crash protection active
+     [GET]tvtantrum.com/?token=ErgqNimWnnN6clientIP="75.188.234.233" requestID="" responseTimeMS=556512 responseBytes=0 userAgent="Mozilla/5.0 (Linux; Android 16; Pixel 9 Pro Build/BP2A.250605.031.A2; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/137.0.7151.115 Mobile Safari/537.36 Instagram 378.0.0.52.68 Android (36/16; 480dpi; 1280x2856; Google/google; Pixel 9 Pro; caiman; caiman; en_US; 727763651)"
+     [GET]tvtantrum.com/?token=ErgqNimWnnN6clientIP="98.51.114.35" requestID="" responseTimeMS=2944083 responseBytes=0 userAgent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+     [GET]tvtantrum.com/?token=ErgqNimWnnN6clientIP="96.35.46.124" requestID="" responseTimeMS=13616 responseBytes=0 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22F76 Instagram 385.0.0.28.70 (iPhone16,1; iOS 18_5; en_US; en; scale=3.00; 1179x2556; 748614773; IABMV/1) NW/3"
+     [GET]tvtantrum.com/?token=ErgqNimWnnN6clientIP="24.187.88.161" requestID="" responseTimeMS=2769045 responseBytes=0 userAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+     [GET]tvtantrum.com/?token=ErgqNimWnnN6clientIP="40.142.137.25" requestID="" responseTimeMS=872334 responseBytes=0 userAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+     [GET]tvtantrum.com/?token=ErgqNimWnnN6clientIP="47.202.66.232" requestID="" responseTimeMS=4678807 responseBytes=0 userAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
