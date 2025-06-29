@@ -4,6 +4,7 @@ import { insertTvShowSchema } from "@shared/catalog-schema";
 import bcrypt from "bcrypt";
 import session from "express-session";
 import { setupAdminSession, setupAdminAuth, requireAdmin } from "./admin-auth";
+import { cache, getCacheKey, CACHE_TTL } from "./cache";
 
 const router = express.Router();
 
@@ -19,8 +20,42 @@ export function registerCatalogRoutes(app: Express) {
     res.status(200).send('OK');
   });
 
+  // Request throttling to prevent database overload
+  const requestCounts = new Map();
+  const RATE_LIMIT_WINDOW = 10000; // 10 seconds
+  const MAX_REQUESTS_PER_WINDOW = 50; // Max 50 requests per IP per 10 seconds
+
+  const throttleRequests = (req: Request, res: Response, next: any) => {
+    const clientIP = req.ip || req.connection.remoteAddress || 'unknown';
+    const now = Date.now();
+    
+    if (!requestCounts.has(clientIP)) {
+      requestCounts.set(clientIP, { count: 1, windowStart: now });
+      return next();
+    }
+    
+    const clientData = requestCounts.get(clientIP);
+    
+    // Reset window if expired
+    if (now - clientData.windowStart > RATE_LIMIT_WINDOW) {
+      requestCounts.set(clientIP, { count: 1, windowStart: now });
+      return next();
+    }
+    
+    // Check if limit exceeded
+    if (clientData.count >= MAX_REQUESTS_PER_WINDOW) {
+      console.warn(`Rate limit exceeded for IP: ${clientIP} (${clientData.count} requests)`);
+      return res.status(429).json({ error: 'Too many requests. Please slow down.' });
+    }
+    
+    // Increment count
+    clientData.count++;
+    next();
+  };
+
   // Get all TV shows with filtering
-  router.get("/tv-shows", async (req: Request, res: Response) => {
+  router.get("/tv-shows", throttleRequests, async (req: Request, res: Response) => {
+    const startTime = Date.now();
     try {
       const filters: any = {};
       
@@ -115,7 +150,27 @@ export function registerCatalogRoutes(app: Express) {
       if (req.query.limit) filters.limit = parseInt(req.query.limit as string);
       if (req.query.offset) filters.offset = parseInt(req.query.offset as string);
       
-      const shows = await catalogStorage.getTvShows(filters);
+      // Enhanced caching for filter queries to prevent database overload
+      const cacheKey = getCacheKey('filtered-shows', JSON.stringify(filters));
+      let shows = cache.get(cacheKey);
+      
+      if (!shows) {
+        console.log('API received filters:', filters);
+        shows = await catalogStorage.getTvShows(filters);
+        
+        // Cache for 2 minutes to handle rapid filter changes
+        cache.set(cacheKey, shows, CACHE_TTL.FILTER_QUERIES);
+        console.log(`API returning ${shows.length} shows`);
+      } else {
+        console.log(`API returning ${shows.length} shows (cached)`);
+      }
+      
+      // Track slow requests that could cause instance failures
+      const responseTime = Date.now() - startTime;
+      if (responseTime > 1000) {
+        console.warn(`Slow request: GET /tv-shows - ${responseTime}ms`);
+      }
+      
       res.json(shows);
     } catch (error) {
       console.error("Error fetching TV shows:", error);

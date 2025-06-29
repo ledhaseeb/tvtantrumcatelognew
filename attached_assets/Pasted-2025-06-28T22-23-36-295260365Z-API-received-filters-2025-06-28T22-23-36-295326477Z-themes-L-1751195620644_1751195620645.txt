@@ -1,0 +1,300 @@
+2025-06-28T22:23:36.295260365Z API received filters: {
+2025-06-28T22:23:36.295326477Z   themes: [ 'Life Lessons', 'Relatable Situations' ],
+2025-06-28T22:23:36.295335498Z   themeMatchMode: 'OR'
+2025-06-28T22:23:36.295341128Z }
+2025-06-28T22:23:36.602182964Z API returning 55 shows
+2025-06-28T22:24:13.278040488Z API received filters: { themes: [ 'Motor Skills', 'Science' ], themeMatchMode: 'OR' }
+2025-06-28T22:24:13.484120255Z API returning 45 shows
+2025-06-28T22:25:16.312154324Z API received filters: {
+2025-06-28T22:25:16.312191055Z   themes: [ 'Problem Solving', 'Critical Thinking' ],
+2025-06-28T22:25:16.312197525Z   themeMatchMode: 'OR'
+2025-06-28T22:25:16.312202955Z }
+2025-06-28T22:25:16.723418471Z API returning 163 shows
+2025-06-28T22:25:44.957285165Z API received filters: {
+2025-06-28T22:25:44.957325086Z   ageRange: { min: 1, max: 13 },
+2025-06-28T22:25:44.957330346Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:44.957333946Z }
+2025-06-28T22:25:44.968087608Z API received filters: {
+2025-06-28T22:25:44.968103299Z   ageRange: { min: 1, max: 13 },
+2025-06-28T22:25:44.968108689Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:44.968113089Z }
+2025-06-28T22:25:45.107611636Z API received filters: {
+2025-06-28T22:25:45.107633456Z   ageRange: { min: 2, max: 13 },
+2025-06-28T22:25:45.107640287Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:45.107645807Z }
+2025-06-28T22:25:45.114150259Z API received filters: {
+2025-06-28T22:25:45.114167Z   ageRange: { min: 2, max: 13 },
+2025-06-28T22:25:45.11417156Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:45.11417544Z }
+2025-06-28T22:25:45.266931879Z API returning 85 shows
+2025-06-28T22:25:45.910405486Z API returning 85 shows
+2025-06-28T22:25:46.055704216Z API returning 79 shows
+2025-06-28T22:25:46.060460139Z API returning 79 shows
+2025-06-28T22:25:47.081015484Z API received filters: {
+2025-06-28T22:25:47.081039584Z   ageRange: { min: 2, max: 12 },
+2025-06-28T22:25:47.081044455Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.081048245Z }
+2025-06-28T22:25:47.092236749Z API received filters: {
+2025-06-28T22:25:47.092255679Z   ageRange: { min: 2, max: 12 },
+2025-06-28T22:25:47.092260239Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.09226389Z }
+2025-06-28T22:25:47.122478808Z API received filters: {
+2025-06-28T22:25:47.122492658Z   ageRange: { min: 2, max: 11 },
+2025-06-28T22:25:47.122497008Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.122500639Z }
+2025-06-28T22:25:47.127095368Z API received filters: {
+2025-06-28T22:25:47.127108478Z   ageRange: { min: 2, max: 11 },
+2025-06-28T22:25:47.127112748Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.127116278Z }
+2025-06-28T22:25:47.138614151Z API received filters: {
+2025-06-28T22:25:47.138632521Z   ageRange: { min: 2, max: 10 },
+2025-06-28T22:25:47.138637121Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.138640702Z }
+2025-06-28T22:25:47.139518886Z API received filters: {
+2025-06-28T22:25:47.139533107Z   ageRange: { min: 2, max: 10 },
+2025-06-28T22:25:47.139537587Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.139541277Z }
+2025-06-28T22:25:47.170358772Z API received filters: {
+2025-06-28T22:25:47.170371983Z   ageRange: { min: 2, max: 9 },
+2025-06-28T22:25:47.170376683Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.170380183Z }
+2025-06-28T22:25:47.187910585Z API received filters: {
+2025-06-28T22:25:47.187922995Z   ageRange: { min: 2, max: 9 },
+2025-06-28T22:25:47.187926816Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.187929716Z }
+2025-06-28T22:25:47.191705792Z API received filters: {
+2025-06-28T22:25:47.191717262Z   ageRange: { min: 2, max: 8 },
+2025-06-28T22:25:47.191735103Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.191737472Z }
+2025-06-28T22:25:47.198175823Z API received filters: {
+2025-06-28T22:25:47.198189744Z   ageRange: { min: 2, max: 8 },
+2025-06-28T22:25:47.198192874Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.198195154Z }
+2025-06-28T22:25:47.219460081Z API received filters: {
+2025-06-28T22:25:47.219479282Z   ageRange: { min: 2, max: 7 },
+2025-06-28T22:25:47.219482671Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.219484872Z }
+2025-06-28T22:25:47.224203314Z API received filters: {
+2025-06-28T22:25:47.224217955Z   ageRange: { min: 2, max: 7 },
+2025-06-28T22:25:47.224220595Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.224222344Z }
+2025-06-28T22:25:47.235178802Z API received filters: {
+2025-06-28T22:25:47.235195993Z   ageRange: { min: 2, max: 6 },
+2025-06-28T22:25:47.235198573Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.235200753Z }
+2025-06-28T22:25:47.246090938Z API received filters: {
+2025-06-28T22:25:47.246107679Z   ageRange: { min: 2, max: 6 },
+2025-06-28T22:25:47.246110839Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.246113319Z }
+2025-06-28T22:25:47.281840962Z API received filters: {
+2025-06-28T22:25:47.281869453Z   ageRange: { min: 2, max: 5 },
+2025-06-28T22:25:47.281872313Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.281874023Z }
+2025-06-28T22:25:47.284536978Z API received filters: {
+2025-06-28T22:25:47.284545898Z   ageRange: { min: 2, max: 5 },
+2025-06-28T22:25:47.284548508Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.284550318Z }
+2025-06-28T22:25:47.338100802Z API received filters: {
+2025-06-28T22:25:47.338122522Z   ageRange: { min: 2, max: 4 },
+2025-06-28T22:25:47.338125893Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.338128073Z }
+2025-06-28T22:25:47.338888564Z API received filters: {
+2025-06-28T22:25:47.338901555Z   ageRange: { min: 2, max: 4 },
+2025-06-28T22:25:47.338904644Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.338906835Z }
+2025-06-28T22:25:47.393808006Z API returning 79 shows
+2025-06-28T22:25:47.398541899Z API returning 79 shows
+2025-06-28T22:25:47.432372379Z API returning 79 shows
+2025-06-28T22:25:47.438039538Z API returning 79 shows
+2025-06-28T22:25:47.634588846Z API received filters: {
+2025-06-28T22:25:47.634606117Z   ageRange: { min: 2, max: 3 },
+2025-06-28T22:25:47.634609527Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.634611827Z }
+2025-06-28T22:25:47.639543046Z API received filters: {
+2025-06-28T22:25:47.639558086Z   ageRange: { min: 2, max: 3 },
+2025-06-28T22:25:47.639561736Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:47.639564146Z }
+2025-06-28T22:25:47.740672825Z API returning 64 shows
+2025-06-28T22:25:47.775588876Z API received filters: {
+2025-06-28T22:25:47.775607736Z   ageRange: { min: 0, max: 5 },
+2025-06-28T22:25:47.775610476Z   themes: [
+2025-06-28T22:25:47.775613016Z     'Colours',
+2025-06-28T22:25:47.775615176Z     'Phonics',
+2025-06-28T22:25:47.775617246Z     'Numeracy',
+2025-06-28T22:25:47.775619656Z     'Preschool-Basics',
+2025-06-28T22:25:47.775621736Z     'Elementary-Basics'
+2025-06-28T22:25:47.775623877Z   ],
+2025-06-28T22:25:47.775626126Z   themeMatchMode: 'OR'
+2025-06-28T22:25:47.775628326Z }
+2025-06-28T22:25:47.846502227Z API returning 64 shows
+2025-06-28T22:25:47.880788369Z API returning 63 shows
+2025-06-28T22:25:48.065882626Z API received filters: {
+2025-06-28T22:25:48.065898527Z   ageRange: { min: 2, max: 4 },
+2025-06-28T22:25:48.065902207Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:48.065904487Z }
+2025-06-28T22:25:48.072204824Z API received filters: {
+2025-06-28T22:25:48.072218294Z   ageRange: { min: 2, max: 4 },
+2025-06-28T22:25:48.072221674Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:48.072223924Z }
+2025-06-28T22:25:48.083351937Z API returning 79 shows
+2025-06-28T22:25:48.094806858Z API returning 79 shows
+2025-06-28T22:25:48.104878691Z API returning 79 shows
+2025-06-28T22:25:48.118052961Z API returning 79 shows
+2025-06-28T22:25:48.133479784Z API returning 79 shows
+2025-06-28T22:25:48.145689837Z API returning 79 shows
+2025-06-28T22:25:48.15327203Z API returning 79 shows
+2025-06-28T22:25:48.160026919Z API returning 79 shows
+2025-06-28T22:25:48.166254144Z API returning 79 shows
+2025-06-28T22:25:48.171319567Z API returning 76 shows
+2025-06-28T22:25:48.17392645Z API returning 79 shows
+2025-06-28T22:25:48.182597273Z API received filters: {
+2025-06-28T22:25:48.182617194Z   ageRange: { min: 2, max: 5 },
+2025-06-28T22:25:48.182621804Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:48.182625244Z }
+2025-06-28T22:25:48.186959466Z API received filters: {
+2025-06-28T22:25:48.186971716Z   ageRange: { min: 2, max: 5 },
+2025-06-28T22:25:48.186974536Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:25:48.186976626Z }
+2025-06-28T22:25:48.244959704Z API returning 77 shows
+2025-06-28T22:25:48.247754542Z API returning 77 shows
+2025-06-28T22:25:48.270490741Z API returning 76 shows
+2025-06-28T22:25:48.280265406Z API returning 76 shows
+2025-06-28T22:25:48.282364614Z API returning 76 shows
+2025-06-28T22:25:48.29326001Z API returning 77 shows
+2025-06-28T22:25:48.384221404Z API returning 77 shows
+2025-06-28T22:26:57.901171767Z API received filters: { themes: [ 'Nature', 'Problem Solving' ], themeMatchMode: 'OR' }
+2025-06-28T22:26:58.313674354Z API returning 174 shows
+2025-06-28T22:27:09.222100257Z API received filters: {
+2025-06-28T22:27:09.222125538Z   themes: [ 'Cultural Appreciation', 'Phonics' ],
+2025-06-28T22:27:09.222130088Z   themeMatchMode: 'OR'
+2025-06-28T22:27:09.222133818Z }
+2025-06-28T22:27:09.429968941Z API returning 41 shows
+2025-06-28T22:30:27.46508758Z API received filters: {
+2025-06-28T22:30:27.465123292Z   ageRange: { min: 0, max: 12 },
+2025-06-28T22:30:27.465130612Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:27.465136272Z }
+2025-06-28T22:30:27.47006483Z API received filters: {
+2025-06-28T22:30:27.47007882Z   ageRange: { min: 0, max: 12 },
+2025-06-28T22:30:27.470083101Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:27.470086071Z }
+2025-06-28T22:30:27.660781852Z API received filters: {
+2025-06-28T22:30:27.660809693Z   ageRange: { min: 0, max: 11 },
+2025-06-28T22:30:27.660815173Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:27.660819173Z }
+2025-06-28T22:30:27.677697097Z API received filters: {
+2025-06-28T22:30:27.677712707Z   ageRange: { min: 0, max: 11 },
+2025-06-28T22:30:27.677717277Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:27.677720987Z }
+2025-06-28T22:30:27.73377068Z API received filters: {
+2025-06-28T22:30:27.733789811Z   ageRange: { min: 0, max: 10 },
+2025-06-28T22:30:27.733795031Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:27.733798771Z }
+2025-06-28T22:30:27.740103208Z API received filters: {
+2025-06-28T22:30:27.740129818Z   ageRange: { min: 0, max: 10 },
+2025-06-28T22:30:27.740132958Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:27.740134809Z }
+2025-06-28T22:30:27.824436094Z API received filters: {
+2025-06-28T22:30:27.824459495Z   ageRange: { min: 0, max: 9 },
+2025-06-28T22:30:27.824464125Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:27.824467845Z }
+2025-06-28T22:30:27.833627042Z API received filters: {
+2025-06-28T22:30:27.833640622Z   ageRange: { min: 0, max: 9 },
+2025-06-28T22:30:27.833643853Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:27.833646053Z }
+2025-06-28T22:30:27.894935013Z API received filters: {
+2025-06-28T22:30:27.894958333Z   ageRange: { min: 0, max: 8 },
+2025-06-28T22:30:27.894963293Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:27.894967414Z }
+2025-06-28T22:30:27.900504579Z API received filters: {
+2025-06-28T22:30:27.900519669Z   ageRange: { min: 0, max: 8 },
+2025-06-28T22:30:27.900522899Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:27.900525119Z }
+2025-06-28T22:30:27.995466624Z API received filters: {
+2025-06-28T22:30:27.995487794Z   ageRange: { min: 0, max: 7 },
+2025-06-28T22:30:27.995492064Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:27.995495964Z }
+2025-06-28T22:30:27.996613006Z API received filters: {
+2025-06-28T22:30:27.996626836Z   ageRange: { min: 0, max: 7 },
+2025-06-28T22:30:27.996629646Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:27.996631436Z }
+2025-06-28T22:30:28.119588367Z API received filters: {
+2025-06-28T22:30:28.119611167Z   ageRange: { min: 0, max: 6 },
+2025-06-28T22:30:28.119615807Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:28.119619387Z }
+2025-06-28T22:30:28.126353047Z API received filters: {
+2025-06-28T22:30:28.126365947Z   ageRange: { min: 0, max: 6 },
+2025-06-28T22:30:28.126369537Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:28.126371817Z }
+2025-06-28T22:30:28.309197567Z API received filters: {
+2025-06-28T22:30:28.309221068Z   ageRange: { min: 0, max: 5 },
+2025-06-28T22:30:28.309223728Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:28.309226068Z }
+2025-06-28T22:30:28.396478757Z API received filters: {
+2025-06-28T22:30:28.396501487Z   ageRange: { min: 0, max: 4 },
+2025-06-28T22:30:28.396506067Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:28.396509737Z }
+2025-06-28T22:30:28.407272239Z API received filters: {
+2025-06-28T22:30:28.40730388Z   ageRange: { min: 0, max: 5 },
+2025-06-28T22:30:28.407312511Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:28.407315941Z }
+2025-06-28T22:30:28.419502733Z API received filters: {
+2025-06-28T22:30:28.419513663Z   ageRange: { min: 0, max: 4 },
+2025-06-28T22:30:28.419516643Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:28.419518833Z }
+2025-06-28T22:30:28.526759583Z API received filters: {
+2025-06-28T22:30:28.526782963Z   ageRange: { min: 0, max: 3 },
+2025-06-28T22:30:28.526786553Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:28.526788793Z }
+2025-06-28T22:30:28.567089924Z API received filters: {
+2025-06-28T22:30:28.567107515Z   ageRange: { min: 0, max: 3 },
+2025-06-28T22:30:28.567110955Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:28.567113285Z }
+2025-06-28T22:30:28.827749699Z API received filters: {
+2025-06-28T22:30:28.827774459Z   ageRange: { min: 0, max: 2 },
+2025-06-28T22:30:28.827777779Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:28.827780099Z }
+2025-06-28T22:30:28.830353642Z API received filters: {
+2025-06-28T22:30:28.830366442Z   ageRange: { min: 0, max: 2 },
+2025-06-28T22:30:28.830369462Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:28.830371742Z }
+2025-06-28T22:30:28.859912281Z API returning 85 shows
+2025-06-28T22:30:28.862130223Z API returning 85 shows
+2025-06-28T22:30:28.863871302Z API returning 85 shows
+2025-06-28T22:30:28.866865476Z Slow request: GET /tv-shows - 1189ms
+2025-06-28T22:30:28.868132232Z Slow request: GET /tv-shows - 1399ms
+2025-06-28T22:30:28.870381405Z API returning 85 shows
+2025-06-28T22:30:28.874147531Z API returning 85 shows
+2025-06-28T22:30:28.876458516Z Slow request: GET /tv-shows - 1043ms
+2025-06-28T22:30:28.878013629Z Slow request: GET /tv-shows - 1053ms
+2025-06-28T22:30:28.933830666Z API returning 85 shows
+2025-06-28T22:30:28.957328715Z API returning 85 shows
+2025-06-28T22:30:28.963610041Z API returning 32 shows
+2025-06-28T22:30:28.966336028Z API returning 32 shows
+2025-06-28T22:30:29.032749181Z API returning 85 shows
+2025-06-28T22:30:29.067937259Z API returning 85 shows
+2025-06-28T22:30:29.096333075Z API returning 85 shows
+2025-06-28T22:30:29.09934386Z Slow request: GET /tv-shows - 1439ms
+2025-06-28T22:30:29.100495822Z API returning 85 shows
+2025-06-28T22:30:29.103529908Z Slow request: GET /tv-shows - 1370ms
+2025-06-28T22:30:29.109589318Z API returning 85 shows
+2025-06-28T22:30:29.111034318Z API returning 85 shows
+2025-06-28T22:30:29.113073095Z Slow request: GET /tv-shows - 1373ms
+2025-06-28T22:30:29.114337321Z Slow request: GET /tv-shows - 1220ms
+2025-06-28T22:30:29.115808992Z API received filters: {
+2025-06-28T22:30:29.115817772Z   ageRange: { min: 0, max: 1 },
+2025-06-28T22:30:29.115820273Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:29.115822482Z }
+2025-06-28T22:30:29.203900424Z API received filters: {
+2025-06-28T22:30:29.203924515Z   ageRange: { min: 0, max: 1 },
+2025-06-28T22:30:29.203927805Z   stimulationScoreRange: { min: 1, max: 2 }
+2025-06-28T22:30:29.203930125Z }
+2025-06-28T22:30:29.231403446Z API returning 6 shows
+2025-06-28T22:30:29.238180336Z API returning 83 shows
+2025-06-28T22:30:29.308054517Z API returning 6 shows
+2025-06-28T22:30:29.330282571Z API returning 82 shows
+2025-06-28T22:30:29.341141655Z API returning 83 shows
+2025-06-28T22:30:29.363824962Z API returning 82 shows
+2025-06-28T22:30:29.380283154Z API returning 85 shows
+2025-06-28T22:30:29.383278438Z Slow request: GET /tv-shows - 1919ms
+2025-06-28T22:30:29.466877944Z API returning 70 shows
+2025-06-28T22:30:29.512570426Z API returning 70 shows
