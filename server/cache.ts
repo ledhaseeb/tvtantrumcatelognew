@@ -28,6 +28,7 @@ export const CACHE_KEYS = {
 
 export const CACHE_TTL = {
   LONG: 1800, // 30 minutes for rarely changing data
+  FILTER_QUERIES: 120, // 2 minutes for filter queries to prevent overload
   MEDIUM: 600, // 10 minutes for moderately changing data
   SHORT: 300, // 5 minutes for frequently changing data
   VERY_SHORT: 60, // 1 minute for dynamic data

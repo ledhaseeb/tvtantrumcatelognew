@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -57,6 +57,51 @@ export default function ShowFilters({ activeFilters, onFilterChange, onClearFilt
   const [openAutoComplete, setOpenAutoComplete] = useState(false);
   const [showSearchDropdown, setShowSearchDropdown] = useState(false);
   const searchContainerRef = useRef<HTMLDivElement>(null);
+  
+  // Debouncing refs to prevent database overload
+  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastRequestTimeRef = useRef<number>(0);
+  const pendingFiltersRef = useRef<FiltersType | null>(null);
+
+  // Debounced filter change to prevent database overload
+  const debouncedFilterChange = useCallback((newFilters: FiltersType) => {
+    // Clear any existing timeout
+    if (debounceTimeoutRef.current) {
+      clearTimeout(debounceTimeoutRef.current);
+    }
+
+    // Store the pending filters
+    pendingFiltersRef.current = newFilters;
+
+    // Check if we should apply immediately or debounce
+    const now = Date.now();
+    const timeSinceLastRequest = now - lastRequestTimeRef.current;
+    
+    // If last request was more than 2 seconds ago, apply immediately
+    if (timeSinceLastRequest > 2000) {
+      lastRequestTimeRef.current = now;
+      onFilterChange(newFilters);
+      pendingFiltersRef.current = null;
+    } else {
+      // Otherwise, debounce for 800ms to prevent rapid-fire requests
+      debounceTimeoutRef.current = setTimeout(() => {
+        if (pendingFiltersRef.current) {
+          lastRequestTimeRef.current = Date.now();
+          onFilterChange(pendingFiltersRef.current);
+          pendingFiltersRef.current = null;
+        }
+      }, 800);
+    }
+  }, [onFilterChange]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current);
+      }
+    };
+  }, []);
   
   // Fetch shows for autocomplete and theme analysis
   const { data: shows, isLoading: isLoadingShows, error: showsError } = useQuery<TvShow[]>({
@@ -321,8 +366,13 @@ export default function ShowFilters({ activeFilters, onFilterChange, onClearFilt
     const updatedFilters = { ...filters, [key]: value };
     setFilters(updatedFilters);
     
-    // Notify parent component immediately
-    onFilterChange(updatedFilters);
+    // Use debounced change for age/stimulation ranges to prevent database overload
+    if (key === 'ageRange' || key === 'stimulationScoreRange') {
+      debouncedFilterChange(updatedFilters);
+    } else {
+      // Apply other filters immediately (search, themes, etc.)
+      onFilterChange(updatedFilters);
+    }
   };
   
   const handleThemeToggle = (theme: string) => {
