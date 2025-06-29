@@ -152,17 +152,17 @@ export function registerCatalogRoutes(app: Express) {
       
       // Enhanced caching for filter queries to prevent database overload
       const cacheKey = getCacheKey('filtered-shows', JSON.stringify(filters));
-      let shows = cache.get(cacheKey);
+      let shows = cache.get(cacheKey) as any[];
       
       if (!shows) {
         console.log('API received filters:', filters);
         shows = await catalogStorage.getTvShows(filters);
         
         // Cache for 2 minutes to handle rapid filter changes
-        cache.set(cacheKey, shows, CACHE_TTL.FILTER_QUERIES);
-        console.log(`API returning ${shows.length} shows`);
+        cache.set(cacheKey, shows, 120); // 2 minutes TTL
+        console.log(`API returning ${(shows as any[]).length} shows`);
       } else {
-        console.log(`API returning ${shows.length} shows (cached)`);
+        console.log(`API returning ${(shows as any[]).length} shows (cached)`);
       }
       
       // Track slow requests that could cause instance failures
