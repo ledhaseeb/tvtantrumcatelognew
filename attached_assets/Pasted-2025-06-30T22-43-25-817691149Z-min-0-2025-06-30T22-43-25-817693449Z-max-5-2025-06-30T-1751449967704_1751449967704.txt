@@ -1,0 +1,150 @@
+2025-06-30T22:43:25.817691149Z     "min": 0,
+2025-06-30T22:43:25.817693449Z     "max": 5
+2025-06-30T22:43:25.817695679Z   },
+2025-06-30T22:43:25.81769801Z   "themeMatchMode": "OR"
+2025-06-30T22:43:25.81770037Z }
+2025-06-30T22:43:25.848206689Z [DEBUG] Category 13 filter config: {
+2025-06-30T22:43:25.84823634Z   "logic": "OR",
+2025-06-30T22:43:25.84823959Z   "rules": [
+2025-06-30T22:43:25.84824143Z     {
+2025-06-30T22:43:25.84824358Z       "field": "themes",
+2025-06-30T22:43:25.84824574Z       "value": "Super Hero Themes",
+2025-06-30T22:43:25.84824809Z       "operator": "contains"
+2025-06-30T22:43:25.84824978Z     },
+2025-06-30T22:43:25.84825157Z     {
+2025-06-30T22:43:25.8482532Z       "field": "themes",
+2025-06-30T22:43:25.84825492Z       "value": "Fantasy Elements",
+2025-06-30T22:43:25.84825662Z       "operator": "contains"
+2025-06-30T22:43:25.848258281Z     }
+2025-06-30T22:43:25.84826001Z   ]
+2025-06-30T22:43:25.84826167Z }
+2025-06-30T22:43:25.84826345Z [DEBUG] Category 13 converted filters: {
+2025-06-30T22:43:25.84826519Z   "themes": [
+2025-06-30T22:43:25.848266901Z     "Super Hero Themes",
+2025-06-30T22:43:25.848268611Z     "Fantasy Elements"
+2025-06-30T22:43:25.848270331Z   ],
+2025-06-30T22:43:25.848275271Z   "themeMatchMode": "OR"
+2025-06-30T22:43:25.848277131Z }
+2025-06-30T22:43:25.993584882Z Database connection terminated - continuing operation with cache
+2025-06-30T22:43:25.993584932Z Uncaught Exception: terminating connection due to administrator command
+2025-06-30T22:43:25.993823227Z Database connection terminated - continuing operation with cache
+2025-06-30T22:43:25.993844197Z Uncaught Exception: terminating connection due to administrator command
+2025-06-30T22:43:25.994299027Z Uncaught Exception: Connection terminated unexpectedly
+2025-06-30T22:43:25.994896001Z Non-database error - exiting: Error: Connection terminated unexpectedly
+2025-06-30T22:43:25.994904301Z     at Connection.<anonymous> (/app/node_modules/pg/lib/client.js:136:73)
+2025-06-30T22:43:25.994906811Z     at Object.onceWrapper (node:events:638:28)
+2025-06-30T22:43:25.994908521Z     at Connection.emit (node:events:524:28)
+2025-06-30T22:43:25.994910251Z     at Socket.<anonymous> (/app/node_modules/pg/lib/connection.js:62:12)
+2025-06-30T22:43:25.994912141Z     at Socket.emit (node:events:536:35)
+2025-06-30T22:43:25.994913801Z     at TCP.<anonymous> (node:net:343:12)
+2025-06-30T22:43:26Z clientIP="149.50.164.247" requestID="a2d3cdf5-b8cc-451c" responseTimeMS=1034 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/374.0.773146746 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:26Z clientIP="149.50.164.247" requestID="15751a1d-a33b-4883" responseTimeMS=1022 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/374.0.773146746 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:26Z clientIP="149.50.164.247" requestID="c8ac151e-a0b8-466f" responseTimeMS=1010 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/374.0.773146746 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:26Z clientIP="149.50.164.247" requestID="981acbbd-63ba-4279" responseTimeMS=3 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/374.0.773146746 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:26Z clientIP="149.50.164.247" requestID="bbbb200d-8bf7-4256" responseTimeMS=1034 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/374.0.773146746 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:26Z clientIP="149.50.164.247" requestID="cb995dcf-20de-4efa" responseTimeMS=1033 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/374.0.773146746 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:26Z clientIP="149.50.164.247" requestID="ae944813-29cd-4abc" responseTimeMS=1009 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/374.0.773146746 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:26Z clientIP="149.50.164.247" requestID="f4f47eac-2a97-44c0" responseTimeMS=1032 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/374.0.773146746 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:26Z clientIP="149.50.164.247" requestID="fdfa16ab-dde1-4587" responseTimeMS=1057 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/374.0.773146746 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:26Z clientIP="149.50.164.247" requestID="09125e0a-587c-4538" responseTimeMS=1012 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/374.0.773146746 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:27Z clientIP="149.50.164.247" requestID="2c00bcd9-8444-4463" responseTimeMS=5 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/374.0.773146746 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:28Z clientIP="149.50.164.247" requestID="398deda9-4cfd-43ce" responseTimeMS=28 responseBytes=222916 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/374.0.773146746 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:29.992287948Z [SESSION CONFIG] {
+2025-06-30T22:43:29.992321489Z   environment: 'production',
+2025-06-30T22:43:29.992325289Z   cookieSecure: true,
+2025-06-30T22:43:29.992327189Z   cookieSameSite: 'none',
+2025-06-30T22:43:29.992328869Z   hasSecret: true
+2025-06-30T22:43:29.992330999Z }
+2025-06-30T22:43:29.992942273Z [SESSION] Using PostgreSQL session store for production
+2025-06-30T22:43:29.994422445Z Static files not found, using development server for production deployment
+2025-06-30T22:43:30.009888714Z TV Tantrum Catalog server running on port 10000
+2025-06-30T22:43:30.009920975Z Using catalog database with 302 authentic TV shows
+2025-06-30T22:43:30.009948456Z Simplified content discovery without social features
+2025-06-30T22:43:30.009953206Z Enhanced caching enabled for viral traffic handling
+2025-06-30T22:43:30.009978967Z Database crash protection active
+2025-06-30T22:43:32Z clientIP="68.206.49.46" requestID="1f3ca41d-8113-4aac" responseTimeMS=61 responseBytes=1343 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:32.96340405Z Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+2025-06-30T22:43:32.963429741Z   npx update-browserslist-db@latest
+2025-06-30T22:43:32.963433161Z   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+2025-06-30T22:43:33Z clientIP="68.206.49.46" requestID="" responseTimeMS=111763 responseBytes=0 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:33Z clientIP="68.206.49.46" requestID="16bb1a83-4189-471e" responseTimeMS=407 responseBytes=2391 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="88d5ff91-c081-4444" responseTimeMS=1 responseBytes=151 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="b22c7cc4-d94f-4357" responseTimeMS=727 responseBytes=503 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="233d783b-812c-41c8" responseTimeMS=3 responseBytes=483 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="77cdca8a-248a-49a4" responseTimeMS=655 responseBytes=4348 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="0e24a888-566d-4b46" responseTimeMS=669 responseBytes=18773 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="ea7418dd-9b35-4980" responseTimeMS=19 responseBytes=6348 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="a8b7a975-892f-42b6" responseTimeMS=2 responseBytes=8639 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="80a56f18-ad2d-4a2a" responseTimeMS=3 responseBytes=11675 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="337b5eff-21b1-4e36" responseTimeMS=730 responseBytes=747 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="b6925e8b-19f1-483b" responseTimeMS=2 responseBytes=1134 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="e0e10905-c35c-4599" responseTimeMS=3 responseBytes=1362 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="db0a5fb3-b55a-44f9" responseTimeMS=17 responseBytes=2162 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="125d03c7-1f0f-49ae" responseTimeMS=17 responseBytes=4012 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="d6b90b13-3f3d-4bd9" responseTimeMS=28 responseBytes=65653 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="8c0eac7f-fc02-4e1a" responseTimeMS=27 responseBytes=13091 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="43f91537-11f8-4117" responseTimeMS=1285 responseBytes=29779 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="abb375fe-dce0-4ebb" responseTimeMS=2 responseBytes=6189 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="83480b62-74bc-4b7c" responseTimeMS=25 responseBytes=11324 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="494ba9dd-9305-4f55" responseTimeMS=17 responseBytes=151 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="54087d12-f452-4644" responseTimeMS=21 responseBytes=6092 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="aa070295-e729-468b" responseTimeMS=21 responseBytes=19018 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="e475b459-d947-4fa6" responseTimeMS=10 responseBytes=14510 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="0a4a519c-f623-4bda" responseTimeMS=2 responseBytes=484 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="6df6f4be-0fbf-415d" responseTimeMS=1 responseBytes=535 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="ae242478-1841-459c" responseTimeMS=5 responseBytes=8524 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="89e94a1b-8823-43a0" responseTimeMS=3 responseBytes=2381 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="119319f8-d5d3-4e46" responseTimeMS=3 responseBytes=1795 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="17678a04-13ca-4b07" responseTimeMS=3 responseBytes=2035 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="a9f554a8-e63f-4a35" responseTimeMS=7 responseBytes=1893 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="90a8a38b-0fe0-4a40" responseTimeMS=5 responseBytes=12937 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="3bb57954-90c2-420c" responseTimeMS=1 responseBytes=151 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="08d3a519-d183-481f" responseTimeMS=3 responseBytes=4712 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="21bfaa8d-4eda-4ee3" responseTimeMS=1 responseBytes=151 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="ea0a37b3-a482-490c" responseTimeMS=5 responseBytes=14425 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="022b2c1e-ec03-47ca" responseTimeMS=5 responseBytes=4436 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="084b99a1-59a8-4cbb" responseTimeMS=9 responseBytes=23888 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="8aa8281b-09cd-4de8" responseTimeMS=7 responseBytes=5730 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="8f04be73-b1a4-4d1a" responseTimeMS=26 responseBytes=54370 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="a4e86624-9e42-4b2e" responseTimeMS=3 responseBytes=3617 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="105bc0f5-66ed-48bb" responseTimeMS=17 responseBytes=13122 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="a89d99f2-1abc-42f9" responseTimeMS=1 responseBytes=151 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:34Z clientIP="68.206.49.46" requestID="a05bb9cd-d2b7-4065" responseTimeMS=4 responseBytes=20946 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="e650f792-0c6d-4758" responseTimeMS=8 responseBytes=1003 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="8ee8a2d3-028f-46c6" responseTimeMS=2 responseBytes=2510 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="9951a64f-ac7a-4952" responseTimeMS=2 responseBytes=2143 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="8a885a0f-fa86-44c4" responseTimeMS=2 responseBytes=4506 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="f5460c41-0bd7-4bde" responseTimeMS=5 responseBytes=4951 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="c7c10678-3bb0-4f79" responseTimeMS=5 responseBytes=5612 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="62c5bfad-b3d6-4603" responseTimeMS=6 responseBytes=11553 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="8841ab91-d5a0-41a5" responseTimeMS=6 responseBytes=22136 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="c23f5229-f24c-4523" responseTimeMS=4 responseBytes=847 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="2ca308c9-3440-4425" responseTimeMS=8 responseBytes=950 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="8c833de9-cb25-4c15" responseTimeMS=2 responseBytes=890 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="8976a709-4b8e-485b" responseTimeMS=2 responseBytes=2266 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="96399cc7-4b1f-4326" responseTimeMS=2 responseBytes=4098 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="915ed7c3-31a5-4392" responseTimeMS=8 responseBytes=12629 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="a84c7d76-d5e1-44d3" responseTimeMS=2 responseBytes=1525 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="f15fea9b-5041-455c" responseTimeMS=4 responseBytes=6918 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="9de261db-4ba3-4f7a" responseTimeMS=5 responseBytes=11224 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="0648864b-3ff2-441d" responseTimeMS=6 responseBytes=1842 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="430530c4-aed0-4ef4" responseTimeMS=2 responseBytes=2279 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="fafd388d-9fea-4db3" responseTimeMS=4 responseBytes=3782 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="593b8211-69d0-4492" responseTimeMS=7 responseBytes=26294 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="21db4153-c491-4a89" responseTimeMS=6 responseBytes=3137 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="f4661d2e-ded7-417e" responseTimeMS=7 responseBytes=18470 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="99c02061-4b6c-4797" responseTimeMS=2 responseBytes=2174 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="262bee71-f254-4171" responseTimeMS=2 responseBytes=650 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="af9bf49e-bca7-481f" responseTimeMS=6 responseBytes=1847 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="39f8c288-132a-44a5" responseTimeMS=1 responseBytes=151 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="59b5ff9a-9e56-464d" responseTimeMS=2 responseBytes=2636 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="a3c24c1e-a854-4943" responseTimeMS=2 responseBytes=2990 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="6cf46f8a-476c-49b5" responseTimeMS=4 responseBytes=1772 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="9fe9b873-c43d-441e" responseTimeMS=3 responseBytes=5278 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="002e55c4-d298-4d9e" responseTimeMS=6 responseBytes=27773 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="7c4af9dc-f2ed-40b9" responseTimeMS=2 responseBytes=719 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="5042df45-5d25-44a6" responseTimeMS=7 responseBytes=10633 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="11e09cad-dd98-4b1b" responseTimeMS=2 responseBytes=1927 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:35Z clientIP="68.206.49.46" requestID="17adb731-e5ec-4cb2" responseTimeMS=2 responseBytes=1018 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"
+2025-06-30T22:43:36Z clientIP="149.167.7.189" requestID="" responseTimeMS=325968 responseBytes=0 userAgent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Safari/605.1.15"
+2025-06-30T22:43:36Z clientIP="149.50.164.247" requestID="" responseTimeMS=11459 responseBytes=0 userAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/374.0.773146746 Mobile/15E148 Safari/604.1"
