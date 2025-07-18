@@ -338,6 +338,10 @@ export default function AdminProductsPage() {
                     src={product.imageUrl}
                     alt={product.name}
                     className="h-full w-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = `https://via.placeholder.com/320x320/e5e7eb/9ca3af?text=${encodeURIComponent(product.name)}`;
+                    }}
                   />
                 </div>
               </CardHeader>

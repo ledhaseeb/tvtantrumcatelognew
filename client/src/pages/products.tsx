@@ -47,6 +47,10 @@ const ProductCard = ({ product }: { product: AmazonProduct }) => {
             src={product.imageUrl}
             alt={product.name}
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = `https://via.placeholder.com/320x320/e5e7eb/9ca3af?text=${encodeURIComponent(product.name)}`;
+            }}
           />
         </div>
       </CardHeader>
@@ -65,7 +69,7 @@ const ProductCard = ({ product }: { product: AmazonProduct }) => {
             {product.price}
           </div>
           <div className="flex items-center space-x-1">
-            {product.availabilityCountries.map((country) => (
+            {(product.availabilityCountries || []).map((country) => (
               <CountryFlag key={country} country={country} />
             ))}
           </div>
