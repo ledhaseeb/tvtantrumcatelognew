@@ -17,7 +17,8 @@ import {
   Filter,
   Edit,
   Star,
-  Upload
+  Upload,
+  ShoppingCart
 } from "lucide-react";
 import { TvShowsTable } from "@/components/admin/TvShowsTable";
 import { EditShowDialog } from "@/components/admin/EditShowDialog";
@@ -215,6 +216,16 @@ export default function AdminDashboard() {
               }`}
             >
               Homepage Categories
+            </button>
+            <button
+              onClick={() => setActiveTab('products')}
+              className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                activeTab === 'products'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              Products
             </button>
             <button
               onClick={() => setActiveTab('users')}
@@ -462,6 +473,37 @@ export default function AdminDashboard() {
 
         {activeTab === 'homepage-categories' && (
           <HomepageCategories />
+        )}
+
+        {activeTab === 'products' && (
+          <div className="space-y-6">
+            <div className="flex justify-between items-center">
+              <div>
+                <h2 className="text-xl font-semibold">Amazon Products</h2>
+                <p className="text-muted-foreground">
+                  Manage your affiliate product catalog
+                </p>
+              </div>
+              <Button onClick={() => setLocation('/admin/products')}>
+                <ShoppingCart className="w-4 h-4 mr-2" />
+                Manage Products
+              </Button>
+            </div>
+            <Card>
+              <CardContent className="p-6">
+                <div className="text-center">
+                  <ShoppingCart className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-medium mb-2">Product Management</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Add and manage Amazon affiliate products to monetize your platform
+                  </p>
+                  <Button onClick={() => setLocation('/admin/products')}>
+                    Go to Products Page
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         )}
 
         {activeTab === 'users' && (

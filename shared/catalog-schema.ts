@@ -142,6 +142,22 @@ export const homepageCategories = pgTable("homepage_categories", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
+// --- Amazon affiliate products ---
+export const amazonProducts = pgTable("amazon_products", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  category: text("category").notNull(),
+  imageUrl: text("image_url").notNull(),
+  amazonUrl: text("amazon_url").notNull(),
+  price: text("price").notNull(), // Store as text to handle currencies
+  availabilityCountries: text("availability_countries").array().notNull(),
+  videoUrl: text("video_url"),
+  description: text("description"),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
 // --- Zod schemas for inserting/selecting ---
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
@@ -184,6 +200,12 @@ export const insertHomepageCategorySchema = createInsertSchema(homepageCategorie
   updatedAt: true,
 });
 
+export const insertAmazonProductSchema = createInsertSchema(amazonProducts).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 // --- TypeScript types for database entities ---
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
@@ -213,3 +235,6 @@ export type InsertHomepageCategory = z.infer<typeof insertHomepageCategorySchema
 export type HomepageCategory = typeof homepageCategories.$inferSelect & {
   showCount?: number;
 };
+
+export type InsertAmazonProduct = z.infer<typeof insertAmazonProductSchema>;
+export type AmazonProduct = typeof amazonProducts.$inferSelect;

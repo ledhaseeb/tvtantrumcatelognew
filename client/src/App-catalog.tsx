@@ -10,10 +10,12 @@ import Compare from "@/pages/compare";
 import About from "@/pages/about";
 import Research from "@/pages/research";
 import ResearchDetail from "@/pages/research-detail";
+import Products from "@/pages/products";
 import CatalogShowDetailPage from "@/pages/catalog-show-detail-page-fixed";
 import AdminPage from "@/pages/admin-page";
 import AdminLogin from "@/pages/admin-login";
 import AdminDashboard from "@/pages/admin-dashboard";
+import AdminProducts from "@/pages/admin-products";
 import NotFound from "@/pages/not-found";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import TermsOfService from "@/pages/terms-of-service";
@@ -56,12 +58,14 @@ function AppContent() {
           <Route path="/about" component={About} />
           <Route path="/research" component={Research} />
           <Route path="/research/:id" component={ResearchDetail} />
+          <Route path="/products" component={Products} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/terms-of-service" component={TermsOfService} />
           <Route path="/show/:id" component={CatalogShowDetailPage} />
           {/* Secure admin access with unique URL */}
           <Route path="/tvtantrum-admin-secure-access-2024" component={AdminLogin} />
           <Route path="/admin/dashboard" component={AdminDashboard} />
+          <Route path="/admin/products" component={AdminProducts} />
           <Route path="/admin/login" component={AdminLogin} />
           <Route path="/admin" component={AdminPage} />
           <Route component={NotFound} />

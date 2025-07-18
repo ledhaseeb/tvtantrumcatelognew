@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Home, Filter, BarChart2, Info, X, BookOpen } from "lucide-react";
+import { Home, Filter, BarChart2, Info, X, BookOpen, ShoppingCart } from "lucide-react";
 import { scrollToTop } from "../lib/scroll-utils";
 
 export default function CatalogNavbar() {
@@ -58,6 +58,14 @@ export default function CatalogNavbar() {
               >
                 <BookOpen className="w-4 h-4 mr-2" />
                 Research
+              </Link>
+              <Link 
+                href="/products"
+                onClick={handleNavClick}
+                className={`${location === '/products' ? 'text-white border-b-2 border-white' : 'text-white/80 hover:text-white'} font-medium px-1 py-4 flex items-center`}
+              >
+                <ShoppingCart className="w-4 h-4 mr-2" />
+                Products
               </Link>
             </nav>
           </div>
@@ -146,6 +154,14 @@ export default function CatalogNavbar() {
                   >
                     <BookOpen className="h-5 w-5 mr-3" />
                     Research
+                  </Link>
+                  <Link 
+                    href="/products"
+                    onClick={handleNavClick}
+                    className={`flex items-center px-4 py-3 text-white rounded-lg hover:bg-white/10 transition-colors ${location === '/products' ? 'font-bold bg-white/20' : 'font-normal'}`}
+                  >
+                    <ShoppingCart className="h-5 w-5 mr-3" />
+                    Products
                   </Link>
                 </div>
               </div>

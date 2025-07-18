@@ -34,21 +34,25 @@ TV Tantrum is a gamified web platform that revolutionizes children's media disco
 1. **TV Shows**: Complete metadata including stimulation scores, themes, sensory details
 2. **Homepage Categories**: Admin-curated collections with dynamic filtering
 3. **Research Summaries**: Child development research content
-4. **Admin System**: Simple authentication and content management
+4. **Amazon Products**: Affiliate product catalog with category filtering and availability
+5. **Admin System**: Simple authentication and content management
 
 ### Frontend Components
 - **App-catalog.tsx**: Main application router (active entry point)
-- **CatalogNavbar**: Primary navigation component
+- **CatalogNavbar**: Primary navigation component with Products link
 - **ShowCard**: Reusable TV show display component
 - **SensoryBar**: Visual representation of stimulation levels
 - **catalog-home-responsive.tsx**: Mobile-first homepage
 - **catalog-show-detail-page-fixed.tsx**: Individual show details page
+- **products.tsx**: Public products page with category filtering
+- **admin-products.tsx**: Admin products management interface
 
 ### Backend Services
-- **catalog-storage.ts**: Primary data access layer with caching
+- **catalog-storage.ts**: Primary data access layer with caching and Amazon products
 - **cache.ts**: Multi-tier caching system for viral traffic
 - **simple-admin.ts**: Streamlined admin authentication
 - **enhanced-cache.ts**: Advanced caching for search and homepage data
+- **catalog-routes.ts**: API routes including Amazon products endpoints
 
 ## Data Flow
 
@@ -57,12 +61,15 @@ TV Tantrum is a gamified web platform that revolutionizes children's media disco
 2. **Browse/Filter**: Real-time filtering with cached results
 3. **Show Details**: Detailed view with related show recommendations
 4. **Search**: Intelligent search across names, descriptions, and themes
+5. **Products**: Browse and filter Amazon affiliate products with country availability
+6. **Affiliate Links**: Direct links to Amazon products with tracking
 
 ### Admin Flow
 1. **Authentication**: Simple session-based admin login
 2. **Content Management**: Add/edit shows and homepage categories
-3. **Image Upload**: Direct file upload with optimization
-4. **Cache Management**: Automatic cache invalidation on updates
+3. **Product Management**: Full CRUD operations for Amazon products
+4. **Image Upload**: Direct file upload with optimization
+5. **Cache Management**: Automatic cache invalidation on updates
 
 ### Caching Strategy
 - **L1 Cache**: In-memory for frequently accessed data (Node-cache)
@@ -124,6 +131,9 @@ Changelog:
 - June 24, 2025: Resolved empty WebP file issues causing image display problems
 - June 24, 2025: Added external image URL support for Amazon-hosted show images
 - June 24, 2025: Ready for Render deployment
+- July 18, 2025: Added complete Amazon affiliate products system with database schema, API routes, and frontend components
+- July 18, 2025: Implemented public products page with category filtering and country availability
+- July 18, 2025: Created admin products management interface with full CRUD operations
 
 ## User Preferences
 

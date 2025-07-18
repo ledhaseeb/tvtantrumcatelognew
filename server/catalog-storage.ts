@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import { TvShow, Theme, Platform, ResearchSummary, User, HomepageCategory, InsertHomepageCategory } from '@shared/catalog-schema';
+import { TvShow, Theme, Platform, ResearchSummary, User, HomepageCategory, InsertHomepageCategory, AmazonProduct, InsertAmazonProduct } from '@shared/catalog-schema';
 import { cache, CACHE_KEYS, CACHE_TTL, getCacheKey, invalidatePattern } from "./cache";
 import { 
   getCachedSearch, 
@@ -1187,6 +1187,262 @@ export class CatalogStorage {
   async getShowsForCategory(categoryId: number): Promise<TvShow[]> {
     // This method is deprecated, use getHomepageCategoryShows instead
     return this.getHomepageCategoryShows(categoryId);
+  }
+
+  /**
+   * Amazon Products Management
+   */
+  async getAmazonProducts(filters: {
+    category?: string;
+    search?: string;
+    isActive?: boolean;
+    limit?: number;
+    offset?: number;
+  } = {}): Promise<AmazonProduct[]> {
+    const cacheKey = getCacheKey('amazon-products', JSON.stringify(filters));
+    const cached = cache.get<AmazonProduct[]>(cacheKey);
+    
+    if (cached) {
+      return cached;
+    }
+
+    const client = await pool.connect();
+    try {
+      let query = `
+        SELECT * FROM amazon_products
+        WHERE is_active = COALESCE($1, is_active)
+      `;
+      let params: any[] = [filters.isActive ?? true];
+      let paramIndex = 2;
+
+      if (filters.category) {
+        query += ` AND category = $${paramIndex}`;
+        params.push(filters.category);
+        paramIndex++;
+      }
+
+      if (filters.search) {
+        query += ` AND (name ILIKE $${paramIndex} OR description ILIKE $${paramIndex})`;
+        params.push(`%${filters.search}%`);
+        paramIndex++;
+      }
+
+      query += ` ORDER BY created_at DESC`;
+
+      if (filters.limit) {
+        query += ` LIMIT $${paramIndex}`;
+        params.push(filters.limit);
+        paramIndex++;
+      }
+
+      if (filters.offset) {
+        query += ` OFFSET $${paramIndex}`;
+        params.push(filters.offset);
+      }
+
+      const result = await client.query(query, params);
+      const products = result.rows as AmazonProduct[];
+      
+      // Cache for 10 minutes
+      cache.set(cacheKey, products, CACHE_TTL.MEDIUM);
+      
+      return products;
+    } finally {
+      client.release();
+    }
+  }
+
+  async getAmazonProductById(id: number): Promise<AmazonProduct | null> {
+    const cacheKey = getCacheKey('amazon-product', id);
+    const cached = cache.get<AmazonProduct>(cacheKey);
+    
+    if (cached) {
+      return cached;
+    }
+
+    const client = await pool.connect();
+    try {
+      const result = await client.query(
+        'SELECT * FROM amazon_products WHERE id = $1',
+        [id]
+      );
+      
+      if (result.rows.length === 0) {
+        return null;
+      }
+      
+      const product = result.rows[0] as AmazonProduct;
+      cache.set(cacheKey, product, CACHE_TTL.MEDIUM);
+      
+      return product;
+    } finally {
+      client.release();
+    }
+  }
+
+  async createAmazonProduct(product: InsertAmazonProduct): Promise<AmazonProduct> {
+    const client = await pool.connect();
+    try {
+      const result = await client.query(
+        `INSERT INTO amazon_products (name, category, image_url, amazon_url, price, availability_countries, video_url, description, is_active)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+         RETURNING *`,
+        [
+          product.name,
+          product.category,
+          product.imageUrl,
+          product.amazonUrl,
+          product.price,
+          product.availabilityCountries,
+          product.videoUrl || null,
+          product.description || null,
+          product.isActive ?? true
+        ]
+      );
+      
+      const newProduct = result.rows[0] as AmazonProduct;
+      
+      // Clear cache
+      invalidatePattern('amazon-products');
+      
+      return newProduct;
+    } finally {
+      client.release();
+    }
+  }
+
+  async updateAmazonProduct(id: number, updates: Partial<InsertAmazonProduct>): Promise<AmazonProduct | null> {
+    const client = await pool.connect();
+    try {
+      const setParts: string[] = [];
+      const values: any[] = [];
+      let paramIndex = 1;
+
+      if (updates.name !== undefined) {
+        setParts.push(`name = $${paramIndex}`);
+        values.push(updates.name);
+        paramIndex++;
+      }
+
+      if (updates.category !== undefined) {
+        setParts.push(`category = $${paramIndex}`);
+        values.push(updates.category);
+        paramIndex++;
+      }
+
+      if (updates.imageUrl !== undefined) {
+        setParts.push(`image_url = $${paramIndex}`);
+        values.push(updates.imageUrl);
+        paramIndex++;
+      }
+
+      if (updates.amazonUrl !== undefined) {
+        setParts.push(`amazon_url = $${paramIndex}`);
+        values.push(updates.amazonUrl);
+        paramIndex++;
+      }
+
+      if (updates.price !== undefined) {
+        setParts.push(`price = $${paramIndex}`);
+        values.push(updates.price);
+        paramIndex++;
+      }
+
+      if (updates.availabilityCountries !== undefined) {
+        setParts.push(`availability_countries = $${paramIndex}`);
+        values.push(updates.availabilityCountries);
+        paramIndex++;
+      }
+
+      if (updates.videoUrl !== undefined) {
+        setParts.push(`video_url = $${paramIndex}`);
+        values.push(updates.videoUrl);
+        paramIndex++;
+      }
+
+      if (updates.description !== undefined) {
+        setParts.push(`description = $${paramIndex}`);
+        values.push(updates.description);
+        paramIndex++;
+      }
+
+      if (updates.isActive !== undefined) {
+        setParts.push(`is_active = $${paramIndex}`);
+        values.push(updates.isActive);
+        paramIndex++;
+      }
+
+      if (setParts.length === 0) {
+        return this.getAmazonProductById(id);
+      }
+
+      setParts.push(`updated_at = NOW()`);
+      values.push(id);
+
+      const query = `
+        UPDATE amazon_products 
+        SET ${setParts.join(', ')}
+        WHERE id = $${paramIndex}
+        RETURNING *
+      `;
+
+      const result = await client.query(query, values);
+      
+      if (result.rows.length === 0) {
+        return null;
+      }
+      
+      const updatedProduct = result.rows[0] as AmazonProduct;
+      
+      // Clear cache
+      invalidatePattern('amazon-products');
+      invalidatePattern(`amazon-product:${id}`);
+      
+      return updatedProduct;
+    } finally {
+      client.release();
+    }
+  }
+
+  async deleteAmazonProduct(id: number): Promise<boolean> {
+    const client = await pool.connect();
+    try {
+      const result = await client.query(
+        'DELETE FROM amazon_products WHERE id = $1',
+        [id]
+      );
+      
+      // Clear cache
+      invalidatePattern('amazon-products');
+      invalidatePattern(`amazon-product:${id}`);
+      
+      return result.rowCount > 0;
+    } finally {
+      client.release();
+    }
+  }
+
+  async getAmazonProductCategories(): Promise<string[]> {
+    const cacheKey = 'amazon-product-categories';
+    const cached = cache.get<string[]>(cacheKey);
+    
+    if (cached) {
+      return cached;
+    }
+
+    const client = await pool.connect();
+    try {
+      const result = await client.query(
+        'SELECT DISTINCT category FROM amazon_products WHERE is_active = true ORDER BY category'
+      );
+      
+      const categories = result.rows.map(row => row.category);
+      cache.set(cacheKey, categories, CACHE_TTL.LONG);
+      
+      return categories;
+    } finally {
+      client.release();
+    }
   }
 
   /**
