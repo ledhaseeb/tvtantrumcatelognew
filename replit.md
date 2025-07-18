@@ -134,6 +134,10 @@ Changelog:
 - July 18, 2025: Added complete Amazon affiliate products system with database schema, API routes, and frontend components
 - July 18, 2025: Implemented public products page with category filtering and country availability
 - July 18, 2025: Created admin products management interface with full CRUD operations
+- July 18, 2025: Implemented comprehensive image upload system with WebP optimization and SEO naming
+- July 18, 2025: Fixed mobile responsiveness issues on admin products page for small screens
+- July 18, 2025: Added intelligent video preview system supporting YouTube, Vimeo, and direct video files
+- July 18, 2025: Integrated video embedding that keeps users on site instead of redirecting to external platforms
 
 ## User Preferences
 

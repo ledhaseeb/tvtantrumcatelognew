@@ -471,6 +471,14 @@ export default function AdminProductsPage() {
                   </div>
                 </div>
                 
+                {product.description && (
+                  <div className="mt-2">
+                    <p className="text-sm text-gray-600 line-clamp-2">
+                      {product.description}
+                    </p>
+                  </div>
+                )}
+                
                 <div className="flex items-center justify-between pt-2">
                   <div className="flex items-center space-x-2">
                     <Button
