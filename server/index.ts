@@ -673,6 +673,9 @@ router.get('/admin/products', requireAdmin, async (req, res) => {
   }
 });
 
+// Serve uploaded files
+app.use('/uploads', express.static(join(__dirname, '../public/uploads')));
+
 app.use('/api/admin', adminRoutes);
 app.use('/api', router);
 
