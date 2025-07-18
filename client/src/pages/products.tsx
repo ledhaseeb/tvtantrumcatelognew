@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Search, ShoppingCart, Video } from "lucide-react";
 import { AmazonProduct } from "@shared/catalog-schema";
+import { VideoPreview } from "@/components/VideoPreview";
 
 // Country flag component
 const CountryFlag = ({ country }: { country: string }) => {
@@ -33,7 +34,7 @@ const CountryFlag = ({ country }: { country: string }) => {
 };
 
 // Product card component
-const ProductCard = ({ product }: { product: AmazonProduct }) => {
+const ProductCard = ({ product, onVideoClick }: { product: AmazonProduct; onVideoClick: (videoUrl: string, productName: string) => void }) => {
   const handleProductClick = () => {
     // Open Amazon affiliate link in new tab
     window.open(product.amazonUrl, '_blank', 'noopener,noreferrer');
@@ -91,7 +92,7 @@ const ProductCard = ({ product }: { product: AmazonProduct }) => {
               className="h-8 w-8 p-0"
               onClick={(e) => {
                 e.stopPropagation();
-                window.open(product.videoUrl!, '_blank', 'noopener,noreferrer');
+                onVideoClick(product.videoUrl!, product.name);
               }}
             >
               <Video className="h-4 w-4" />
@@ -113,6 +114,11 @@ export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [debouncedSearch, setDebouncedSearch] = useState<string>("");
+  const [videoPreview, setVideoPreview] = useState<{ isOpen: boolean; videoUrl: string; productName: string }>({
+    isOpen: false,
+    videoUrl: '',
+    productName: ''
+  });
 
   // Debounce search input
   useEffect(() => {
@@ -243,7 +249,17 @@ export default function ProductsPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard 
+                key={product.id} 
+                product={product} 
+                onVideoClick={(videoUrl, productName) => {
+                  setVideoPreview({
+                    isOpen: true,
+                    videoUrl,
+                    productName
+                  });
+                }}
+              />
             ))}
           </div>
         )}
@@ -256,6 +272,14 @@ export default function ProductsPage() {
           </p>
         </div>
       </div>
+
+      {/* Video Preview Modal */}
+      <VideoPreview
+        isOpen={videoPreview.isOpen}
+        onClose={() => setVideoPreview({ isOpen: false, videoUrl: '', productName: '' })}
+        videoUrl={videoPreview.videoUrl}
+        productName={videoPreview.productName}
+      />
     </div>
   );
 }

@@ -12,6 +12,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Plus, Edit, Trash2, ExternalLink, Video, ShoppingCart } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { AmazonProduct, InsertAmazonProduct } from "@shared/catalog-schema";
+import { VideoPreview } from "@/components/VideoPreview";
 
 // Country options for availability
 const COUNTRIES = [
@@ -278,6 +279,11 @@ const ProductForm = ({
 export default function AdminProductsPage() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<AmazonProduct | null>(null);
+  const [videoPreview, setVideoPreview] = useState<{ isOpen: boolean; videoUrl: string; productName: string }>({
+    isOpen: false,
+    videoUrl: '',
+    productName: ''
+  });
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -478,7 +484,14 @@ export default function AdminProductsPage() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => window.open(product.videoUrl!, '_blank')}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setVideoPreview({
+                            isOpen: true,
+                            videoUrl: product.videoUrl!,
+                            productName: product.name
+                          });
+                        }}
                       >
                         <Video className="h-4 w-4" />
                       </Button>
@@ -525,6 +538,14 @@ export default function AdminProductsPage() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Video Preview Modal */}
+      <VideoPreview
+        isOpen={videoPreview.isOpen}
+        onClose={() => setVideoPreview({ isOpen: false, videoUrl: '', productName: '' })}
+        videoUrl={videoPreview.videoUrl}
+        productName={videoPreview.productName}
+      />
     </div>
   );
 }
