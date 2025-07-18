@@ -50,10 +50,67 @@ const ProductForm = ({
     description: product?.description || '',
     isActive: product?.isActive ?? true,
   });
+  
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>(product?.imageUrl || '');
+  const [isUploading, setIsUploading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleImageUpload = async (file: File) => {
+    setIsUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('image', file);
+      
+      const response = await fetch('/api/admin/upload-image', {
+        method: 'POST',
+        body: formData,
+      });
+      
+      if (!response.ok) {
+        throw new Error('Upload failed');
+      }
+      
+      const data = await response.json();
+      return data.imageUrl;
+    } catch (error) {
+      console.error('Image upload error:', error);
+      throw error;
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImageFile(file);
+      
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImagePreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
+    
+    let finalFormData = { ...formData };
+    
+    // Upload image if a file is selected
+    if (imageFile) {
+      try {
+        const imageUrl = await handleImageUpload(imageFile);
+        finalFormData.imageUrl = imageUrl;
+      } catch (error) {
+        console.error('Failed to upload image:', error);
+        return;
+      }
+    }
+    
+    onSubmit(finalFormData);
   };
 
   const handleCountryToggle = (countryCode: string) => {
@@ -90,13 +147,43 @@ const ProductForm = ({
       </div>
 
       <div>
-        <Label htmlFor="imageUrl">Image URL *</Label>
-        <Input
-          id="imageUrl"
-          value={formData.imageUrl}
-          onChange={(e) => setFormData(prev => ({ ...prev, imageUrl: e.target.value }))}
-          required
-        />
+        <Label htmlFor="image">Product Image *</Label>
+        <div className="space-y-4">
+          <div className="flex items-center space-x-4">
+            <Input
+              id="image"
+              type="file"
+              accept="image/*"
+              onChange={handleFileSelect}
+              className="flex-1"
+            />
+            {isUploading && (
+              <div className="text-sm text-gray-600">Uploading...</div>
+            )}
+          </div>
+          
+          {imagePreview && (
+            <div className="relative">
+              <img
+                src={imagePreview}
+                alt="Product preview"
+                className="w-32 h-32 object-cover rounded-lg border"
+              />
+            </div>
+          )}
+          
+          <div className="text-sm text-gray-600">
+            Or enter an image URL:
+          </div>
+          <Input
+            value={formData.imageUrl}
+            onChange={(e) => {
+              setFormData(prev => ({ ...prev, imageUrl: e.target.value }));
+              setImagePreview(e.target.value);
+            }}
+            placeholder="https://example.com/image.jpg"
+          />
+        </div>
       </div>
 
       <div>
@@ -340,7 +427,11 @@ export default function AdminProductsPage() {
                     className="h-full w-full object-cover"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = `https://via.placeholder.com/320x320/e5e7eb/9ca3af?text=${encodeURIComponent(product.name)}`;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent) {
+                        parent.innerHTML = `<div class="h-full w-full bg-gray-100 flex items-center justify-center text-gray-500 text-sm">Image not available</div>`;
+                      }
                     }}
                   />
                 </div>

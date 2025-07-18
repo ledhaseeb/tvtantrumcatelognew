@@ -14,6 +14,48 @@ const requireAdmin = (req: any, res: any, next: any) => {
   next();
 };
 
+// Image upload endpoint
+router.post('/upload-image', upload.single('image'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No image file provided' });
+    }
+
+    const { buffer, originalname } = req.file;
+    const timestamp = Date.now();
+    const safeName = originalname.replace(/[^a-zA-Z0-9.-]/g, '_');
+    const filename = `product_${timestamp}_${safeName}`;
+    
+    // Create uploads directory if it doesn't exist
+    const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
+    await fs.mkdir(uploadsDir, { recursive: true });
+    
+    // Optimize image with sharp
+    const optimizedBuffer = await sharp(buffer)
+      .resize(800, 800, { 
+        fit: 'inside',
+        withoutEnlargement: true 
+      })
+      .webp({ quality: 85 })
+      .toBuffer();
+    
+    const webpFilename = filename.replace(/\.[^/.]+$/, '') + '.webp';
+    const filepath = path.join(uploadsDir, webpFilename);
+    
+    await fs.writeFile(filepath, optimizedBuffer);
+    
+    const imageUrl = `/uploads/${webpFilename}`;
+    
+    res.json({ 
+      imageUrl,
+      message: 'Image uploaded and optimized successfully' 
+    });
+  } catch (error) {
+    console.error('Image upload error:', error);
+    res.status(500).json({ error: 'Failed to upload image' });
+  }
+});
+
 // Get admin stats
 router.get('/stats', async (req, res) => {
   try {

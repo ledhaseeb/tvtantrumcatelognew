@@ -49,7 +49,11 @@ const ProductCard = ({ product }: { product: AmazonProduct }) => {
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = `https://via.placeholder.com/320x320/e5e7eb/9ca3af?text=${encodeURIComponent(product.name)}`;
+              target.style.display = 'none';
+              const parent = target.parentElement;
+              if (parent) {
+                parent.innerHTML = `<div class="h-full w-full bg-gray-100 flex items-center justify-center text-gray-500 text-sm">Image not available</div>`;
+              }
             }}
           />
         </div>
