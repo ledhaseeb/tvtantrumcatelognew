@@ -561,6 +561,118 @@ app.post('/api/cache/clear', (req, res) => {
   }
 });
 
+// Amazon Products API routes
+// Public routes
+router.get('/products', async (req, res) => {
+  try {
+    const filters = {
+      category: req.query.category as string,
+      search: req.query.search as string,
+      limit: req.query.limit ? parseInt(req.query.limit as string) : undefined,
+      offset: req.query.offset ? parseInt(req.query.offset as string) : undefined,
+    };
+    
+    const products = await catalogStorage.getAmazonProducts(filters);
+    res.json(products);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({ message: "Failed to fetch products" });
+  }
+});
+
+router.get('/products/categories', async (req, res) => {
+  try {
+    const categories = await catalogStorage.getAmazonProductCategories();
+    res.json(categories);
+  } catch (error) {
+    console.error("Error fetching product categories:", error);
+    res.status(500).json({ message: "Failed to fetch product categories" });
+  }
+});
+
+router.get('/products/:id', async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const product = await catalogStorage.getAmazonProductById(id);
+    
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    res.status(500).json({ message: "Failed to fetch product" });
+  }
+});
+
+// Admin middleware for products
+const requireAdmin = (req: any, res: any, next: any) => {
+  console.log('[ADMIN] Authentication disabled for development');
+  next();
+};
+
+// Admin product management routes
+router.post('/admin/products', requireAdmin, async (req, res) => {
+  try {
+    const product = await catalogStorage.createAmazonProduct(req.body);
+    res.json(product);
+  } catch (error) {
+    console.error("Error creating product:", error);
+    res.status(500).json({ message: "Failed to create product" });
+  }
+});
+
+router.put('/admin/products/:id', requireAdmin, async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const product = await catalogStorage.updateAmazonProduct(id, req.body);
+    
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    console.error("Error updating product:", error);
+    res.status(500).json({ message: "Failed to update product" });
+  }
+});
+
+router.delete('/admin/products/:id', requireAdmin, async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const success = await catalogStorage.deleteAmazonProduct(id);
+    
+    if (success) {
+      res.json({ message: "Product deleted successfully" });
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    res.status(500).json({ message: "Failed to delete product" });
+  }
+});
+
+router.get('/admin/products', requireAdmin, async (req, res) => {
+  try {
+    const filters = {
+      category: req.query.category as string,
+      search: req.query.search as string,
+      isActive: req.query.isActive === 'false' ? false : undefined,
+      limit: req.query.limit ? parseInt(req.query.limit as string) : undefined,
+      offset: req.query.offset ? parseInt(req.query.offset as string) : undefined,
+    };
+    
+    const products = await catalogStorage.getAmazonProducts(filters);
+    res.json(products);
+  } catch (error) {
+    console.error("Error fetching admin products:", error);
+    res.status(500).json({ message: "Failed to fetch products" });
+  }
+});
+
 app.use('/api/admin', adminRoutes);
 app.use('/api', router);
 
