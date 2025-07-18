@@ -123,8 +123,8 @@ const ProductForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
         <div>
           <Label htmlFor="name">Product Name *</Label>
           <Input
@@ -148,14 +148,14 @@ const ProductForm = ({
 
       <div>
         <Label htmlFor="image">Product Image *</Label>
-        <div className="space-y-4">
-          <div className="flex items-center space-x-4">
+        <div className="space-y-3">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             <Input
               id="image"
               type="file"
               accept="image/*"
               onChange={handleFileSelect}
-              className="flex-1"
+              className="flex-1 text-sm"
             />
             {isUploading && (
               <div className="text-sm text-gray-600">Uploading...</div>
@@ -167,7 +167,7 @@ const ProductForm = ({
               <img
                 src={imagePreview}
                 alt="Product preview"
-                className="w-32 h-32 object-cover rounded-lg border"
+                className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg border"
               />
             </div>
           )}
@@ -182,6 +182,7 @@ const ProductForm = ({
               setImagePreview(e.target.value);
             }}
             placeholder="https://example.com/image.jpg"
+            className="text-sm"
           />
         </div>
       </div>
@@ -196,7 +197,7 @@ const ProductForm = ({
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
         <div>
           <Label htmlFor="price">Price *</Label>
           <Input
@@ -225,13 +226,14 @@ const ProductForm = ({
           id="description"
           value={formData.description}
           onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-          rows={3}
+          rows={2}
+          className="text-sm"
         />
       </div>
 
       <div>
         <Label>Availability Countries *</Label>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mt-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-2 mt-2">
           {COUNTRIES.map(country => (
             <div key={country.code} className="flex items-center space-x-2">
               <input
@@ -239,8 +241,9 @@ const ProductForm = ({
                 id={country.code}
                 checked={formData.availabilityCountries.includes(country.code)}
                 onChange={() => handleCountryToggle(country.code)}
+                className="w-4 h-4"
               />
-              <label htmlFor={country.code} className="text-sm">
+              <label htmlFor={country.code} className="text-sm flex-1">
                 {country.flag} {country.name}
               </label>
             </div>
@@ -260,11 +263,11 @@ const ProductForm = ({
         <Label htmlFor="isActive">Active</Label>
       </div>
 
-      <div className="flex justify-end space-x-2">
-        <Button type="button" variant="outline" onClick={onCancel}>
+      <div className="flex justify-end space-x-2 pt-2">
+        <Button type="button" variant="outline" onClick={onCancel} size="sm">
           Cancel
         </Button>
-        <Button type="submit" disabled={formData.availabilityCountries.length === 0}>
+        <Button type="submit" disabled={formData.availabilityCountries.length === 0} size="sm">
           {product ? 'Update Product' : 'Create Product'}
         </Button>
       </div>
@@ -377,14 +380,16 @@ export default function AdminProductsPage() {
               Add Product
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl">
-            <DialogHeader>
-              <DialogTitle>Add New Product</DialogTitle>
+          <DialogContent className="max-w-2xl max-h-[95vh] overflow-y-auto p-4 sm:p-6 m-4 sm:m-6">
+            <DialogHeader className="pb-4">
+              <DialogTitle className="text-lg sm:text-xl">Add New Product</DialogTitle>
             </DialogHeader>
-            <ProductForm
-              onSubmit={(product) => createMutation.mutate(product)}
-              onCancel={() => setIsCreateOpen(false)}
-            />
+            <div className="max-h-[75vh] overflow-y-auto">
+              <ProductForm
+                onSubmit={(product) => createMutation.mutate(product)}
+                onCancel={() => setIsCreateOpen(false)}
+              />
+            </div>
           </DialogContent>
         </Dialog>
       </div>
@@ -505,17 +510,19 @@ export default function AdminProductsPage() {
 
       {/* Edit Product Dialog */}
       <Dialog open={!!editingProduct} onOpenChange={() => setEditingProduct(null)}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle>Edit Product</DialogTitle>
+        <DialogContent className="max-w-2xl max-h-[95vh] overflow-y-auto p-4 sm:p-6 m-4 sm:m-6">
+          <DialogHeader className="pb-4">
+            <DialogTitle className="text-lg sm:text-xl">Edit Product</DialogTitle>
           </DialogHeader>
-          {editingProduct && (
-            <ProductForm
-              product={editingProduct}
-              onSubmit={(product) => updateMutation.mutate({ id: editingProduct.id, product })}
-              onCancel={() => setEditingProduct(null)}
-            />
-          )}
+          <div className="max-h-[75vh] overflow-y-auto">
+            {editingProduct && (
+              <ProductForm
+                product={editingProduct}
+                onSubmit={(product) => updateMutation.mutate({ id: editingProduct.id, product })}
+                onCancel={() => setEditingProduct(null)}
+              />
+            )}
+          </div>
         </DialogContent>
       </Dialog>
     </div>
