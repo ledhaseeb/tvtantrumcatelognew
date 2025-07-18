@@ -357,7 +357,7 @@ export default function AdminProductsPage() {
                     {product.price}
                   </div>
                   <div className="flex items-center space-x-1">
-                    {product.availabilityCountries.map((country) => (
+                    {(product.availabilityCountries || []).map((country) => (
                       <span key={country} className="text-sm">
                         {COUNTRIES.find(c => c.code === country)?.flag || '🌍'}
                       </span>

@@ -1241,7 +1241,20 @@ export class CatalogStorage {
       }
 
       const result = await client.query(query, params);
-      const products = result.rows as AmazonProduct[];
+      const products = result.rows.map(row => ({
+        id: row.id,
+        name: row.name,
+        category: row.category,
+        imageUrl: row.image_url,
+        amazonUrl: row.amazon_url,
+        price: row.price,
+        availabilityCountries: row.availability_countries,
+        videoUrl: row.video_url,
+        description: row.description,
+        isActive: row.is_active,
+        createdAt: row.created_at,
+        updatedAt: row.updated_at
+      }));
       
       // Cache for 10 minutes
       cache.set(cacheKey, products, CACHE_TTL.MEDIUM);
@@ -1271,7 +1284,21 @@ export class CatalogStorage {
         return null;
       }
       
-      const product = result.rows[0] as AmazonProduct;
+      const row = result.rows[0];
+      const product = {
+        id: row.id,
+        name: row.name,
+        category: row.category,
+        imageUrl: row.image_url,
+        amazonUrl: row.amazon_url,
+        price: row.price,
+        availabilityCountries: row.availability_countries,
+        videoUrl: row.video_url,
+        description: row.description,
+        isActive: row.is_active,
+        createdAt: row.created_at,
+        updatedAt: row.updated_at
+      };
       cache.set(cacheKey, product, CACHE_TTL.MEDIUM);
       
       return product;
@@ -1300,7 +1327,21 @@ export class CatalogStorage {
         ]
       );
       
-      const newProduct = result.rows[0] as AmazonProduct;
+      const row = result.rows[0];
+      const newProduct = {
+        id: row.id,
+        name: row.name,
+        category: row.category,
+        imageUrl: row.image_url,
+        amazonUrl: row.amazon_url,
+        price: row.price,
+        availabilityCountries: row.availability_countries,
+        videoUrl: row.video_url,
+        description: row.description,
+        isActive: row.is_active,
+        createdAt: row.created_at,
+        updatedAt: row.updated_at
+      };
       
       // Clear cache
       invalidatePattern('amazon-products');
@@ -1392,7 +1433,21 @@ export class CatalogStorage {
         return null;
       }
       
-      const updatedProduct = result.rows[0] as AmazonProduct;
+      const row = result.rows[0];
+      const updatedProduct = {
+        id: row.id,
+        name: row.name,
+        category: row.category,
+        imageUrl: row.image_url,
+        amazonUrl: row.amazon_url,
+        price: row.price,
+        availabilityCountries: row.availability_countries,
+        videoUrl: row.video_url,
+        description: row.description,
+        isActive: row.is_active,
+        createdAt: row.created_at,
+        updatedAt: row.updated_at
+      };
       
       // Clear cache
       invalidatePattern('amazon-products');
