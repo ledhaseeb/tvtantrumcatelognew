@@ -11,17 +11,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from client/dist
-app.use(express.static(path.join(process.cwd(), 'client', 'dist')));
+app.use(express.static(path.join(process.cwd(), "client", "dist")));
 
 // Register catalog API routes
 registerCatalogRoutes(app);
 
 // Serve React app for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'client', 'dist', 'index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(process.cwd(), "client", "dist", "index.html"));
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 1234;
 
 server.listen(PORT, () => {
   console.log(`TV Tantrum Catalog running on http://localhost:${PORT}`);
