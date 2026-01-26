@@ -11,6 +11,7 @@ import { catalogStorage } from './catalog-storage';
 import { Pool } from 'pg';
 import { setupSimpleAdminAuth } from './simple-admin';
 import adminRoutes from './admin-routes';
+import stripeRoutes from './stripe-routes';
 import { cache, getCacheStats } from './cache';
 import { getEnhancedCacheStats } from './enhanced-cache';
 import { setupDatabaseRecovery } from './database-recovery';
@@ -677,6 +678,7 @@ router.get('/admin/products', requireAdmin, async (req, res) => {
 app.use('/uploads', express.static(join(__dirname, '../public/uploads')));
 
 app.use('/api/admin', adminRoutes);
+app.use('/api/stripe', stripeRoutes);
 app.use('/api', router);
 
 const port = Number(process.env.PORT) || 5000;

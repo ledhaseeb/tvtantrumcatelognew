@@ -427,6 +427,29 @@ export type ShowSubmission = typeof showSubmissions.$inferSelect;
 export type InsertUserReferral = z.infer<typeof insertUserReferralSchema>;
 export type UserReferral = typeof userReferrals.$inferSelect;
 
+// --- Pre-orders table for KidSafeTV ---
+export const preOrders = pgTable("pre_orders", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull(),
+  name: text("name"),
+  stripePaymentIntentId: text("stripe_payment_intent_id"),
+  stripeCustomerId: text("stripe_customer_id"),
+  amount: integer("amount").notNull(), // Amount in cents
+  currency: text("currency").default("usd"),
+  status: text("status").default("pending"), // pending, completed, failed, refunded
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  completedAt: timestamp("completed_at"),
+});
+
+export const insertPreOrderSchema = createInsertSchema(preOrders).omit({
+  id: true,
+  createdAt: true,
+  completedAt: true,
+});
+
+export type InsertPreOrder = z.infer<typeof insertPreOrderSchema>;
+export type PreOrder = typeof preOrders.$inferSelect;
+
 // --- Notifications table ---
 export const notifications = pgTable("notifications", {
   id: serial("id").primaryKey(),

@@ -13,6 +13,8 @@ import Research from "@/pages/research";
 import ResearchDetail from "@/pages/research-detail";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import TermsOfService from "@/pages/terms-of-service";
+import ThankYou from "@/pages/thank-you";
+import Preorder from "@/pages/preorder";
 
 import CatalogHomeResponsive from "@/pages/catalog-home-responsive";
 import CatalogNavbar from "@/components/CatalogNavbar";
@@ -55,6 +57,27 @@ function Router() {
             <CatalogNavbar />
             <div className="flex-grow">
               <TermsOfService />
+            </div>
+            <Footer />
+          </div>
+        </Route>
+
+        {/* Hidden Pages - Accessible via direct link only */}
+        <Route path="/thank-you">
+          <div className="flex-grow flex flex-col">
+            <CatalogNavbar />
+            <div className="flex-grow">
+              <ThankYou />
+            </div>
+            <Footer />
+          </div>
+        </Route>
+        
+        <Route path="/preorder">
+          <div className="flex-grow flex flex-col">
+            <CatalogNavbar />
+            <div className="flex-grow">
+              <Preorder />
             </div>
             <Footer />
           </div>
