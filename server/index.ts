@@ -76,9 +76,21 @@ app.use((req, res, next) => {
   next();
 });
 
-// Middleware
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+// Middleware - Skip JSON parsing for Stripe webhook (needs raw body for signature verification)
+app.use((req, res, next) => {
+  if (req.path === '/api/stripe/webhook') {
+    next();
+  } else {
+    express.json({ limit: '50mb' })(req, res, next);
+  }
+});
+app.use((req, res, next) => {
+  if (req.path === '/api/stripe/webhook') {
+    next();
+  } else {
+    express.urlencoded({ extended: true, limit: '50mb' })(req, res, next);
+  }
+});
 
 // PostgreSQL session store for production persistence
 const PgStore = ConnectPgSimple(session);

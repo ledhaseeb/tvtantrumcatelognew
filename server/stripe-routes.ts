@@ -93,7 +93,7 @@ router.post('/confirm-payment', async (req, res) => {
   }
 });
 
-router.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+router.post('/webhook', express.raw({ type: '*/*' }), async (req, res) => {
   const stripe = getStripe();
   if (!stripe) {
     return res.status(500).send('Stripe is not configured.');
