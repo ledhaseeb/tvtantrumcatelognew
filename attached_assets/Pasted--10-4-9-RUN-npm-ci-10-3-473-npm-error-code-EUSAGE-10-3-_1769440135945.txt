@@ -1,0 +1,58 @@
+#10 [4/9] RUN npm ci
+#10 3.473 npm error code EUSAGE
+#10 3.474 npm error
+#10 3.474 npm error `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.
+#10 3.474 npm error
+#10 3.474 npm error Missing: @stripe/react-stripe-js@5.4.1 from lock file
+#10 3.474 npm error Missing: @stripe/stripe-js@8.6.4 from lock file
+#10 3.474 npm error Missing: stripe@20.2.0 from lock file
+#10 3.474 npm error Missing: qs@6.14.1 from lock file
+#10 3.474 npm error
+#10 3.474 npm error Clean install a project
+#10 3.474 npm error
+#10 3.474 npm error Usage:
+#10 3.474 npm error npm ci
+#10 3.474 npm error
+#10 3.474 npm error Options:
+#10 3.474 npm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]
+#10 3.474 npm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]
+#10 3.474 npm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+#10 3.474 npm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]
+#10 3.474 npm error [--no-bin-links] [--no-fund] [--dry-run]
+#10 3.474 npm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]
+#10 3.474 npm error [-ws|--workspaces] [--include-workspace-root] [--install-links]
+#10 3.474 npm error
+#10 3.474 npm error aliases: clean-install, ic, install-clean, isntall-clean
+#10 3.474 npm error
+#10 3.474 npm error Run "npm help ci" for more info
+#10 3.478 npm notice
+#10 3.478 npm notice New major version of npm available! 10.8.2 -> 11.8.0
+#10 3.478 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.8.0
+#10 3.478 npm notice To update run: npm install -g npm@11.8.0
+#10 3.478 npm notice
+#10 3.498 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-01-26T15_06_32_311Z-debug-0.log
+#10 ERROR: process "/bin/sh -c npm ci" did not complete successfully: exit code: 1
+------
+ > [4/9] RUN npm ci:
+3.474 npm error
+3.474 npm error aliases: clean-install, ic, install-clean, isntall-clean
+3.474 npm error
+3.474 npm error Run "npm help ci" for more info
+3.478 npm notice
+3.478 npm notice New major version of npm available! 10.8.2 -> 11.8.0
+3.478 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.8.0
+3.478 npm notice To update run: npm install -g npm@11.8.0
+3.478 npm notice
+3.498 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-01-26T15_06_32_311Z-debug-0.log
+------
+Dockerfile:10
+--------------------
+   8 |     
+   9 |     # Install all dependencies
+  10 | >>> RUN npm ci
+  11 |     
+  12 |     # Copy source code
+--------------------
+error: failed to solve: process "/bin/sh -c npm ci" did not complete successfully: exit code: 1
+error: exit status 1
+Need better ways to work with logs? Try theRender CLI, Render MCP Server, or set up a log stream integration 
