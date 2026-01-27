@@ -28,9 +28,9 @@ import {
   Heart
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import sessionPreviewImg from "@assets/Screenshot_2026-01-27_at_11.57.33_1769515057013.png";
-import analyticsImg from "@assets/Screenshot_2026-01-27_at_11.59.27_1769515170535.png";
-import sessionStartImg from "@assets/Screenshot_2026-01-27_at_12.05.04_1769515506837.png";
+import sessionStartImg from "@assets/child_profiles_and_session_control_1769536449985.png";
+import sessionPreviewImg from "@assets/stimulation_aware_playlists_1769536449985.png";
+import analyticsImg from "@assets/watch_time_analytics_1769536449986.png";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '');
 
