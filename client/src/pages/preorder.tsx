@@ -155,7 +155,7 @@ function CheckoutModal({
               <Button 
                 type="submit" 
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-6 text-lg font-semibold"
+                className="w-full bg-gradient-to-r from-teal-700 to-teal-600 hover:from-teal-800 hover:to-teal-700 text-white py-6 text-lg font-semibold"
               >
                 {isLoading ? (
                   <>
@@ -351,7 +351,7 @@ export default function Preorder() {
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       {/* Hero Section */}
       <section className="relative py-16 md:py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-700/10 to-amber-500/10" />
         <div className="relative max-w-6xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/20 border border-orange-500/30 text-orange-400 rounded-full text-sm mb-6">
             <Sparkles className="w-4 h-4" />
@@ -360,7 +360,7 @@ export default function Preorder() {
           
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
             The end of <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-amber-400">
               overstimulation.
             </span>
           </h1>
@@ -373,7 +373,7 @@ export default function Preorder() {
             <Button 
               onClick={scrollToCheckout}
               size="lg"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 text-lg font-semibold rounded-xl shadow-lg shadow-blue-500/25"
+              className="bg-gradient-to-r from-teal-700 to-teal-600 hover:from-teal-800 hover:to-teal-700 text-white px-8 py-6 text-lg font-semibold rounded-xl shadow-lg shadow-teal-700/25"
             >
               <Play className="w-5 h-5 mr-2" />
               Pre-order Now - $40
@@ -465,10 +465,10 @@ export default function Preorder() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => (
-              <Card key={index} className="bg-slate-800/50 border-slate-700 hover:border-blue-500/50 transition-colors">
+              <Card key={index} className="bg-slate-800/50 border-slate-700 hover:border-teal-500/50 transition-colors">
                 <CardContent className="pt-6">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl flex items-center justify-center mb-4">
-                    <feature.icon className="w-6 h-6 text-blue-400" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-teal-500/20 to-amber-500/20 rounded-xl flex items-center justify-center mb-4">
+                    <feature.icon className="w-6 h-6 text-teal-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
                   <p className="text-slate-400">{feature.description}</p>
@@ -493,7 +493,7 @@ export default function Preorder() {
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-green-500 transform md:-translate-x-1/2" />
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-teal-500 via-amber-500 to-green-500 transform md:-translate-x-1/2" />
 
             {/* Timeline items */}
             <div className="space-y-8 md:space-y-12">
@@ -511,11 +511,11 @@ export default function Preorder() {
 
               {/* Item 2 - Coming Soon */}
               <div className="relative flex items-start gap-6 md:gap-0">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center z-10 md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
+                <div className="flex-shrink-0 w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center z-10 md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
                   <Users className="w-4 h-4 text-white" />
                 </div>
                 <div className="md:w-1/2 md:pl-12 md:ml-auto">
-                  <div className="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm mb-2">Coming Soon</div>
+                  <div className="inline-block px-3 py-1 bg-teal-500/20 text-teal-400 rounded-full text-sm mb-2">Coming Soon</div>
                   <h3 className="text-xl font-semibold text-white mb-2">1,000-User Trial</h3>
                   <p className="text-slate-400">You'll receive an email invitation to create your account and start using KidSafeTV with your family.</p>
                 </div>
@@ -523,11 +523,11 @@ export default function Preorder() {
 
               {/* Item 3 - Launch */}
               <div className="relative flex items-start gap-6 md:gap-0">
-                <div className="flex-shrink-0 w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center z-10 md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
+                <div className="flex-shrink-0 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center z-10 md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
                   <Sparkles className="w-4 h-4 text-white" />
                 </div>
                 <div className="md:w-1/2 md:pr-12 md:text-right">
-                  <div className="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-sm mb-2">Launch</div>
+                  <div className="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 rounded-full text-sm mb-2">Launch</div>
                   <h3 className="text-xl font-semibold text-white mb-2">Official Release</h3>
                   <p className="text-slate-400">KidSafeTV launches publicly. Your 1-year subscription officially begins.</p>
                 </div>
@@ -576,7 +576,7 @@ export default function Preorder() {
             Join the 1,000 founding families who are taking control
           </p>
 
-          <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-2xl p-8 mb-8">
+          <div className="bg-gradient-to-r from-teal-700/20 to-amber-500/20 border border-teal-600/30 rounded-2xl p-8 mb-8">
             <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
               <div className="text-center">
                 <p className="text-slate-400 text-sm">Regular Price</p>
@@ -593,7 +593,7 @@ export default function Preorder() {
             <Button 
               onClick={scrollToCheckout}
               size="lg"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-6 text-lg font-semibold rounded-xl shadow-lg shadow-blue-500/25"
+              className="bg-gradient-to-r from-teal-700 to-teal-600 hover:from-teal-800 hover:to-teal-700 text-white px-10 py-6 text-lg font-semibold rounded-xl shadow-lg shadow-teal-700/25"
             >
               Pre-order Now - Save 60%
             </Button>
@@ -619,7 +619,7 @@ export default function Preorder() {
           </div>
           <Button 
             onClick={scrollToCheckout}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-6"
+            className="bg-gradient-to-r from-teal-700 to-teal-600 hover:from-teal-800 hover:to-teal-700 text-white font-semibold px-6"
           >
             Get Access
           </Button>
