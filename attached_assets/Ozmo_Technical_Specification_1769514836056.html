@@ -1,0 +1,1177 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Ozmo Technical Specification</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2ee86039-d108-802b-bcd0-ee71cc693289" class="page sans"><header><h1 class="page-title" dir="auto">Ozmo Technical Specification</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><h1 id="2ee86039-d108-80b1-88ef-d55b75982d29" class="">Executive Summary</h1></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-805d-8091-ec2687116dea" class="">Ozmo is a full-stack web application providing a safe, curated YouTube viewing experience for children. It enables parents to manage child profiles, curate video libraries, control viewing sessions with time limits, and analyse viewing behaviour patterns.</p></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-8022-9292-cd248314acd0" class=""><strong>Target Audience:</strong> Families with children ages 2-12 who want controlled YouTube access.</p></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-8099-8eda-d88ea01b34b2" class=""><strong>Core Value Proposition:</strong> Unlike YouTube Kids, Ozmo offers parent-curated content with automated playlist building, stimulation level tracking, session time limits, wind down protocols and analytics to monitor if your children’s TV schedule is effecting behaviour.</p></div><div style="display:contents" dir="auto"><hr id="2ee86039-d108-801a-9981-c513d0ab68da"/></div><div style="display:contents" dir="auto"><h2 id="2ee86039-d108-800a-a207-e4f700c785cc" class="">Technology Stack</h2></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8014-9f8f-fd81a9207506" class="">Frontend</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-807e-ad25-c2e801073805" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ef-800c-d1b7a06a0b8c"><th id="pO;y" class="simple-table-header-color simple-table-header">Technology</th><th id="t?&lt;\" class="simple-table-header-color simple-table-header">Version</th><th id="Kyjb" class="simple-table-header-color simple-table-header">Purpose</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8058-bab9-d97ec5c7c87b"><td id="pO;y" class="">React</td><td id="t?&lt;\" class="">18+</td><td id="Kyjb" class="">UI framework</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80f5-be9d-db5cbd985e8f"><td id="pO;y" class="">TypeScript</td><td id="t?&lt;\" class="">5.x</td><td id="Kyjb" class="">Type safety</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8088-a946-ed1d3ec54709"><td id="pO;y" class="">Vite</td><td id="t?&lt;\" class="">5.x</td><td id="Kyjb" class="">Build tool &amp; dev server</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-809d-8d54-c28b490893a2"><td id="pO;y" class="">Wouter</td><td id="t?&lt;\" class="">3.x</td><td id="Kyjb" class="">Client-side routing</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8020-a36e-c4a8a243c3ab"><td id="pO;y" class="">TanStack Query</td><td id="t?&lt;\" class="">5.x</td><td id="Kyjb" class="">Server state management</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-800d-bd8c-e9b9a069b7ec"><td id="pO;y" class="">Shadcn/ui</td><td id="t?&lt;\" class="">Latest</td><td id="Kyjb" class="">Component library</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8004-a630-d6b75523088d"><td id="pO;y" class="">Tailwind CSS</td><td id="t?&lt;\" class="">3.x</td><td id="Kyjb" class="">Styling</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8079-98c8-c53c4ac8d650"><td id="pO;y" class="">Zod</td><td id="t?&lt;\" class="">3.x</td><td id="Kyjb" class="">Runtime validation</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8086-a7a9-f1974877ea1f" class="">Backend</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-80fe-97c4-f838f11ade3f" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80e0-ae60-f408b022f0de"><th id="@?Zb" class="simple-table-header-color simple-table-header">Technology</th><th id="sg}&gt;" class="simple-table-header-color simple-table-header">Version</th><th id="f^&gt;B" class="simple-table-header-color simple-table-header">Purpose</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8070-9067-ee97cbd038dd"><td id="@?Zb" class="">Node.js</td><td id="sg}&gt;" class="">20.x</td><td id="f^&gt;B" class="">Runtime</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80c5-9a61-e10eb0b7978f"><td id="@?Zb" class="">Express.js</td><td id="sg}&gt;" class="">4.x</td><td id="f^&gt;B" class="">HTTP server</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ce-9bde-d651b097800b"><td id="@?Zb" class="">TypeScript</td><td id="sg}&gt;" class="">5.x</td><td id="f^&gt;B" class="">Type safety</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8005-a469-cee3668ad6b6"><td id="@?Zb" class="">Drizzle ORM</td><td id="sg}&gt;" class="">0.30+</td><td id="f^&gt;B" class="">Database ORM</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80c6-a00e-cbce8fe0947e"><td id="@?Zb" class="">Firebase Admin SDK</td><td id="sg}&gt;" class="">12.x</td><td id="f^&gt;B" class="">Auth verification</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8062-8e82-c4533214b57c" class="">Database</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8040-ae7a-e6a44154bfb2" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802d-9a91-c94b833bbe7b"><th id="x`PS" class="simple-table-header-color simple-table-header">Technology</th><th id="@O[O" class="simple-table-header-color simple-table-header">Purpose</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80c0-9f9a-c3c0cb05bae0"><td id="x`PS" class="">PostgreSQL (Neon Serverless)</td><td id="@O[O" class="">Primary database</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8058-8185-c915d9df472a"><td id="x`PS" class="">Drizzle ORM</td><td id="@O[O" class="">Type-safe queries</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8011-9bfd-f0ead25ee89c" class="">External Services</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-802d-a4fa-e6e7b12eb59c" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-805e-a9f5-dbdbdadd2bfd"><th id="`_[T" class="simple-table-header-color simple-table-header">Service</th><th id="q]VQ" class="simple-table-header-color simple-table-header">Purpose</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802d-a832-f06f4fcacd47"><td id="`_[T" class="">Firebase Authentication</td><td id="q]VQ" class="">User auth (Google OAuth)</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8073-953c-d9ee5d2299fe"><td id="`_[T" class="">YouTube Data API v3</td><td id="q]VQ" class="">Video/channel metadata</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80e2-a1a7-e15be1733db5"><td id="`_[T" class="">Replit Object Storage</td><td id="q]VQ" class="">Custom thumbnails</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><hr id="2ee86039-d108-8049-9f61-c9a85398aa01"/></div><div style="display:contents" dir="auto"><h2 id="2ee86039-d108-805c-88c6-e05b9bef6a3b" class="">System Architecture</h2></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-8037-bd8a-d2ef1be77bf5" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">┌─────────────────────────────────────────────────────────────┐
+│                         Client                               │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
+│  │   React     │  │  TanStack   │  │   Firebase Auth     │  │
+│  │   + Wouter  │  │   Query     │  │   (Client SDK)      │  │
+│  └──────┬──────┘  └──────┬──────┘  └──────────┬──────────┘  │
+└─────────┼────────────────┼────────────────────┼─────────────┘
+          │                │                    │
+          │  HTTP/REST     │                    │ ID Token
+          ▼                ▼                    ▼
+┌─────────────────────────────────────────────────────────────┐
+│                     Express Server                           │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │              Authentication Middleware               │    │
+│  │         (Firebase Admin SDK verification)           │    │
+│  └─────────────────────────────────────────────────────┘    │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │                  REST API Routes                     │    │
+│  │   /api/users, /api/children, /api/videos, etc.      │    │
+│  └──────────────────────────┬──────────────────────────┘    │
+│                              │                               │
+│  ┌──────────────────────────▼──────────────────────────┐    │
+│  │                  Storage Layer                       │    │
+│  │              (Drizzle ORM + Neon)                   │    │
+│  └─────────────────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────────────┘
+          │
+          ▼
+┌─────────────────────┐     ┌─────────────────────┐
+│    PostgreSQL       │     │   YouTube API       │
+│    (Neon)          │     │   (Metadata only)   │
+└─────────────────────┘     └─────────────────────┘
+</code></pre></div><div style="display:contents" dir="auto"><hr id="2ee86039-d108-8011-984e-e64eee135964"/></div><div style="display:contents" dir="auto"><h2 id="2ee86039-d108-80a6-ae61-d595c99eeb95" class="">Database Schema</h2></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-806f-96c8-c834da7e836e" class="">Entity Relationship Diagram</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-8073-9c8c-df73a3efa4fb" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">users (1) ─────&lt; (N) children
+  │                    │
+  │                    ├───&lt; sessions
+  │                    ├───&lt; showPreferences
+  │                    ├───&lt; scheduleOverrides
+  │                    ├───&lt; sessionFeedback
+  │                    ├───&lt; videoReactions
+  │                    ├───&lt; savedVideos
+  │                    ├───&lt; hiddenContent
+  │                    ├───&lt; childChannelSubscriptions
+  │                    └───&lt; childPreferences
+  │
+  └───&lt; channels ─────&lt; videos
+                          │
+                          ├───&lt; watchHistory
+                          ├───&lt; showPreferences
+                          ├───&lt; videoReactions
+                          └───&lt; savedVideos
+
+sessions ─────&lt; watchHistory
+        ─────&lt; sessionFeedback
+
+videoCollections (standalone, rule-based filtering)
+themes (standalone, tagging system)
+adminNotifications (standalone, alerts)
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-806e-8170-d88a63de03ab" class="">Table Definitions</h3></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8039-ab17-f2f479f8c9c6" class=""><code>users</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80d0-9485-fc7060021493" class="">Primary user accounts linked to Firebase Auth.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8071-9d6d-fa3527516c2f" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80f2-b81e-c44a16f251c0"><th id="Q=b{" class="simple-table-header-color simple-table-header">Column</th><th id="PTA}" class="simple-table-header-color simple-table-header">Type</th><th id="k^xm" class="simple-table-header-color simple-table-header">Constraints</th><th id="UcXv" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8092-8956-ee2cb8b525e9"><td id="Q=b{" class="">id</td><td id="PTA}" class="">VARCHAR (UUID)</td><td id="k^xm" class="">PK, auto-generated</td><td id="UcXv" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802f-a204-f64c86cefca3"><td id="Q=b{" class="">firebase_uid</td><td id="PTA}" class="">TEXT</td><td id="k^xm" class="">NOT NULL, UNIQUE</td><td id="UcXv" class="">Firebase Auth UID</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8058-ac9a-f98dcfd58fa0"><td id="Q=b{" class="">email</td><td id="PTA}" class="">TEXT</td><td id="k^xm" class="">NOT NULL</td><td id="UcXv" class="">User email</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8010-8dc2-d0a51815d935"><td id="Q=b{" class="">display_name</td><td id="PTA}" class="">TEXT</td><td id="k^xm" class=""></td><td id="UcXv" class="">User display name</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80af-b603-c09838a4d452"><td id="Q=b{" class="">role</td><td id="PTA}" class="">TEXT</td><td id="k^xm" class="">NOT NULL, DEFAULT &#x27;parent&#x27;</td><td id="UcXv" class="">&#x27;admin&#x27; or &#x27;parent&#x27;</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8081-b7ca-d6ff216f7658"><td id="Q=b{" class="">created_at</td><td id="PTA}" class="">TIMESTAMP</td><td id="k^xm" class="">NOT NULL, DEFAULT NOW()</td><td id="UcXv" class="">Creation timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-803d-af6b-d6e505978347" class=""><code>children</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80ba-9079-f396f9ed27dd" class="">Child profiles with viewing settings.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-806e-8fcb-fa0ed7179048" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80e4-b533-ebc88345d2c6"><th id="]Oj@" class="simple-table-header-color simple-table-header">Column</th><th id="BNod" class="simple-table-header-color simple-table-header">Type</th><th id="\TW@" class="simple-table-header-color simple-table-header">Constraints</th><th id="MM@c" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-804d-93ab-de90a6540793"><td id="]Oj@" class="">id</td><td id="BNod" class="">VARCHAR (UUID)</td><td id="\TW@" class="">PK</td><td id="MM@c" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8021-ae63-d63bae20bc22"><td id="]Oj@" class="">user_id</td><td id="BNod" class="">VARCHAR</td><td id="\TW@" class="">FK → <a href="http://users.id/">users.id</a>, CASCADE</td><td id="MM@c" class="">Parent user</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80da-8a43-f522656f8aa0"><td id="]Oj@" class="">name</td><td id="BNod" class="">TEXT</td><td id="\TW@" class="">NOT NULL</td><td id="MM@c" class="">Child&#x27;s name</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8003-8183-c6177b0b2832"><td id="]Oj@" class="">birth_month</td><td id="BNod" class="">INTEGER</td><td id="\TW@" class="">NOT NULL</td><td id="MM@c" class="">Birth month (1-12)</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8056-855e-d4ed0fbc5660"><td id="]Oj@" class="">birth_year</td><td id="BNod" class="">INTEGER</td><td id="\TW@" class="">NOT NULL</td><td id="MM@c" class="">Birth year</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-805d-8f13-f2d2b6e1e3ff"><td id="]Oj@" class="">gender</td><td id="BNod" class="">TEXT</td><td id="\TW@" class="">NOT NULL</td><td id="MM@c" class="">Gender</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80f9-bb4f-ddaa84da3a7c"><td id="]Oj@" class="">interests</td><td id="BNod" class="">TEXT[]</td><td id="\TW@" class="">DEFAULT []</td><td id="MM@c" class="">Interest tags</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8034-8cf8-e0d7cac5e63c"><td id="]Oj@" class="">entertainment_minutes</td><td id="BNod" class="">INTEGER</td><td id="\TW@" class="">DEFAULT 30</td><td id="MM@c" class="">Daily limit</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-808c-959b-cac36766fc38"><td id="]Oj@" class="">sensitivity_score</td><td id="BNod" class="">INTEGER</td><td id="\TW@" class="">DEFAULT 5</td><td id="MM@c" class="">1-10 scale</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-807d-a598-c6c2ec79aa71"><td id="]Oj@" class="">sensitivity_detection</td><td id="BNod" class="">INTEGER</td><td id="\TW@" class="">DEFAULT 1</td><td id="MM@c" class="">Emoji feedback enabled</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80c7-b2c0-f89b878e378c"><td id="]Oj@" class="">finish_mode</td><td id="BNod" class="">TEXT</td><td id="\TW@" class="">DEFAULT &#x27;soft&#x27;</td><td id="MM@c" class="">&#x27;hard&#x27; or &#x27;soft&#x27; wind-down</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8013-9d4a-dcd50d6c0fe0"><td id="]Oj@" class="">age_restriction_override</td><td id="BNod" class="">INTEGER</td><td id="\TW@" class=""></td><td id="MM@c" class="">Override for under-3s</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8004-bb61-e004d9f272dd"><td id="]Oj@" class="">onboarding_complete</td><td id="BNod" class="">INTEGER</td><td id="\TW@" class="">DEFAULT 0</td><td id="MM@c" class="">Onboarding status</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8090-8b06-c878ee9a920b"><td id="]Oj@" class="">created_at</td><td id="BNod" class="">TIMESTAMP</td><td id="\TW@" class=""></td><td id="MM@c" class="">Creation timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80b0-84b1-d3fabab8677d" class=""><code>channels</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-8056-aa1d-c9babfd8e1d5" class="">YouTube channels curated by admins.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-80be-9319-f46b11d1e597" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8098-88a3-efe5f1e6fb50"><th id="GPqd" class="simple-table-header-color simple-table-header">Column</th><th id="Y]p@" class="simple-table-header-color simple-table-header">Type</th><th id="&gt;TXS" class="simple-table-header-color simple-table-header">Constraints</th><th id="Z&gt;[U" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80b0-83d3-ef5cb2983663"><td id="GPqd" class="">id</td><td id="Y]p@" class="">VARCHAR (UUID)</td><td id="&gt;TXS" class="">PK</td><td id="Z&gt;[U" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80db-b5cc-c40ebb749e82"><td id="GPqd" class="">youtube_channel_id</td><td id="Y]p@" class="">TEXT</td><td id="&gt;TXS" class="">UNIQUE</td><td id="Z&gt;[U" class="">YouTube channel ID</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80b3-b8a8-fe8c98e8715f"><td id="GPqd" class="">name</td><td id="Y]p@" class="">TEXT</td><td id="&gt;TXS" class="">NOT NULL</td><td id="Z&gt;[U" class="">Channel name</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80af-89e0-fb932c154b8d"><td id="GPqd" class="">description</td><td id="Y]p@" class="">TEXT</td><td id="&gt;TXS" class=""></td><td id="Z&gt;[U" class="">Channel description</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80fe-95b7-d388babe981c"><td id="GPqd" class="">thumbnail_url</td><td id="Y]p@" class="">TEXT</td><td id="&gt;TXS" class=""></td><td id="Z&gt;[U" class="">Channel thumbnail</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80dd-9ebf-ecf4cd26250d"><td id="GPqd" class="">subscriber_count</td><td id="Y]p@" class="">INTEGER</td><td id="&gt;TXS" class=""></td><td id="Z&gt;[U" class="">Subscriber count</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-801b-8191-cdff3bb33986"><td id="GPqd" class="">made_for_kids</td><td id="Y]p@" class="">INTEGER</td><td id="&gt;TXS" class="">DEFAULT 0</td><td id="Z&gt;[U" class="">YouTube kids flag</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8017-b241-d9e3fdd709df"><td id="GPqd" class="">stimulation_level</td><td id="Y]p@" class="">INTEGER</td><td id="&gt;TXS" class="">NOT NULL</td><td id="Z&gt;[U" class="">Default 1-5</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-804a-bb09-f0c07bf5ab01"><td id="GPqd" class="">themes</td><td id="Y]p@" class="">TEXT[]</td><td id="&gt;TXS" class="">DEFAULT []</td><td id="Z&gt;[U" class="">Content themes</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-809a-945e-df2e001636fb"><td id="GPqd" class="">age_min</td><td id="Y]p@" class="">INTEGER</td><td id="&gt;TXS" class=""></td><td id="Z&gt;[U" class="">Minimum recommended age</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8062-9706-fc05939e2407"><td id="GPqd" class="">age_max</td><td id="Y]p@" class="">INTEGER</td><td id="&gt;TXS" class=""></td><td id="Z&gt;[U" class="">Maximum recommended age</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8032-a567-ee1cfdc57f91"><td id="GPqd" class="">added_by_user_id</td><td id="Y]p@" class="">VARCHAR</td><td id="&gt;TXS" class="">FK → <a href="http://users.id/">users.id</a></td><td id="Z&gt;[U" class="">Admin who added</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8029-b26c-f31dcce6c850"><td id="GPqd" class="">created_at</td><td id="Y]p@" class="">TIMESTAMP</td><td id="&gt;TXS" class=""></td><td id="Z&gt;[U" class="">Creation timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-800d-a30a-fc647a2826f9" class=""><code>videos</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-8097-b421-f6d820ab5607" class="">Curated video library with metadata.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8040-8d66-e652e16a4406" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80cd-aa73-f7b080cc046e"><th id="_[[Z" class="simple-table-header-color simple-table-header">Column</th><th id="y:td" class="simple-table-header-color simple-table-header">Type</th><th id="pzMW" class="simple-table-header-color simple-table-header">Constraints</th><th id="aD@u" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8029-8655-dafb3dd7a3e9"><td id="_[[Z" class="">id</td><td id="y:td" class="">VARCHAR (UUID)</td><td id="pzMW" class="">PK</td><td id="aD@u" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802a-8810-ded54b053c35"><td id="_[[Z" class="">youtube_video_id</td><td id="y:td" class="">TEXT</td><td id="pzMW" class="">UNIQUE</td><td id="aD@u" class="">YouTube video ID</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ef-8b31-e61e67d7fad1"><td id="_[[Z" class="">channel_id</td><td id="y:td" class="">VARCHAR</td><td id="pzMW" class="">FK → <a href="http://channels.id/">channels.id</a></td><td id="aD@u" class="">Parent channel</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802c-a6c7-f190e1b3f23c"><td id="_[[Z" class="">title</td><td id="y:td" class="">TEXT</td><td id="pzMW" class="">NOT NULL</td><td id="aD@u" class="">Video title</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8093-abca-ca06122c1a00"><td id="_[[Z" class="">description</td><td id="y:td" class="">TEXT</td><td id="pzMW" class=""></td><td id="aD@u" class="">Video description</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8060-a86a-fd156acdbfd3"><td id="_[[Z" class="">stimulation_level</td><td id="y:td" class="">INTEGER</td><td id="pzMW" class="">NOT NULL</td><td id="aD@u" class="">0-5 (0 = calming)</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80cf-867d-e273dea6138d"><td id="_[[Z" class="">themes</td><td id="y:td" class="">TEXT[]</td><td id="pzMW" class="">DEFAULT []</td><td id="aD@u" class="">Content themes</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80bf-a667-fb6956f94e3e"><td id="_[[Z" class="">age_min</td><td id="y:td" class="">INTEGER</td><td id="pzMW" class=""></td><td id="aD@u" class="">Minimum age</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8072-9bb0-e045155f4688"><td id="_[[Z" class="">age_max</td><td id="y:td" class="">INTEGER</td><td id="pzMW" class=""></td><td id="aD@u" class="">Maximum age</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-803d-80d6-edf3c8c28a4a"><td id="_[[Z" class="">duration_seconds</td><td id="y:td" class="">INTEGER</td><td id="pzMW" class="">NOT NULL</td><td id="aD@u" class="">Video duration</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-800e-b0d5-d9588ebcaebe"><td id="_[[Z" class="">thumbnail_url</td><td id="y:td" class="">TEXT</td><td id="pzMW" class="">NOT NULL</td><td id="aD@u" class="">YouTube thumbnail</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8062-b888-c90de1137ddd"><td id="_[[Z" class="">custom_thumbnail_url</td><td id="y:td" class="">TEXT</td><td id="pzMW" class=""></td><td id="aD@u" class="">Custom uploaded thumbnail</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-807a-84ba-c6aa0dbbd28d"><td id="_[[Z" class="">series</td><td id="y:td" class="">TEXT</td><td id="pzMW" class=""></td><td id="aD@u" class="">Series name for grouping</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-804f-a59a-fc9d1566e2d7"><td id="_[[Z" class="">is_published</td><td id="y:td" class="">INTEGER</td><td id="pzMW" class="">DEFAULT 1</td><td id="aD@u" class="">Visibility to parents</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-805a-96ec-d8acff89a9d2"><td id="_[[Z" class="">youtube_channel_id</td><td id="y:td" class="">TEXT</td><td id="pzMW" class=""></td><td id="aD@u" class="">Original YouTube channel ID</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80af-8636-dd3e34c475ce"><td id="_[[Z" class="">youtube_channel_title</td><td id="y:td" class="">TEXT</td><td id="pzMW" class=""></td><td id="aD@u" class="">Channel name from YouTube</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8038-935b-d196ae997fea"><td id="_[[Z" class="">published_at</td><td id="y:td" class="">TEXT</td><td id="pzMW" class=""></td><td id="aD@u" class="">Original publish date from YouTube</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-804a-a693-dc820f9478b0"><td id="_[[Z" class="">tags</td><td id="y:td" class="">TEXT[]</td><td id="pzMW" class="">DEFAULT []</td><td id="aD@u" class="">YouTube video tags</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8009-9492-c93a90985d46"><td id="_[[Z" class="">youtube_raw_data</td><td id="y:td" class="">JSONB</td><td id="pzMW" class=""></td><td id="aD@u" class="">Complete raw YouTube API response</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8039-bf88-e8661582f5ca"><td id="_[[Z" class="">region_restriction</td><td id="y:td" class="">JSONB</td><td id="pzMW" class=""></td><td id="aD@u" class="">Country availability: { allowed?: string[], blocked?: string[] }</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80b8-a8d6-ec2fe744c758"><td id="_[[Z" class="">is_embeddable</td><td id="y:td" class="">INTEGER</td><td id="pzMW" class="">DEFAULT 1</td><td id="aD@u" class="">1 = can embed, 0 = disabled, null = not checked</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8083-8960-e0944068f38e"><td id="_[[Z" class="">embeddable_checked_at</td><td id="y:td" class="">TIMESTAMP</td><td id="pzMW" class=""></td><td id="aD@u" class="">Last time we verified embeddability</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802b-bc28-e45287fda96f"><td id="_[[Z" class="">is_hidden</td><td id="y:td" class="">INTEGER</td><td id="pzMW" class="">DEFAULT 0</td><td id="aD@u" class="">1 = hidden from parents (embed issues), 0 = visible</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8026-97cf-fce007e686ff"><td id="_[[Z" class="">content_source</td><td id="y:td" class="">TEXT</td><td id="pzMW" class="">DEFAULT &#x27;youtube&#x27;</td><td id="aD@u" class="">&#x27;youtube&#x27; or &#x27;licensed&#x27; (for future native player)</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-809f-b41b-caa3e15b9688"><td id="_[[Z" class="">added_by_user_id</td><td id="y:td" class="">VARCHAR</td><td id="pzMW" class="">FK → <a href="http://users.id/">users.id</a></td><td id="aD@u" class="">Admin who added</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-805c-9652-d5b6e96b58a3"><td id="_[[Z" class="">created_at</td><td id="y:td" class="">TIMESTAMP</td><td id="pzMW" class=""></td><td id="aD@u" class="">Creation timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8044-9cca-f43051f9d4d7" class=""><code>themes</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-806e-9873-f1f280ec2850" class="">Custom theme library for content categorization.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8011-8c79-f3335eff82e9" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80a7-b408-dd33329b50d4"><th id="{eGu" class="simple-table-header-color simple-table-header">Column</th><th id="D|}O" class="simple-table-header-color simple-table-header">Type</th><th id="XYsl" class="simple-table-header-color simple-table-header">Constraints</th><th id="Ilyw" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ea-82a9-ea90966a0e30"><td id="{eGu" class="">id</td><td id="D|}O" class="">VARCHAR (UUID)</td><td id="XYsl" class="">PK</td><td id="Ilyw" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ca-bcf0-f5e6fc04cc40"><td id="{eGu" class="">name</td><td id="D|}O" class="">TEXT</td><td id="XYsl" class="">NOT NULL, UNIQUE</td><td id="Ilyw" class="">Theme name (e.g., &quot;Educational&quot;, &quot;Music&quot;)</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80f7-aecf-df042fa2ecdc"><td id="{eGu" class="">category</td><td id="D|}O" class="">TEXT</td><td id="XYsl" class=""></td><td id="Ilyw" class="">Optional grouping (e.g., &quot;Content Type&quot;, &quot;Activity&quot;)</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-804e-a005-c6998808c08d"><td id="{eGu" class="">description</td><td id="D|}O" class="">TEXT</td><td id="XYsl" class=""></td><td id="Ilyw" class="">Optional description for admins</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8062-9a68-dd4779637198"><td id="{eGu" class="">created_at</td><td id="D|}O" class="">TIMESTAMP</td><td id="XYsl" class=""></td><td id="Ilyw" class="">Creation timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-807e-96b8-d05f7e4e19f7" class=""><code>show_preferences</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-805f-b26e-d098d70c58dd" class="">Swipe-based show discovery preferences from onboarding.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-800e-95a5-d7f7c4128f5b" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802b-a8e6-c4b2ff6a1402"><th id="pcG&gt;" class="simple-table-header-color simple-table-header">Column</th><th id="gzDx" class="simple-table-header-color simple-table-header">Type</th><th id="~IJy" class="simple-table-header-color simple-table-header">Constraints</th><th id=";zRo" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8031-84b7-cb2da37b4c89"><td id="pcG&gt;" class="">id</td><td id="gzDx" class="">VARCHAR (UUID)</td><td id="~IJy" class="">PK</td><td id=";zRo" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8097-94c3-f24d348e6a3b"><td id="pcG&gt;" class="">child_id</td><td id="gzDx" class="">VARCHAR</td><td id="~IJy" class="">FK → <a href="http://children.id/">children.id</a>, CASCADE</td><td id=";zRo" class="">Child profile</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ca-967f-f7aa6e678bef"><td id="pcG&gt;" class="">video_id</td><td id="gzDx" class="">VARCHAR</td><td id="~IJy" class="">FK → <a href="http://videos.id/">videos.id</a>, CASCADE</td><td id=";zRo" class="">Video swiped on</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80d7-aac6-c927bdd93cc4"><td id="pcG&gt;" class="">channel_id</td><td id="gzDx" class="">VARCHAR</td><td id="~IJy" class="">FK → <a href="http://channels.id/">channels.id</a>, CASCADE</td><td id=";zRo" class="">Channel swiped on</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80e9-8bcd-eb672094fd49"><td id="pcG&gt;" class="">preference</td><td id="gzDx" class="">TEXT</td><td id="~IJy" class="">NOT NULL</td><td id=";zRo" class="">&#x27;like&#x27;, &#x27;dislike&#x27;, &#x27;skip&#x27;</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8023-8a30-c64000c4af97"><td id="pcG&gt;" class="">created_at</td><td id="gzDx" class="">TIMESTAMP</td><td id="~IJy" class=""></td><td id=";zRo" class="">Creation timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80b1-90bb-e93c5b844814" class=""><code>schedule_overrides</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80e8-8b18-d5fe93d73028" class="">Daily time limit overrides with behavior tracking.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8032-acc9-f4dfeeb57afb" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-808a-b604-ec09e8ac1b8e"><th id="VHmd" class="simple-table-header-color simple-table-header">Column</th><th id="Q=wx" class="simple-table-header-color simple-table-header">Type</th><th id="xd?L" class="simple-table-header-color simple-table-header">Constraints</th><th id="a@HZ" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80dd-98b4-cf2244103cf0"><td id="VHmd" class="">id</td><td id="Q=wx" class="">VARCHAR (UUID)</td><td id="xd?L" class="">PK</td><td id="a@HZ" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-801d-98c8-d5c88c266be4"><td id="VHmd" class="">child_id</td><td id="Q=wx" class="">VARCHAR</td><td id="xd?L" class="">FK → <a href="http://children.id/">children.id</a>, CASCADE</td><td id="a@HZ" class="">Child profile</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8031-bb00-c4fbe7df4355"><td id="VHmd" class="">override_date</td><td id="Q=wx" class="">TEXT</td><td id="xd?L" class="">NOT NULL</td><td id="a@HZ" class="">Date in YYYY-MM-DD format</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80fd-abbf-d8f51b0e7b63"><td id="VHmd" class="">additional_minutes</td><td id="Q=wx" class="">INTEGER</td><td id="xd?L" class="">NOT NULL</td><td id="a@HZ" class="">Extra time granted</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80e1-9b60-eb6c69d211ae"><td id="VHmd" class="">reason</td><td id="Q=wx" class="">TEXT</td><td id="xd?L" class=""></td><td id="a@HZ" class="">Optional reason for override</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-804b-88da-fa53207c40db"><td id="VHmd" class="">behavior_feedback</td><td id="Q=wx" class="">TEXT</td><td id="xd?L" class=""></td><td id="a@HZ" class="">&#x27;great&#x27;, &#x27;okay&#x27;, &#x27;upset&#x27;, &#x27;tantrum&#x27;</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8032-a21c-d48e38a150b9"><td id="VHmd" class="">feedback_notes</td><td id="Q=wx" class="">TEXT</td><td id="xd?L" class=""></td><td id="a@HZ" class="">Optional notes about outcome</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80b0-b729-d4affd61d00a"><td id="VHmd" class="">created_at</td><td id="Q=wx" class="">TIMESTAMP</td><td id="xd?L" class=""></td><td id="a@HZ" class="">Creation timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8097-bed1-f6d996233da4" class=""><code>child_preferences</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80c8-912a-f61a7d1277ba" class="">Per-child settings and preferences.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-805c-b495-e05ec26b6bea" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-808c-9920-face391bf2dc"><th id="pwsA" class="simple-table-header-color simple-table-header">Column</th><th id="mwbm" class="simple-table-header-color simple-table-header">Type</th><th id="yEkO" class="simple-table-header-color simple-table-header">Constraints</th><th id="GBCd" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-800b-bfa9-df88e19eb527"><td id="pwsA" class="">id</td><td id="mwbm" class="">VARCHAR (UUID)</td><td id="yEkO" class="">PK</td><td id="GBCd" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-807c-96d4-f2ba936b891d"><td id="pwsA" class="">child_id</td><td id="mwbm" class="">VARCHAR</td><td id="yEkO" class="">FK → <a href="http://children.id/">children.id</a>, CASCADE, UNIQUE</td><td id="GBCd" class="">Child profile</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ca-b4a8-e78befaae999"><td id="pwsA" class="">feedback_dialog_enabled</td><td id="mwbm" class="">INTEGER</td><td id="yEkO" class="">DEFAULT 1</td><td id="GBCd" class="">1 = show feedback dialog, 0 = skip</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80f8-971e-eafb58c36604"><td id="pwsA" class="">created_at</td><td id="mwbm" class="">TIMESTAMP</td><td id="yEkO" class=""></td><td id="GBCd" class="">Creation timestamp</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8095-8ee6-eaad7622e588"><td id="pwsA" class="">updated_at</td><td id="mwbm" class="">TIMESTAMP</td><td id="yEkO" class=""></td><td id="GBCd" class="">Last update timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-802e-aa46-c992c1277fdb" class=""><code>sessions</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80a5-8a05-ccd4e5b524a6" class="">Viewing sessions with time tracking.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8009-b29a-d86f35d8dc37" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8041-81ba-f9f41c9b2765"><th id="&lt;nOX" class="simple-table-header-color simple-table-header">Column</th><th id="Zl_I" class="simple-table-header-color simple-table-header">Type</th><th id="XNFi" class="simple-table-header-color simple-table-header">Constraints</th><th id="zYfk" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8044-996c-c8114b676656"><td id="&lt;nOX" class="">id</td><td id="Zl_I" class="">VARCHAR (UUID)</td><td id="XNFi" class="">PK</td><td id="zYfk" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80a1-bc77-e3deea3b7179"><td id="&lt;nOX" class="">user_id</td><td id="Zl_I" class="">VARCHAR</td><td id="XNFi" class="">FK → <a href="http://users.id/">users.id</a></td><td id="zYfk" class="">Parent user</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802c-8d91-f9f9f83aaed7"><td id="&lt;nOX" class="">child_ids</td><td id="Zl_I" class="">TEXT[]</td><td id="XNFi" class="">NOT NULL</td><td id="zYfk" class="">Children watching</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-806f-82af-fff687daf798"><td id="&lt;nOX" class="">started_at</td><td id="Zl_I" class="">TIMESTAMP</td><td id="XNFi" class="">DEFAULT NOW()</td><td id="zYfk" class="">Session start</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ba-b922-faa4de02b6dd"><td id="&lt;nOX" class="">ended_at</td><td id="Zl_I" class="">TIMESTAMP</td><td id="XNFi" class=""></td><td id="zYfk" class="">Session end</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8013-8e8b-cf0df43b2deb"><td id="&lt;nOX" class="">total_duration_seconds</td><td id="Zl_I" class="">INTEGER</td><td id="XNFi" class="">DEFAULT 0</td><td id="zYfk" class="">Total watch time</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8083-aa13-d50effd125f4"><td id="&lt;nOX" class="">feedback_required</td><td id="Zl_I" class="">INTEGER</td><td id="XNFi" class="">DEFAULT 1</td><td id="zYfk" class="">Needs post-session feedback</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8027-87e7-e341457fc4e3"><td id="&lt;nOX" class="">feedback_completed_at</td><td id="Zl_I" class="">TIMESTAMP</td><td id="XNFi" class=""></td><td id="zYfk" class="">When feedback submitted</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80ad-8583-d53b64ca50bb" class=""><code>watch_history</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80d1-bf0f-efa828e0155e" class="">Individual video plays within sessions.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8019-a172-e15f410bc5bf" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80aa-8a51-d751590e649c"><th id="i@:R" class="simple-table-header-color simple-table-header">Column</th><th id="jZSk" class="simple-table-header-color simple-table-header">Type</th><th id="O;&lt;:" class="simple-table-header-color simple-table-header">Constraints</th><th id="op`k" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80d1-8948-cdc64ca76669"><td id="i@:R" class="">id</td><td id="jZSk" class="">VARCHAR (UUID)</td><td id="O;&lt;:" class="">PK</td><td id="op`k" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-800b-9e2b-edfdbaed5471"><td id="i@:R" class="">session_id</td><td id="jZSk" class="">VARCHAR</td><td id="O;&lt;:" class="">FK → <a href="http://sessions.id/">sessions.id</a></td><td id="op`k" class="">Parent session</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8088-8578-cd9a269a537d"><td id="i@:R" class="">video_id</td><td id="jZSk" class="">VARCHAR</td><td id="O;&lt;:" class="">FK → <a href="http://videos.id/">videos.id</a></td><td id="op`k" class="">Video watched</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802e-9a2c-e2fc2ad851a1"><td id="i@:R" class="">child_ids</td><td id="jZSk" class="">TEXT[]</td><td id="O;&lt;:" class="">NOT NULL</td><td id="op`k" class="">Children who watched</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8076-a984-f416b59b50ec"><td id="i@:R" class="">watched_at</td><td id="jZSk" class="">TIMESTAMP</td><td id="O;&lt;:" class="">DEFAULT NOW()</td><td id="op`k" class="">Watch timestamp</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80cc-86a4-ce887a784d16"><td id="i@:R" class="">duration_seconds</td><td id="jZSk" class="">INTEGER</td><td id="O;&lt;:" class="">NOT NULL</td><td id="op`k" class="">Actual watch time</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-803a-bca0-dcda8f23b9a1"><td id="i@:R" class="">stimulation_level</td><td id="jZSk" class="">INTEGER</td><td id="O;&lt;:" class="">NOT NULL</td><td id="op`k" class="">Cached for analytics</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8030-a1e3-f4faea984296" class=""><code>session_feedback</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80c0-8ce7-e6ad1d813d6f" class="">Post-session behavior ratings.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-802d-b2ed-e69f2cf857bd" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ce-8dbf-d0ea585b6d6a"><th id="y]kh" class="simple-table-header-color simple-table-header">Column</th><th id="Vffm" class="simple-table-header-color simple-table-header">Type</th><th id="gqEn" class="simple-table-header-color simple-table-header">Constraints</th><th id="te:l" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80bb-8566-c1e339775d3c"><td id="y]kh" class="">id</td><td id="Vffm" class="">VARCHAR (UUID)</td><td id="gqEn" class="">PK</td><td id="te:l" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80a2-ba3c-f8633139405f"><td id="y]kh" class="">session_id</td><td id="Vffm" class="">VARCHAR</td><td id="gqEn" class="">FK → <a href="http://sessions.id/">sessions.id</a></td><td id="te:l" class="">Session</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80fb-8466-c6ccb450d29a"><td id="y]kh" class="">child_id</td><td id="Vffm" class="">VARCHAR</td><td id="gqEn" class="">FK → <a href="http://children.id/">children.id</a></td><td id="te:l" class="">Child</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-800a-be5f-e7fef2610168"><td id="y]kh" class="">behavior_rating</td><td id="Vffm" class="">TEXT</td><td id="gqEn" class="">NOT NULL</td><td id="te:l" class="">&#x27;great&#x27;, &#x27;okay&#x27;, &#x27;upset&#x27;, &#x27;tantrum&#x27;</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-803c-8d9f-e6ba7520f5b6"><td id="y]kh" class="">was_override</td><td id="Vffm" class="">INTEGER</td><td id="gqEn" class="">DEFAULT 0</td><td id="te:l" class="">Session had time override</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80a1-8d89-e3c8ced8be49"><td id="y]kh" class="">time_of_day</td><td id="Vffm" class="">TEXT</td><td id="gqEn" class="">NOT NULL</td><td id="te:l" class="">&#x27;morning&#x27;, &#x27;afternoon&#x27;, &#x27;evening&#x27;</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80e9-9234-ee63bc7d70d5"><td id="y]kh" class="">total_minutes_watched</td><td id="Vffm" class="">INTEGER</td><td id="gqEn" class="">NOT NULL</td><td id="te:l" class="">Total watch time</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8038-ae11-c84541e48c3b"><td id="y]kh" class="">created_at</td><td id="Vffm" class="">TIMESTAMP</td><td id="gqEn" class=""></td><td id="te:l" class="">Creation timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-803b-ac94-c73de7d074f6" class=""><code>video_collections</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-801b-82fd-e6d7a96ae948" class="">Netflix-style browsing categories.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8039-bb09-fd3d55e39564" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8059-8a85-c34890d41ad8"><th id="SFb[" class="simple-table-header-color simple-table-header">Column</th><th id="Ev|o" class="simple-table-header-color simple-table-header">Type</th><th id="piC{" class="simple-table-header-color simple-table-header">Constraints</th><th id="T`MM" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80af-9839-e1461c5c4114"><td id="SFb[" class="">id</td><td id="Ev|o" class="">VARCHAR (UUID)</td><td id="piC{" class="">PK</td><td id="T`MM" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802b-b29b-d397abef1f3e"><td id="SFb[" class="">name</td><td id="Ev|o" class="">TEXT</td><td id="piC{" class="">NOT NULL</td><td id="T`MM" class="">Collection name</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8071-a2f2-d94110311d62"><td id="SFb[" class="">description</td><td id="Ev|o" class="">TEXT</td><td id="piC{" class=""></td><td id="T`MM" class="">Admin description</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-806d-94a0-d0ecb75afa70"><td id="SFb[" class="">display_order</td><td id="Ev|o" class="">INTEGER</td><td id="piC{" class="">DEFAULT 0</td><td id="T`MM" class="">Sort order</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80fd-beb8-f01c66291816"><td id="SFb[" class="">is_published</td><td id="Ev|o" class="">INTEGER</td><td id="piC{" class="">DEFAULT 1</td><td id="T`MM" class="">Visibility</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8058-9169-d599adf04334"><td id="SFb[" class="">theme_filters</td><td id="Ev|o" class="">TEXT[]</td><td id="piC{" class="">DEFAULT []</td><td id="T`MM" class="">Required themes</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80a8-8cbb-f7187b9a2b45"><td id="SFb[" class="">stimulation_min</td><td id="Ev|o" class="">INTEGER</td><td id="piC{" class=""></td><td id="T`MM" class="">Min stimulation filter</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ab-b1b0-ea0997a67778"><td id="SFb[" class="">stimulation_max</td><td id="Ev|o" class="">INTEGER</td><td id="piC{" class=""></td><td id="T`MM" class="">Max stimulation filter</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8022-87dc-dd39ae8f2517"><td id="SFb[" class="">age_min</td><td id="Ev|o" class="">INTEGER</td><td id="piC{" class=""></td><td id="T`MM" class="">Min age filter</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8071-a91d-fe1d89147ca6"><td id="SFb[" class="">age_max</td><td id="Ev|o" class="">INTEGER</td><td id="piC{" class=""></td><td id="T`MM" class="">Max age filter</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80f7-a39e-f4804c37d20c"><td id="SFb[" class="">created_at</td><td id="Ev|o" class="">TIMESTAMP</td><td id="piC{" class=""></td><td id="T`MM" class="">Creation timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8016-ac2d-e3649df39780" class=""><code>video_reactions</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-8036-9b9e-d456fe1d5d8e" class="">Like/dislike per child per video.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-805d-b20c-e6d9049dc399" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8015-9b5e-da4486444186"><th id="e_ge" class="simple-table-header-color simple-table-header">Column</th><th id="nDZu" class="simple-table-header-color simple-table-header">Type</th><th id="uMdj" class="simple-table-header-color simple-table-header">Constraints</th><th id="HQkQ" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802f-8bdf-e1e182c62dbe"><td id="e_ge" class="">id</td><td id="nDZu" class="">VARCHAR (UUID)</td><td id="uMdj" class="">PK</td><td id="HQkQ" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8055-af93-fab6328aaa0c"><td id="e_ge" class="">child_id</td><td id="nDZu" class="">VARCHAR</td><td id="uMdj" class="">FK → <a href="http://children.id/">children.id</a></td><td id="HQkQ" class="">Child</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8054-a26a-c784163de80e"><td id="e_ge" class="">video_id</td><td id="nDZu" class="">VARCHAR</td><td id="uMdj" class="">FK → <a href="http://videos.id/">videos.id</a></td><td id="HQkQ" class="">Video</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80b1-bc9b-ccdee3d97195"><td id="e_ge" class="">session_id</td><td id="nDZu" class="">VARCHAR</td><td id="uMdj" class="">FK → <a href="http://sessions.id/">sessions.id</a></td><td id="HQkQ" class="">Session context</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8061-9959-f892d2ff2413"><td id="e_ge" class="">reaction</td><td id="nDZu" class="">TEXT</td><td id="uMdj" class="">NOT NULL</td><td id="HQkQ" class="">&#x27;like&#x27;, &#x27;dislike&#x27;, &#x27;love&#x27;, &#x27;neutral&#x27;</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80b8-a713-e3023e24f412"><td id="e_ge" class="">reacted_at</td><td id="nDZu" class="">TIMESTAMP</td><td id="uMdj" class=""></td><td id="HQkQ" class="">Reaction timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8055-b901-c3547419a3b1" class=""><code>saved_videos</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-8083-b262-ee44ff55731f" class="">Child&#x27;s saved video collection.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8056-8c23-d3989043e1bc" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-800b-8f54-ff3d45bfda3a"><th id="n_k}" class="simple-table-header-color simple-table-header">Column</th><th id="o[:U" class="simple-table-header-color simple-table-header">Type</th><th id="OaFp" class="simple-table-header-color simple-table-header">Constraints</th><th id="iMN|" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80a1-ab2a-d20b409c84da"><td id="n_k}" class="">id</td><td id="o[:U" class="">VARCHAR (UUID)</td><td id="OaFp" class="">PK</td><td id="iMN|" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8042-b6ff-c8a67eb1771a"><td id="n_k}" class="">child_id</td><td id="o[:U" class="">VARCHAR</td><td id="OaFp" class="">FK → <a href="http://children.id/">children.id</a></td><td id="iMN|" class="">Child</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8009-b7e9-ebd8b36ffb21"><td id="n_k}" class="">video_id</td><td id="o[:U" class="">VARCHAR</td><td id="OaFp" class="">FK → <a href="http://videos.id/">videos.id</a></td><td id="iMN|" class="">Video</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8047-b4e5-f84fb5ebaa05"><td id="n_k}" class="">saved_at</td><td id="o[:U" class="">TIMESTAMP</td><td id="OaFp" class=""></td><td id="iMN|" class="">Save timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-805c-a77c-fc35a53d13b4" class=""><code>child_channel_subscriptions</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-8083-a824-ca80c4bcd278" class="">Child&#x27;s channel subscriptions.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-80ac-b068-f132514182ac" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80b0-bfd5-ef26db1e6436"><th id="I\\o" class="simple-table-header-color simple-table-header">Column</th><th id="dXnu" class="simple-table-header-color simple-table-header">Type</th><th id="sVY}" class="simple-table-header-color simple-table-header">Constraints</th><th id="ZCAw" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8066-99e0-e1bd9dcc19e9"><td id="I\\o" class="">id</td><td id="dXnu" class="">VARCHAR (UUID)</td><td id="sVY}" class="">PK</td><td id="ZCAw" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-804e-8cc9-d861514ea9e6"><td id="I\\o" class="">child_id</td><td id="dXnu" class="">VARCHAR</td><td id="sVY}" class="">FK → <a href="http://children.id/">children.id</a></td><td id="ZCAw" class="">Child</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8058-b930-e0bd9d1d94bb"><td id="I\\o" class="">channel_id</td><td id="dXnu" class="">VARCHAR</td><td id="sVY}" class="">FK → <a href="http://channels.id/">channels.id</a></td><td id="ZCAw" class="">Channel</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8004-8227-cd26137ec5c9"><td id="I\\o" class="">subscribed_at</td><td id="dXnu" class="">TIMESTAMP</td><td id="sVY}" class=""></td><td id="ZCAw" class="">Subscription timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-800d-8be5-c5de8e121308" class=""><code>hidden_content</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-806f-8b40-c895d1f8eb4c" class="">Parent-hidden content per child.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8094-8e2c-ec2158e10e8f" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8061-9b28-e162d54bef6e"><th id="mXjo" class="simple-table-header-color simple-table-header">Column</th><th id="K[fk" class="simple-table-header-color simple-table-header">Type</th><th id="GGGa" class="simple-table-header-color simple-table-header">Constraints</th><th id=":RzO" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-809a-acf0-f22e6bb680b9"><td id="mXjo" class="">id</td><td id="K[fk" class="">VARCHAR (UUID)</td><td id="GGGa" class="">PK</td><td id=":RzO" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8014-b8a2-e16ff4c6b8cc"><td id="mXjo" class="">child_id</td><td id="K[fk" class="">VARCHAR</td><td id="GGGa" class="">FK → <a href="http://children.id/">children.id</a></td><td id=":RzO" class="">Child</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-800e-b988-f3ad2a6094c1"><td id="mXjo" class="">target_type</td><td id="K[fk" class="">TEXT</td><td id="GGGa" class="">NOT NULL</td><td id=":RzO" class="">&#x27;video&#x27; or &#x27;channel&#x27;</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ed-931e-f207653a7ac6"><td id="mXjo" class="">target_id</td><td id="K[fk" class="">VARCHAR</td><td id="GGGa" class="">NOT NULL</td><td id=":RzO" class="">Video or channel ID</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-804a-bf30-d614707e9fd6"><td id="mXjo" class="">reason</td><td id="K[fk" class="">TEXT</td><td id="GGGa" class=""></td><td id=":RzO" class="">Hide reason</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-808c-b836-f32eb07cc520"><td id="mXjo" class="">hidden_at</td><td id="K[fk" class="">TIMESTAMP</td><td id="GGGa" class=""></td><td id=":RzO" class="">Hide timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-806f-990b-db90be0a9648" class=""><code>admin_notifications</code></h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80c6-803c-e0afbc2c88ee" class="">System alerts for administrators.</p></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8047-be40-f04cde734b99" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80b5-a639-fb28bdf4f9d9"><th id="]~tr" class="simple-table-header-color simple-table-header">Column</th><th id="_ztI" class="simple-table-header-color simple-table-header">Type</th><th id="~@Tm" class="simple-table-header-color simple-table-header">Constraints</th><th id="=Zxb" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ff-bcf7-d9407e425139"><td id="]~tr" class="">id</td><td id="_ztI" class="">VARCHAR (UUID)</td><td id="~@Tm" class="">PK</td><td id="=Zxb" class="">Unique identifier</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8066-95ef-ee9e9db6afb6"><td id="]~tr" class="">type</td><td id="_ztI" class="">TEXT</td><td id="~@Tm" class="">NOT NULL</td><td id="=Zxb" class="">Notification type</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-805e-8264-fea70fb860af"><td id="]~tr" class="">title</td><td id="_ztI" class="">TEXT</td><td id="~@Tm" class="">NOT NULL</td><td id="=Zxb" class="">Alert title</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-805c-b6a8-e139ec5bf4c6"><td id="]~tr" class="">message</td><td id="_ztI" class="">TEXT</td><td id="~@Tm" class="">NOT NULL</td><td id="=Zxb" class="">Alert message</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80b1-8870-f182cf962203"><td id="]~tr" class="">target_type</td><td id="_ztI" class="">TEXT</td><td id="~@Tm" class=""></td><td id="=Zxb" class="">&#x27;video&#x27;, &#x27;channel&#x27;, or null</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80e0-90ea-f7b7db4525eb"><td id="]~tr" class="">target_id</td><td id="_ztI" class="">VARCHAR</td><td id="~@Tm" class=""></td><td id="=Zxb" class="">Related entity ID</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-804e-94f2-dba2625397bc"><td id="]~tr" class="">is_read</td><td id="_ztI" class="">INTEGER</td><td id="~@Tm" class="">DEFAULT 0</td><td id="=Zxb" class="">Read status</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-800a-b980-e50cf97e5458"><td id="]~tr" class="">created_at</td><td id="_ztI" class="">TIMESTAMP</td><td id="~@Tm" class=""></td><td id="=Zxb" class="">Creation timestamp</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><hr id="2ee86039-d108-80a3-ba7a-e25baafcb42a"/></div><div style="display:contents" dir="auto"><h2 id="2ee86039-d108-80b2-a747-f241913d7d7a" class="">API Reference</h2></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80bc-8687-d793a9b4944f" class="">Authentication</h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-808c-b87f-f0928c67a179" class="">All API endpoints require Firebase ID token authentication via the <code>Authorization: Bearer &lt;token&gt;</code> header.</p></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-808a-bce6-d66fd7be06f7" class=""><strong>Middleware:</strong></p></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-80e3-8f72-f37528dfa7ff" class="bulleted-list"><li style="list-style-type:disc"><code>authenticateUser</code>: Verifies Firebase ID token, sets <code>req.user</code> and <code>req.dbUser</code></li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-804a-b8b0-d59ae364edd1" class="bulleted-list"><li style="list-style-type:disc"><code>requireAdmin</code>: Restricts access to admin role only</li></ul></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-808b-ad99-fb5ca485788c" class="">User Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-80e8-ab57-d7dfcec15947" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8029-9eb4-c2a3367629af"><th id="f&lt;zT" class="simple-table-header-color simple-table-header">Method</th><th id="UzT~" class="simple-table-header-color simple-table-header">Endpoint</th><th id="yIO=" class="simple-table-header-color simple-table-header">Auth</th><th id="\XwK" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80d1-8c26-fa0c70c588f1"><td id="f&lt;zT" class="">GET</td><td id="UzT~" class=""><code>/api/users/me</code></td><td id="yIO=" class="">User</td><td id="\XwK" class="">Get current user profile</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8006-b6c9-cd90078b6b22"><td id="f&lt;zT" class="">POST</td><td id="UzT~" class=""><code>/api/users/me</code></td><td id="yIO=" class="">User</td><td id="\XwK" class="">Create/update user profile</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-808e-a1c4-f64cc6911a3c" class="">Child Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-80f6-9e08-f5acd9bc8b9e" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8062-b62f-e3f47237c089"><th id="pB`a" class="simple-table-header-color simple-table-header">Method</th><th id="q\uw" class="simple-table-header-color simple-table-header">Endpoint</th><th id="Lm{I" class="simple-table-header-color simple-table-header">Auth</th><th id="UQhO" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8079-8248-e9e43622dfbe"><td id="pB`a" class="">GET</td><td id="q\uw" class=""><code>/api/children</code></td><td id="Lm{I" class="">User</td><td id="UQhO" class="">List user&#x27;s children</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8080-abc9-cf16b8372bb4"><td id="pB`a" class="">GET</td><td id="q\uw" class=""><code>/api/children/:id</code></td><td id="Lm{I" class="">User</td><td id="UQhO" class="">Get child by ID</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8075-93ed-cf1e3e28b613"><td id="pB`a" class="">POST</td><td id="q\uw" class=""><code>/api/children</code></td><td id="Lm{I" class="">User</td><td id="UQhO" class="">Create child profile</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80d1-918e-c554beb6035c"><td id="pB`a" class="">PATCH</td><td id="q\uw" class=""><code>/api/children/:id</code></td><td id="Lm{I" class="">User</td><td id="UQhO" class="">Update child profile</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-803c-8c24-ffb17e220860"><td id="pB`a" class="">DELETE</td><td id="q\uw" class=""><code>/api/children/:id</code></td><td id="Lm{I" class="">User</td><td id="UQhO" class="">Delete child profile</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-805a-b99c-fb5e91e65a19" class="">Channel Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8077-a66c-ff9a65f666df" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8072-a4cb-f21e2d927120"><th id="~ZUC" class="simple-table-header-color simple-table-header">Method</th><th id="IDu{" class="simple-table-header-color simple-table-header">Endpoint</th><th id="vqSV" class="simple-table-header-color simple-table-header">Auth</th><th id="Fccq" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8011-91ca-dfb2d3d8409b"><td id="~ZUC" class="">GET</td><td id="IDu{" class=""><code>/api/channels</code></td><td id="vqSV" class="">User</td><td id="Fccq" class="">List all channels</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8035-b23a-d1d3d9512f02"><td id="~ZUC" class="">GET</td><td id="IDu{" class=""><code>/api/channels/:id</code></td><td id="vqSV" class="">User</td><td id="Fccq" class="">Get channel by ID</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80d2-ba29-cb2f9cb732c6"><td id="~ZUC" class="">POST</td><td id="IDu{" class=""><code>/api/channels</code></td><td id="vqSV" class="">Admin</td><td id="Fccq" class="">Create channel</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80fa-adaa-d2c29454dcc5"><td id="~ZUC" class="">PATCH</td><td id="IDu{" class=""><code>/api/channels/:id</code></td><td id="vqSV" class="">Admin</td><td id="Fccq" class="">Update channel</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8023-9e72-e50ebe8ae5f0"><td id="~ZUC" class="">DELETE</td><td id="IDu{" class=""><code>/api/channels/:id</code></td><td id="vqSV" class="">Admin</td><td id="Fccq" class="">Delete channel</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8011-aec3-df04f7d196e0" class="">Video Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-809d-b850-e9f2be1c9250" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80fb-af69-f91bbdc239ca"><th id="Na:p" class="simple-table-header-color simple-table-header">Method</th><th id="&gt;y&gt;p" class="simple-table-header-color simple-table-header">Endpoint</th><th id="NpIQ" class="simple-table-header-color simple-table-header">Auth</th><th id="hv:U" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-804e-bae4-da32458f3fbe"><td id="Na:p" class="">GET</td><td id="&gt;y&gt;p" class=""><code>/api/videos</code></td><td id="NpIQ" class="">User</td><td id="hv:U" class="">List videos (filtered for non-admins)</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8028-85c9-d2aeb50ff62c"><td id="Na:p" class="">GET</td><td id="&gt;y&gt;p" class=""><code>/api/videos/:id</code></td><td id="NpIQ" class="">User</td><td id="hv:U" class="">Get video by ID</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-803e-ab8d-c38e5f0bb37c"><td id="Na:p" class="">POST</td><td id="&gt;y&gt;p" class=""><code>/api/videos</code></td><td id="NpIQ" class="">Admin</td><td id="hv:U" class="">Create video</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-808b-aadf-e00f812cb6fe"><td id="Na:p" class="">PATCH</td><td id="&gt;y&gt;p" class=""><code>/api/videos/:id</code></td><td id="NpIQ" class="">Admin</td><td id="hv:U" class="">Update video</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8013-b212-f0b2b822f084"><td id="Na:p" class="">DELETE</td><td id="&gt;y&gt;p" class=""><code>/api/videos/:id</code></td><td id="NpIQ" class="">Admin</td><td id="hv:U" class="">Delete video</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8091-aff7-cd26a43e3ef8"><td id="Na:p" class="">POST</td><td id="&gt;y&gt;p" class=""><code>/api/videos/check-embeddability</code></td><td id="NpIQ" class="">Admin</td><td id="hv:U" class="">Batch check embed status</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8096-9e80-e3324ca1c230"><td id="Na:p" class="">POST</td><td id="&gt;y&gt;p" class=""><code>/api/videos/:id/report-embed-error</code></td><td id="NpIQ" class="">User</td><td id="hv:U" class="">Report embed error</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8023-a177-c3911124b2ba"><td id="Na:p" class="">POST</td><td id="&gt;y&gt;p" class=""><code>/api/videos/:id/hide</code></td><td id="NpIQ" class="">Admin</td><td id="hv:U" class="">Hide video</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8029-a5b1-d95a71387cfd"><td id="Na:p" class="">POST</td><td id="&gt;y&gt;p" class=""><code>/api/videos/:id/unhide</code></td><td id="NpIQ" class="">Admin</td><td id="hv:U" class="">Unhide video</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80e2-bc9c-d69f840bb942" class="">Session Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-802e-bf35-dcfcea95c446" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80a8-b2d3-eb1dae6f2f0d"><th id="do]R" class="simple-table-header-color simple-table-header">Method</th><th id="}k@Z" class="simple-table-header-color simple-table-header">Endpoint</th><th id="^Tp{" class="simple-table-header-color simple-table-header">Auth</th><th id="buqU" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80d3-8a48-feae25a4d74b"><td id="do]R" class="">GET</td><td id="}k@Z" class=""><code>/api/sessions</code></td><td id="^Tp{" class="">User</td><td id="buqU" class="">List user&#x27;s sessions</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8017-8a96-e5eaba8070d5"><td id="do]R" class="">GET</td><td id="}k@Z" class=""><code>/api/sessions/active</code></td><td id="^Tp{" class="">User</td><td id="buqU" class="">Get active session</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-803f-bd4b-c6f404e7dc96"><td id="do]R" class="">POST</td><td id="}k@Z" class=""><code>/api/sessions</code></td><td id="^Tp{" class="">User</td><td id="buqU" class="">Start new session</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802e-aea1-d7ef722813cd"><td id="do]R" class="">PATCH</td><td id="}k@Z" class=""><code>/api/sessions/:id</code></td><td id="^Tp{" class="">User</td><td id="buqU" class="">Update/end session</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-805c-80f6-c9e606df385c" class="">Watch History Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8015-bf68-e5d8ef0c532e" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-806d-a8fb-c80215b485a1"><th id="D|Ls" class="simple-table-header-color simple-table-header">Method</th><th id="BiZa" class="simple-table-header-color simple-table-header">Endpoint</th><th id=":Gkg" class="simple-table-header-color simple-table-header">Auth</th><th id="|vn}" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80a6-a377-d185a108cfcd"><td id="D|Ls" class="">GET</td><td id="BiZa" class=""><code>/api/watch-history</code></td><td id=":Gkg" class="">User</td><td id="|vn}" class="">Get watch history</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8025-a074-f58b75bd9f4c"><td id="D|Ls" class="">POST</td><td id="BiZa" class=""><code>/api/watch-history</code></td><td id=":Gkg" class="">User</td><td id="|vn}" class="">Record video watch</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8035-87b7-f1268ada277e" class="">Video Catalog (Browse)</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-80d5-8d2f-c95698e19803" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80c8-bd78-da29249ae6e4"><th id="VMIX" class="simple-table-header-color simple-table-header">Method</th><th id="USQo" class="simple-table-header-color simple-table-header">Endpoint</th><th id="aA:|" class="simple-table-header-color simple-table-header">Auth</th><th id="T`vs" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8034-a2c4-e02ea83527f2"><td id="VMIX" class="">GET</td><td id="USQo" class=""><code>/api/video-catalog</code></td><td id="aA:|" class="">User</td><td id="T`vs" class="">Get Netflix-style catalog with videos</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80bf-b018-eee088d431c5"><td id="VMIX" class="">GET</td><td id="USQo" class=""><code>/api/video-collections</code></td><td id="aA:|" class="">User</td><td id="T`vs" class="">List all collections</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8025-8853-cbb70a359d2e"><td id="VMIX" class="">GET</td><td id="USQo" class=""><code>/api/video-collections/:id</code></td><td id="aA:|" class="">User</td><td id="T`vs" class="">Get collection by ID</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80a5-a2b0-d7e0dfe3068e"><td id="VMIX" class="">POST</td><td id="USQo" class=""><code>/api/video-collections</code></td><td id="aA:|" class="">Admin</td><td id="T`vs" class="">Create collection</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80c3-8589-f167c4a290f2"><td id="VMIX" class="">PATCH</td><td id="USQo" class=""><code>/api/video-collections/:id</code></td><td id="aA:|" class="">Admin</td><td id="T`vs" class="">Update collection</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8004-bdab-d47635d4d835"><td id="VMIX" class="">DELETE</td><td id="USQo" class=""><code>/api/video-collections/:id</code></td><td id="aA:|" class="">Admin</td><td id="T`vs" class="">Delete collection</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8017-9a60-d707e85a8aa0" class="">Personalization Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-80ef-a1b0-f7382cd5d679" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8079-9070-d6813e08f6e6"><th id="p?fg" class="simple-table-header-color simple-table-header">Method</th><th id="An:X" class="simple-table-header-color simple-table-header">Endpoint</th><th id="]w]E" class="simple-table-header-color simple-table-header">Auth</th><th id="VEpV" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80c2-b4b6-ca8f589efef9"><td id="p?fg" class="">GET</td><td id="An:X" class=""><code>/api/children/:childId/saved-videos</code></td><td id="]w]E" class="">User</td><td id="VEpV" class="">Get saved videos for child</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80d3-a49d-f1486b601768"><td id="p?fg" class="">GET</td><td id="An:X" class=""><code>/api/children/:childId/saved-videos/:videoId</code></td><td id="]w]E" class="">User</td><td id="VEpV" class="">Check if video is saved</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ab-b464-f009c7d17e5a"><td id="p?fg" class="">POST</td><td id="An:X" class=""><code>/api/children/:childId/saved-videos/:videoId</code></td><td id="]w]E" class="">User</td><td id="VEpV" class="">Save video for child</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80d3-8c97-f459bfe5eb54"><td id="p?fg" class="">DELETE</td><td id="An:X" class=""><code>/api/children/:childId/saved-videos/:videoId</code></td><td id="]w]E" class="">User</td><td id="VEpV" class="">Unsave video for child</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-804f-9ab5-c6663b3c53b9"><td id="p?fg" class="">GET</td><td id="An:X" class=""><code>/api/children/:childId/subscriptions</code></td><td id="]w]E" class="">User</td><td id="VEpV" class="">Get subscriptions for child</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80b1-92a8-c0cf8edfba8c"><td id="p?fg" class="">GET</td><td id="An:X" class=""><code>/api/children/:childId/subscriptions/:channelId</code></td><td id="]w]E" class="">User</td><td id="VEpV" class="">Check if subscribed to channel</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80d0-b08d-dcba49b9f306"><td id="p?fg" class="">POST</td><td id="An:X" class=""><code>/api/children/:childId/subscriptions/:channelId</code></td><td id="]w]E" class="">User</td><td id="VEpV" class="">Subscribe to channel</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80af-8729-ebfb52483364"><td id="p?fg" class="">DELETE</td><td id="An:X" class=""><code>/api/children/:childId/subscriptions/:channelId</code></td><td id="]w]E" class="">User</td><td id="VEpV" class="">Unsubscribe from channel</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80a2-b488-eaa97942311c"><td id="p?fg" class="">GET</td><td id="An:X" class=""><code>/api/subscription-videos</code></td><td id="]w]E" class="">User</td><td id="VEpV" class="">Get videos from all subscriptions (batched)</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80a9-9188-e9f0a75b32ca"><td id="p?fg" class="">GET</td><td id="An:X" class=""><code>/api/saved-videos</code></td><td id="]w]E" class="">User</td><td id="VEpV" class="">Get all saved videos (batched)</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8060-b563-cb564b897897" class="">Feedback Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8098-a68a-f22054f066e1" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8087-be51-ce79a143304b"><th id="T]Z&gt;" class="simple-table-header-color simple-table-header">Method</th><th id="nIRO" class="simple-table-header-color simple-table-header">Endpoint</th><th id="DC&lt;K" class="simple-table-header-color simple-table-header">Auth</th><th id="&lt;|yM" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8069-a21b-c4453b0fb013"><td id="T]Z&gt;" class="">GET</td><td id="nIRO" class=""><code>/api/feedback/pending</code></td><td id="DC&lt;K" class="">User</td><td id="&lt;|yM" class="">Get sessions needing feedback</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-806c-9f3b-d07fc6d166c4"><td id="T]Z&gt;" class="">POST</td><td id="nIRO" class=""><code>/api/feedback/:sessionId/reactions</code></td><td id="DC&lt;K" class="">User</td><td id="&lt;|yM" class="">Submit video reactions</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80a2-925e-fd0c1dfebc85"><td id="T]Z&gt;" class="">POST</td><td id="nIRO" class=""><code>/api/feedback/:sessionId/complete</code></td><td id="DC&lt;K" class="">User</td><td id="&lt;|yM" class="">Complete session feedback</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8040-9781-e58776015f3c"><td id="T]Z&gt;" class="">POST</td><td id="nIRO" class=""><code>/api/children/:childId/feedback</code></td><td id="DC&lt;K" class="">User</td><td id="&lt;|yM" class="">Submit behavior feedback</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8059-bf15-e49973a84540" class="">Video Series Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8074-be6e-dca99394c805" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8010-9a90-dad38df8d6b3"><th id="d;cD" class="simple-table-header-color simple-table-header">Method</th><th id="yPZV" class="simple-table-header-color simple-table-header">Endpoint</th><th id="&gt;df[" class="simple-table-header-color simple-table-header">Auth</th><th id="BRtv" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802d-9ea7-cfbeaf2453e6"><td id="d;cD" class="">GET</td><td id="yPZV" class=""><code>/api/videos/series</code></td><td id="&gt;df[" class="">User</td><td id="BRtv" class="">Get all unique series names</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8037-a6d4-ed96c98c8edf"><td id="d;cD" class="">GET</td><td id="yPZV" class=""><code>/api/videos/series/:seriesName/latest</code></td><td id="&gt;df[" class="">User</td><td id="BRtv" class="">Get latest video in a series</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8045-9e87-fbee0730f37a" class="">Theme Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-804a-98c7-c27a6a3465c5" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80a0-a66b-f97a60b6f01e"><th id="eAO@" class="simple-table-header-color simple-table-header">Method</th><th id="r\j@" class="simple-table-header-color simple-table-header">Endpoint</th><th id="^E_m" class="simple-table-header-color simple-table-header">Auth</th><th id="k?w~" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80fb-b3f8-d86ec480cc28"><td id="eAO@" class="">GET</td><td id="r\j@" class=""><code>/api/themes</code></td><td id="^E_m" class="">User</td><td id="k?w~" class="">List all themes</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8002-8fe3-dfffc8f487fb"><td id="eAO@" class="">POST</td><td id="r\j@" class=""><code>/api/themes</code></td><td id="^E_m" class="">Admin</td><td id="k?w~" class="">Create theme</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8049-8b9e-c228d079139c"><td id="eAO@" class="">PATCH</td><td id="r\j@" class=""><code>/api/themes/:id</code></td><td id="^E_m" class="">Admin</td><td id="k?w~" class="">Update theme</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8085-b9f4-d3269d201771"><td id="eAO@" class="">DELETE</td><td id="r\j@" class=""><code>/api/themes/:id</code></td><td id="^E_m" class="">Admin</td><td id="k?w~" class="">Delete theme</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80ed-b6ce-c8be985e4272" class="">Hidden Content Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8099-99e5-e02da1251309" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80d0-bc3f-eed8070c0f11"><th id="W`&lt;w" class="simple-table-header-color simple-table-header">Method</th><th id="@oHt" class="simple-table-header-color simple-table-header">Endpoint</th><th id="HgYe" class="simple-table-header-color simple-table-header">Auth</th><th id="Rd`c" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8024-bd39-e29f066e007e"><td id="W`&lt;w" class="">GET</td><td id="@oHt" class=""><code>/api/children/:childId/hidden</code></td><td id="HgYe" class="">User</td><td id="Rd`c" class="">Get hidden content for child</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8098-afd5-d1b0164cc2a6"><td id="W`&lt;w" class="">POST</td><td id="@oHt" class=""><code>/api/children/:childId/hidden</code></td><td id="HgYe" class="">User</td><td id="Rd`c" class="">Hide video/channel for child</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8083-8e24-e622a19027b2"><td id="W`&lt;w" class="">DELETE</td><td id="@oHt" class=""><code>/api/hidden/:id</code></td><td id="HgYe" class="">User</td><td id="Rd`c" class="">Unhide content</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80bd-88c9-f298e1975143" class="">Child Settings Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8034-ba1d-d7a374a82bae" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8053-b949-dc6c6f909e66"><th id="q?z\" class="simple-table-header-color simple-table-header">Method</th><th id="BBRc" class="simple-table-header-color simple-table-header">Endpoint</th><th id="Nrbn" class="simple-table-header-color simple-table-header">Auth</th><th id="W&gt;aA" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8019-ac78-fa0799ea4fd1"><td id="q?z\" class="">GET</td><td id="BBRc" class=""><code>/api/children-settings</code></td><td id="Nrbn" class="">User</td><td id="W&gt;aA" class="">Get settings for all children</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80cc-b310-f94557f1f88f"><td id="q?z\" class="">GET</td><td id="BBRc" class=""><code>/api/children/:childId/settings</code></td><td id="Nrbn" class="">User</td><td id="W&gt;aA" class="">Get settings for specific child</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8049-ae3b-ead1c7d6236a"><td id="q?z\" class="">PATCH</td><td id="BBRc" class=""><code>/api/children/:childId/settings</code></td><td id="Nrbn" class="">User</td><td id="W&gt;aA" class="">Update child settings</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-804a-ad84-f945b1f95ea4" class="">Child Reactions Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-804d-9178-f44a325ef7da" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80dd-bd0b-c75e5f8b47ee"><th id="&gt;kl]" class="simple-table-header-color simple-table-header">Method</th><th id="~aM{" class="simple-table-header-color simple-table-header">Endpoint</th><th id="PNCC" class="simple-table-header-color simple-table-header">Auth</th><th id=":own" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80b7-9b00-c52d2a718e82"><td id="&gt;kl]" class="">GET</td><td id="~aM{" class=""><code>/api/children/:childId/reactions</code></td><td id="PNCC" class="">User</td><td id=":own" class="">Get all reactions for child</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80e0-8ffc-f476cb2e2b68"><td id="&gt;kl]" class="">GET</td><td id="~aM{" class=""><code>/api/children/:childId/sensitivity-recommendation</code></td><td id="PNCC" class="">User</td><td id=":own" class="">Get sensitivity level recommendation</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8009-a227-c6d35b8c14d0" class="">Show Preferences (Onboarding)</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8055-935f-e1bfc225e7cc" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802c-bf9b-d16551fe59ae"><th id="Hbpw" class="simple-table-header-color simple-table-header">Method</th><th id="?DpX" class="simple-table-header-color simple-table-header">Endpoint</th><th id="t[Pc" class="simple-table-header-color simple-table-header">Auth</th><th id="yJ}J" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80e8-bb79-c61636760114"><td id="Hbpw" class="">GET</td><td id="?DpX" class=""><code>/api/children/:childId/show-preferences</code></td><td id="t[Pc" class="">User</td><td id="yJ}J" class="">Get show preferences</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8005-a431-eeb8a04f3fda"><td id="Hbpw" class="">POST</td><td id="?DpX" class=""><code>/api/children/:childId/show-preferences</code></td><td id="t[Pc" class="">User</td><td id="yJ}J" class="">Add show preference (swipe)</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-809e-9495-fdf2a9a6cf2a"><td id="Hbpw" class="">GET</td><td id="?DpX" class=""><code>/api/children/:childId/show-discovery</code></td><td id="t[Pc" class="">User</td><td id="yJ}J" class="">Get shows for discovery swipe UI</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80ba-a272-c9f1ba686e7b" class="">Schedule Overrides</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-80e9-aa1a-e5b142ed0b90" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80d6-a2b7-c465aec2d7e1"><th id="d;Y=" class="simple-table-header-color simple-table-header">Method</th><th id="aRDN" class="simple-table-header-color simple-table-header">Endpoint</th><th id="PN&gt;\" class="simple-table-header-color simple-table-header">Auth</th><th id="pMBr" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80bb-9c91-c1773792ed68"><td id="d;Y=" class="">GET</td><td id="aRDN" class=""><code>/api/children/:childId/overrides</code></td><td id="PN&gt;\" class="">User</td><td id="pMBr" class="">Get schedule overrides</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8019-a520-f802b36c2de1"><td id="d;Y=" class="">POST</td><td id="aRDN" class=""><code>/api/children/:childId/overrides</code></td><td id="PN&gt;\" class="">User</td><td id="pMBr" class="">Create schedule override</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8001-a9c7-e2111e17281e"><td id="d;Y=" class="">PATCH</td><td id="aRDN" class=""><code>/api/children/:childId/overrides/:overrideId</code></td><td id="PN&gt;\" class="">User</td><td id="pMBr" class="">Update schedule override</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8026-b74f-eb6098b2bcdc" class="">Child Feedback (Per-Child)</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-809e-8da6-fa8e8f3bec2e" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-809b-a378-f32ff7744de1"><th id="XNCk" class="simple-table-header-color simple-table-header">Method</th><th id="DL;n" class="simple-table-header-color simple-table-header">Endpoint</th><th id="t]dF" class="simple-table-header-color simple-table-header">Auth</th><th id="Ai&gt;L" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802a-b10a-fd421e3a6530"><td id="XNCk" class="">GET</td><td id="DL;n" class=""><code>/api/children/:childId/feedback</code></td><td id="t]dF" class="">User</td><td id="Ai&gt;L" class="">Get all feedback for child</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80c4-9ef3-ddca0f007c7a"><td id="XNCk" class="">POST</td><td id="DL;n" class=""><code>/api/children/:childId/feedback</code></td><td id="t]dF" class="">User</td><td id="Ai&gt;L" class="">Submit feedback for child</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-805d-a0d3-dc166e820de5" class="">Subscription Videos</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8042-b62f-c592a4e0e10e" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80c6-9fa4-c3c637ef7d51"><th id="Ho\T" class="simple-table-header-color simple-table-header">Method</th><th id="MxYU" class="simple-table-header-color simple-table-header">Endpoint</th><th id="zDuL" class="simple-table-header-color simple-table-header">Auth</th><th id=":~g;" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80e1-9513-c60c6bc0dfeb"><td id="Ho\T" class="">GET</td><td id="MxYU" class=""><code>/api/children/:childId/subscription-videos</code></td><td id="zDuL" class="">User</td><td id=":~g;" class="">Get videos from child&#x27;s subscribed channels</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8077-8fcd-c022d40c004b" class="">Analytics Endpoints (Admin)</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8054-929a-ecf89134ef23" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80e9-9f30-c450f23f8334"><th id="t[oX" class="simple-table-header-color simple-table-header">Method</th><th id="nSDq" class="simple-table-header-color simple-table-header">Endpoint</th><th id="=g&gt;M" class="simple-table-header-color simple-table-header">Auth</th><th id="KsIx" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8074-b321-c2a3bf574f9f"><td id="t[oX" class="">GET</td><td id="nSDq" class=""><code>/api/admin/stats</code></td><td id="=g&gt;M" class="">Admin</td><td id="KsIx" class="">Dashboard statistics (totals)</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ab-8a04-c97a4f82b172"><td id="t[oX" class="">GET</td><td id="nSDq" class=""><code>/api/admin/users</code></td><td id="=g&gt;M" class="">Admin</td><td id="KsIx" class="">List all users with roles</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80c0-a4d9-ce0420d587bc"><td id="t[oX" class="">GET</td><td id="nSDq" class=""><code>/api/admin/analytics/videos</code></td><td id="=g&gt;M" class="">Admin</td><td id="KsIx" class="">Video analytics (views, ratings)</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80c8-9590-ec6fc19fcf53"><td id="t[oX" class="">GET</td><td id="nSDq" class=""><code>/api/admin/analytics/channels</code></td><td id="=g&gt;M" class="">Admin</td><td id="KsIx" class="">Channel analytics</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-803f-9cb7-c2b52fcd2f7f"><td id="t[oX" class="">GET</td><td id="nSDq" class=""><code>/api/admin/analytics/engagement</code></td><td id="=g&gt;M" class="">Admin</td><td id="KsIx" class="">Engagement metrics (likes, saves, subs)</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-804b-a5e4-eb0b907c0e41"><td id="t[oX" class="">GET</td><td id="nSDq" class=""><code>/api/admin/analytics/video-engagement</code></td><td id="=g&gt;M" class="">Admin</td><td id="KsIx" class="">Per-video engagement breakdown</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8095-8fb3-c319218dbeb7"><td id="t[oX" class="">GET</td><td id="nSDq" class=""><code>/api/admin/analytics/channel-subscriptions</code></td><td id="=g&gt;M" class="">Admin</td><td id="KsIx" class="">Channel subscription analytics</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-801d-8f67-ca6c05ba78b5"><td id="t[oX" class="">GET</td><td id="nSDq" class=""><code>/api/admin/analytics/behavioral</code></td><td id="=g&gt;M" class="">Admin</td><td id="KsIx" class="">Behavioral patterns (90-day analysis)</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80a5-bdfc-d095fd7e6f1f" class=""><strong>Behavioral Analytics Query Parameters:</strong></p></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-80c8-b3d0-c7859c43024d" class="bulleted-list"><li style="list-style-type:disc"><code>days</code>: Number of days to analyze (default: 90)</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-80a8-a784-df29913f5dd1" class="bulleted-list"><li style="list-style-type:disc">Returns: negative rates, duration correlations, time-of-day patterns, problematic content</li></ul></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80a6-8809-c3891b9ae4af" class="">Admin Notification Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-80be-9b4b-cac3fc54b351" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8000-95ad-f45697a2d517"><th id="{n^@" class="simple-table-header-color simple-table-header">Method</th><th id="F]|b" class="simple-table-header-color simple-table-header">Endpoint</th><th id="GmYz" class="simple-table-header-color simple-table-header">Auth</th><th id="W{`Q" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-803d-86d3-f4258d952e0e"><td id="{n^@" class="">GET</td><td id="F]|b" class=""><code>/api/admin/notifications</code></td><td id="GmYz" class="">Admin</td><td id="W{`Q" class="">Get all notifications</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80cb-8bb3-e4a4abe30df8"><td id="{n^@" class="">GET</td><td id="F]|b" class=""><code>/api/admin/notifications/unread</code></td><td id="GmYz" class="">Admin</td><td id="W{`Q" class="">Get unread notification count</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80d3-9d0d-c3aac6be591c"><td id="{n^@" class="">PATCH</td><td id="F]|b" class=""><code>/api/admin/notifications/:id/read</code></td><td id="GmYz" class="">Admin</td><td id="W{`Q" class="">Mark notification as read</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8086-91c0-d2f08aa7afd3"><td id="{n^@" class="">POST</td><td id="F]|b" class=""><code>/api/admin/notifications/mark-all-read</code></td><td id="GmYz" class="">Admin</td><td id="W{`Q" class="">Mark all notifications as read</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8078-87e1-eb537932724c"><td id="{n^@" class="">DELETE</td><td id="F]|b" class=""><code>/api/admin/notifications/:id</code></td><td id="GmYz" class="">Admin</td><td id="W{`Q" class="">Delete notification</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-807e-8a0d-da85a57c544a" class="">YouTube Integration</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-800b-97d5-cdd689ffb8ca" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8052-a81c-f7b513a0a113"><th id="_uY~" class="simple-table-header-color simple-table-header">Method</th><th id="@?Fq" class="simple-table-header-color simple-table-header">Endpoint</th><th id="yUAZ" class="simple-table-header-color simple-table-header">Auth</th><th id="]?Tw" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80bc-8239-e7b6b6ee180a"><td id="_uY~" class="">GET</td><td id="@?Fq" class=""><code>/api/youtube/channel/:channelId</code></td><td id="yUAZ" class="">Admin</td><td id="]?Tw" class="">Fetch channel info from YouTube API</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-805b-9d43-c61b41368dfb"><td id="_uY~" class="">GET</td><td id="@?Fq" class=""><code>/api/youtube/video/:videoId</code></td><td id="yUAZ" class="">Admin</td><td id="]?Tw" class="">Fetch video info from YouTube API</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-809f-895f-d2c53ba50f34"><td id="_uY~" class="">GET</td><td id="@?Fq" class=""><code>/api/youtube/video/:videoId/embeddable</code></td><td id="yUAZ" class="">User</td><td id="]?Tw" class="">Check if video is embeddable</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80a8-bd24-ecb87d089b59"><td id="_uY~" class="">GET</td><td id="@?Fq" class=""><code>/api/youtube/playlist/:playlistId</code></td><td id="yUAZ" class="">Admin</td><td id="]?Tw" class="">Fetch playlist videos from YouTube</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-802a-9603-d2b41ba1e7d3"><td id="_uY~" class="">POST</td><td id="@?Fq" class=""><code>/api/youtube/playlist/import</code></td><td id="yUAZ" class="">Admin</td><td id="]?Tw" class="">Bulk import playlist with metadata</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80f3-8e97-d52fb993e830" class=""><strong>Playlist Import Request Body:</strong></p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-80f2-adef-eb4c10df338e" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;playlistId&quot;: &quot;PLxxxxxxx&quot;,
+  &quot;videos&quot;: [
+    {
+      &quot;youtubeVideoId&quot;: &quot;abc123&quot;,
+      &quot;stimulationLevel&quot;: 3,
+      &quot;ageMin&quot;: 3,
+      &quot;ageMax&quot;: 8,
+      &quot;themes&quot;: [&quot;Educational&quot;, &quot;Music&quot;]
+    }
+  ],
+  &quot;channelId&quot;: &quot;channel-uuid&quot;
+}
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-801e-ba7f-df7fbc1e1cb2" class="">Data Export Endpoints</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-80dd-9868-d08494034bbf" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80ec-8d2a-f1ebcfb2bfde"><th id="^Me&lt;" class="simple-table-header-color simple-table-header">Method</th><th id="agRV" class="simple-table-header-color simple-table-header">Endpoint</th><th id="hXTb" class="simple-table-header-color simple-table-header">Auth</th><th id="{QVt" class="simple-table-header-color simple-table-header">Description</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80fb-acf5-d6bae8828308"><td id="^Me&lt;" class="">GET</td><td id="agRV" class=""><code>/api/export/videos</code></td><td id="hXTb" class="">Admin</td><td id="{QVt" class="">Export videos as JSON</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-801b-b9ab-ce14a0f956fb"><td id="^Me&lt;" class="">GET</td><td id="agRV" class=""><code>/api/export/channels</code></td><td id="hXTb" class="">Admin</td><td id="{QVt" class="">Export channels as JSON</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80b4-a587-df277e8581dc"><td id="^Me&lt;" class="">GET</td><td id="agRV" class=""><code>/api/export/children</code></td><td id="hXTb" class="">Admin</td><td id="{QVt" class="">Export children data</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-80d9-b224-ca44ce8ebd82"><td id="^Me&lt;" class="">GET</td><td id="agRV" class=""><code>/api/export/sessions</code></td><td id="hXTb" class="">Admin</td><td id="{QVt" class="">Export session history</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><hr id="2ee86039-d108-8082-8258-c1585641e694"/></div><div style="display:contents" dir="auto"><h2 id="2ee86039-d108-808e-8da4-f1efda3c563d" class="">Frontend Architecture</h2></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80c8-9372-c7cd2f3bdd9d" class="">Routing Structure</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-80de-8e06-f9ffe0130466" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">/                     → Dashboard (ParentDashboard or AdminDashboard)
+/videos               → Video Library
+/videos/play/:videoId → Video Player (from library)
+/browse               → Netflix-style Browse
+/browse/play/:videoId → Video Player (from browse)
+/channels             → Channel Management
+/children             → Children Stats (Screen Time style)
+/watch/:childId       → Child Watch Mode (fullscreen)
+/users                → User Management (Admin)
+/collections          → Collection Manager (Admin)
+/themes               → Theme Manager (Admin)
+/analytics            → Analytics Dashboard (Admin)
+/settings             → User Settings
+/export               → Data Export (Admin)
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-808a-a304-c83fa8bbfb37" class="">Component Structure</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-8007-920f-d22216e3257b" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">src/
+├── components/
+│   ├── ui/               # Shadcn components
+│   ├── AppSidebar.tsx    # Navigation sidebar
+│   ├── YouTubePlayer.tsx # Video player with IFrame API
+│   ├── VideoCard.tsx     # Video display card
+│   ├── ChildCard.tsx     # Child profile card
+│   ├── PlaylistPreview.tsx # Pre-session preview
+│   └── ...
+├── pages/
+│   ├── ParentDashboard.tsx
+│   ├── ChildWatch.tsx    # Fullscreen viewing mode
+│   ├── VideoLibrary.tsx
+│   ├── VideoCatalog.tsx  # Browse collections
+│   ├── ChildrenStats.tsx # Screen Time analytics
+│   └── ...
+├── contexts/
+│   ├── AuthContext.tsx   # Firebase auth state
+│   └── CastContext.tsx   # Chromecast state
+├── hooks/
+│   ├── useCurrentUser.ts
+│   └── use-toast.ts
+└── lib/
+    └── queryClient.ts    # TanStack Query config
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8043-84be-f68b000f0828" class="">State Management</h3></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-8017-b7dd-c5e8aa7b4cda" class="numbered-list" start="1"><li><strong>Server State</strong>: TanStack Query with automatic caching<div style="display:contents" dir="auto"><ul id="2ee86039-d108-80c4-b8f0-fe230c3a3255" class="bulleted-list"><li style="list-style-type:disc">Query keys follow RESTful patterns: <code>[&#x27;/api/videos&#x27;]</code>, <code>[&#x27;/api/children&#x27;, childId]</code></li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-805d-9a10-cc7f32665669" class="bulleted-list"><li style="list-style-type:disc">Mutations invalidate related queries automatically</li></ul></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-80d0-a7d9-c40bde38e654" class="numbered-list" start="2"><li><strong>Auth State</strong>: React Context (<code>AuthContext</code>)<div style="display:contents" dir="auto"><ul id="2ee86039-d108-8023-b9f5-e057aea2f9e3" class="bulleted-list"><li style="list-style-type:disc">Firebase Auth listener updates context</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-805c-bc35-f74ecd3046f2" class="bulleted-list"><li style="list-style-type:disc">Mock mode for development (no Firebase required)</li></ul></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-8043-b8d9-c9fc208e2473" class="numbered-list" start="3"><li><strong>Form State</strong>: React Hook Form + Zod validation<div style="display:contents" dir="auto"><ul id="2ee86039-d108-8074-b72a-f55dfcb1f108" class="bulleted-list"><li style="list-style-type:disc">Insert schemas from Drizzle for validation</li></ul></div></li></ol></div><div style="display:contents" dir="auto"><hr id="2ee86039-d108-8040-a1a9-f8df5464d32f"/></div><div style="display:contents" dir="auto"><h2 id="2ee86039-d108-8014-aa66-e980e3a7b1ca" class="">Core Algorithms</h2></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8005-a52a-ce80be294528" class="">1. Playlist Generation Algorithm</h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80b1-96b4-ed643af4a8e2" class="">The playlist builder creates age-appropriate content with stimulation wind-down.</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-809e-88f0-e84685a4856b" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">function buildPlaylist(params: {
+  children: Child[];
+  availableMinutes: number;
+  includeWindDown: boolean;
+  timeOfDay: &#x27;morning&#x27; | &#x27;afternoon&#x27; | &#x27;evening&#x27;;
+}): Video[] {
+  const youngestAge = Math.min(...children.map(c =&gt; calculateAge(c)));
+
+  // Filter videos by youngest child&#x27;s age
+  const ageAppropriateVideos = videos.filter(v =&gt;
+    v.ageMin &lt;= youngestAge &amp;&amp; v.ageMax &gt;= youngestAge
+  );
+
+  // Determine max stimulation by time of day
+  const maxStimulation = timeOfDay === &#x27;evening&#x27; ? 3 : 5;
+
+  // Separate regular (1-5) and calming (0) videos
+  const regularVideos = ageAppropriateVideos.filter(v =&gt;
+    v.stimulationLevel &gt;= 1 &amp;&amp; v.stimulationLevel &lt;= maxStimulation
+  );
+  const calmingVideos = ageAppropriateVideos.filter(v =&gt;
+    v.stimulationLevel === 0
+  );
+
+  // Build playlist with monotonic decrease
+  const playlist = [];
+  let remainingMinutes = availableMinutes;
+  let currentMaxStim = maxStimulation;
+
+  while (remainingMinutes &gt; 0 &amp;&amp; regularVideos.length &gt; 0) {
+    // Pick video at or below current max stimulation
+    const candidates = regularVideos.filter(v =&gt;
+      v.stimulationLevel &lt;= currentMaxStim
+    );
+    const video = randomPick(candidates);
+
+    playlist.push(video);
+    remainingMinutes -= video.durationSeconds / 60;
+    currentMaxStim = video.stimulationLevel; // Enforce decrease
+  }
+
+  // Add calming videos if wind-down enabled
+  if (includeWindDown) {
+    playlist.push(...pickCalming(calmingVideos, 10)); // ~10 min calming
+  }
+
+  return playlist;
+}
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8090-b7a9-cc0b817a1daf" class="">2. Stimulation Level System</h3></div><div style="display:contents" dir="ltr"><table id="2ee86039-d108-8065-969d-d2e83954c561" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-803e-a14a-e5c15f831e0b"><th id="o{Me" class="simple-table-header-color simple-table-header">Level</th><th id="@a]}" class="simple-table-header-color simple-table-header">Name</th><th id="{Og`" class="simple-table-header-color simple-table-header">Description</th><th id="BODs" class="simple-table-header-color simple-table-header">Examples</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-809a-ab83-c535337ba622"><td id="o{Me" class="">0</td><td id="@a]}" class="">Calming</td><td id="{Og`" class="">Wind-down content, low visual/audio</td><td id="BODs" class="">Nature scenes, lullabies</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8058-aa36-fa7c16ad6966"><td id="o{Me" class="">1</td><td id="@a]}" class="">Very Low</td><td id="{Og`" class="">Slow-paced, minimal action</td><td id="BODs" class="">Bob Ross, slow storytelling</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-806a-8815-d562c7392633"><td id="o{Me" class="">2</td><td id="@a]}" class="">Low</td><td id="{Og`" class="">Gentle pace, educational</td><td id="BODs" class="">Mr. Rogers, calm cartoons</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-807f-a928-e9710e0791c8"><td id="o{Me" class="">3</td><td id="@a]}" class="">Medium</td><td id="{Og`" class="">Moderate pace, engaging</td><td id="BODs" class="">Sesame Street, Bluey</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8082-bb19-fa2201f70e8e"><td id="o{Me" class="">4</td><td id="@a]}" class="">High</td><td id="{Og`" class="">Fast-paced, exciting</td><td id="BODs" class="">Action cartoons</td></tr></div><div style="display:contents" dir="ltr"><tr id="2ee86039-d108-8044-8dd4-ee0930ae0e5f"><td id="o{Me" class="">5</td><td id="@a]}" class="">Very High</td><td id="{Og`" class="">High energy, intense</td><td id="BODs" class="">Fast action, loud music</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80c3-88f2-ca5f31a5ac2d" class="">3. Content Filtering Logic</h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80a3-8da4-cc698964793c" class=""><strong>Layered Safety Model:</strong></p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-8077-b204-f60a6891e5e1" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">Browse Page (Less Restrictive)
+├── Shows ALL subscription/saved videos
+├── No age filtering (for discovery)
+├── Hidden content always filtered
+└── Parents can see what&#x27;s available
+
+Session Start (Strict)
+├── Filter by youngest child&#x27;s age
+├── Filter by time-of-day stimulation caps
+├── Filter out hidden content
+└── Only embeddable videos
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80aa-923e-e62999f275eb" class="">4. Video Catalog Diversification</h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-8036-bc5d-d4ba7547a2f2" class="">Netflix-style rows avoid showing same channel repeatedly:</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-8067-a19a-ff6d82a0676f" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">function diversifyVideos(videos: Video[], maxCount: number): Video[] {
+  // Group by channel/series
+  const groups = groupBy(videos, v =&gt; v.series || v.channelId);
+
+  // Round-robin selection
+  const result = [];
+  let round = 0;
+
+  while (result.length &lt; maxCount) {
+    for (const group of groups.values()) {
+      if (group[round] &amp;&amp; result.length &lt; maxCount) {
+        result.push(group[round]);
+      }
+    }
+    round++;
+  }
+
+  return result;
+}
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80f0-8a08-ea7f06a7c0e7" class="">5. Session Lifecycle</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-80ab-9bc2-d4a7b2dd18af" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">┌─────────────────────────────────────────────────────────────┐
+│                    SESSION LIFECYCLE                         │
+└─────────────────────────────────────────────────────────────┘
+
+1. SESSION START
+   Parent selects child(ren) → System calculates:
+   - Available minutes (daily limit - already watched today)
+   - Youngest child&#x27;s age (for filtering)
+   - Time of day (for stimulation caps)
+
+2. PLAYLIST PREVIEW
+   - Generate playlist with monotonic stimulation decrease
+   - Show parent: videos, total duration, avg stimulation
+   - Parent can: shuffle, replace videos, toggle wind-down
+
+3. PLAYBACK
+   - ChildWatch.tsx renders fullscreen player
+   - YouTubePlayer component handles IFrame API
+   - On video end: record to watch_history, advance to next
+   - Auto-advance countdown (5s) for seamless transitions
+
+4. SESSION END
+   - Triggered by: last video ends OR parent clicks exit
+   - PATCH /api/sessions/:id with endedAt
+   - Calculate totalDurationSeconds from watch_history
+
+5. FEEDBACK COLLECTION
+   - Show emoji reactions for each video watched
+   - Collect behavior rating (great/okay/upset/tantrum)
+   - Store in session_feedback table
+   - Update sensitivity recommendations
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8092-b785-f635b9890f07" class="">6. Personalization System</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-80f8-a2c4-ccd70784bd5e" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">// Actions available during playback:
+
+// 1. LIKE VIDEO - Influences future recommendations
+async function likeVideo(childIds: string[], videoId: string, sessionId: string) {
+  for (const childId of childIds) {
+    await storage.upsertVideoReaction({
+      childId,
+      videoId,
+      sessionId,
+      reaction: &#x27;like&#x27;
+    });
+  }
+  // Used for: personalized recommendations, analytics
+}
+
+// 2. SUBSCRIBE TO CHANNEL - Shows in personalized browse
+async function subscribeToChannel(childIds: string[], channelId: string) {
+  for (const childId of childIds) {
+    await storage.createChildChannelSubscription({
+      childId,
+      channelId
+    });
+  }
+  // Used for: &quot;From Your Subscriptions&quot; section in browse
+}
+
+// 3. SAVE VIDEO - Personal library per child
+async function saveVideo(childIds: string[], videoId: string) {
+  for (const childId of childIds) {
+    await storage.createSavedVideo({
+      childId,
+      videoId
+    });
+  }
+  // Used for: &quot;Saved Videos&quot; section in browse
+}
+
+// Multi-child sessions: ChildSelectionDialog lets parent
+// choose which children the action applies to
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8001-934f-daa73902257b" class="">7. Chromecast Integration</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-80bd-a329-e4e09bb19891" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">// CastContext manages global Chromecast state
+const CastProvider = ({ children }) =&gt; {
+  const [castSession, setCastSession] = useState(null);
+
+  useEffect(() =&gt; {
+    // Initialize Cast SDK
+    window.__onGCastApiAvailable = (isAvailable) =&gt; {
+      if (isAvailable) {
+        cast.framework.CastContext.getInstance().setOptions({
+          receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
+          autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
+        });
+      }
+    };
+  }, []);
+
+  // Cast button handled by YouTube IFrame API&#x27;s enablecastapi=1
+  // Playlist progression: app handles onEnd events, loads next video
+};
+
+// Key implementation notes:
+// - YouTube&#x27;s built-in Cast API handles DRM without API quota usage
+// - App&#x27;s onEnd events fire when video ends on Chromecast
+// - App then loads next video in playlist via IFrame API
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80c8-bf4e-e53eefa4787e" class="">8. Embedding Error Detection</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-8096-bff7-f588d3fde3fe" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">// Real-time detection in YouTubePlayer.tsx
+function handleYouTubeError(event: YT.OnErrorEvent) {
+  const errorCode = event.data;
+
+  // Error 150 = embedding disabled by owner
+  // Error 101 = video not embeddable
+  if (errorCode === 150 || errorCode === 101) {
+    // Report to server
+    apiRequest(&#x27;POST&#x27;, `/api/videos/${videoId}/report-embed-error`);
+
+    // Server-side: marks video as isHidden = 1
+    // Creates admin notification
+
+    // Client: skip to next video in playlist
+    onError(errorCode);
+  }
+}
+
+// Batch checking (admin action)
+// POST /api/videos/check-embeddability
+// - Checks videos not verified in 7+ days
+// - Uses YouTube Data API (50 videos per batch)
+// - Auto-hides newly disabled videos
+// - Creates batch notification for admin
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8097-b9f3-ce9fe2ceb65b" class="">9. Time-of-Day Stimulation Caps</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-80fd-8c9d-cee9ef553bdd" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">function getMaxStimulationForTime(): number {
+  const hour = new Date().getHours();
+
+  // Morning (6am - 12pm): Full range
+  if (hour &gt;= 6 &amp;&amp; hour &lt; 12) return 5;
+
+  // Afternoon (12pm - 5pm): Slight reduction
+  if (hour &gt;= 12 &amp;&amp; hour &lt; 17) return 4;
+
+  // Evening (5pm - 9pm): Calming content prioritized
+  if (hour &gt;= 17 &amp;&amp; hour &lt; 21) return 3;
+
+  // Night (9pm+): Very calming only
+  return 2;
+}
+</code></pre></div><div style="display:contents" dir="auto"><hr id="2ee86039-d108-8027-ad63-dd6d8808fc87"/></div><div style="display:contents" dir="auto"><h2 id="2ee86039-d108-804c-9141-fd6428bf24fa" class="">Implementation Workflows</h2></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80b9-bbbb-fb20d58e3be5" class="">Child Onboarding (3-Step Wizard)</h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80fb-a41a-d35d441eaf77" class=""><strong>Step 1: Profile Setup</strong></p></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-80e5-8931-edadbf27a469" class="bulleted-list"><li style="list-style-type:disc">Name, birth month/year, gender</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-808d-94de-c3c775e1ac60" class="bulleted-list"><li style="list-style-type:disc">Calculate age from birth date</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-8064-bfbf-cfb915b2e8f8" class="bulleted-list"><li style="list-style-type:disc">If under 3: show warning that most content is 3+</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-80f0-a140-c99728d11c72" class="bulleted-list"><li style="list-style-type:disc">Offer opt-in toggle: &quot;Allow 3+ content&quot; (sets ageRestrictionOverride)</li></ul></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-802b-939c-db795a066d29" class=""><strong>Step 2: Show Preferences (Swipe Discovery)</strong></p></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-8057-8604-fcbf955cd28a" class="bulleted-list"><li style="list-style-type:disc">Fetch 10 videos for age-appropriate discovery cards</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-809e-9d8e-fd53d8cbe93e" class="bulleted-list"><li style="list-style-type:disc">Swipe right = like, left = dislike, up = skip</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-802b-9137-f9b10e5e5f97" class="bulleted-list"><li style="list-style-type:disc">Store in show_preferences table</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-80de-ac99-f7105b59fbb0" class="bulleted-list"><li style="list-style-type:disc">&quot;Swipe More&quot; button to load next batch</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-80e4-9103-cfb59fe767ca" class="bulleted-list"><li style="list-style-type:disc">Influences playlist generation weighting</li></ul></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-801b-be31-fca3d51ae000" class=""><strong>Step 3: Schedule Setup</strong></p></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-805c-bbc5-ca52bb236bbf" class="bulleted-list"><li style="list-style-type:disc">Daily entertainment limit (minutes)</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-80af-9790-c955985e04ec" class="bulleted-list"><li style="list-style-type:disc">Sensitivity level: Low (1-3) / Medium (4-7) / High (8-10)</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-80af-9c32-e21d0ca64414" class="bulleted-list"><li style="list-style-type:disc">Sensitivity detection toggle (emoji feedback monitoring)</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-80b7-80e0-f8f008035dd3" class="bulleted-list"><li style="list-style-type:disc">Finish mode: Hard (no content after limit) or Soft (calming only)</li></ul></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8035-a255-d76ad96f02eb" class="">Playlist Preview Flow</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-8088-ac53-cbc77edd5a57" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">1. Parent clicks &quot;Start Session&quot; on child card
+2. System builds playlist based on:
+   - Available time remaining today
+   - Child age(s) - uses youngest for filtering
+   - Time of day for stimulation caps
+   - Show preferences for weighting
+
+3. PlaylistPreview component displays:
+   - Regular videos (stimulation 1-5)
+   - Wind-down videos (stimulation 0)
+   - Total duration, average stimulation
+
+4. Parent actions:
+   - Shuffle: re-randomize while keeping constraints
+   - Replace video: swap individual video
+   - Toggle wind-down: add/remove calming videos
+   - Confirm: start session
+
+5. Session created, navigate to /watch/:childId
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-804a-b8f7-f4b16e2f8081" class="">Browse Collections Flow</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-8067-b2bc-fc793e4ad7ca" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">1. Parent navigates to /browse
+2. Child selector shows which children are watching
+3. GET /api/video-catalog returns Netflix-style rows:
+   [
+     { collection: &quot;From Your Subscriptions&quot;, videos: [...] },
+     { collection: &quot;Saved Videos&quot;, videos: [...] },
+     { collection: &quot;Educational Fun&quot;, videos: [...] },
+     ...
+   ]
+
+4. Each collection applies its own filters (themes, age, stimulation)
+5. Clicking video:
+   - Plays selected video
+   - Auto-queues remaining videos from that collection
+   - Personalization actions available during playback
+</code></pre></div><div style="display:contents" dir="auto"><hr id="2ee86039-d108-8027-afe4-edd6e3194374"/></div><div style="display:contents" dir="auto"><h2 id="2ee86039-d108-80e7-83d9-ec4a4ccc0c8b" class="">Authentication Flow</h2></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80b1-9f03-dd81fc632428" class="">Production Flow (Firebase)</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-8090-9705-d523eb3d1732" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">1. User clicks &quot;Sign in with Google&quot;
+2. Firebase Auth handles OAuth flow
+3. Firebase returns ID token
+4. Client includes token in API requests: Authorization: Bearer &lt;token&gt;
+5. Server verifies with Firebase Admin SDK
+6. Server creates/fetches user record from database
+7. Server returns user data with role (admin/parent)
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8034-87db-c2540cc706ec" class="">Development Flow (Mock Mode)</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-80c5-be9a-c02b2680be95" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">1. Set MOCK_AUTH=true environment variable
+2. Role selector appears on load
+3. User chooses &quot;Admin&quot; or &quot;Parent&quot;
+4. Mock auth context provides fake user
+5. Server middleware accepts mock tokens
+6. No Firebase required for development
+</code></pre></div><div style="display:contents" dir="auto"><hr id="2ee86039-d108-8091-aae9-ff36af034f91"/></div><div style="display:contents" dir="auto"><h2 id="2ee86039-d108-801d-bc17-f6f89bb70d2f" class="">Environment Variables</h2></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80ed-b1a6-edb8f45c681d" class="">Required (Production)</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-803e-a29c-db6de4e625b7" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all"># Database
+DATABASE_URL=postgresql://...
+PGHOST=...
+PGPORT=5432
+PGUSER=...
+PGPASSWORD=...
+PGDATABASE=...
+
+# Firebase (Server)
+FIREBASE_PROJECT_ID=...
+FIREBASE_CLIENT_EMAIL=...
+FIREBASE_PRIVATE_KEY=...
+
+# Firebase (Client - VITE_ prefix)
+VITE_FIREBASE_API_KEY=...
+VITE_FIREBASE_APP_ID=...
+VITE_FIREBASE_PROJECT_ID=...
+
+# YouTube
+YOUTUBE_API_KEY=...
+
+# Session
+SESSION_SECRET=...
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8077-b1e8-e61cb67ee17e" class="">Optional</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-8011-b590-f7961a007eae" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all"># Development
+MOCK_AUTH=true           # Skip Firebase auth
+NODE_ENV=development     # Development mode
+</code></pre></div><div style="display:contents" dir="auto"><hr id="2ee86039-d108-80e2-84b9-e0b4872a15fc"/></div><div style="display:contents" dir="auto"><h2 id="2ee86039-d108-80fa-b509-da39b304980d" class="">Key Implementation Details</h2></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8077-9248-c749b3ce20ef" class="">YouTube Player Integration</h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80e8-81af-d38b729cddbf" class="">Uses YouTube IFrame API with custom overlay for recommendations hiding:</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-8055-9c02-cd5a1e5ef2ef" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">const YouTubePlayer = ({
+  videoId,
+  onEnd,
+  onError,
+  hasNextVideo,
+  onNextVideo
+}) =&gt; {
+  // Create player with enablecastapi for Chromecast
+  const player = new YT.Player(containerId, {
+    videoId,
+    playerVars: {
+      autoplay: 1,
+      controls: 1,
+      modestbranding: 1,
+      rel: 0,           // Disable related videos
+      enablecastapi: 1, // Enable Chromecast
+    },
+    events: {
+      onStateChange: handleStateChange,
+      onError: handleError,
+    }
+  });
+
+  // Show overlay when paused/ended to hide YouTube UI
+  // Auto-advance countdown when video ends
+};
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80b6-9643-e44599fbf8d7" class="">Embedding Error Detection</h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-80d2-9051-d03b7c6b7660" class="">Real-time detection with automatic recovery:</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-805f-9fdc-df46426608f5" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">// In ChildWatch.tsx
+const handleVideoError = async (errorCode: number) =&gt; {
+  if (errorCode === 101 || errorCode === 150) {
+    // Embedding disabled - report to server
+    await apiRequest(&#x27;POST&#x27;, `/api/videos/${videoId}/report-embed-error`);
+    // Skip to next video
+    setCurrentVideoIndex(prev =&gt; prev + 1);
+  }
+};
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-8097-a609-d8a000084f22" class="">Screen Time Analytics</h3></div><div style="display:contents" dir="auto"><p id="2ee86039-d108-8082-9bcd-d92af8b2898d" class="">Apple-style charts using custom components:</p></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-8024-beb0-f6434046647c" class="bulleted-list"><li style="list-style-type:disc"><strong>Week View</strong>: Stacked bar chart by day, colored by stimulation level</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-8067-8b15-cade4f351e74" class="bulleted-list"><li style="list-style-type:disc"><strong>Day View</strong>: Timeline showing actual watch times with gaps</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee86039-d108-80a9-b008-e104b7e3c0f0" class="bulleted-list"><li style="list-style-type:disc"><strong>Feedback View</strong>: Behavioral pattern analysis over 90 days</li></ul></div><div style="display:contents" dir="auto"><hr id="2ee86039-d108-8047-8b10-db8de9c702cb"/></div><div style="display:contents" dir="auto"><h2 id="2ee86039-d108-805a-ba42-c1f09bff348f" class="">Deployment</h2></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-809e-b4f7-d27b9b5c4434" class="">Replit Deployment</h3></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-807c-a608-d9c1ac4f0670" class="numbered-list" start="1"><li>Push to main branch</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-80b7-9cc2-f7dcf580ce9c" class="numbered-list" start="2"><li>Database: Use Neon PostgreSQL (auto-configured)</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-80f6-82f1-c62f6de7785a" class="numbered-list" start="3"><li>Build: <code>npm run build</code></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-80e5-9a96-d4687f558ad2" class="numbered-list" start="4"><li>Start: <code>npm run start</code></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-807c-910b-ff6652d23ac2" class="numbered-list" start="5"><li>Environment: Set all required secrets in Replit</li></ol></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80ba-90b5-de00ce0e3778" class="">Database Migrations</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-8057-98a6-fdf065041fdf" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all"># Sync schema to database (never write manual migrations)
+npm run db:push
+
+# Force push if data-loss warning
+npm run db:push --force
+</code></pre></div><div style="display:contents" dir="auto"><hr id="2ee86039-d108-8032-9ec2-eae5ffb6e238"/></div><div style="display:contents" dir="auto"><h2 id="2ee86039-d108-8063-acc4-f528c6083e4c" class="">Testing Considerations</h2></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-809f-8356-e2ff3900ea5b" class="">Key Test Scenarios</h3></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-800f-a8eb-ed6ca0dc4ebe" class="numbered-list" start="1"><li><strong>Auth Flow</strong>: Sign in, role detection, protected routes</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-8062-8ccb-fa70b1b541bf" class="numbered-list" start="2"><li><strong>Child CRUD</strong>: Create, edit, delete child profiles</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-8041-91d6-fa05bd0e226e" class="numbered-list" start="3"><li><strong>Session Lifecycle</strong>: Start, watch, end, feedback</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-80c0-a54f-dbb18e95b3ad" class="numbered-list" start="4"><li><strong>Playlist Building</strong>: Age filtering, stimulation ordering</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-8054-87be-f8bed9e66849" class="numbered-list" start="5"><li><strong>Personalization</strong>: Like, save, subscribe actions</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-802d-94d1-feb1a126708f" class="numbered-list" start="6"><li><strong>Hidden Content</strong>: Verify filtered from all endpoints</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-80ef-99f2-d942bdc3f854" class="numbered-list" start="7"><li><strong>Admin Functions</strong>: Video import, embedding check, analytics</li></ol></div><div style="display:contents" dir="auto"><h3 id="2ee86039-d108-80b5-a815-ec0be37c400d" class="">API Testing</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-803c-9433-e3c6da94a1ec" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all"># Example: Get videos as parent (should exclude hidden)
+curl -H &quot;Authorization: Bearer &lt;token&gt;&quot; \\
+  &lt;https://app.replit.app/api/videos&gt;
+
+# Example: Check embedding status
+curl -X POST -H &quot;Authorization: Bearer &lt;token&gt;&quot; \\
+  -H &quot;Content-Type: application/json&quot; \\
+  -d &#x27;{&quot;checkAll&quot;: false, &quot;autoHide&quot;: true}&#x27; \\
+  &lt;https://app.replit.app/api/videos/check-embeddability&gt;
+</code></pre></div><div style="display:contents" dir="auto"><hr id="2ee86039-d108-80bd-81c1-e6f7d3ddbe70"/></div><div style="display:contents" dir="auto"><h2 id="2ee86039-d108-8033-a8d5-dfbf43745ca7" class="">Future Considerations</h2></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-8070-8f63-ef7a1c978194" class="numbered-list" start="1"><li><strong>Content Licensing</strong>: <code>contentSource</code> field prepared for licensed content with native player</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-801e-98b8-d80f05185993" class="numbered-list" start="2"><li><strong>Multi-tenant</strong>: Schema supports multiple families with proper isolation</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-8022-81ac-cc0ca24b132c" class="numbered-list" start="3"><li><strong>Offline Support</strong>: Service worker for offline viewing (future)</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2ee86039-d108-80ca-8aba-fa770469fa2f" class="numbered-list" start="4"><li><strong>Mobile Apps</strong>: API designed for mobile client consumption</li></ol></div><div style="display:contents" dir="auto"><hr id="2ee86039-d108-8015-a55a-ea969dde6cc1"/></div><div style="display:contents" dir="auto"><h2 id="2ee86039-d108-8056-9c26-e3608f27c7d8" class="">Appendix: File Structure</h2></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee86039-d108-80a3-87e3-ff3f65135ca5" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">safewatch/
+├── client/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── contexts/
+│   │   ├── hooks/
+│   │   ├── lib/
+│   │   ├── pages/
+│   │   ├── App.tsx
+│   │   └── main.tsx
+│   └── index.html
+├── server/
+│   ├── index.ts          # Entry point
+│   ├── routes.ts         # API routes
+│   ├── storage.ts        # Database operations
+│   └── vite.ts           # Vite middleware
+├── shared/
+│   ├── schema.ts         # Drizzle schema + Zod
+│   └── auth-config.ts    # Auth configuration
+├── drizzle.config.ts
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+</code></pre></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
