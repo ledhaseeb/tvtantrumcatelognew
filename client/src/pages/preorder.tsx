@@ -290,13 +290,13 @@ export default function Preorder() {
   const features = [
     {
       icon: Shield,
-      title: "TV Tantrum Curated",
-      description: "We show parents whats good, they approve and we distribute."
+      title: "TV Tantrum Rated",
+      description: "Parent approved, we work together to find healthy shows kids enjoy."
     },
     {
       icon: Zap,
-      title: "Stimulation Tracking",
-      description: "Each video is rated by stimulation to create a balanced playlist."
+      title: "Overstimulation prevention",
+      description: "Each show is ranked by stimulation to create balanced playlists."
     },
     {
       icon: Clock,
@@ -306,17 +306,17 @@ export default function Preorder() {
     {
       icon: Moon,
       title: "Wind-Down Mode",
-      description: "Sessions end with calming content so kids naturally walk away."
+      description: "Sessions end with calming content so kids walk away on their own."
     },
     {
       icon: Users,
       title: "Multiple Child Profiles",
-      description: "Each child gets age-appropriate content and individual analytics."
+      description: "Personalised content for individuals plus a safe balance for groups."
     },
     {
       icon: BarChart3,
       title: "Behavioral Analytics",
-      description: "Track viewing patterns and see how screen time affects behavior."
+      description: "Helping you get more out of screen time with less of the problems."
     }
   ];
 
@@ -335,11 +335,11 @@ export default function Preorder() {
     },
     {
       question: "Does it work on TV?",
-      answer: "Yes! KidSafeTV currently supports Chromecast, so you can cast directly to your TV. Smart TV apps and airplay are on our roadmap."
+      answer: "Yes! KidSafeTV currently supports Chromecast, so you can cast directly to your TV. Airplay is on our roadmap."
     },
     {
       question: "How is this different from YouTube Kids?",
-      answer: "YouTube Kids uses an algorithm to choose videos. KidSafeTV puts you in control. You curate what's available, set stimulation levels, track viewing patterns, and use wind-down protocols that YouTube Kids simply doesn't offer."
+      answer: "YouTube Kids uses an algorithm to choose videos. KidSafeTV puts you in control. We offer show recommendations, you choose what you want your kids to see. We build the playlists and use wind-down protocols that YouTube Kids simply doesn't offer."
     }
   ];
 
@@ -359,15 +359,14 @@ export default function Preorder() {
           </div>
           
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Take Back Control of<br />
+            The end of <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-              Your Kids' Screen Time
+              overstimulation.
             </span>
           </h1>
           
           <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto">
-            The parent-powered YouTube alternative with stimulation tracking, 
-            time limits, and wind-down protocols.
+            TV Tantrum powered streaming. Built over YouTube with better controls and wind down protocols
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
@@ -394,42 +393,7 @@ export default function Preorder() {
             <span className="text-slate-500">/ 1,000</span>
           </div>
         </div>
-      </section>
-
-      {/* Problem Section */}
-      <section className="py-16 px-4 bg-slate-800/30">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-start gap-4 p-6 bg-red-500/10 border border-red-500/20 rounded-2xl">
-            <AlertTriangle className="w-8 h-8 text-red-400 flex-shrink-0 mt-1" />
-            <div>
-              <h2 className="text-xl md:text-2xl font-bold text-white mb-3">
-                The YouTube Kids Problem
-              </h2>
-              <p className="text-slate-300 leading-relaxed mb-4">
-                The algorithm is out of control. One minute your child is watching 
-                something inncocent, the next its brain rot. 
-  
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-slate-400">
-                  <X className="w-5 h-5 text-red-400" />
-                  Curating content is a full time job
-                </li>
-                <li className="flex items-center gap-2 text-slate-400">
-                  <X className="w-5 h-5 text-red-400" />
-                  2hr marathons top every search
-                </li>
-                <li className="flex items-center gap-2 text-slate-400">
-                  <X className="w-5 h-5 text-red-400" />
-                  They dont care about stimulation
-                </li>
-                <li className="flex items-center gap-2 text-slate-400">
-                  <X className="w-5 h-5 text-red-400" />
-                  They dont care about behavior               </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+      
       </section>
 
       {/* Solution / App Showcase */}
@@ -440,51 +404,48 @@ export default function Preorder() {
               Meet KidSafeTV
             </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              The streaming app that prioritises brain health and family control. Not watch time.
+              The only streaming service that puts families before watch time.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {/* Screenshot 1 */}
             <div className="bg-slate-800/50 rounded-2xl p-4 border border-slate-700">
-              <div className="relative bg-slate-900 rounded-xl overflow-hidden shadow-2xl aspect-[3/4]">
+              <div className="relative bg-slate-900 rounded-xl overflow-hidden shadow-2xl">
                 <img 
                   src={sessionStartImg} 
                   alt="Start viewing session with child selection" 
-                  className="w-full h-full object-cover object-center"
-                  style={{ objectPosition: 'center 5%' }}
+                  className="w-full h-auto"
                 />
               </div>
               <h3 className="text-white font-semibold mt-4 mb-2 text-center">Child Profiles & Session Control</h3>
-              <p className="text-slate-400 text-sm text-center">Choose which children are watching and set session length with soft or hard finish options.</p>
+              <p className="text-slate-400 text-sm text-center">Select the viewer, follow our guidance or set to your requirement.</p>
             </div>
 
             {/* Screenshot 2 */}
             <div className="bg-slate-800/50 rounded-2xl p-4 border border-slate-700">
-              <div className="relative bg-slate-900 rounded-xl overflow-hidden shadow-2xl aspect-[3/4]">
+              <div className="relative bg-slate-900 rounded-xl overflow-hidden shadow-2xl">
                 <img 
                   src={sessionPreviewImg} 
                   alt="Session preview with stimulation levels" 
-                  className="w-full h-full object-cover object-center"
-                  style={{ objectPosition: 'center 5%' }}
+                  className="w-full h-auto"
                 />
               </div>
               <h3 className="text-white font-semibold mt-4 mb-2 text-center">Stimulation-Aware Playlists</h3>
-              <p className="text-slate-400 text-sm text-center">See the stimulation level of each video. Enable wind-down videos for gentle session endings.</p>
+              <p className="text-slate-400 text-sm text-center">Intelligently built, easy to customise and designed to wind down over time.</p>
             </div>
 
             {/* Screenshot 3 */}
             <div className="bg-slate-800/50 rounded-2xl p-4 border border-slate-700">
-              <div className="relative bg-slate-900 rounded-xl overflow-hidden shadow-2xl aspect-[3/4]">
+              <div className="relative bg-slate-900 rounded-xl overflow-hidden shadow-2xl">
                 <img 
                   src={analyticsImg} 
                   alt="Child analytics dashboard" 
-                  className="w-full h-full object-cover object-center"
-                  style={{ objectPosition: 'center 5%' }}
+                  className="w-full h-auto"
                 />
               </div>
-              <h3 className="text-white font-semibold mt-4 mb-2 text-center">Viewing Analytics</h3>
-              <p className="text-slate-400 text-sm text-center">Track watch time by period and see exactly when and how long your children are viewing.</p>
+              <h3 className="text-white font-semibold mt-4 mb-2 text-center">Watch Time Analytics</h3>
+              <p className="text-slate-400 text-sm text-center">Track stimulation exposure, measure behaviour and understand their limits.</p>
             </div>
           </div>
         </div>
@@ -495,10 +456,10 @@ export default function Preorder() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Everything You Need
+              Entertain without the cognitive strain
             </h2>
             <p className="text-xl text-slate-400">
-              Screen time management that actually works
+              Content that makes a difference
             </p>
           </div>
 
@@ -556,7 +517,7 @@ export default function Preorder() {
                 <div className="md:w-1/2 md:pl-12 md:ml-auto">
                   <div className="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm mb-2">Coming Soon</div>
                   <h3 className="text-xl font-semibold text-white mb-2">1,000-User Trial</h3>
-                  <p className="text-slate-400">You'll receive an email invitation to create your account and start using Ozmo with your family.</p>
+                  <p className="text-slate-400">You'll receive an email invitation to create your account and start using KidSafeTV with your family.</p>
                 </div>
               </div>
 
@@ -568,7 +529,7 @@ export default function Preorder() {
                 <div className="md:w-1/2 md:pr-12 md:text-right">
                   <div className="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-sm mb-2">Launch</div>
                   <h3 className="text-xl font-semibold text-white mb-2">Official Release</h3>
-                  <p className="text-slate-400">Ozmo launches publicly. Your 1-year subscription officially begins.</p>
+                  <p className="text-slate-400">KidSafeTV launches publicly. Your 1-year subscription officially begins.</p>
                 </div>
               </div>
 
