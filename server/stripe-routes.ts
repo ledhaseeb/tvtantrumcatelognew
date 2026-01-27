@@ -2,7 +2,7 @@ import express from 'express';
 import Stripe from 'stripe';
 import { db } from './db';
 import { preOrders } from '@shared/schema';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 
 const router = express.Router();
 
@@ -141,6 +141,29 @@ router.post('/webhook', express.raw({ type: '*/*' }), async (req, res) => {
   }
 
   res.json({ received: true });
+});
+
+const TOTAL_SPOTS = 1000;
+
+router.get('/spots-remaining', async (req, res) => {
+  try {
+    const result = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(preOrders)
+      .where(eq(preOrders.status, 'completed'));
+    
+    const completedOrders = Number(result[0]?.count || 0);
+    const remaining = Math.max(0, TOTAL_SPOTS - completedOrders);
+    
+    res.json({ 
+      remaining, 
+      total: TOTAL_SPOTS,
+      sold: completedOrders 
+    });
+  } catch (error: any) {
+    console.error('Error getting spots remaining:', error);
+    res.status(500).json({ error: 'Failed to get spots remaining' });
+  }
 });
 
 export default router;
