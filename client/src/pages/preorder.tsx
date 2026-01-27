@@ -290,18 +290,18 @@ export default function Preorder() {
   const features = [
     {
       icon: Shield,
-      title: "Parent-Curated Content",
-      description: "You decide what your children can watch. No algorithm surprises."
+      title: "TV Tantrum Curated",
+      description: "We show parents whats good, they approve and we distribute."
     },
     {
       icon: Zap,
       title: "Stimulation Tracking",
-      description: "Each video rated 1-5 for stimulation level. Build balanced viewing sessions."
+      description: "Each video is rated by stimulation to create a balanced playlist."
     },
     {
       icon: Clock,
       title: "Smart Session Limits",
-      description: "Set viewing time from 10-120 minutes. No more screen time battles."
+      description: "Set the viewing time you need and leave getting them off to us."
     },
     {
       icon: Moon,
@@ -335,11 +335,11 @@ export default function Preorder() {
     },
     {
       question: "Does it work on TV?",
-      answer: "Yes! Ozmo supports Chromecast, so you can cast directly to your TV. Smart TV apps are on our roadmap."
+      answer: "Yes! KidSafeTV currently supports Chromecast, so you can cast directly to your TV. Smart TV apps and airplay are on our roadmap."
     },
     {
       question: "How is this different from YouTube Kids?",
-      answer: "YouTube Kids uses an algorithm to choose videos. Ozmo puts you in control. You curate what's available, set stimulation levels, track viewing patterns, and use wind-down protocols that YouTube Kids simply doesn't offer."
+      answer: "YouTube Kids uses an algorithm to choose videos. KidSafeTV puts you in control. You curate what's available, set stimulation levels, track viewing patterns, and use wind-down protocols that YouTube Kids simply doesn't offer."
     }
   ];
 
@@ -406,27 +406,26 @@ export default function Preorder() {
                 The YouTube Kids Problem
               </h2>
               <p className="text-slate-300 leading-relaxed mb-4">
-                YouTube Kids uses an algorithm you can't control. One minute your child is watching 
-                something educational, the next they're on an endless loop of overstimulating content 
-                that leaves them wired and unable to transition away.
+                The algorithm is out of control. One minute your child is watching 
+                something inncocent, the next its brain rot. 
+  
               </p>
               <ul className="space-y-2">
                 <li className="flex items-center gap-2 text-slate-400">
                   <X className="w-5 h-5 text-red-400" />
-                  No control over what the algorithm serves
+                  Curating content is a full time job
                 </li>
                 <li className="flex items-center gap-2 text-slate-400">
                   <X className="w-5 h-5 text-red-400" />
-                  No visibility into stimulation levels
+                  2hr marathons top every search
                 </li>
                 <li className="flex items-center gap-2 text-slate-400">
                   <X className="w-5 h-5 text-red-400" />
-                  Hard time limits cause meltdowns
+                  They dont care about stimulation
                 </li>
                 <li className="flex items-center gap-2 text-slate-400">
                   <X className="w-5 h-5 text-red-400" />
-                  No way to track if screen time affects behavior
-                </li>
+                  They dont care about behavior               </li>
               </ul>
             </div>
           </div>
@@ -438,10 +437,10 @@ export default function Preorder() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Meet Ozmo
+              Meet KidSafeTV
             </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              The streaming app that puts parents back in the driver's seat
+              The streaming app that prioritises brain health and family control. Not watch time.
             </p>
           </div>
 
