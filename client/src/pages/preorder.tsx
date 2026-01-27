@@ -447,11 +447,12 @@ export default function Preorder() {
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {/* Screenshot 1 */}
             <div className="bg-slate-800/50 rounded-2xl p-4 border border-slate-700">
-              <div className="relative bg-slate-900 rounded-xl overflow-hidden shadow-2xl">
+              <div className="relative bg-slate-900 rounded-xl overflow-hidden shadow-2xl aspect-[3/4]">
                 <img 
                   src={sessionStartImg} 
                   alt="Start viewing session with child selection" 
-                  className="w-full h-auto"
+                  className="w-full h-full object-cover object-center"
+                  style={{ objectPosition: 'center 5%' }}
                 />
               </div>
               <h3 className="text-white font-semibold mt-4 mb-2 text-center">Child Profiles & Session Control</h3>
@@ -460,11 +461,12 @@ export default function Preorder() {
 
             {/* Screenshot 2 */}
             <div className="bg-slate-800/50 rounded-2xl p-4 border border-slate-700">
-              <div className="relative bg-slate-900 rounded-xl overflow-hidden shadow-2xl">
+              <div className="relative bg-slate-900 rounded-xl overflow-hidden shadow-2xl aspect-[3/4]">
                 <img 
                   src={sessionPreviewImg} 
                   alt="Session preview with stimulation levels" 
-                  className="w-full h-auto"
+                  className="w-full h-full object-cover object-center"
+                  style={{ objectPosition: 'center 5%' }}
                 />
               </div>
               <h3 className="text-white font-semibold mt-4 mb-2 text-center">Stimulation-Aware Playlists</h3>
@@ -473,11 +475,12 @@ export default function Preorder() {
 
             {/* Screenshot 3 */}
             <div className="bg-slate-800/50 rounded-2xl p-4 border border-slate-700">
-              <div className="relative bg-slate-900 rounded-xl overflow-hidden shadow-2xl">
+              <div className="relative bg-slate-900 rounded-xl overflow-hidden shadow-2xl aspect-[3/4]">
                 <img 
                   src={analyticsImg} 
                   alt="Child analytics dashboard" 
-                  className="w-full h-auto"
+                  className="w-full h-full object-cover object-center"
+                  style={{ objectPosition: 'center 5%' }}
                 />
               </div>
               <h3 className="text-white font-semibold mt-4 mb-2 text-center">Viewing Analytics</h3>
