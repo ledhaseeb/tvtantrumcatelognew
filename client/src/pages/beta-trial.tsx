@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   Users, 
@@ -16,20 +15,6 @@ import {
 } from "lucide-react";
 
 export default function BetaTrial() {
-  useEffect(() => {
-    const handleFormMessage = (event: MessageEvent) => {
-      if (event.data && event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmit') {
-        window.location.href = '/thank-you';
-      }
-      if (event.data && typeof event.data === 'string' && event.data.includes('form_submitted')) {
-        window.location.href = '/thank-you';
-      }
-    };
-
-    window.addEventListener('message', handleFormMessage);
-    return () => window.removeEventListener('message', handleFormMessage);
-  }, []);
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       <div className="max-w-4xl mx-auto px-4 py-12 sm:py-16">
@@ -84,10 +69,10 @@ export default function BetaTrial() {
                         </div>
                         <div>
                           <p className="text-white">
-                            Screen time happens <span className="font-semibold text-amber-400">daily or at least 4+ times per week</span>
+                            Streaming kids content occurs <span className="font-semibold text-amber-400">daily or at least 4+ times per week</span>
                           </p>
                           <p className="text-slate-400 text-sm mt-1">
-                            If you have strong restrictions on screen time, that's great. For this beta, we need regular use so we can learn from real habits.
+                            If you have strong restrictions on screen time, good job! For the 100 user beta, we need active users to gather feedback quickly.
                           </p>
                         </div>
                       </li>
@@ -125,13 +110,13 @@ export default function BetaTrial() {
                         </div>
                         <div>
                           <p className="text-white">
-                            If casting to a TV, your TV supports <span className="font-semibold text-amber-400">Chromecast</span>
+                            If casting to a TV, ensure your TV supports <span className="font-semibold text-amber-400">Chromecast</span>
                           </p>
                           <p className="text-slate-400 text-sm mt-1">
-                            To check: open a browser on your tablet or computer, go to youtube.com, play a regular video (not a Short), and confirm the <strong>Cast</strong> button appears and works.
+                            To check: open a browser on your tablet or computer, go to youtube.com, play a regular video (not a Short), and confirm the <strong>Chromecast</strong> button appears and works.
                           </p>
                           <p className="text-amber-400/80 text-sm mt-2">
-                            Note: AirPlay is not recommended because it can pause between videos.
+                            Note: <strong>AirPlay</strong> is NOT recommended because it will pause between videos
                           </p>
                         </div>
                       </li>
