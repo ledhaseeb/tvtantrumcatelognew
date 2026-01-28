@@ -1,0 +1,294 @@
+Menu
+    "Animal Behaviour",
+    "Dinosaurs",
+    "Ecosystems",
+    "Marine Bioligy",
+    "Natural History",
+    "Natural Science",
+    "Natural World",
+    "Nature",
+    "Outdoor Exploration",
+    "Paleontology",
+    "Wild Animal Captures and Cooking",
+    "Wildlife Conservation",
+    "Wildlife Exploration"
+  ],
+  "themeMatchMode": "OR"
+}
+[DEBUG] Category 11 filter config: {
+  "logic": "OR",
+  "rules": [
+    {
+      "field": "themes",
+      "value": "Humor",
+      "operator": "contains"
+    }
+  ]
+}
+[DEBUG] Category 11 converted filters: {
+  "themes": [
+    "Humor"
+  ],
+  "themeMatchMode": "OR"
+}
+[DEBUG] Category 10 filter config: {
+  "logic": "OR",
+  "rules": [
+    {
+      "field": "themes",
+      "value": "Community Service",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Complex & Emotional Themes",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Complex Emotional Themes",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Confidence Building",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Conflict Resolution",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Early Childhood experiences",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Every Day Concepts",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Exploring Emotions",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Friendship",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Social Development",
+      "operator": "contains"
+    },
+    {
+      "field": "themes",
+      "value": "Social-Emotional",
+      "operator": "contains"
+    }
+  ]
+}
+[DEBUG] Category 10 converted filters: {
+  "themes": [
+    "Community Service",
+    "Complex & Emotional Themes",
+    "Complex Emotional Themes",
+    "Confidence Building",
+    "Conflict Resolution",
+    "Early Childhood experiences",
+    "Every Day Concepts",
+    "Exploring Emotions",
+    "Friendship",
+    "Social Development",
+    "Social-Emotional"
+  ],
+  "themeMatchMode": "OR"
+}
+[DEBUG] Category 3 filter config: {
+  "logic": "AND",
+  "rules": [
+    {
+      "field": "stimulationScore",
+      "operator": "range",
+      "value": "1-2"
+    }
+  ]
+}
+[DEBUG] Category 3 converted filters: {
+  "stimulationScoreRange": {
+    "min": 1,
+    "max": 2
+  }
+}
+[DEBUG] Category 6 getTvShows returned 12 shows
+[DEBUG] Category 13 getTvShows returned 22 shows
+[DEBUG] Category 7 getTvShows returned 42 shows
+Slow request: GET /homepage-categories/7/shows - 1572ms
+[DEBUG] Category 11 getTvShows returned 37 shows
+Slow request: GET /homepage-categories/11/shows - 1587ms
+[DEBUG] Category 9 getTvShows returned 49 shows
+Slow request: GET /homepage-categories/9/shows - 1597ms
+[DEBUG] Category 5 getTvShows returned 63 shows
+Slow request: GET /homepage-categories/5/shows - 1598ms
+[DEBUG] Category 10 getTvShows returned 183 shows
+[DEBUG] Category 3 getTvShows returned 89 shows
+Slow request: GET /homepage-categories/10/shows - 1590ms
+Slow request: GET /homepage-categories/3/shows - 1598ms
+Slow request: POST /create-payment-intent - 1503ms
+Database client error: error: terminating connection due to administrator command
+    at Parser.parseErrorMessage (/app/node_modules/pg-protocol/src/parser.ts:369:69)
+    at Parser.handlePacket (/app/node_modules/pg-protocol/src/parser.ts:187:21)
+    at Parser.parse (/app/node_modules/pg-protocol/src/parser.ts:102:30)
+    at TLSSocket.<anonymous> (/app/node_modules/pg-protocol/src/index.ts:7:48)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:191:23) {
+  length: 116,
+  severity: 'FATAL',
+  code: '57P01',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'postgres.c',
+  line: '3289',
+  routine: 'ProcessInterrupts'
+}
+Unexpected error on idle client error: terminating connection due to administrator command
+    at Parser.parseErrorMessage (/app/node_modules/pg-protocol/src/parser.ts:369:69)
+    at Parser.handlePacket (/app/node_modules/pg-protocol/src/parser.ts:187:21)
+    at Parser.parse (/app/node_modules/pg-protocol/src/parser.ts:102:30)
+    at TLSSocket.<anonymous> (/app/node_modules/pg-protocol/src/index.ts:7:48)
+    at TLSSocket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:191:23) {
+  length: 116,
+  severity: 'FATAL',
+  code: '57P01',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'postgres.c',
+  line: '3289',
+  routine: 'ProcessInterrupts',
+  client: Client {
+    _events: [Object: null prototype] { error: [Array] },
+    _eventsCount: 1,
+    _maxListeners: undefined,
+    connectionParameters: ConnectionParameters {
+      user: 'neondb_owner',
+      database: 'neondb',
+      port: 5432,
+      host: 'ep-lingering-field-a5qogbzd.us-east-2.aws.neon.tech',
+      binary: false,
+      options: undefined,
+      ssl: {},
+      client_encoding: '',
+      replication: undefined,
+      isDomainSocket: false,
+      application_name: 'tv-tantrum-viral',
+      fallback_application_name: undefined,
+      statement_timeout: 30000,
+      lock_timeout: false,
+      idle_in_transaction_session_timeout: false,
+      query_timeout: 25000,
+      connect_timeout: 20,
+      keepalives: 1,
+      keepalives_idle: 0
+    },
+    user: 'neondb_owner',
+    database: 'neondb',
+    port: 5432,
+    host: 'ep-lingering-field-a5qogbzd.us-east-2.aws.neon.tech',
+    replication: undefined,
+    _Promise: [Function: Promise],
+    _types: TypeOverrides { _types: [Object], text: {}, binary: {} },
+    _ending: true,
+    _ended: false,
+    _connecting: false,
+    _connected: true,
+    _connectionError: false,
+    _queryable: false,
+    enableChannelBinding: false,
+    connection: Connection {
+      _events: [Object: null prototype],
+      _eventsCount: 23,
+      _maxListeners: undefined,
+      stream: [TLSSocket],
+      _keepAlive: true,
+      _keepAliveInitialDelayMillis: 0,
+      lastBuffer: false,
+      parsedStatements: {},
+      ssl: {},
+      _ending: true,
+      _emitMessage: false,
+      _connecting: true,
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    queryQueue: [],
+    binary: false,
+    processID: 1882143655,
+    secretKey: -202973502,
+    ssl: {},
+    _connectionTimeoutMillis: 20000,
+    _connectionCallback: null,
+    connectionTimeoutHandle: Timeout {
+      _idleTimeout: -1,
+      _idlePrev: null,
+      _idleNext: null,
+      _idleStart: 310360,
+      _onTimeout: null,
+      _timerArgs: undefined,
+      _repeat: null,
+      _destroyed: true,
+      [Symbol(refed)]: false,
+      [Symbol(kHasPrimitive)]: false,
+      [Symbol(asyncId)]: 27913,
+      [Symbol(triggerId)]: 0
+    },
+    saslSession: null,
+    release: [Function (anonymous)],
+    activeQuery: null,
+    readyForQuery: true,
+    hasExecuted: true,
+    _poolUseCount: 1,
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false
+  }
+}
+[SESSION CONFIG] {
+  environment: 'production',
+  cookieSecure: true,
+  cookieSameSite: 'none',
+  hasSecret: true
+}
+[SESSION] Using PostgreSQL session store for production
+Static files not found, using development server for production deployment
+TV Tantrum Catalog server running on port 10000
+Using catalog database with 302 authentic TV shows
+Simplified content discovery without social features
+Enhanced caching enabled for viral traffic handling
+Database crash protection active
