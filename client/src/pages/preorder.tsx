@@ -283,6 +283,9 @@ export default function Preorder() {
 
   const { data: spotsData } = useQuery<{ remaining: number; total: number }>({
     queryKey: ['/api/stripe/spots-remaining'],
+    staleTime: 0,
+    refetchOnWindowFocus: true,
+    refetchOnMount: true,
   });
 
   const spotsRemaining = spotsData?.remaining ?? 1000;

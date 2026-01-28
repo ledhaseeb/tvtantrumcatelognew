@@ -32,12 +32,11 @@ const poolConfig = {
 
 export const pool = new Pool(poolConfig);
 
-// Add error handling for the pool
+// Add error handling for the pool - graceful recovery instead of exit
 pool.on('error', (err) => {
   console.error('Unexpected error on idle client', err);
-  if (process.env.NODE_ENV === 'production') {
-    process.exit(-1);
-  }
+  // Don't exit - let the pool handle reconnection automatically
+  // Neon serverless may terminate idle connections, pool will reconnect
 });
 
 // Add connect handling
