@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   Users, 
@@ -15,13 +16,27 @@ import {
 } from "lucide-react";
 
 export default function BetaTrial() {
+  useEffect(() => {
+    const handleFormMessage = (event: MessageEvent) => {
+      if (event.data && event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmit') {
+        window.location.href = '/thank-you';
+      }
+      if (event.data && typeof event.data === 'string' && event.data.includes('form_submitted')) {
+        window.location.href = '/thank-you';
+      }
+    };
+
+    window.addEventListener('message', handleFormMessage);
+    return () => window.removeEventListener('message', handleFormMessage);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       <div className="max-w-4xl mx-auto px-4 py-12 sm:py-16">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
             <Users className="w-4 h-4" />
-            Limited to First 100 Families
+            Limited to 100 Families
           </div>
           
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
@@ -29,8 +44,7 @@ export default function BetaTrial() {
           </h1>
           
           <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto">
-            Be among the first to experience sensory-aware streaming for your little ones. 
-            Help us shape the future of children's screen time.
+            Be first to experience the TV Tantrum streaming app and help shape the future of safer entertainment.
           </p>
         </div>
 
@@ -56,7 +70,7 @@ export default function BetaTrial() {
                         </div>
                         <div>
                           <p className="text-white">
-                            All your children are <span className="font-semibold text-amber-400">8 or under</span>
+                            All your children are <span className="font-semibold text-amber-400">7 or under</span>
                           </p>
                           <p className="text-slate-400 text-sm mt-1">
                             Our current library is tailored to young kids. This trial is not recommended for children who are likely to navigate away if left unattended.
@@ -194,10 +208,10 @@ export default function BetaTrial() {
 
         <div className="mb-8">
           <h2 className="text-xl font-semibold text-white mb-6 text-center">
-            Ready to Apply?
+            Submit below to apply
           </h2>
           <p className="text-slate-400 text-center mb-8">
-            Fill out the form below and we'll be in touch if you're selected.
+            100 families will be selected to use the platform for FREE while in beta.
           </p>
           
           <Card className="bg-slate-800/50 border-slate-700 overflow-hidden">
