@@ -290,12 +290,12 @@ export default function Preorder() {
   const features = [
     {
       icon: Shield,
-      title: "TV Tantrum Rated",
-      description: "Parent approved, we work together to find healthy shows kids enjoy."
+      title: "Approved Content Only",
+      description: "Analysed by TV Tantrum, selected by parents and enjoyed by kids."
     },
     {
       icon: Zap,
-      title: "Overstimulation prevention",
+      title: "Overstimulation Prevention",
       description: "Each show is ranked by stimulation to create balanced playlists."
     },
     {
@@ -326,6 +326,10 @@ export default function Preorder() {
       answer: "We're currently in a 100-user beta. The 1,000 user trial (which includes pre-order customers) begins soon after. You'll receive an email invitation when your access is ready."
     },
     {
+      question: "Who is this for?",
+      answer: "Our current library supports children upto the age of 7 anywhere in the world. Content availabilty varies region to region, but we are constantly expanding to ensure theres plenty to choose from."
+    },
+    {
       question: "What does 'lifetime access' mean?",
       answer: "Your $40 payment covers one full year from our official launch. After that first year, you'll continue at the discounted founding member rate - not the regular $100/year price."
     },
@@ -338,8 +342,16 @@ export default function Preorder() {
       answer: "Yes! KidSafeTV currently supports Chromecast, so you can cast directly to your TV. Airplay is on our roadmap."
     },
     {
+      question: "Where will I be able to download it?",
+      answer: "The Beta will be available through a web browser. Native apps for iOS and Android are coming soon."
+    },
+    {
+      question: "What content will you show?",
+      answer: "Content ranked by tv tantrum that is available on YouTube. However KidSafeTV won't let your kids watch anything outside of what we have approved."
+    },
+    {
       question: "How is this different from YouTube Kids?",
-      answer: "YouTube Kids uses an algorithm to choose videos. KidSafeTV puts you in control. We offer show recommendations, you choose what you want your kids to see. We build the playlists and use wind-down protocols that YouTube Kids simply doesn't offer."
+      answer: "Unrestricted YouTube Kids is full of user generated brain rot. Plus creating playlists and blocking channels is time consuming for parents. KidSafeTV gives them easy to use controls and automates playlists to suit your families schedule."
     }
   ];
 
@@ -366,7 +378,7 @@ export default function Preorder() {
           </h1>
           
           <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto">
-            TV Tantrum powered streaming. Built over YouTube with better controls and wind down protocols
+            Our very own streaming app powered by an ethical algorithm. Coming soon.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
@@ -380,7 +392,7 @@ export default function Preorder() {
             </Button>
             <div className="flex items-center gap-2 text-slate-400">
               <span className="line-through">$100/year</span>
-              <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-sm font-medium">60% OFF</span>
+              <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-sm font-medium">60% OFF FOR LIFE</span>
             </div>
           </div>
 
@@ -404,7 +416,7 @@ export default function Preorder() {
               Meet KidSafeTV
             </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              The only streaming service that puts families before watch time.
+              The only streaming app that puts mental well-being before watch time.
             </p>
           </div>
 
@@ -419,7 +431,7 @@ export default function Preorder() {
                 />
               </div>
               <h3 className="text-white font-semibold mt-4 mb-2 text-center">Child Profiles & Session Control</h3>
-              <p className="text-slate-400 text-sm text-center">Select the viewer, follow our guidance or set to your requirement.</p>
+              <p className="text-slate-400 text-sm text-center">Select the viewers, follow our guidance or set to your requirement.</p>
             </div>
 
             {/* Screenshot 2 */}
@@ -445,7 +457,7 @@ export default function Preorder() {
                 />
               </div>
               <h3 className="text-white font-semibold mt-4 mb-2 text-center">Watch Time Analytics</h3>
-              <p className="text-slate-400 text-sm text-center">Track stimulation exposure, measure behaviour and understand their limits.</p>
+              <p className="text-slate-400 text-sm text-center">Track stimulation exposure, measure behaviour and understand their limits as they age.</p>
             </div>
           </div>
         </div>
