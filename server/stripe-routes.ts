@@ -6,7 +6,7 @@ import { eq, sql } from 'drizzle-orm';
 
 const router = express.Router();
 
-const KIDSAFETV_PRICE = 4000; // $40.00 in cents
+const KIDSAFETV_PRICE = 3900; // $39.00 in cents
 
 function getStripe(): Stripe | null {
   const secretKey = process.env.STRIPE_SECRET_KEY;

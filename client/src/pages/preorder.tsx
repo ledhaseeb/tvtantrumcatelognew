@@ -145,8 +145,8 @@ function CheckoutModal({
 
               <div className="bg-slate-700/50 rounded-lg p-4 text-center">
                 <div className="flex items-center justify-center gap-2 mb-1">
-                  <span className="text-slate-400 line-through text-lg">$100</span>
-                  <span className="text-3xl font-bold text-white">$40</span>
+                  <span className="text-slate-400 line-through text-lg">$99</span>
+                  <span className="text-3xl font-bold text-white">$39</span>
                   <span className="bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded-full">60% OFF</span>
                 </div>
                 <p className="text-slate-400 text-sm">Lifetime access - One-time payment</p>
@@ -247,7 +247,7 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
             Processing...
           </>
         ) : (
-          "Complete Pre-order - $40"
+          "Complete Pre-order - $39"
         )}
       </Button>
     </form>
@@ -327,15 +327,15 @@ export default function Preorder() {
     },
     {
       question: "Who is this for?",
-      answer: "Our current library supports children upto the age of 7 anywhere in the world. Content availabilty varies region to region, but we are constantly expanding to ensure theres plenty to choose from."
+      answer: "Our current library supports children upto age 7 globally. Content availabilty varies by region, but we are constantly expanding to ensure theres plenty to choose from."
     },
     {
       question: "What does 'lifetime access' mean?",
-      answer: "Your $40 payment covers one full year from our official launch. After that first year, you'll continue at the discounted founding member rate - not the regular $100/year price."
+      answer: "Your $39 payment covers the beta period plus one full year from official launch. Then you may renew at the discounted yearly founding member rate."
     },
     {
       question: "Can I get a refund?",
-      answer: "Yes! If you're not satisfied before our official launch, we'll refund your payment in full. We're confident you'll love it."
+      answer: "Yes! If you're not satisfied before official launch, we'll refund your payment in full."
     },
     {
       question: "Does it work on TV?",
@@ -343,15 +343,15 @@ export default function Preorder() {
     },
     {
       question: "Where will I be able to download it?",
-      answer: "The Beta will be available through a web browser. Native apps for iOS and Android are coming soon."
+      answer: "The Beta will be available through a web browser as long as it remains open it will keep casting. Native apps for iOS and Android are coming soon."
     },
     {
       question: "What content will you show?",
-      answer: "Content ranked by tv tantrum that is available on YouTube. However KidSafeTV won't let your kids watch anything outside of what we have approved."
+      answer: "Content ranked by TV Tantrum that is available on YouTube. However KidSafeTV won't let your kids watch anything outside of what we approve."
     },
     {
       question: "How is this different from YouTube Kids?",
-      answer: "Unrestricted YouTube Kids is full of user generated brain rot. Plus creating playlists and blocking channels is time consuming for parents. KidSafeTV gives them easy to use controls and automates playlists to suit your families schedule."
+      answer: "Unrestricted YouTube Kids is full of user generated brain rot. Plus we understand curating content is time consuming. KidSafeTV takes care of that for you."
     }
   ];
 
@@ -378,7 +378,7 @@ export default function Preorder() {
           </h1>
           
           <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto">
-            Our very own streaming app powered by an ethical algorithm. Coming soon.
+            Our very own streaming app. Coming soon.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
@@ -388,10 +388,10 @@ export default function Preorder() {
               className="bg-gradient-to-r from-teal-700 to-teal-600 hover:from-teal-800 hover:to-teal-700 text-white px-8 py-6 text-lg font-semibold rounded-xl shadow-lg shadow-teal-700/25"
             >
               <Play className="w-5 h-5 mr-2" />
-              Pre-order Now - $40
+              Pre-order Now - $39
             </Button>
             <div className="flex items-center gap-2 text-slate-400">
-              <span className="line-through">$100/year</span>
+              <span className="line-through">$99/year</span>
               <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-sm font-medium">60% OFF FOR LIFE</span>
             </div>
           </div>
@@ -582,22 +582,22 @@ export default function Preorder() {
       <section className="py-16 md:py-24 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Transform Screen Time?
+            The Screen Time Revolution Starts Here
           </h2>
           <p className="text-xl text-slate-400 mb-8">
-            Join the 1,000 founding families who are taking control
+            Join us in reshaping the future through safer entertainment. 
           </p>
 
           <div className="bg-gradient-to-r from-teal-700/20 to-amber-500/20 border border-teal-600/30 rounded-2xl p-8 mb-8">
             <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
               <div className="text-center">
                 <p className="text-slate-400 text-sm">Regular Price</p>
-                <p className="text-3xl font-bold text-slate-500 line-through">$100/year</p>
+                <p className="text-3xl font-bold text-slate-500 line-through">$99/year</p>
               </div>
               <div className="text-4xl text-slate-600 hidden md:block">→</div>
               <div className="text-center">
                 <p className="text-green-400 text-sm font-medium">Pre-order Price</p>
-                <p className="text-5xl font-bold text-white">$40</p>
+                <p className="text-5xl font-bold text-white">$39</p>
                 <p className="text-slate-400 text-sm">Lifetime founding member access</p>
               </div>
             </div>
@@ -626,7 +626,7 @@ export default function Preorder() {
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-slate-900/95 backdrop-blur border-t border-slate-700 md:hidden z-40">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <p className="text-white font-semibold">Pre-order - $40</p>
+            <p className="text-white font-semibold">Pre-order - $39</p>
             <p className="text-slate-400 text-sm">{spotsRemaining} spots left</p>
           </div>
           <Button 
