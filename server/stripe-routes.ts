@@ -33,6 +33,7 @@ router.post('/create-payment-intent', async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: KIDSAFETV_PRICE,
       currency: 'usd',
+      description: 'KidSafeTV Pre-order - Founding Member Lifetime Access',
       metadata: {
         product: 'KidSafeTV Pre-order',
         email,
