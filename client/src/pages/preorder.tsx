@@ -582,10 +582,10 @@ export default function Preorder() {
       <section className="py-16 md:py-24 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            The Screen Time Revolution Starts Here
+            Healthier Streaming Starts Here
           </h2>
           <p className="text-xl text-slate-400 mb-8">
-            Join us in reshaping the future through safer entertainment. 
+            Join us in supporting cognitive health with safer entertainment. 
           </p>
 
           <div className="bg-gradient-to-r from-teal-700/20 to-amber-500/20 border border-teal-600/30 rounded-2xl p-8 mb-8">
@@ -633,7 +633,7 @@ export default function Preorder() {
             onClick={scrollToCheckout}
             className="bg-gradient-to-r from-teal-700 to-teal-600 hover:from-teal-800 hover:to-teal-700 text-white font-semibold px-6"
           >
-            Get Access
+            Secure Now
           </Button>
         </div>
       </div>
