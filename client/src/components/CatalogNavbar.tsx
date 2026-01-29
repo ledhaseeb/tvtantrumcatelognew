@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Home, Filter, BarChart2, Info, X, BookOpen } from "lucide-react";
+import { Home, Filter, BarChart2, Info, X, BookOpen, Play } from "lucide-react";
 import { scrollToTop } from "../lib/scroll-utils";
 
 export default function CatalogNavbar() {
@@ -58,6 +58,14 @@ export default function CatalogNavbar() {
               >
                 <BookOpen className="w-4 h-4 mr-2" />
                 Research
+              </Link>
+              <Link 
+                href="/beta-trial"
+                onClick={handleNavClick}
+                className={`${location === '/beta-trial' ? 'text-amber-300 border-b-2 border-amber-300' : 'text-amber-300 hover:text-amber-200'} font-medium px-1 py-4 flex items-center`}
+              >
+                <Play className="w-4 h-4 mr-2" />
+                Streaming BETA
               </Link>
             </nav>
           </div>
@@ -146,6 +154,14 @@ export default function CatalogNavbar() {
                   >
                     <BookOpen className="h-5 w-5 mr-3" />
                     Research
+                  </Link>
+                  <Link 
+                    href="/beta-trial"
+                    onClick={handleNavClick}
+                    className={`flex items-center px-4 py-3 text-amber-300 rounded-lg hover:bg-white/10 transition-colors ${location === '/beta-trial' ? 'font-bold bg-white/20' : 'font-normal'}`}
+                  >
+                    <Play className="h-5 w-5 mr-3" />
+                    Streaming BETA
                   </Link>
                 </div>
               </div>
