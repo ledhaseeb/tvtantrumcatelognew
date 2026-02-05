@@ -44,7 +44,7 @@ export default function BetaTrial() {
           </h1>
           
           <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto">
-            Be first to experience the TV Tantrum streaming app and help shape the future of safer entertainment.
+            Take part in the TV Tantrum streaming app trial help shape the future of safer entertainment.
           </p>
         </div>
 
