@@ -17,7 +17,7 @@ export default function BetaTrial() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
             <Users className="w-4 h-4" />
-            Limited to First 100 Families
+            First trial oversubscribed - apply below for the next one
           </div>
           
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
