@@ -36,7 +36,7 @@ export default function BetaTrial() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
             <Users className="w-4 h-4" />
-            Limited to 100 Families
+            We are now oversubscribed for first beta, but you can still apply for the next one
           </div>
           
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
@@ -51,7 +51,7 @@ export default function BetaTrial() {
         <div className="mb-12">
           <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
             <Check className="w-5 h-5 text-teal-400" />
-            Requirements <span className="text-slate-400 font-normal">(please meet all)</span>
+            Requirements <span className="text-slate-400 font-normal">(please meet TECHNICAL REQUIREMENTS only)</span>
           </h2>
           
           <div className="grid gap-6">
@@ -62,7 +62,7 @@ export default function BetaTrial() {
                     <Users className="w-6 h-6 text-teal-400" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-white mb-4">1) Family & Usage</h3>
+                    <h3 className="text-lg font-semibold text-white mb-4">1) Family & Usage (non essential)</h3>
                     <ul className="space-y-4">
                       <li className="flex items-start gap-3">
                         <div className="w-6 h-6 bg-amber-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -103,7 +103,7 @@ export default function BetaTrial() {
                     <Monitor className="w-6 h-6 text-teal-400" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-white mb-4">2) Technical Requirements</h3>
+                    <h3 className="text-lg font-semibold text-white mb-4">2) Technical Requirements (essential)</h3>
                     <ul className="space-y-4">
                       <li className="flex items-start gap-3">
                         <div className="w-6 h-6 bg-amber-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -160,7 +160,7 @@ export default function BetaTrial() {
                     <Heart className="w-6 h-6 text-teal-400" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-white mb-4">3) Commitment</h3>
+                    <h3 className="text-lg font-semibold text-white mb-4">3) Commitment (non essential)</h3>
                     <ul className="space-y-4">
                       <li className="flex items-start gap-3">
                         <div className="w-6 h-6 bg-amber-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -211,7 +211,7 @@ export default function BetaTrial() {
             Submit below to apply
           </h2>
           <p className="text-slate-400 text-center mb-8">
-            100 families will be selected to use the platform for FREE while in beta.
+            You will receive an email when the next trial is ready. All participants will be awarded a 60% LIFETIME discount for their contribution to the creation of this service.
           </p>
           
           <Card className="bg-slate-800/50 border-slate-700 overflow-hidden">
