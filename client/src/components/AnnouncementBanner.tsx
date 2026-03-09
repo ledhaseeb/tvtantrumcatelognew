@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { X } from "lucide-react";
+import { X, Tv, Film, Globe } from "lucide-react";
 
-const BANNER_DISMISSED_KEY = "kidsafetv-banner-dismissed";
+const BANNER_DISMISSED_KEY = "kidsafetv-banner-v2";
 
 export default function AnnouncementBanner() {
   const [isDismissed, setIsDismissed] = useState(true);
@@ -25,21 +25,53 @@ export default function AnnouncementBanner() {
       href="https://kidsafetv.com"
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-slate-800 text-white relative hover:bg-slate-750 transition-colors"
+      className="block bg-slate-900 text-white relative hover:bg-slate-800/90 transition-colors"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-        <div className="flex flex-col items-center justify-center gap-0.5 pr-8 text-center">
-          <p className="text-base sm:text-lg font-bold">
-            The end of <span className="text-emerald-400">overstimulation.</span>
-          </p>
-          <p className="text-xs sm:text-sm text-slate-300">
-            Safer streaming from the makers of tvtantrum.com
-          </p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
+        <div className="flex flex-col items-center justify-center gap-3 pr-8 text-center">
+          <div>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold">
+              The end of <span className="text-emerald-400">overstimulation</span>
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl mx-auto">
+              Get KidSafeTV for healthier content, smarter playlists and wind-down protocols for kids aged 2-8.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2">
+              <div className="w-7 h-7 bg-amber-500/20 rounded-md flex items-center justify-center">
+                <Tv className="w-4 h-4 text-amber-400" />
+              </div>
+              <div className="text-left">
+                <p className="text-sm sm:text-base font-bold leading-tight">93</p>
+                <p className="text-[10px] sm:text-xs text-slate-400 leading-tight">Channels</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2">
+              <div className="w-7 h-7 bg-amber-500/20 rounded-md flex items-center justify-center">
+                <Film className="w-4 h-4 text-amber-400" />
+              </div>
+              <div className="text-left">
+                <p className="text-sm sm:text-base font-bold leading-tight">3,420</p>
+                <p className="text-[10px] sm:text-xs text-slate-400 leading-tight">Videos</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2">
+              <div className="w-7 h-7 bg-emerald-500/20 rounded-md flex items-center justify-center">
+                <Globe className="w-4 h-4 text-emerald-400" />
+              </div>
+              <div className="text-left">
+                <p className="text-sm sm:text-base font-bold leading-tight">Worldwide</p>
+                <p className="text-[10px] sm:text-xs text-slate-400 leading-tight">Availability</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <button
         onClick={handleDismiss}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-1.5 hover:bg-white/20 rounded-full transition-colors"
+        className="absolute right-2 sm:right-4 top-3 p-1.5 hover:bg-white/20 rounded-full transition-colors"
         aria-label="Dismiss banner"
       >
         <X className="w-4 h-4" />

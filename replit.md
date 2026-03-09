@@ -125,6 +125,7 @@ TV Tantrum is a gamified web platform that revolutionizes children's media disco
 ## Changelog
 
 Changelog:
+- March 9, 2026: Updated site color theme from teal to dark slate (#1e293b) with emerald accent; redesigned announcement banner with KidSafeTV stats (93 Channels, 3,420 Videos, Worldwide); nav link now points to kidsafetv.com
 - June 24, 2025: Initial setup
 - June 24, 2025: Completed image optimization with WebP conversion (99.7% success rate)
 - June 24, 2025: Fixed special character handling in image URLs for showcards
