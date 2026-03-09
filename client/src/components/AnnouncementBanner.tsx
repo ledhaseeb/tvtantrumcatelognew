@@ -34,7 +34,7 @@ export default function AnnouncementBanner() {
               Safer streaming is finally here! Get <span className="text-emerald-400">KidSafeTV</span>
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl mx-auto">
-              Recommended content, smarter playlists and wind-down protocols.
+              Watch recommended content, instantly create playlists and enjoy wind-down protocols that avoid TV tantrums.
             </p>
           </div>
 
@@ -44,7 +44,7 @@ export default function AnnouncementBanner() {
                 <Tv className="w-4 h-4 text-cyan-400" />
               </div>
               <div className="text-left">
-                <p className="text-sm sm:text-base font-bold leading-tight">93</p>
+                <p className="text-sm sm:text-base font-bold leading-tight">95+</p>
                 <p className="text-[10px] sm:text-xs text-slate-400 leading-tight">Shows</p>
               </div>
             </div>
@@ -53,7 +53,7 @@ export default function AnnouncementBanner() {
                 <Film className="w-4 h-4 text-amber-400" />
               </div>
               <div className="text-left">
-                <p className="text-sm sm:text-base font-bold leading-tight">3,420</p>
+                <p className="text-sm sm:text-base font-bold leading-tight">3,600+</p>
                 <p className="text-[10px] sm:text-xs text-slate-400 leading-tight">Episodes</p>
               </div>
             </div>
