@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Router as WouterRouter, Route, Switch, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "@/hooks/use-auth";
@@ -23,7 +24,6 @@ import TermsOfService from "@/pages/terms-of-service";
 import ThankYou from "@/pages/thank-you";
 import Preorder from "@/pages/preorder";
 import BetaTrial from "@/pages/beta-trial";
-import { useEffect } from "react";
 import { initGA } from "./lib/analytics";
 import { useAnalytics } from "./hooks/use-analytics";
 import { initAdSense } from "./lib/adsense";
