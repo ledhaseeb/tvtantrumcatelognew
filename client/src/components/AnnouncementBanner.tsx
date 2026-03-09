@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
-import { X, Sparkles } from "lucide-react";
+import { X } from "lucide-react";
 
-const BANNER_DISMISSED_KEY = "beta-banner-dismissed";
+const BANNER_DISMISSED_KEY = "kidsafetv-banner-dismissed";
 
 export default function AnnouncementBanner() {
   const [isDismissed, setIsDismissed] = useState(true);
@@ -22,22 +21,22 @@ export default function AnnouncementBanner() {
   if (isDismissed) return null;
 
   return (
-    <div className="bg-gradient-to-r from-teal-600 via-teal-500 to-teal-600 text-white relative">
-      <Link href="/beta-trial" className="block">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
-          <div className="flex items-center justify-center gap-2 text-sm sm:text-base pr-8">
-            <Sparkles className="w-4 h-4 text-amber-300 flex-shrink-0" />
-            <span className="text-center">
-              <span className="font-medium">Be first to try our new streaming app.</span>
-              {" "}
-              <span className="text-amber-200 font-semibold hover:text-amber-100 underline underline-offset-2">
-                Apply for beta access
-              </span>
-            </span>
-            <Sparkles className="w-4 h-4 text-amber-300 flex-shrink-0 hidden sm:block" />
-          </div>
+    <a
+      href="https://kidsafetv.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block bg-slate-800 text-white relative hover:bg-slate-750 transition-colors"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <div className="flex flex-col items-center justify-center gap-0.5 pr-8 text-center">
+          <p className="text-base sm:text-lg font-bold">
+            The end of <span className="text-emerald-400">overstimulation.</span>
+          </p>
+          <p className="text-xs sm:text-sm text-slate-300">
+            Safer streaming from the makers of tvtantrum.com
+          </p>
         </div>
-      </Link>
+      </div>
       <button
         onClick={handleDismiss}
         className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-1.5 hover:bg-white/20 rounded-full transition-colors"
@@ -45,6 +44,6 @@ export default function AnnouncementBanner() {
       >
         <X className="w-4 h-4" />
       </button>
-    </div>
+    </a>
   );
 }
