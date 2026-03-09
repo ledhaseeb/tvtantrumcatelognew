@@ -31,7 +31,7 @@ export default function AnnouncementBanner() {
         <div className="flex flex-col items-center justify-center gap-3 pr-8 text-center">
           <div>
             <h3 className="text-lg sm:text-xl md:text-2xl font-bold">
-              Safer Streaming with <span className="text-emerald-400">KidSafeTV</span>
+              Safer streaming is finally here! Get <span className="text-emerald-400">KidSafeTV</span>
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl mx-auto">
               Recommended content, smarter playlists and wind-down protocols.
