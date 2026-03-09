@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { X, Tv, Film, Globe } from "lucide-react";
 
-const BANNER_DISMISSED_KEY = "kidsafetv-banner-v2";
+const BANNER_DISMISSED_KEY = "kidsafetv-banner-v3";
 
 export default function AnnouncementBanner() {
   const [isDismissed, setIsDismissed] = useState(true);
@@ -31,21 +31,21 @@ export default function AnnouncementBanner() {
         <div className="flex flex-col items-center justify-center gap-3 pr-8 text-center">
           <div>
             <h3 className="text-lg sm:text-xl md:text-2xl font-bold">
-              The end of <span className="text-emerald-400">overstimulation</span>
+              Safer Streaming with <span className="text-emerald-400">KidSafeTV</span>
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl mx-auto">
-              Get KidSafeTV for healthier content, smarter playlists and wind-down protocols for kids aged 2-8.
+              Recommended content, smarter playlists and wind-down protocols.
             </p>
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4">
             <div className="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2">
-              <div className="w-7 h-7 bg-amber-500/20 rounded-md flex items-center justify-center">
-                <Tv className="w-4 h-4 text-amber-400" />
+              <div className="w-7 h-7 bg-cyan-500/20 rounded-md flex items-center justify-center">
+                <Tv className="w-4 h-4 text-cyan-400" />
               </div>
               <div className="text-left">
                 <p className="text-sm sm:text-base font-bold leading-tight">93</p>
-                <p className="text-[10px] sm:text-xs text-slate-400 leading-tight">Channels</p>
+                <p className="text-[10px] sm:text-xs text-slate-400 leading-tight">Shows</p>
               </div>
             </div>
             <div className="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2">
@@ -54,7 +54,7 @@ export default function AnnouncementBanner() {
               </div>
               <div className="text-left">
                 <p className="text-sm sm:text-base font-bold leading-tight">3,420</p>
-                <p className="text-[10px] sm:text-xs text-slate-400 leading-tight">Videos</p>
+                <p className="text-[10px] sm:text-xs text-slate-400 leading-tight">Episodes</p>
               </div>
             </div>
             <div className="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2">
