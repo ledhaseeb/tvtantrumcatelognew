@@ -15,6 +15,9 @@ COPY . .
 # Copy necessary runtime files
 COPY public ./public
 
+# Build the frontend and server
+RUN npm run build
+
 # Create non-root user for security
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
@@ -30,5 +33,5 @@ EXPOSE $PORT
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD node -e "require('http').get('http://localhost:'+process.env.PORT+'/api/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) }).on('error', () => process.exit(1))"
 
-# Start with tsx for direct TypeScript execution in production
-CMD ["npx", "tsx", "server/index.ts"]
+# Start with the production build
+CMD ["npm", "run", "start"]
