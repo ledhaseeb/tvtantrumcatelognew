@@ -698,13 +698,7 @@ const port = Number(process.env.PORT) || 5000;
 if (process.env.NODE_ENV === 'development') {
   setupVite(app, server);
 } else {
-  // For production, try to serve static files, fallback to development setup
-  try {
-    serveStatic(app);
-  } catch (error) {
-    console.log('Static files not found, using development server for production deployment');
-    setupVite(app, server);
-  }
+  serveStatic(app);
 }
 
 // Global error handlers to prevent database crashes
