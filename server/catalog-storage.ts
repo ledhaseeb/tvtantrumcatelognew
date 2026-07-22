@@ -7,7 +7,8 @@ import {
   getCachedHomepageCategories,
   setCachedHomepageCategories,
   getCachedTvShowsWithFilters,
-  setCachedTvShowsWithFilters
+  setCachedTvShowsWithFilters,
+  clearAllEnhancedCaches
 } from "./enhanced-cache";
 
 const pool = new Pool({
@@ -604,10 +605,10 @@ export class CatalogStorage {
           total_sound_effect_time_level, scene_frequency, creativity_rating,
           available_on, themes, animation_style, image_url, is_featured,
           subscriber_count, video_count, channel_id, is_youtube_channel,
-          published_at, has_omdb_data, has_youtube_data
+          published_at, has_omdb_data, has_youtube_data, on_kidsafetv
         ) VALUES (
           $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15,
-          $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30
+          $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31
         ) RETURNING *
       `, [
         show.name, show.description, show.ageRange, show.episodeLength,
@@ -618,7 +619,7 @@ export class CatalogStorage {
         show.creativityRating, show.availableOn, show.themes, show.animationStyle,
         show.imageUrl, show.isFeatured, show.subscriberCount, show.videoCount,
         show.channelId, show.isYouTubeChannel, show.publishedAt, show.hasOmdbData,
-        show.hasYoutubeData
+        show.hasYoutubeData, (show as any).onKidsafetv ?? false
       ]);
       return result.rows[0];
     } finally {
@@ -649,7 +650,26 @@ export class CatalogStorage {
         RETURNING *
       `, [...values, id]);
       
+      invalidatePattern('tv_shows:');
+      invalidatePattern('tv-shows-minimal');
+      invalidatePattern(getCacheKey(CACHE_KEYS.TV_SHOW_BY_ID, id));
+      clearAllEnhancedCaches();
+
       return result.rows[0] || null;
+    } finally {
+      client.release();
+    }
+  }
+
+  async trackKidsafetvClick(id: number): Promise<void> {
+    const client = await pool.connect();
+    try {
+      await client.query(
+        `UPDATE catalog_tv_shows SET kidsafetv_clicks = kidsafetv_clicks + 1 WHERE id = $1`,
+        [id]
+      );
+      invalidatePattern(getCacheKey(CACHE_KEYS.TV_SHOW_BY_ID, id));
+      invalidatePattern('tv_shows:');
     } finally {
       client.release();
     }

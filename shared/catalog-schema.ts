@@ -75,6 +75,10 @@ export const tvShows = pgTable("tv_shows", {
   // API data tracking
   hasOmdbData: boolean("has_omdb_data").default(false),
   hasYoutubeData: boolean("has_youtube_data").default(false),
+
+  // KidSafeTV availability + click tracking
+  onKidsafetv: boolean("on_kidsafetv").notNull().default(false),
+  kidsafetvClicks: integer("kidsafetv_clicks").notNull().default(0),
 });
 
 // --- Theme and Platform tables ---

@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
 import { 
   Table,
   TableBody,
@@ -33,6 +34,10 @@ interface TvShow {
   hasOmdbData?: boolean;
   has_youtube_data?: boolean;
   hasYoutubeData?: boolean;
+  on_kidsafetv?: boolean;
+  onKidsafetv?: boolean;
+  kidsafetv_clicks?: number;
+  kidsafetvClicks?: number;
 }
 
 interface FullTvShow {
@@ -58,6 +63,7 @@ interface FullTvShow {
   isFeatured: boolean;
   hasOmdbData: boolean;
   hasYoutubeData: boolean;
+  onKidsafetv?: boolean;
 }
 
 interface TvShowsTableProps {
@@ -108,6 +114,33 @@ export function TvShowsTable({ onEdit }: TvShowsTableProps) {
     },
   });
 
+  // Toggle KidSafeTV availability mutation
+  const kidsafetvMutation = useMutation({
+    mutationFn: async ({ showId, onKidsafetv }: { showId: number; onKidsafetv: boolean }) => {
+      const response = await fetch(`/api/admin/shows/${showId}/kidsafetv`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ onKidsafetv }),
+      });
+      if (!response.ok) throw new Error('Failed to update KidSafeTV status');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/tv-shows'] });
+      toast({
+        title: "Success",
+        description: "KidSafeTV status updated",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to update KidSafeTV status",
+        variant: "destructive",
+      });
+    },
+  });
+
   // Handle edit with full data fetch
   const handleEdit = async (showId: number) => {
     try {
@@ -138,7 +171,8 @@ export function TvShowsTable({ onEdit }: TvShowsTableProps) {
         seasons: rawShow.seasons,
         isFeatured: rawShow.is_featured || rawShow.isFeatured || false,
         hasOmdbData: rawShow.has_omdb_data || rawShow.hasOmdbData || false,
-        hasYoutubeData: rawShow.has_youtube_data || rawShow.hasYoutubeData || false
+        hasYoutubeData: rawShow.has_youtube_data || rawShow.hasYoutubeData || false,
+        onKidsafetv: rawShow.on_kidsafetv || rawShow.onKidsafetv || false
       };
       
       onEdit(fullShow);
@@ -178,6 +212,8 @@ export function TvShowsTable({ onEdit }: TvShowsTableProps) {
               <TableHead>Age Range</TableHead>
               <TableHead>Stimulation</TableHead>
               <TableHead>Featured</TableHead>
+              <TableHead>KidSafeTV</TableHead>
+              <TableHead>KidSafeTV Clicks</TableHead>
               <TableHead>OMDb</TableHead>
               <TableHead>YouTube</TableHead>
               <TableHead>Actions</TableHead>
@@ -186,13 +222,13 @@ export function TvShowsTable({ onEdit }: TvShowsTableProps) {
           <TableBody>
             {isLoading ? (
               <TableRow>
-                <TableCell colSpan={8} className="text-center py-8">
+                <TableCell colSpan={10} className="text-center py-8">
                   Loading shows...
                 </TableCell>
               </TableRow>
             ) : filteredShows.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={8} className="text-center py-8">
+                <TableCell colSpan={10} className="text-center py-8">
                   No shows found
                 </TableCell>
               </TableRow>
@@ -213,6 +249,17 @@ export function TvShowsTable({ onEdit }: TvShowsTableProps) {
                       <Star className={`h-4 w-4 mr-1 ${(show.is_featured || show.isFeatured) ? 'fill-current' : ''}`} />
                       {(show.is_featured || show.isFeatured) ? 'Featured' : 'Set Featured'}
                     </Button>
+                  </TableCell>
+                  <TableCell>
+                    <Switch
+                      checked={!!(show.on_kidsafetv || show.onKidsafetv)}
+                      onCheckedChange={(checked) => kidsafetvMutation.mutate({ showId: show.id, onKidsafetv: checked })}
+                      disabled={kidsafetvMutation.isPending}
+                      aria-label={`Toggle KidSafeTV for ${show.name}`}
+                    />
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {show.kidsafetv_clicks ?? show.kidsafetvClicks ?? 0}
                   </TableCell>
                   <TableCell>
                     {(show.has_omdb_data || show.hasOmdbData) ? (

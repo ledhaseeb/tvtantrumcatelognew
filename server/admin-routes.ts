@@ -198,12 +198,34 @@ router.post('/shows', upload.single('image'), async (req, res) => {
     if (showData.releaseYear) {
       showData.releaseYear = parseInt(showData.releaseYear);
     }
+    if (typeof showData.onKidsafetv === 'string') {
+      showData.onKidsafetv = showData.onKidsafetv === 'true';
+    }
     
     const newShow = await catalogStorage.createTvShow(showData);
     res.json(newShow);
   } catch (error) {
     console.error('Error creating show:', error);
     res.status(500).json({ error: 'Failed to create show' });
+  }
+});
+
+// Toggle KidSafeTV availability
+router.put('/shows/:id/kidsafetv', async (req, res) => {
+  try {
+    const showId = parseInt(req.params.id);
+    const { onKidsafetv } = req.body || {};
+    if (isNaN(showId) || typeof onKidsafetv !== 'boolean') {
+      return res.status(400).json({ error: 'Invalid request' });
+    }
+    const updated = await catalogStorage.updateTvShow(showId, { onKidsafetv });
+    if (!updated) {
+      return res.status(404).json({ error: 'Show not found' });
+    }
+    res.json({ success: true, onKidsafetv });
+  } catch (error) {
+    console.error('Error toggling KidSafeTV flag:', error);
+    res.status(500).json({ error: 'Failed to update KidSafeTV flag' });
   }
 });
 
@@ -240,6 +262,9 @@ router.put('/shows/:id', upload.single('image'), async (req, res) => {
     }
     if (showData.releaseYear) {
       showData.releaseYear = parseInt(showData.releaseYear);
+    }
+    if (typeof showData.onKidsafetv === 'string') {
+      showData.onKidsafetv = showData.onKidsafetv === 'true';
     }
     
     const updatedShow = await catalogStorage.updateTvShow(showId, showData);

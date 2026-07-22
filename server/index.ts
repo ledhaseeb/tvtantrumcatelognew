@@ -713,6 +713,46 @@ setInterval(() => {
   }
 }, 5 * 60 * 1000).unref();
 
+router.post('/tv-shows/:id/kidsafetv-click', async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    if (isNaN(id)) {
+      return res.status(400).json({ message: "Invalid tracking request" });
+    }
+
+    const ua = req.get('user-agent') || '';
+    if (!ua || BOT_UA_PATTERN.test(ua)) {
+      return res.json({ success: true });
+    }
+
+    const ip = req.ip || req.socket.remoteAddress || 'unknown';
+    const now = Date.now();
+
+    const rate = trackRate.get(ip);
+    if (!rate || now - rate.windowStart > TRACK_RATE_WINDOW_MS) {
+      trackRate.set(ip, { count: 1, windowStart: now });
+    } else {
+      rate.count++;
+      if (rate.count > TRACK_RATE_MAX) {
+        return res.json({ success: true });
+      }
+    }
+
+    const dedupKey = `${ip}:kidsafetv:${id}`;
+    const last = trackDedup.get(dedupKey);
+    if (last && now - last < TRACK_DEDUP_TTL_MS) {
+      return res.json({ success: true });
+    }
+    trackDedup.set(dedupKey, now);
+
+    await catalogStorage.trackKidsafetvClick(id);
+    res.json({ success: true });
+  } catch (error) {
+    console.error("Error tracking KidSafeTV click:", error);
+    res.status(500).json({ message: "Failed to track event" });
+  }
+});
+
 router.post('/promo-banners/:id/track', async (req, res) => {
   try {
     const id = parseInt(req.params.id);

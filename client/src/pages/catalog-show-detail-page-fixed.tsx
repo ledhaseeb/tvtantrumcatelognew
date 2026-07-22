@@ -27,6 +27,7 @@ import {
   Calendar, 
   BookOpen, 
   Zap,
+  Play,
   Tag,
   Heart,
   Share2,
@@ -67,6 +68,7 @@ interface TvShow {
   sceneFrequency?: string;
   interactivityLevel?: string;
   animationStyle?: string;
+  onKidsafetv?: boolean;
 }
 
 export default function CatalogShowDetailPage() {
@@ -204,7 +206,8 @@ export default function CatalogShowDetailPage() {
         totalSoundEffectTimeLevel: data.total_sound_effect_time_level || data.totalSoundEffectTimeLevel,
         sceneFrequency: data.scene_frequency || data.sceneFrequency,
         interactivityLevel: data.interactivity_level || data.interactivityLevel,
-        animationStyle: data.animation_style || data.animationStyle
+        animationStyle: data.animation_style || data.animationStyle,
+        onKidsafetv: data.on_kidsafetv || data.onKidsafetv || false
       };
       
       console.log('Normalized catalog show data:', normalizedData);
@@ -539,6 +542,20 @@ export default function CatalogShowDetailPage() {
                     {getStimulationLabel(show.stimulationScore || 0)}
                   </span>
                 </div>
+                {show.onKidsafetv && (
+                  <a
+                    href="https://www.kidsafetv.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      fetch(`/api/tv-shows/${show.id}/kidsafetv-click`, { method: 'POST' }).catch(() => {});
+                    }}
+                    className="mt-4 inline-flex items-center gap-2 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 font-medium transition-colors"
+                  >
+                    <Play className="h-4 w-4" />
+                    Watch on KidSafeTV
+                  </a>
+                )}
               </CardContent>
             </Card>
 

@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
 import {
   Dialog,
   DialogContent,
@@ -46,6 +47,7 @@ interface TvShow {
   releaseYear?: number;
   episodeLength?: number;
   seasons?: number;
+  onKidsafetv?: boolean;
 }
 
 interface EditShowDialogProps {
@@ -114,7 +116,8 @@ export function EditShowDialog({ show, isOpen, onClose, isAddingNew = false }: E
         creator: show.creator || "",
         releaseYear: show.releaseYear || new Date().getFullYear(),
         episodeLength: show.episodeLength || 0,
-        seasons: show.seasons || 1
+        seasons: show.seasons || 1,
+        onKidsafetv: show.onKidsafetv || false
       });
       setImagePreview(show.imageUrl || "");
     } else if (isAddingNew) {
@@ -136,7 +139,8 @@ export function EditShowDialog({ show, isOpen, onClose, isAddingNew = false }: E
         creator: "",
         releaseYear: new Date().getFullYear(),
         episodeLength: 0,
-        seasons: 1
+        seasons: 1,
+        onKidsafetv: false
       });
       setImagePreview("");
     }
@@ -620,6 +624,21 @@ export function EditShowDialog({ show, isOpen, onClose, isAddingNew = false }: E
                 max="50"
               />
             </div>
+          </div>
+
+          {/* KidSafeTV Availability */}
+          <div className="flex items-center justify-between rounded-lg border p-4">
+            <div className="space-y-0.5">
+              <Label htmlFor="onKidsafetv">Available on KidSafeTV</Label>
+              <p className="text-sm text-muted-foreground">
+                Shows a "Watch on KidSafeTV" button on the show page
+              </p>
+            </div>
+            <Switch
+              id="onKidsafetv"
+              checked={!!formData.onKidsafetv}
+              onCheckedChange={(checked) => setFormData(prev => ({ ...prev, onKidsafetv: checked }))}
+            />
           </div>
 
           {/* Image Management */}
