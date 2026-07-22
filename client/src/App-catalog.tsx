@@ -3,7 +3,6 @@ import { Router as WouterRouter, Route, Switch, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "@/hooks/use-auth";
 import CatalogNavbar from "@/components/CatalogNavbar";
-import AnnouncementBanner from "@/components/AnnouncementBanner";
 import Footer from "@/components/Footer";
 import { setupGlobalBrowserBackHandler, cleanupGlobalBrowserBackHandler } from "@/lib/browser-navigation-fix";
 import CatalogHomeResponsive from "@/pages/catalog-home-responsive";
@@ -55,7 +54,7 @@ function AppContent() {
     <div className="min-h-screen flex flex-col">
       <PromoBanner placement="site-wide" />
       <CatalogNavbar />
-      <AnnouncementBanner />
+      <PromoBanner placement="announcement" />
       <main className="flex-1">
         <Switch>
           <Route path="/" component={CatalogHomeResponsive} />

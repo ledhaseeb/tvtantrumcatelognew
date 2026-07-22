@@ -2,6 +2,17 @@ import { pool } from "./db";
 
 const DEFAULT_BANNERS = [
   {
+    placement: "announcement",
+    name: "Announcement Hero",
+    headline: "Safer streaming is finally here! Get KidSafeTV",
+    body: "Watch recommended content, instantly create playlists and enjoy wind-down protocols that avoid TV tantrums.",
+    ctaText: "Try KidSafeTV free →",
+    targetUrl: "https://kidsafetv.com",
+    variant: "hero",
+    showLogo: true,
+    showAppBadges: true,
+  },
+  {
     placement: "site-wide",
     name: "Site-Wide Top Bar",
     headline: "94% of sessions end without a tantrum — see the app behind the data",
@@ -61,6 +72,8 @@ export async function seedPromoBanners(): Promise<void> {
         cta_text TEXT NOT NULL,
         target_url TEXT NOT NULL DEFAULT 'https://kidsafetv.com',
         variant TEXT NOT NULL DEFAULT 'card',
+        show_logo BOOLEAN NOT NULL DEFAULT false,
+        show_app_badges BOOLEAN NOT NULL DEFAULT false,
         is_active BOOLEAN NOT NULL DEFAULT false,
         impressions INTEGER NOT NULL DEFAULT 0,
         clicks INTEGER NOT NULL DEFAULT 0,
@@ -69,14 +82,21 @@ export async function seedPromoBanners(): Promise<void> {
       )
     `);
 
+    // Safe additive migration for existing databases (e.g. production)
+    await client.query(`
+      ALTER TABLE promo_banners
+        ADD COLUMN IF NOT EXISTS show_logo BOOLEAN NOT NULL DEFAULT false,
+        ADD COLUMN IF NOT EXISTS show_app_badges BOOLEAN NOT NULL DEFAULT false
+    `);
+
     const { rows } = await client.query("SELECT COUNT(*)::int AS count FROM promo_banners");
     if (rows[0].count > 0) return; // already seeded
 
     for (const b of DEFAULT_BANNERS) {
       await client.query(
-        `INSERT INTO promo_banners (placement, name, headline, body, cta_text, target_url, variant, is_active)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, true)`,
-        [b.placement, b.name, b.headline, b.body, b.ctaText, b.targetUrl, b.variant]
+        `INSERT INTO promo_banners (placement, name, headline, body, cta_text, target_url, variant, show_logo, show_app_badges, is_active)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, true)`,
+        [b.placement, b.name, b.headline, b.body, b.ctaText, b.targetUrl, b.variant, (b as any).showLogo ?? false, (b as any).showAppBadges ?? false]
       );
     }
     console.log(`[SEED] Inserted ${DEFAULT_BANNERS.length} default promo banners`);

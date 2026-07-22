@@ -27,6 +27,7 @@ import type { PromoBanner } from "../../../../shared/catalog-schema";
 
 const PLACEMENTS = [
   { value: "site-wide", label: "Site-Wide Top Bar" },
+  { value: "announcement", label: "Announcement (under navbar)" },
   { value: "home", label: "Home Page" },
   { value: "browse", label: "Browse Shows" },
   { value: "compare", label: "Compare Shows" },
@@ -35,6 +36,7 @@ const PLACEMENTS = [
 
 const VARIANTS = [
   { value: "top-bar", label: "Top Bar (slim)" },
+  { value: "hero", label: "Hero (large announcement)" },
   { value: "testimonial", label: "Testimonial (quote)" },
   { value: "card", label: "Card (headline + CTA)" },
   { value: "quiet", label: "Quiet (subtle dark card)" },
@@ -48,6 +50,8 @@ interface BannerForm {
   ctaText: string;
   targetUrl: string;
   variant: string;
+  showLogo: boolean;
+  showAppBadges: boolean;
   isActive: boolean;
 }
 
@@ -59,6 +63,8 @@ const emptyForm: BannerForm = {
   ctaText: "Try it free →",
   targetUrl: "https://kidsafetv.com",
   variant: "card",
+  showLogo: false,
+  showAppBadges: false,
   isActive: true,
 };
 
@@ -151,6 +157,8 @@ export default function PromoBannersManager() {
       ctaText: banner.ctaText,
       targetUrl: banner.targetUrl,
       variant: banner.variant,
+      showLogo: banner.showLogo,
+      showAppBadges: banner.showAppBadges,
       isActive: banner.isActive,
     });
     setDialogOpen(true);
@@ -375,6 +383,22 @@ export default function PromoBannersManager() {
                   onChange={(e) => setForm({ ...form, targetUrl: e.target.value })}
                 />
               </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <Switch
+                id="form-show-logo"
+                checked={form.showLogo}
+                onCheckedChange={(checked) => setForm({ ...form, showLogo: checked })}
+              />
+              <Label htmlFor="form-show-logo">Show KidSafeTV logo</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <Switch
+                id="form-show-badges"
+                checked={form.showAppBadges}
+                onCheckedChange={(checked) => setForm({ ...form, showAppBadges: checked })}
+              />
+              <Label htmlFor="form-show-badges">Show App Store / Google Play badges</Label>
             </div>
             <div className="flex items-center gap-2">
               <Switch

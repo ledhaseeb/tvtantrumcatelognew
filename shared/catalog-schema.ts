@@ -161,13 +161,15 @@ export const amazonProducts = pgTable("amazon_products", {
 // --- Promotional banners (KidSafeTV) ---
 export const promoBanners = pgTable("promo_banners", {
   id: serial("id").primaryKey(),
-  placement: text("placement").notNull(), // site-wide, home, browse, compare, research, research-sidebar
+  placement: text("placement").notNull(), // site-wide, announcement, home, browse, compare, research
   name: text("name").notNull(), // internal label for admin
   headline: text("headline").notNull(),
   body: text("body"),
   ctaText: text("cta_text").notNull(),
   targetUrl: text("target_url").notNull().default("https://kidsafetv.com"),
-  variant: text("variant").notNull().default("card"), // top-bar, testimonial, card, quiet
+  variant: text("variant").notNull().default("card"), // top-bar, hero, testimonial, card, quiet
+  showLogo: boolean("show_logo").notNull().default(false),
+  showAppBadges: boolean("show_app_badges").notNull().default(false),
   isActive: boolean("is_active").notNull().default(false),
   impressions: integer("impressions").notNull().default(0),
   clicks: integer("clicks").notNull().default(0),

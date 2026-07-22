@@ -1510,6 +1510,8 @@ export class CatalogStorage {
       ctaText: row.cta_text,
       targetUrl: row.target_url,
       variant: row.variant,
+      showLogo: row.show_logo,
+      showAppBadges: row.show_app_badges,
       isActive: row.is_active,
       impressions: row.impressions,
       clicks: row.clicks,
@@ -1562,8 +1564,8 @@ export class CatalogStorage {
         );
       }
       const result = await client.query(
-        `INSERT INTO promo_banners (placement, name, headline, body, cta_text, target_url, variant, is_active)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+        `INSERT INTO promo_banners (placement, name, headline, body, cta_text, target_url, variant, show_logo, show_app_badges, is_active)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
         [
           banner.placement,
           banner.name,
@@ -1572,6 +1574,8 @@ export class CatalogStorage {
           banner.ctaText,
           banner.targetUrl || 'https://kidsafetv.com',
           banner.variant || 'card',
+          banner.showLogo ?? false,
+          banner.showAppBadges ?? false,
           isActive
         ]
       );
@@ -1595,6 +1599,8 @@ export class CatalogStorage {
       ctaText: 'cta_text',
       targetUrl: 'target_url',
       variant: 'variant',
+      showLogo: 'show_logo',
+      showAppBadges: 'show_app_badges',
       isActive: 'is_active'
     };
     const setParts: string[] = [];
