@@ -9,6 +9,7 @@ import compression from 'compression';
 import { setupVite, serveStatic } from './vite';
 import { catalogStorage } from './catalog-storage';
 import { insertPromoBannerSchema } from '../shared/catalog-schema';
+import { seedPromoBanners } from './seed-promo-banners';
 import { Pool } from 'pg';
 import { setupSimpleAdminAuth } from './simple-admin';
 import adminRoutes from './admin-routes';
@@ -803,7 +804,12 @@ process.on('unhandledRejection', (reason: any, promise) => {
   }
 });
 
-server.listen(port, '0.0.0.0', () => {
+server.listen(port, '0.0.0.0', async () => {
+  try {
+    await seedPromoBanners();
+  } catch (error) {
+    console.error('Promo banner seed failed:', error);
+  }
   console.log(`TV Tantrum Catalog server running on port ${port}`);
   console.log(`Using catalog database with 302 authentic TV shows`);
   console.log(`Simplified content discovery without social features`);

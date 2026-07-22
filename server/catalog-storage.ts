@@ -1552,6 +1552,15 @@ export class CatalogStorage {
   async createPromoBanner(banner: InsertPromoBanner): Promise<PromoBanner> {
     const client = await pool.connect();
     try {
+      await client.query('BEGIN');
+      const isActive = banner.isActive ?? false;
+      if (isActive) {
+        // Only one active banner per placement
+        await client.query(
+          'UPDATE promo_banners SET is_active = false, updated_at = NOW() WHERE placement = $1 AND is_active = true',
+          [banner.placement]
+        );
+      }
       const result = await client.query(
         `INSERT INTO promo_banners (placement, name, headline, body, cta_text, target_url, variant, is_active)
          VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
@@ -1563,11 +1572,15 @@ export class CatalogStorage {
           banner.ctaText,
           banner.targetUrl || 'https://kidsafetv.com',
           banner.variant || 'card',
-          banner.isActive ?? false
+          isActive
         ]
       );
+      await client.query('COMMIT');
       invalidatePattern('promo-banners');
       return this.mapPromoBanner(result.rows[0]);
+    } catch (error) {
+      await client.query('ROLLBACK');
+      throw error;
     } finally {
       client.release();
     }
@@ -1600,12 +1613,32 @@ export class CatalogStorage {
 
     const client = await pool.connect();
     try {
+      await client.query('BEGIN');
+      // Only one active banner per placement: if this update activates (or moves) an
+      // active banner, deactivate any other active banner in the target placement.
+      if (updates.isActive === true || updates.placement !== undefined) {
+        const current = await client.query('SELECT placement, is_active FROM promo_banners WHERE id = $1', [id]);
+        if (current.rows.length) {
+          const targetPlacement = updates.placement ?? current.rows[0].placement;
+          const willBeActive = updates.isActive ?? current.rows[0].is_active;
+          if (willBeActive) {
+            await client.query(
+              'UPDATE promo_banners SET is_active = false, updated_at = NOW() WHERE placement = $1 AND is_active = true AND id != $2',
+              [targetPlacement, id]
+            );
+          }
+        }
+      }
       const result = await client.query(
         `UPDATE promo_banners SET ${setParts.join(', ')} WHERE id = $${i} RETURNING *`,
         values
       );
+      await client.query('COMMIT');
       invalidatePattern('promo-banners');
       return result.rows.length ? this.mapPromoBanner(result.rows[0]) : null;
+    } catch (error) {
+      await client.query('ROLLBACK');
+      throw error;
     } finally {
       client.release();
     }

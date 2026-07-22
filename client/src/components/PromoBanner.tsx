@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { PromoBanner as PromoBannerType } from "../../../shared/catalog-schema";
 
@@ -27,15 +27,8 @@ export default function PromoBanner({ placement, className = "" }: PromoBannerPr
     staleTime: 60 * 1000,
   });
 
-  // Simple rotation: pick a random banner among actives for this placement, once per mount
-  const [index, setIndex] = useState<number | null>(null);
-  useEffect(() => {
-    if (banners.length > 0 && index === null) {
-      setIndex(Math.floor(Math.random() * banners.length));
-    }
-  }, [banners, index]);
-
-  const banner = index !== null ? banners[index % banners.length] : undefined;
+  // Show the single active banner for this placement (admin activates one at a time)
+  const banner = banners[0];
 
   // Track a single impression per banner per mount
   const trackedId = useRef<number | null>(null);
