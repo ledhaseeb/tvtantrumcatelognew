@@ -179,7 +179,9 @@ export function TvShowsTable({ onEdit }: TvShowsTableProps) {
         isFeatured: rawShow.is_featured || rawShow.isFeatured || false,
         hasOmdbData: rawShow.has_omdb_data || rawShow.hasOmdbData || false,
         hasYoutubeData: rawShow.has_youtube_data || rawShow.hasYoutubeData || false,
-        onKidsafetv: rawShow.on_kidsafetv || rawShow.onKidsafetv || false
+        onKidsafetv: showId in optimisticKidsafetv
+          ? optimisticKidsafetv[showId]
+          : (rawShow.on_kidsafetv || rawShow.onKidsafetv || false)
       };
       
       onEdit(fullShow);
