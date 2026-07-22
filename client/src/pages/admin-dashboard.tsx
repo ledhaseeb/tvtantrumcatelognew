@@ -25,6 +25,7 @@ import { EditShowDialog } from "@/components/admin/EditShowDialog";
 import { ResearchTable } from "@/components/admin/ResearchTable";
 import { EditResearchDialog } from "@/components/admin/EditResearchDialog";
 import HomepageCategories from "@/components/admin/HomepageCategories";
+import PromoBannersManager from "@/components/admin/PromoBannersManager";
 
 interface AdminUser {
   id: number;
@@ -226,6 +227,16 @@ export default function AdminDashboard() {
               }`}
             >
               Products
+            </button>
+            <button
+              onClick={() => setActiveTab('banners')}
+              className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                activeTab === 'banners'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              Banners
             </button>
             <button
               onClick={() => setActiveTab('users')}
@@ -473,6 +484,10 @@ export default function AdminDashboard() {
 
         {activeTab === 'homepage-categories' && (
           <HomepageCategories />
+        )}
+
+        {activeTab === 'banners' && (
+          <PromoBannersManager />
         )}
 
         {activeTab === 'products' && (

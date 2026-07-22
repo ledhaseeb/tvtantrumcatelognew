@@ -26,7 +26,7 @@ import Preorder from "@/pages/preorder";
 import BetaTrial from "@/pages/beta-trial";
 import { initGA } from "./lib/analytics";
 import { useAnalytics } from "./hooks/use-analytics";
-import { initAdSense } from "./lib/adsense";
+import PromoBanner from "@/components/PromoBanner";
 import CookieConsent from "@/components/CookieConsent";
 
 // Create query client with sensible defaults
@@ -53,6 +53,7 @@ function AppContent() {
   
   return (
     <div className="min-h-screen flex flex-col">
+      <PromoBanner placement="site-wide" />
       <CatalogNavbar />
       <AnnouncementBanner />
       <main className="flex-1">
@@ -89,9 +90,6 @@ export default function CatalogApp() {
   useEffect(() => {
     // Initialize Google Analytics
     initGA();
-    
-    // Initialize Google AdSense
-    initAdSense();
   }, []);
 
   return (

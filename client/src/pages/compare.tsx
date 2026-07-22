@@ -4,7 +4,7 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
-import AdContainer from "@/components/AdContainer";
+import PromoBanner from "@/components/PromoBanner";
 import {
   Select,
   SelectContent,
@@ -165,9 +165,9 @@ export default function Compare() {
         </div>
       </div>
 
-      {/* Compare Page Ad */}
+      {/* KidSafeTV Promo */}
       <div className="mb-6">
-        <AdContainer size="leaderboard" className="mx-auto" />
+        <PromoBanner placement="compare" />
       </div>
       
       {isLoading ? (
@@ -586,10 +586,6 @@ export default function Compare() {
         </div>
       )}
       
-      {/* Bottom Compare Ad */}
-      <div className="mt-12 mb-6">
-        <AdContainer size="rectangle" className="mx-auto" />
-      </div>
     </main>
   );
 }

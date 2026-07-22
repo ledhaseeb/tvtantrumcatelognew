@@ -8,6 +8,7 @@ import ConnectPgSimple from 'connect-pg-simple';
 import compression from 'compression';
 import { setupVite, serveStatic } from './vite';
 import { catalogStorage } from './catalog-storage';
+import { insertPromoBannerSchema } from '../shared/catalog-schema';
 import { Pool } from 'pg';
 import { setupSimpleAdminAuth } from './simple-admin';
 import adminRoutes from './admin-routes';
@@ -143,12 +144,6 @@ if (process.env.NODE_ENV === 'production' && process.env.DATABASE_URL) {
 }
 
 app.use(session(sessionConfig));
-
-// Serve ads.txt file for Google AdSense verification
-app.get('/ads.txt', (req, res) => {
-  res.set('Content-Type', 'text/plain');
-  res.send('google.com, pub-1980242774753631, DIRECT, f08c47fec0942fa0');
-});
 
 // Serve llms.txt file for AI system documentation
 app.get('/llms.txt', (req, res) => {
@@ -683,6 +678,94 @@ router.get('/admin/products', requireAdmin, async (req, res) => {
   } catch (error) {
     console.error("Error fetching admin products:", error);
     res.status(500).json({ message: "Failed to fetch products" });
+  }
+});
+
+// KidSafeTV Promo Banner routes
+// Public: get active banners for a placement
+router.get('/promo-banners/placement/:placement', async (req, res) => {
+  try {
+    const banners = await catalogStorage.getActivePromoBannersByPlacement(req.params.placement);
+    res.set('Cache-Control', 'no-store');
+    res.json(banners);
+  } catch (error) {
+    console.error("Error fetching promo banners:", error);
+    res.status(500).json({ message: "Failed to fetch promo banners" });
+  }
+});
+
+// Public: track impression/click
+router.post('/promo-banners/:id/track', async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const { event } = req.body || {};
+    if (isNaN(id) || (event !== 'impression' && event !== 'click')) {
+      return res.status(400).json({ message: "Invalid tracking request" });
+    }
+    await catalogStorage.trackPromoBannerEvent(id, event);
+    res.json({ success: true });
+  } catch (error) {
+    console.error("Error tracking promo banner event:", error);
+    res.status(500).json({ message: "Failed to track event" });
+  }
+});
+
+// Admin: manage banners
+router.get('/admin/promo-banners', requireAdmin, async (req, res) => {
+  try {
+    const banners = await catalogStorage.getPromoBanners();
+    res.json(banners);
+  } catch (error) {
+    console.error("Error fetching admin promo banners:", error);
+    res.status(500).json({ message: "Failed to fetch promo banners" });
+  }
+});
+
+router.post('/admin/promo-banners', requireAdmin, async (req, res) => {
+  try {
+    const parsed = insertPromoBannerSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ message: "Invalid banner data", errors: parsed.error.flatten() });
+    }
+    const banner = await catalogStorage.createPromoBanner(parsed.data);
+    res.json(banner);
+  } catch (error) {
+    console.error("Error creating promo banner:", error);
+    res.status(500).json({ message: "Failed to create promo banner" });
+  }
+});
+
+router.put('/admin/promo-banners/:id', requireAdmin, async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const parsed = insertPromoBannerSchema.partial().safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ message: "Invalid banner data", errors: parsed.error.flatten() });
+    }
+    const banner = await catalogStorage.updatePromoBanner(id, parsed.data);
+    if (banner) {
+      res.json(banner);
+    } else {
+      res.status(404).json({ message: "Banner not found" });
+    }
+  } catch (error) {
+    console.error("Error updating promo banner:", error);
+    res.status(500).json({ message: "Failed to update promo banner" });
+  }
+});
+
+router.delete('/admin/promo-banners/:id', requireAdmin, async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const success = await catalogStorage.deletePromoBanner(id);
+    if (success) {
+      res.json({ message: "Banner deleted successfully" });
+    } else {
+      res.status(404).json({ message: "Banner not found" });
+    }
+  } catch (error) {
+    console.error("Error deleting promo banner:", error);
+    res.status(500).json({ message: "Failed to delete promo banner" });
   }
 });
 

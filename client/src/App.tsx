@@ -22,7 +22,6 @@ import CatalogShowDetailPage from "@/pages/catalog-show-detail-page-fixed";
 import { useEffect } from "react";
 import { initGA } from "./lib/analytics";
 import { useAnalytics } from "./hooks/use-analytics";
-import { initAdSense } from "./lib/adsense";
 
 function Router() {
   // Track page views when routes change
@@ -175,9 +174,6 @@ function App() {
   useEffect(() => {
     // Initialize Google Analytics
     initGA();
-    
-    // Initialize Google AdSense
-    initAdSense();
   }, []);
 
   return (

@@ -37,7 +37,6 @@ import {
 } from "lucide-react";
 import SensoryBar from "@/components/SensoryBar";
 import ShowCard from "@/components/ShowCard";
-import AdContainer from "@/components/AdContainer";
 import ShareModal from "@/components/ShareModal";
 import {
   DropdownMenu,
@@ -440,13 +439,6 @@ export default function CatalogShowDetailPage() {
           </Button>
         </div>
 
-        {/* Top Ad Container - Leaderboard */}
-        <div className="mb-8">
-          <AdContainer 
-            size="leaderboard"
-            label="Top Advertisement"
-          />
-        </div>
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -680,13 +672,6 @@ export default function CatalogShowDetailPage() {
           </div>
         )}
 
-        {/* Bottom Ad Container - Rectangle */}
-        <div className="mt-12 mb-8 flex justify-center">
-          <AdContainer 
-            size="rectangle"
-            label="Bottom Advertisement"
-          />
-        </div>
       </div>
 
       {/* Share Modal */}

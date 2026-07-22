@@ -1,0 +1,2 @@
+- [DB push is destructive](db-push-danger.md) — never run `npm run db:push` here; schema file is out of sync with live DB and it would drop catalog tables. Use psql for DDL.
+- [Admin auth disabled](admin-auth-disabled.md) — all /api/admin routes use a no-op requireAdmin ("disabled for development") project-wide; re-enable before production hardening.

@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import { TvShow, Theme, Platform, ResearchSummary, User, HomepageCategory, InsertHomepageCategory, AmazonProduct, InsertAmazonProduct } from '@shared/catalog-schema';
+import { TvShow, Theme, Platform, ResearchSummary, User, HomepageCategory, InsertHomepageCategory, AmazonProduct, InsertAmazonProduct, PromoBanner, InsertPromoBanner } from '@shared/catalog-schema';
 import { cache, CACHE_KEYS, CACHE_TTL, getCacheKey, invalidatePattern } from "./cache";
 import { 
   getCachedSearch, 
@@ -1495,6 +1495,138 @@ export class CatalogStorage {
       cache.set(cacheKey, categories, CACHE_TTL.LONG);
       
       return categories;
+    } finally {
+      client.release();
+    }
+  }
+
+  private mapPromoBanner(row: any): PromoBanner {
+    return {
+      id: row.id,
+      placement: row.placement,
+      name: row.name,
+      headline: row.headline,
+      body: row.body,
+      ctaText: row.cta_text,
+      targetUrl: row.target_url,
+      variant: row.variant,
+      isActive: row.is_active,
+      impressions: row.impressions,
+      clicks: row.clicks,
+      createdAt: row.created_at,
+      updatedAt: row.updated_at
+    };
+  }
+
+  async getPromoBanners(activeOnly = false): Promise<PromoBanner[]> {
+    const client = await pool.connect();
+    try {
+      const result = await client.query(
+        `SELECT * FROM promo_banners ${activeOnly ? 'WHERE is_active = true' : ''} ORDER BY placement, id`
+      );
+      return result.rows.map(row => this.mapPromoBanner(row));
+    } finally {
+      client.release();
+    }
+  }
+
+  async getActivePromoBannersByPlacement(placement: string): Promise<PromoBanner[]> {
+    const cacheKey = getCacheKey('promo-banners', placement);
+    const cached = cache.get<PromoBanner[]>(cacheKey);
+    if (cached) return cached;
+
+    const client = await pool.connect();
+    try {
+      const result = await client.query(
+        'SELECT * FROM promo_banners WHERE is_active = true AND placement = $1 ORDER BY id',
+        [placement]
+      );
+      const banners = result.rows.map(row => this.mapPromoBanner(row));
+      cache.set(cacheKey, banners, 60); // short TTL so admin edits show quickly
+      return banners;
+    } finally {
+      client.release();
+    }
+  }
+
+  async createPromoBanner(banner: InsertPromoBanner): Promise<PromoBanner> {
+    const client = await pool.connect();
+    try {
+      const result = await client.query(
+        `INSERT INTO promo_banners (placement, name, headline, body, cta_text, target_url, variant, is_active)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+        [
+          banner.placement,
+          banner.name,
+          banner.headline,
+          banner.body || null,
+          banner.ctaText,
+          banner.targetUrl || 'https://kidsafetv.com',
+          banner.variant || 'card',
+          banner.isActive ?? false
+        ]
+      );
+      invalidatePattern('promo-banners');
+      return this.mapPromoBanner(result.rows[0]);
+    } finally {
+      client.release();
+    }
+  }
+
+  async updatePromoBanner(id: number, updates: Partial<InsertPromoBanner>): Promise<PromoBanner | null> {
+    const fieldMap: Record<string, string> = {
+      placement: 'placement',
+      name: 'name',
+      headline: 'headline',
+      body: 'body',
+      ctaText: 'cta_text',
+      targetUrl: 'target_url',
+      variant: 'variant',
+      isActive: 'is_active'
+    };
+    const setParts: string[] = [];
+    const values: any[] = [];
+    let i = 1;
+    for (const [key, col] of Object.entries(fieldMap)) {
+      if ((updates as any)[key] !== undefined) {
+        setParts.push(`${col} = $${i}`);
+        values.push((updates as any)[key]);
+        i++;
+      }
+    }
+    if (setParts.length === 0) return null;
+    setParts.push('updated_at = NOW()');
+    values.push(id);
+
+    const client = await pool.connect();
+    try {
+      const result = await client.query(
+        `UPDATE promo_banners SET ${setParts.join(', ')} WHERE id = $${i} RETURNING *`,
+        values
+      );
+      invalidatePattern('promo-banners');
+      return result.rows.length ? this.mapPromoBanner(result.rows[0]) : null;
+    } finally {
+      client.release();
+    }
+  }
+
+  async deletePromoBanner(id: number): Promise<boolean> {
+    const client = await pool.connect();
+    try {
+      const result = await client.query('DELETE FROM promo_banners WHERE id = $1', [id]);
+      invalidatePattern('promo-banners');
+      return result.rowCount > 0;
+    } finally {
+      client.release();
+    }
+  }
+
+  async trackPromoBannerEvent(id: number, event: 'impression' | 'click'): Promise<void> {
+    const column = event === 'impression' ? 'impressions' : 'clicks';
+    const client = await pool.connect();
+    try {
+      await client.query(`UPDATE promo_banners SET ${column} = ${column} + 1 WHERE id = $1`, [id]);
     } finally {
       client.release();
     }

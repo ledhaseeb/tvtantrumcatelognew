@@ -7,7 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import CategoryRow from "@/components/CategoryRow";
 import ShowCard from "@/components/ShowCard";
 import { Search, Filter, BarChart2, ChevronLeft, ChevronRight } from "lucide-react";
-import AdContainer from "@/components/AdContainer";
+import PromoBanner from "@/components/PromoBanner";
 import type { TvShow, HomepageCategory } from "../../../shared/catalog-schema";
 
 // Function to generate proper browse URL from category filter config
@@ -276,15 +276,11 @@ export default function CatalogHomeResponsive() {
         </div>
       )}
 
-      {/* Bottom Ad Container */}
+      {/* KidSafeTV Promo */}
       <div className="bg-gray-50 py-8">
         <div className="container mx-auto px-4">
-          <div className="flex justify-center">
-            <AdContainer 
-              size={isMobile ? "mobile-banner" : "leaderboard"} 
-              className="w-full max-w-4xl" 
-              label="Advertisement"
-            />
+          <div className="max-w-4xl mx-auto">
+            <PromoBanner placement="home" />
           </div>
         </div>
       </div>

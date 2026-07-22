@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocation, useSearch } from "wouter";
 import ShowFilters from "@/components/ShowFilters";
 import ShowCard from "@/components/ShowCard";
-import AdContainer from "@/components/AdContainer";
+import PromoBanner from "@/components/PromoBanner";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -482,9 +482,9 @@ export default function Browse() {
           Showing {indexOfFirstShow + 1}-{Math.min(indexOfLastShow, totalShows)} of {totalShows} results
         </p>
 
-        {/* Top Browse Ad */}
+        {/* KidSafeTV Promo */}
         <div className="mb-6">
-          <AdContainer size="leaderboard" className="mx-auto" />
+          <PromoBanner placement="browse" />
         </div>
         
         <div className="flex flex-col md:flex-row gap-6">
@@ -596,14 +596,6 @@ export default function Browse() {
           </div>
         </div>
         
-        {/* Bottom Browse Ad */}
-        <div className="mt-12 mb-6">
-          <AdContainer 
-            size={isMobile ? "mobile-banner" : "leaderboard"} 
-            className="mx-auto" 
-            label="Advertisement"
-          />
-        </div>
       </div>
     </div>
   );

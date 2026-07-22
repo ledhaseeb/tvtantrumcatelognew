@@ -158,6 +158,23 @@ export const amazonProducts = pgTable("amazon_products", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
+// --- Promotional banners (KidSafeTV) ---
+export const promoBanners = pgTable("promo_banners", {
+  id: serial("id").primaryKey(),
+  placement: text("placement").notNull(), // site-wide, home, browse, compare, research, research-sidebar
+  name: text("name").notNull(), // internal label for admin
+  headline: text("headline").notNull(),
+  body: text("body"),
+  ctaText: text("cta_text").notNull(),
+  targetUrl: text("target_url").notNull().default("https://kidsafetv.com"),
+  variant: text("variant").notNull().default("card"), // top-bar, testimonial, card, quiet
+  isActive: boolean("is_active").notNull().default(false),
+  impressions: integer("impressions").notNull().default(0),
+  clicks: integer("clicks").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
 // --- Zod schemas for inserting/selecting ---
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
@@ -238,3 +255,13 @@ export type HomepageCategory = typeof homepageCategories.$inferSelect & {
 
 export type InsertAmazonProduct = z.infer<typeof insertAmazonProductSchema>;
 export type AmazonProduct = typeof amazonProducts.$inferSelect;
+
+export const insertPromoBannerSchema = createInsertSchema(promoBanners).omit({
+  id: true,
+  impressions: true,
+  clicks: true,
+  createdAt: true,
+  updatedAt: true,
+});
+export type InsertPromoBanner = z.infer<typeof insertPromoBannerSchema>;
+export type PromoBanner = typeof promoBanners.$inferSelect;

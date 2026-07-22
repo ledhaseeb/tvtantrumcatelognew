@@ -9,7 +9,7 @@ import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/use-auth';
 import { ArrowLeft, BookOpen, Calendar, ExternalLink, FileText, Award } from 'lucide-react';
-import AdContainer from '@/components/AdContainer';
+import PromoBanner from '@/components/PromoBanner';
 
 const ResearchDetail = () => {
   const params = useParams();
@@ -192,10 +192,6 @@ const ResearchDetail = () => {
         </Button>
       </div>
 
-      {/* Top Ad Container */}
-      <div className="mb-8">
-        <AdContainer size="leaderboard" className="mx-auto" />
-      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div className="lg:col-span-8 px-4">
@@ -325,10 +321,6 @@ const ResearchDetail = () => {
               </div>
             )}
 
-            {/* Middle Ad Container */}
-            <div className="my-8">
-              <AdContainer size="rectangle" className="mx-auto" />
-            </div>
 
             {/* Display image between Key Findings and Detail sections */}
             {research.imageUrl && (
@@ -360,9 +352,9 @@ const ResearchDetail = () => {
               </div>
             )}
 
-            {/* Bottom Ad Container */}
+            {/* KidSafeTV Promo */}
             <div className="mt-8 mb-6">
-              <AdContainer size="rectangle" className="mx-auto" />
+              <PromoBanner placement="research" />
             </div>
           </div>
         </div>

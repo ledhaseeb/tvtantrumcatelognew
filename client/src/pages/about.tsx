@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import AdContainer from "@/components/AdContainer";
 import { useEffect, useState } from "react";
 
 export default function About() {
@@ -31,10 +30,6 @@ export default function About() {
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-heading font-bold text-center mb-8">About TV Tantrum</h1>
       
-      {/* Top Ad Container */}
-      <div className="mb-8 flex justify-center">
-        <AdContainer size="leaderboard" className="w-full max-w-4xl" />
-      </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         <div>
@@ -246,10 +241,6 @@ export default function About() {
         </div>
       </div>
       
-      {/* Bottom Ad Container */}
-      <div className="mt-12 mb-8 flex justify-center">
-        <AdContainer size="rectangle" className="w-full max-w-md" />
-      </div>
     </main>
   );
 }
