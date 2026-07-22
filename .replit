@@ -44,3 +44,4 @@ timeoutMs = 20000
 
 [userenv.shared]
 VITE_GA_MEASUREMENT_ID = "G-MDVPJG5XJ7"
+ADMIN_PASSWORD = "xYnqar-bimta8-tyttos"
