@@ -40,6 +40,7 @@ const queryClient = new QueryClient({
 
 function AppContent() {
   const [_, setLocation] = useLocation();
+  useAnalytics();
   
   useEffect(() => {
     // Setup global browser back handler
