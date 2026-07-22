@@ -28,6 +28,7 @@ const originalDb = new Pool({
 });
 
 const app = express();
+app.set('trust proxy', 1);
 const server = createServer(app);
 
 // Performance optimization middleware
@@ -696,6 +697,25 @@ router.get('/promo-banners/placement/:placement', async (req, res) => {
 });
 
 // Public: track impression/click
+// Anti-bot protections: known-crawler UA filtering, per-IP dedup per
+// banner/event, and a per-IP rate limit. All in-memory with periodic cleanup.
+const BOT_UA_PATTERN = /bot|crawl|spider|slurp|curl|wget|python-requests|httpclient|headless|phantomjs|scrapy|facebookexternalhit|preview|monitor|pingdom|uptime/i;
+const TRACK_DEDUP_TTL_MS = 10 * 60 * 1000; // one count per IP+banner+event per 10 min
+const TRACK_RATE_WINDOW_MS = 60 * 1000;
+const TRACK_RATE_MAX = 30; // max tracked events per IP per minute
+const trackDedup = new Map<string, number>();
+const trackRate = new Map<string, { count: number; windowStart: number }>();
+
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, ts] of trackDedup) {
+    if (now - ts > TRACK_DEDUP_TTL_MS) trackDedup.delete(key);
+  }
+  for (const [ip, entry] of trackRate) {
+    if (now - entry.windowStart > TRACK_RATE_WINDOW_MS) trackRate.delete(ip);
+  }
+}, 5 * 60 * 1000).unref();
+
 router.post('/promo-banners/:id/track', async (req, res) => {
   try {
     const id = parseInt(req.params.id);
@@ -703,6 +723,33 @@ router.post('/promo-banners/:id/track', async (req, res) => {
     if (isNaN(id) || (event !== 'impression' && event !== 'click')) {
       return res.status(400).json({ message: "Invalid tracking request" });
     }
+
+    const ua = req.get('user-agent') || '';
+    if (!ua || BOT_UA_PATTERN.test(ua)) {
+      // Silently accept without counting so bots get no signal
+      return res.json({ success: true });
+    }
+
+    const ip = req.ip || req.socket.remoteAddress || 'unknown';
+    const now = Date.now();
+
+    const rate = trackRate.get(ip);
+    if (!rate || now - rate.windowStart > TRACK_RATE_WINDOW_MS) {
+      trackRate.set(ip, { count: 1, windowStart: now });
+    } else {
+      rate.count++;
+      if (rate.count > TRACK_RATE_MAX) {
+        return res.json({ success: true });
+      }
+    }
+
+    const dedupKey = `${ip}:${id}:${event}`;
+    const last = trackDedup.get(dedupKey);
+    if (last && now - last < TRACK_DEDUP_TTL_MS) {
+      return res.json({ success: true });
+    }
+    trackDedup.set(dedupKey, now);
+
     await catalogStorage.trackPromoBannerEvent(id, event);
     res.json({ success: true });
   } catch (error) {
