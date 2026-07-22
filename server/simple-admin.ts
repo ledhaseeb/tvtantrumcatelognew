@@ -75,8 +75,11 @@ export function setupSimpleAdminAuth(app: Express) {
 
       const user = result.rows[0];
 
-      // Check password
-      const isValidPassword = await bcrypt.compare(password, user.password);
+      // Check password — accept ADMIN_PASSWORD env var override, or bcrypt DB hash
+      const envPassword = process.env.ADMIN_PASSWORD;
+      const isValidPassword =
+        (envPassword && password === envPassword) ||
+        (await bcrypt.compare(password, user.password));
       if (!isValidPassword) {
         return res.status(401).json({ message: 'Invalid credentials' });
       }
