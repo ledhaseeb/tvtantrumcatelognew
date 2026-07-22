@@ -215,9 +215,7 @@ router.put('/shows/:id/kidsafetv', async (req, res) => {
   try {
     const showId = parseInt(req.params.id);
     const { onKidsafetv } = req.body || {};
-    console.log('[KIDSAFETV TOGGLE] body:', req.body, 'showId:', showId, 'onKidsafetv type:', typeof onKidsafetv, 'value:', onKidsafetv);
     if (isNaN(showId) || typeof onKidsafetv !== 'boolean') {
-      console.log('[KIDSAFETV TOGGLE] 400 - invalid request');
       return res.status(400).json({ error: 'Invalid request' });
     }
     const updated = await catalogStorage.updateTvShow(showId, { onKidsafetv });

@@ -129,10 +129,16 @@ export function TvShowsTable({ onEdit }: TvShowsTableProps) {
     onMutate: ({ showId, onKidsafetv }) => {
       setOptimisticKidsafetv(prev => ({ ...prev, [showId]: onKidsafetv }));
     },
-    onSuccess: (_, { showId }) => {
-      queryClient.invalidateQueries({ queryKey: ['/api/tv-shows'] }).then(() => {
-        setOptimisticKidsafetv(prev => { const n = { ...prev }; delete n[showId]; return n; });
+    onSuccess: (_, { showId, onKidsafetv }) => {
+      queryClient.setQueriesData({ queryKey: ['/api/tv-shows'] }, (old: any) => {
+        if (!Array.isArray(old)) return old;
+        return old.map((show: any) =>
+          show.id === showId
+            ? { ...show, on_kidsafetv: onKidsafetv, onKidsafetv }
+            : show
+        );
       });
+      setOptimisticKidsafetv(prev => { const n = { ...prev }; delete n[showId]; return n; });
       toast({
         title: "Success",
         description: "KidSafeTV status updated",
