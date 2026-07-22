@@ -30,6 +30,7 @@ const PLACEMENTS = [
   { value: "announcement", label: "Announcement (under navbar)" },
   { value: "home", label: "Home Page" },
   { value: "browse", label: "Browse Shows" },
+  { value: "show-detail", label: "Show Detail Pages" },
   { value: "compare", label: "Compare Shows" },
   { value: "research", label: "Research Pages" },
 ];

@@ -40,6 +40,17 @@ const DEFAULT_BANNERS = [
     variant: "card",
   },
   {
+    placement: "show-detail",
+    name: "Show Detail Banner",
+    headline: "Love this show? Watch it the KidSafeTV way.",
+    body: "Smart playlists, stimulation-aware scheduling and a built-in wind-down — for this show and hundreds more.",
+    ctaText: "Try KidSafeTV free →",
+    targetUrl: "https://kidsafetv.com",
+    variant: "card",
+    showLogo: true,
+    showAppBadges: true,
+  },
+  {
     placement: "compare",
     name: "Compare Shows Banner",
     headline: "Comparing stimulation scores? KidSafeTV does it for you, every episode.",

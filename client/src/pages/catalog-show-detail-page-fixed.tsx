@@ -36,6 +36,7 @@ import {
   MessageCircle
 } from "lucide-react";
 import SensoryBar from "@/components/SensoryBar";
+import PromoBanner from "@/components/PromoBanner";
 import ShowCard from "@/components/ShowCard";
 import ShareModal from "@/components/ShareModal";
 import {
@@ -645,6 +646,9 @@ export default function CatalogShowDetailPage() {
             )}
           </div>
         </div>
+
+        {/* KidSafeTV Promo Banner */}
+        <PromoBanner placement="show-detail" className="mt-8" />
 
         {/* What You Might Also Like Section */}
         {relatedShows.length > 0 && (
