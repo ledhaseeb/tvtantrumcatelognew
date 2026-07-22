@@ -1,7 +1,7 @@
 ---
-name: Admin auth disabled
-description: Project-wide no-op admin auth pattern and its risk
+name: Admin auth
+description: Admin auth model and where the checks live
 ---
-All admin endpoints (`/api/admin/*` in server/index.ts, server/admin-auth.ts, server/catalog-routes.ts) use a `requireAdmin` middleware that just logs "Authentication disabled for development" and calls next(). The admin dashboard frontend also mocks `/api/admin/me`.
-**Why:** pre-existing deliberate dev convenience; real session-based auth code exists commented out in server/admin-auth.ts.
-**How to apply:** when adding admin routes, follow the existing `requireAdmin` pattern for consistency, but flag to the user that admin endpoints are publicly writable until auth is re-enabled (uncomment the session check in admin-auth.ts and the local requireAdmin in server/index.ts) before any production deploy.
+Admin auth is session-based and ENFORCED (re-enabled July 2026). The canonical middleware is `requireAdmin` in `server/simple-admin.ts` (checks `req.session.adminUser`, 401 otherwise). It protects: server/index.ts product+banner routes, all of server/admin-routes.ts (`router.use(requireAdmin)`), and the session checks in server/admin-auth.ts and server/catalog-routes.ts were also enabled.
+**Why:** admin endpoints were previously publicly writable via no-op "disabled for development" stubs.
+**How to apply:** any new `/api/admin/*` route must use `requireAdmin` from `./simple-admin`. Login: POST /api/admin/login (admin@tvtantrum.com in users table); admin login page at /tvtantrum-admin-secure-access-2024; dashboard queries must use `credentials: 'include'` and expect 401 redirects to /admin/login.

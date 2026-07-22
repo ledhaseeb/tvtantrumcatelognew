@@ -120,53 +120,6 @@ export function setupSimpleAdminAuth(app: Express) {
     }
   });
 
-  // Test login endpoint without password check for debugging
-  app.post('/api/admin/test-login', async (req: Request, res: Response) => {
-    try {
-      const { email } = req.body;
-      
-      // Query user directly with SQL
-      const result = await pool.query(
-        'SELECT id, email, first_name, is_admin FROM users WHERE email = $1 AND is_admin = true',
-        [email]
-      );
-
-      if (result.rows.length === 0) {
-        return res.status(404).json({ message: 'Admin user not found' });
-      }
-
-      const user = result.rows[0];
-      
-      // Set session without password check for testing
-      const session = req.session as any;
-      session.adminUser = {
-        id: user.id,
-        email: user.email,
-        firstName: user.first_name,
-        isAdmin: user.is_admin
-      };
-
-      session.save((err: any) => {
-        if (err) {
-          console.error('[TEST LOGIN ERROR] Session save failed:', err);
-          return res.status(500).json({ message: 'Session save failed', error: err.message });
-        }
-        
-        res.json({
-          message: 'Test login successful',
-          sessionId: session.id,
-          user: {
-            id: user.id,
-            email: user.email,
-            firstName: user.first_name
-          }
-        });
-      });
-    } catch (error) {
-      console.error('Test login error:', error);
-      res.status(500).json({ message: 'Internal server error', error: error.message });
-    }
-  });
 
   // Admin logout
   app.post('/api/admin/logout', (req: Request, res: Response) => {

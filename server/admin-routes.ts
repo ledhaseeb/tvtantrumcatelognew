@@ -4,15 +4,13 @@ import multer from 'multer';
 import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs/promises';
+import { requireAdmin } from './simple-admin';
 
 const router = Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
-// Admin authentication middleware (temporarily disabled for testing)
-const requireAdmin = (req: any, res: any, next: any) => {
-  // Temporarily bypass admin check for testing
-  next();
-};
+// All routes in this router are admin-only
+router.use(requireAdmin);
 
 // Image upload endpoint
 router.post('/upload-image', upload.single('image'), async (req, res) => {

@@ -616,11 +616,8 @@ router.get('/products/:id', async (req, res) => {
   }
 });
 
-// Admin middleware for products
-const requireAdmin = (req: any, res: any, next: any) => {
-  console.log('[ADMIN] Authentication disabled for development');
-  next();
-};
+// Admin middleware for products and banners (session-based, see simple-admin.ts)
+import { requireAdmin } from './simple-admin';
 
 // Admin product management routes
 router.post('/admin/products', requireAdmin, async (req, res) => {

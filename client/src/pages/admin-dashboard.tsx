@@ -45,18 +45,13 @@ export default function AdminDashboard() {
   const [editingResearch, setEditingResearch] = useState(null);
   const [isAddingNewResearch, setIsAddingNewResearch] = useState(false);
 
-  // Check admin authentication - TEMPORARILY DISABLED FOR DEVELOPMENT
+  // Check admin authentication via server session
   const { data: adminUser, isLoading: loadingAuth } = useQuery<AdminUser>({
     queryKey: ['/api/admin/me'],
     queryFn: async () => {
-      // Return mock admin user for development
-      console.log('[ADMIN] Authentication disabled for development');
-      return {
-        id: 1,
-        email: 'admin@tvtantrum.com',
-        firstName: 'Admin',
-        isAdmin: true
-      };
+      const response = await fetch('/api/admin/me', { credentials: 'include' });
+      if (!response.ok) throw new Error('Not authenticated');
+      return response.json();
     },
     retry: false,
   });

@@ -21,19 +21,13 @@ export function setupAdminSession(app: Express) {
 
 // Middleware to check if user is authenticated admin
 export function requireAdmin(req: Request, res: Response, next: NextFunction) {
-  // Temporarily disable admin authentication for development
-  console.log('[ADMIN] Authentication disabled for development');
-  next();
-  
-  /* Enable this for production:
   const session = req.session as any;
-  
+
   if (!session.adminUser || !session.adminUser.isAdmin) {
     return res.status(401).json({ message: 'Admin access required' });
   }
-  
+
   next();
-  */
 }
 
 // Admin authentication routes
