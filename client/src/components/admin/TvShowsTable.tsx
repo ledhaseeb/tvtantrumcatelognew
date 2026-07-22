@@ -72,6 +72,7 @@ interface TvShowsTableProps {
 
 export function TvShowsTable({ onEdit }: TvShowsTableProps) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [optimisticKidsafetv, setOptimisticKidsafetv] = useState<Record<number, boolean>>({});
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
@@ -125,14 +126,20 @@ export function TvShowsTable({ onEdit }: TvShowsTableProps) {
       if (!response.ok) throw new Error('Failed to update KidSafeTV status');
       return response.json();
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/tv-shows'] });
+    onMutate: ({ showId, onKidsafetv }) => {
+      setOptimisticKidsafetv(prev => ({ ...prev, [showId]: onKidsafetv }));
+    },
+    onSuccess: (_, { showId }) => {
+      queryClient.invalidateQueries({ queryKey: ['/api/tv-shows'] }).then(() => {
+        setOptimisticKidsafetv(prev => { const n = { ...prev }; delete n[showId]; return n; });
+      });
       toast({
         title: "Success",
         description: "KidSafeTV status updated",
       });
     },
-    onError: () => {
+    onError: (_, { showId }) => {
+      setOptimisticKidsafetv(prev => { const n = { ...prev }; delete n[showId]; return n; });
       toast({
         title: "Error",
         description: "Failed to update KidSafeTV status",
@@ -252,9 +259,8 @@ export function TvShowsTable({ onEdit }: TvShowsTableProps) {
                   </TableCell>
                   <TableCell>
                     <Switch
-                      checked={!!(show.on_kidsafetv || show.onKidsafetv)}
+                      checked={show.id in optimisticKidsafetv ? optimisticKidsafetv[show.id] : !!(show.on_kidsafetv || show.onKidsafetv)}
                       onCheckedChange={(checked) => kidsafetvMutation.mutate({ showId: show.id, onKidsafetv: checked })}
-                      disabled={kidsafetvMutation.isPending}
                       aria-label={`Toggle KidSafeTV for ${show.name}`}
                     />
                   </TableCell>
