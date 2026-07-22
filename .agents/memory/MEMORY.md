@@ -1,3 +1,1 @@
-- [DB push is destructive](db-push-danger.md) — never run `npm run db:push` here (manually or in scripts/post-merge.sh); schema file is out of sync with live DB and a push would drop live tables. Use psql for DDL.
-- [Admin auth](admin-auth-disabled.md) — session auth is enforced on all /api/admin routes; new admin routes must use the shared requireAdmin middleware; no passwordless debug logins allowed.
-- [Cache invalidation quirks](caching-invalidation.md) — /api/tv-shows list route uses its own `tv_shows:{filters}` key; invalidate via `invalidatePattern('tv_shows:')`, not the CACHE_KEYS constant.
+- [Admin auth systems](admin-auth-systems.md) — two separate login systems exist; the live one uses bcrypt + users table, not ADMIN_PASSWORD env var
