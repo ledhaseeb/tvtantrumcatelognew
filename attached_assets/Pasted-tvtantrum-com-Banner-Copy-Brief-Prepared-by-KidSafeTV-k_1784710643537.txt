@@ -1,0 +1,78 @@
+tvtantrum.com — Banner Copy Brief
+Prepared by: KidSafeTV (kidsafetv.com) Handoff to: tvtantrum.com agent Purpose: Add promotional banners on each page of tvtantrum.com that redirect visitors to KidSafeTV
+
+Brand / Visual Reference
+tvtantrum.com banners should match the KidSafeTV visual language:
+
+Element	Value
+Background	Dark navy/slate — #0f172a or #1e293b
+Primary accent	Teal — #14b8a6
+Headline text	White — #ffffff
+Body / subtext	Muted slate — #94a3b8
+CTA button	Teal gradient — from #0f766e to #0d9488
+Border radius	Small — 8px
+Font weight	Headlines: bold / 700. Body: normal / 400
+CTA links should point to: https://kidsafetv.com
+
+1. Site-Wide Top Banner
+Shown on every page — visible before any content. Keep it compact (single line on desktop).
+
+Style: Slim announcement bar. Teal background or dark with teal text. Dismissable optional.
+
+"94% of sessions end without a tantrum — see the app behind the data" [Try KidSafeTV free for 14 days →]
+
+2. Home Page Banner
+Audience: general visitors discovering what TV Tantrum is about. This banner bridges their education ("I just read about overstimulation") to the solution. Use a testimonial pull-quote format.
+
+Style: Full-width section banner or card. Quote in large italic text. Author attribution below. CTA button underneath.
+
+"They walked away from the TV before the time was up — no tantrums at all." — Sarah A, KidSafeTV parent
+
+[Try it free →]
+
+3. Browse Shows Page Banner
+Audience: actively browsing kids' content — they care about what their child watches. Lead with the payoff: the shows they're looking at are already inside KidSafeTV, organised automatically.
+
+Style: Banner placed above or below the show grid. Bold headline, one line of supporting copy, CTA.
+
+"You're browsing the right content. Now let it run itself." KidSafeTV turns these shows into smart playlists with a built-in wind-down.
+
+[Try it free →]
+
+4. Compare Shows Page Banner
+Audience: in research mode, comparing content options. Lead with the stimulation-level data angle — this is what KidSafeTV is built on.
+
+Style: Banner or callout card. Can sit inline near any stimulation/rating information on the page.
+
+"We ranked every show by stimulation level — so you don't have to guess." KidSafeTV uses this data to build playlists that get calmer toward screen-off time.
+
+[Start your free trial →]
+
+5. Research Page Banner
+Audience: highest-trust — reading the science, already convinced something needs to change. This should feel like a natural next step, not a hard sell. Place it at the end of articles or in the sidebar.
+
+Style: Quiet but confident. Dark card, no aggressive styling. Body copy leads, CTA is secondary.
+
+"You've read the research. Here's what we built from it." KidSafeTV — no endless streaming, no addictive algorithms, no YouTube brainrot. Just approved content that ends calmly.
+
+[Try it free for 14 days →]
+
+Compact sidebar variant (if the page layout has a sidebar):
+
+"The app built on this research →"
+
+Key Facts to Use Anywhere
+These stats and facts can be woven into any banner or supporting copy:
+
+94% of sessions end tantrum-free (real data from real families)
+14-day free trial, no credit card required
+Works on iOS, Android, and any web browser
+Cast to TV via Chromecast (Android) or AirPlay (iOS)
+Content curated for ages 2–8
+Blocks "brainrot" — hand-picked shows only, no YouTube algorithm
+Founding Member price: $39/year (60% off regular $99/year, rate locked for life)
+Invite a carer — your rules, your content, works away from home
+Notes
+All CTA links go to https://kidsafetv.com
+The KidSafeTV logo/icon is available at https://kidsafetv.com/kidsafetv-icon.png
+For questions contact: hello@tvtantrum.com
