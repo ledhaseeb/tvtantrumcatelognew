@@ -1,4 +1,4 @@
-import { Pool } from 'pg';
+import { Pool } from '@neondatabase/serverless';
 import { TvShow, Theme, Platform, ResearchSummary, User, HomepageCategory, InsertHomepageCategory, AmazonProduct, InsertAmazonProduct, PromoBanner, InsertPromoBanner } from '@shared/catalog-schema';
 import { cache, CACHE_KEYS, CACHE_TTL, getCacheKey, invalidatePattern } from "./cache";
 import { 
@@ -11,15 +11,13 @@ import {
   clearAllEnhancedCaches
 } from "./enhanced-cache";
 
+// Use Neon's serverless driver — works over HTTP so it handles Vercel cold starts
+// and serverless environments without TCP connection timeouts.
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.DATABASE_URL?.includes('neon.tech') || process.env.DATABASE_URL?.includes('sslmode=require')
-    ? { rejectUnauthorized: false }
-    : undefined,
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 10000,
-  allowExitOnIdle: false
 });
 
 // Handle pool errors to prevent app crashes
