@@ -865,7 +865,9 @@ const port = Number(process.env.PORT) || 5000;
 
 if (process.env.NODE_ENV === 'development') {
   setupVite(app, server);
-} else {
+} else if (!process.env.VERCEL) {
+  // On Vercel, static files are served from dist/public via Vercel's CDN.
+  // Only use serveStatic when running as a traditional Node server (Render, Railway, etc.).
   serveStatic(app);
 }
 
@@ -888,15 +890,21 @@ process.on('unhandledRejection', (reason: any, promise) => {
   }
 });
 
-server.listen(port, '0.0.0.0', async () => {
-  try {
-    await seedPromoBanners();
-  } catch (error) {
-    console.error('Promo banner seed failed:', error);
-  }
-  console.log(`TV Tantrum Catalog server running on port ${port}`);
-  console.log(`Using catalog database with 302 authentic TV shows`);
-  console.log(`Simplified content discovery without social features`);
-  console.log(`Enhanced caching enabled for viral traffic handling`);
-  console.log(`Database crash protection active`);
-});
+// Export app for Vercel serverless function (api/index.ts).
+// When running on Vercel, listen() is not called — Vercel manages connections.
+export { app };
+
+if (!process.env.VERCEL) {
+  server.listen(port, '0.0.0.0', async () => {
+    try {
+      await seedPromoBanners();
+    } catch (error) {
+      console.error('Promo banner seed failed:', error);
+    }
+    console.log(`TV Tantrum Catalog server running on port ${port}`);
+    console.log(`Using catalog database with 302 authentic TV shows`);
+    console.log(`Simplified content discovery without social features`);
+    console.log(`Enhanced caching enabled for viral traffic handling`);
+    console.log(`Database crash protection active`);
+  });
+}
