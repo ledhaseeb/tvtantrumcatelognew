@@ -865,9 +865,10 @@ const port = Number(process.env.PORT) || 5000;
 
 if (process.env.NODE_ENV === 'development') {
   setupVite(app, server);
-} else if (!process.env.VERCEL) {
-  // On Vercel, static files are served from dist/public via Vercel's CDN.
-  // Only use serveStatic when running as a traditional Node server (Render, Railway, etc.).
+} else {
+  // Serve static files from dist/public.
+  // On Vercel all requests are routed through this Express app (api/index.ts),
+  // so Express must serve the frontend as well as handle /api/* routes.
   serveStatic(app);
 }
 
