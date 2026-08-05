@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { TvShow } from "@shared/schema";
+import { TvShow } from "@shared/catalog-schema";
 // Removed TvShowCardImage import - using direct img tags
 import { Link, useLocation } from "wouter";
 import { memo } from "react";

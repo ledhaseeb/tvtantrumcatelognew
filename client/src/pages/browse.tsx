@@ -15,7 +15,7 @@ import {
   PaginationNext,
   PaginationPrevious
 } from "@/components/ui/pagination";
-import { TvShow } from "@shared/schema";
+import { TvShow } from "@shared/catalog-schema";
 
 export default function Browse() {
   const [_, setLocation] = useLocation();

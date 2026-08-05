@@ -26,7 +26,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { useQuery } from "@tanstack/react-query";
-import { TvShow } from "@shared/schema";
+import { TvShow } from "@shared/catalog-schema";
 import { Search, CheckIcon, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 

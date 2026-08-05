@@ -67,7 +67,7 @@ import {
   Copy
 } from 'lucide-react';
 
-import { TvShow, User as UserType } from '@shared/schema';
+import { TvShow, User as UserType } from '@shared/catalog-schema';
 import { apiRequest, queryClient } from '@/lib/queryClient';
 
 export default function AdminPage() {

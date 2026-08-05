@@ -1,4 +1,4 @@
-import { TvShow } from "@shared/schema";
+import { TvShow } from "@shared/catalog-schema";
 
 /**
  * Returns a color class based on the stimulation score value

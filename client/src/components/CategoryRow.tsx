@@ -1,4 +1,4 @@
-import { TvShow } from "@shared/schema";
+import { TvShow } from "@shared/catalog-schema";
 import ShowCard from "@/components/ShowCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";

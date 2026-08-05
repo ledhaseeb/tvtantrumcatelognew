@@ -15,7 +15,7 @@ import {
 import { getStimulationScoreColor } from "@/lib/showUtils";
 import RatingBar from "@/components/RatingBar";
 import SensoryBar from "@/components/SensoryBar";
-import { TvShow } from "@shared/schema";
+import { TvShow } from "@shared/catalog-schema";
 
 export default function Compare() {
   const [_, setLocation] = useLocation();

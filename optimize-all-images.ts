@@ -9,7 +9,7 @@ import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
 import fetch from 'node-fetch';
-import { tvShows } from './shared/schema';
+import { tvShows } from './shared/catalog-schema';
 import { updateCustomImageMap, loadCustomImageMap, saveCustomImageMap } from './server/image-preservator';
 
 // Create upload directories if they don't exist

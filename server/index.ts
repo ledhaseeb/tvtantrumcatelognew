@@ -13,7 +13,6 @@ import { seedPromoBanners } from './seed-promo-banners';
 import { Pool } from 'pg';
 import { setupSimpleAdminAuth } from './simple-admin';
 import adminRoutes from './admin-routes';
-import stripeRoutes from './stripe-routes';
 import { cache, getCacheStats } from './cache';
 import { getEnhancedCacheStats } from './enhanced-cache';
 import { setupDatabaseRecovery } from './database-recovery';
@@ -79,21 +78,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// Middleware - Skip JSON parsing for Stripe webhook (needs raw body for signature verification)
-app.use((req, res, next) => {
-  if (req.path === '/api/stripe/webhook') {
-    next();
-  } else {
-    express.json({ limit: '50mb' })(req, res, next);
-  }
-});
-app.use((req, res, next) => {
-  if (req.path === '/api/stripe/webhook') {
-    next();
-  } else {
-    express.urlencoded({ extended: true, limit: '50mb' })(req, res, next);
-  }
-});
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // PostgreSQL session store for production persistence
 const PgStore = ConnectPgSimple(session);
@@ -858,7 +844,6 @@ router.delete('/admin/promo-banners/:id', requireAdmin, async (req, res) => {
 app.use('/uploads', express.static(join(__dirname, '../public/uploads')));
 
 app.use('/api/admin', adminRoutes);
-app.use('/api/stripe', stripeRoutes);
 app.use('/api', router);
 
 const port = Number(process.env.PORT) || 5000;

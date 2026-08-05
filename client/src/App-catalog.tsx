@@ -20,8 +20,6 @@ import AdminProducts from "@/pages/admin-products";
 import NotFound from "@/pages/not-found";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import TermsOfService from "@/pages/terms-of-service";
-import ThankYou from "@/pages/thank-you";
-import Preorder from "@/pages/preorder";
 import BetaTrial from "@/pages/beta-trial";
 import { initGA } from "./lib/analytics";
 import { useAnalytics } from "./hooks/use-analytics";
@@ -67,8 +65,6 @@ function AppContent() {
           <Route path="/products" component={Products} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/terms-of-service" component={TermsOfService} />
-          <Route path="/thank-you" component={ThankYou} />
-          <Route path="/preorder" component={Preorder} />
           <Route path="/beta-trial" component={BetaTrial} />
           <Route path="/show/:id" component={CatalogShowDetailPage} />
           {/* Secure admin access with unique URL */}
