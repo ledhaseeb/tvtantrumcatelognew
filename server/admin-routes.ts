@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { catalogStorage } from './catalog-storage';
 import multer from 'multer';
-import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs/promises';
 import { requireAdmin } from './simple-admin';
@@ -28,7 +27,8 @@ router.post('/upload-image', upload.single('image'), async (req, res) => {
     const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
     await fs.mkdir(uploadsDir, { recursive: true });
     
-    // Optimize image with sharp
+    // Optimize image with sharp (lazy import — avoids crashing on platforms without native binaries)
+    const sharp = (await import('sharp')).default;
     const optimizedBuffer = await sharp(buffer)
       .resize(800, 800, { 
         fit: 'inside',
@@ -315,6 +315,7 @@ async function processImage(file: Express.Multer.File, showName: string): Promis
     const filePath = path.join(imagesDir, fileName);
     
     // Optimize image to portrait format (3:4 ratio, 400x600px)
+    const sharp = (await import('sharp')).default;
     await sharp(file.buffer)
       .resize(400, 600, {
         fit: 'cover',
